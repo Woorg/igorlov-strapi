@@ -19,7 +19,7 @@ yarn.lock
 package-lock.json
 
 
-# content
+# ignore content folder for make commit exceeded 2 gb
 
 # src
 # src/assets/images/a*
