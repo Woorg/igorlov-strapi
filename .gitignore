@@ -36,16 +36,16 @@ src/assets/images/x*
 src/assets/images/z*
 
 src/assets/images/o*
-src/assets/images/0*
-src/assets/images/1*
-src/assets/images/2*
-src/assets/images/3*
-src/assets/images/4*
-src/assets/images/5*
-src/assets/images/6*
-src/assets/images/7*
-src/assets/images/8*
-src/assets/images/9*
+# src/assets/images/0*
+# src/assets/images/1*
+# src/assets/images/2*
+# src/assets/images/3*
+# src/assets/images/4*
+# src/assets/images/5*
+# src/assets/images/6*
+# src/assets/images/7*
+# src/assets/images/8*
+# src/assets/images/9*
 # src/content
 # public
 dist
