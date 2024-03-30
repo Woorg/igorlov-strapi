@@ -22,9 +22,9 @@ package-lock.json
 # content
 
 # src
-src/assets/images/a*
-src/assets/images/b*
-src/assets/images/c*
+# src/assets/images/a*
+# src/assets/images/b*
+# src/assets/images/c*
 # src/assets/images/d*
 # src/assets/images/e*
 # src/assets/images/f*
