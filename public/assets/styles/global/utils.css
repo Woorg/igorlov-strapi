@@ -1,0 +1,61 @@
+@layer components {
+	.blocks {
+		@apply flex flex-col fluid:gap-y-2;
+	}
+
+	.block {
+		@apply bg-box;
+	}
+
+	.btn {
+		@apply rounded-full bg-blue-dark font-medium text-white transition-colors;
+		&:hover {
+			@apply bg-blue-light text-dark;
+		}
+	}
+	.btn--big {
+		@apply fluid:px-4 fluid:py-3 fluid:text-3xl lg:fluid:px-12 lg:fluid:py-5;
+	}
+
+	.btn__arrow-up,
+	.btn__arrow-down {
+		@apply relative h-6 w-6 shrink-0 opacity-100 lg:h-12 lg:w-12;
+		transition:
+			transform 0.9s ease,
+			opacity 0.9s ease,
+			color 0.9s ease;
+	}
+
+	.btn__arrow-up {
+		@apply translate-x-0 translate-y-0 transition-transform lg:translate-x-0 lg:translate-y-0;
+	}
+
+	.btn__arrow-down {
+		@apply -translate-x-[60px] translate-y-[28px] transition-transform lg:-translate-x-[120px] lg:translate-y-[60px];
+	}
+
+	.btn--circle {
+		@apply flex h-10 w-10 overflow-hidden p-2 lg:h-20 lg:w-20 lg:p-4 dark:bg-white dark:text-black;
+
+		&:hover {
+			@apply transform-gpu transition-transform dark:bg-box dark:text-dark;
+
+			.btn__arrow-up {
+				@apply -translate-y-[60px] translate-x-[60px] opacity-0 transition-transform lg:-translate-y-[120px] lg:translate-x-[120px];
+			}
+			.btn__arrow-down {
+				@apply -translate-x-[28px] translate-y-0 opacity-100 transition-transform lg:-translate-x-[60px] lg:translate-y-0;
+			}
+		}
+	}
+}
+
+@layer utilities {
+	iframe {
+		@apply aspect-video h-auto w-full;
+	}
+}
+
+.container {
+	@apply m-auto max-w-7xl px-2 lg:px-10;
+}

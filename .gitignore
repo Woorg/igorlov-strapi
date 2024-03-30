@@ -1,7 +1,6 @@
 # build output
 .output/
 .json/
-dist/
 
 
 # dependencies
@@ -22,11 +21,12 @@ package-lock.json
 
 # content
 
-src/
+src
 # src/assets/
 # src/content/
-public
-#
+# public
+dist
+
 
 # environment variables
 .env

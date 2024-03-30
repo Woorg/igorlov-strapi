@@ -1,0 +1,170 @@
+/* Default */
+/* This is a theme distributed by `starry-night`.
+ * It’s based on what GitHub uses on their site.
+ * See <https://github.com/wooorm/starry-night> for more info. */
+
+:root {
+	--color-prettylights-decoration-bg: #131315;
+	--color-prettylights-decoration-border-radius: 18px;
+	--color-prettylights-decoration-border-color: #8a8a93;
+	--color-prettylights-decoration-language-bg: ;
+	--color-prettylights-decoration-linenumber-color: #8a8a93;
+	--color-prettylights-decoration-highlighted-linenumber-color: #020202;
+	--color-prettylights-decoration-prompt-color: ;
+	--color-prettylights-decoration-focussed-line-bg: #020202;
+	--color-prettylights-decoration-highlighted-line-bg: ;
+	--color-prettylights-decoration-highlighted-line-border-color: ;
+	--color-prettylights-syntax-comment: #66707b;
+	--color-prettylights-syntax-constant: #023b95;
+	--color-prettylights-syntax-entity: #512598;
+	--color-prettylights-syntax-storage-modifier-import: #0e1116;
+	--color-prettylights-syntax-entity-tag: #024c1a;
+	--color-prettylights-syntax-keyword: #a0111f;
+	--color-prettylights-syntax-string: #032563;
+	--color-prettylights-syntax-variable: #702c00;
+	--color-prettylights-syntax-brackethighlighter-unmatched: #6e011a;
+	--color-prettylights-syntax-invalid-illegal-text: #ffffff;
+	--color-prettylights-syntax-invalid-illegal-bg: #6e011a;
+	--color-prettylights-syntax-carriage-return-text: #ffffff;
+	--color-prettylights-syntax-carriage-return-bg: #a0111f;
+	--color-prettylights-syntax-string-regexp: #024c1a;
+	--color-prettylights-syntax-markup-list: #2e1800;
+	--color-prettylights-syntax-markup-heading: #023b95;
+	--color-prettylights-syntax-markup-italic: #0e1116;
+	--color-prettylights-syntax-markup-bold: #0e1116;
+	--color-prettylights-syntax-markup-deleted-text: #6e011a;
+	--color-prettylights-syntax-markup-deleted-bg: #fff0ee;
+	--color-prettylights-syntax-markup-inserted-text: #024c1a;
+	--color-prettylights-syntax-markup-inserted-bg: #d2fedb;
+	--color-prettylights-syntax-markup-changed-text: #702c00;
+	--color-prettylights-syntax-markup-changed-bg: #ffc67b;
+	--color-prettylights-syntax-markup-ignored-text: #e7ecf0;
+	--color-prettylights-syntax-markup-ignored-bg: #023b95;
+	--color-prettylights-syntax-meta-diff-range: #622cbc;
+	--color-prettylights-syntax-brackethighlighter-angle: #4b535d;
+	--color-prettylights-syntax-sublimelinter-gutter-mark: #88929d;
+	--color-prettylights-syntax-constant-other-reference-link: #032563;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-prettylights-syntax-comment: #bdc4cc;
+		--color-prettylights-syntax-constant: #91cbff;
+		--color-prettylights-syntax-entity: #dbb7ff;
+		--color-prettylights-syntax-storage-modifier-import: #f0f3f6;
+		--color-prettylights-syntax-entity-tag: #72f088;
+		--color-prettylights-syntax-keyword: #ff9492;
+		--color-prettylights-syntax-string: #addcff;
+		--color-prettylights-syntax-variable: #ffb757;
+		--color-prettylights-syntax-brackethighlighter-unmatched: #ff6a69;
+		--color-prettylights-syntax-invalid-illegal-text: #ffffff;
+		--color-prettylights-syntax-invalid-illegal-bg: #e82a2f;
+		--color-prettylights-syntax-carriage-return-text: #ffffff;
+		--color-prettylights-syntax-carriage-return-bg: #ff4445;
+		--color-prettylights-syntax-string-regexp: #72f088;
+		--color-prettylights-syntax-markup-list: #fbd669;
+		--color-prettylights-syntax-markup-heading: #409eff;
+		--color-prettylights-syntax-markup-italic: #f0f3f6;
+		--color-prettylights-syntax-markup-bold: #f0f3f6;
+		--color-prettylights-syntax-markup-deleted-text: #ffdedb;
+		--color-prettylights-syntax-markup-deleted-bg: #cc1421;
+		--color-prettylights-syntax-markup-inserted-text: #acf7b6;
+		--color-prettylights-syntax-markup-inserted-bg: #007728;
+		--color-prettylights-syntax-markup-changed-text: #ffe1b4;
+		--color-prettylights-syntax-markup-changed-bg: #a74c00;
+		--color-prettylights-syntax-markup-ignored-text: #f0f3f6;
+		--color-prettylights-syntax-markup-ignored-bg: #318bf8;
+		--color-prettylights-syntax-meta-diff-range: #dbb7ff;
+		--color-prettylights-syntax-brackethighlighter-angle: #bdc4cc;
+		--color-prettylights-syntax-sublimelinter-gutter-mark: #7a828e;
+		--color-prettylights-syntax-constant-other-reference-link: #addcff;
+	}
+}
+
+$color-default-black: #000000;
+$color-default-black-80: rgba(0, 0, 0, 0.8);
+
+$color-default-white: #ffffff;
+$color-default-white-15: rgba(255, 255, 255, 0.15);
+$color-transparent: rgba(255, 255, 255, 0);
+
+/* Project palette
+ для нейминга цветов используем https://www.htmlcsscolor.com/hex/334482 */
+
+$color-dark-gray: #a7a7a7;
+$color-light-gray: #d6d6d6;
+$color-nero: #151515;
+$color-storm-grey: #808183;
+$color-tory-blue: #304c89;
+$color-tory-blue-15: rgba(48, 76, 137, 0.15);
+$color-tory-blue-25: rgba(48, 76, 137, 0.25);
+$color-tory-blue-5: rgba(48, 76, 137, 0.05);
+$color-granny-smith: #7f9c96;
+$color-granny-smith-15: rgba(127, 156, 150, 0.15);
+$color-don-juan: #654c4f;
+$color-ghost-white: #f3f3f5;
+$color-purple-heart: #6c43bf;
+$color-tomato: #ff5858;
+$color-turbo: #35332e;
+$color-apple: #68aa43;
+$color-dark-sea-green: #8fbc8f;
+$color-lightgreen: #90ee90;
+$color-summer-green: #87c7a0;
+$color-hawkes-blue: #d6d9e1;
+$color-light-slate-grey: #828792;
+$color-lavender: #e4e1fa;
+$color-white-smoke: #f5f5f5;
+$color-international-klein-blue: #002bc1;
+$color-pigment-green: #5bd1d7;
+$color-dark-spring-green: #0a823e;
+$color-silver: #bbbbbb;
+$color-neon-blue: #4f5bff;
+
+/* Gradient */
+
+$black-to-right: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 75%);
+
+/* Typography
+ --------------------------------- */
+
+/* переменная используемая в html для подключения скейлинга */
+$fz-default: 19px;
+
+/* у некоторых шрифтов в ios возникают проблемы с символом рубля */
+/* https://www.artlebedev.ru/kovodstvo/sections/159/#13 */
+$ff-rouble: 'Rouble', 'Arial', sans-serif;
+
+$ff-inter: 'Inter', 'Arial', sans-serif;
+
+/* Animation
+ --------------------------------- */
+
+$tf-default: ease;
+$trans-default: 0.15s $tf-default;
+
+/* если требуется изинг отличный от $tf-default, то переменную называем не цифрой */
+$trans-modal: 0.6s cubic-bezier(0.55, 0, 0.1, 1);
+$trans-600: 0.6s $tf-default;
+
+/* Viewports
+ --------------------------------- */
+
+$vp-320: 320px;
+$vp-375: 375px;
+$vp-768: 768px;
+$vp-1024: 1024px;
+$vp-1280: 1280px;
+$vp-1440: 1440px;
+$vp-1920: 1920px;
+
+/* Viewport height */
+
+$vh-700: 700px;
+$vh-800: 800px;
+$vh-900: 900px;
+
+/* Retina
+ --------------------------------- */
+
+$retina-dpi: 144dpi;
+$retina-dppx: 1.5dppx;
