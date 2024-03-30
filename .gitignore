@@ -22,7 +22,12 @@ package-lock.json
 # content
 
 # src
-src/assets
+src/assets/images/*
+src/assets/images/a
+src/assets/images/0
+src/assets/images/5
+src/assets/images/7
+src/assets/images/o
 # src/content
 # public
 dist
