@@ -1,0 +1,102 @@
+---
+import { Picture } from 'astro:assets';
+import config from '@/config/config.json';
+import { humanize, plainify, slugify } from '@/lib/utils/textConverter';
+import dateFormat from '@/lib/utils/dateFormat';
+
+const { summary_length, projects_folder }: { summary_length: number; projects_folder: string } =
+	config.settings;
+const { data, style } = Astro.props;
+const { title, image, date, author, categories, industry } = data.data;
+const className = Astro.props.class;
+---
+
+<article class:list={['work block', className]}>
+	<a class="work__link" href={`/${projects_folder}/${data.slug}`}>
+		<div class="work__header">
+			<span class="work__title">{title}</span>
+
+			{
+				categories.map((category: string, index: number) => (
+					<span class="work__category">
+						{humanize(category)}
+						{index !== categories.length - 1 && ','}
+					</span>
+				))
+			}
+			{industry && <span class="work__industry">{industry}</span>}
+			<!--
+			<span class="work__button btn btn--circle">
+				<svg
+					class="btn__arrow-up"
+					viewBox="0 0 48 48"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M15.6406 34.9922L13.0234 32.375L28.7852 16.6133H16.7148L16.7539 13H34.9766V31.2617H31.3633L31.3828 19.2305L15.6406 34.9922Z"
+						fill="currentColor"></path>
+				</svg>
+				<svg
+					class="btn__arrow-down"
+					viewBox="0 0 48 48"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M15.6406 34.9922L13.0234 32.375L28.7852 16.6133H16.7148L16.7539 13H34.9766V31.2617H31.3633L31.3828 19.2305L15.6406 34.9922Z"
+						fill="currentColor"></path>
+				</svg>
+			</span> -->
+		</div>
+
+		<!-- {
+			image && (
+				<div class="work__image">
+					<Picture
+						class="aspect-auto h-full w-full object-cover object-center"
+						src={image}
+						width={1920}
+						height={626}
+						alt={title}
+						formats={['avif', 'webp']}
+						quality={60}
+						loading="eager"
+						transition:animate={'initial'}
+						transition:name={`project-image-${data.slug}`}
+					/>
+				</div>
+			)
+		} -->
+	</a>
+</article>
+
+<style>
+	.work {
+		@apply relative border-t border-gray-light text-dark  transition-colors dark:bg-box-dark dark:text-white hover:dark:text-dark;
+
+		&__link {
+			@apply flex h-full flex-col fluid:gap-y-2 fluid:rounded-[32px] fluid:py-10;
+		}
+
+		&__header {
+			@apply items-start gap-x-2 lowercase leading-normal lg:px-12;
+		}
+
+		&__title {
+			@apply mb-6 font-medium text-dark fluid:text-3xl lg:mb-0 lg:pr-10 dark:text-white;
+		}
+
+		&__category {
+			@apply hidden font-normal text-gray fluid:text-2xl lg:block dark:bg-transparent;
+		}
+
+		&__industry {
+			@apply font-medium text-dark fluid:text-2xl dark:text-gray  dark:lg:text-white;
+		}
+
+		&__image {
+			@apply overflow-hidden rounded-3xl;
+		}
+	}
+</style>

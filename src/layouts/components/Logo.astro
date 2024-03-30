@@ -1,0 +1,26 @@
+---
+// import { Image } from "astro:assets";
+import config from '@/config/config.json';
+
+const className = Astro.props.class;
+const logo = config.site.logo_text;
+const basePath = config.site.base_path;
+const pathname = Astro.url.pathname;
+// console.log(logo);
+---
+
+<a
+	href={basePath}
+	class:list={[
+		'logo font-extrabold lowercase transition-colors fluid:text-lg',
+		className,
+		basePath === pathname ? 'logo--active' : 'dark:hover:text-light text-dark  dark:text-gray',
+	]}
+	aria-label="logo">{logo}</a
+>
+
+<style>
+	.logo {
+		@apply whitespace-nowrap;
+	}
+</style>

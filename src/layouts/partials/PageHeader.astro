@@ -1,0 +1,11 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { humanize } from '@/lib/utils/textConverter';
+
+const { title = '' }: { title?: string } = Astro.props;
+---
+
+<h1 class="text-grayest">{title}</h1>
+
+<!-- <h1 set:text={humanize(title)} />
+<Breadcrumbs className="mt-6" /> -->

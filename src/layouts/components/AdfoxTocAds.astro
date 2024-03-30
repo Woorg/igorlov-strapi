@@ -1,0 +1,31 @@
+---
+export interface Props {
+	blockId: string;
+}
+
+const { blockId } = Astro.props;
+---
+
+<div id={blockId}></div>
+
+<script is:inline define:vars={{ blockId }}>
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+</script>

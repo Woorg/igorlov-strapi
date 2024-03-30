@@ -1,0 +1,49 @@
+---
+import { plainify } from '@/lib/utils/textConverter';
+import { Picture } from 'astro:assets';
+import Social from './Social.astro';
+
+const { data } = Astro.props;
+const { title, image, social } = data.data;
+---
+
+<div class="author">
+	{
+		image && (
+			<Picture
+				class="author__image"
+				src={image}
+				alt={title}
+				width={120}
+				height={120}
+				quality={60}
+				formats={['avif', 'webp']}
+			/>
+		)
+	}
+	<h4 class="author__title">
+		<a href={`/authors/${data.slug}`}>{title}</a>
+	</h4>
+	<p class="author__text">
+		{plainify(data.body?.slice(0, 100))}
+
+		<Social source={social} class="author__social social-icons" />
+	</p>
+
+	<style>
+		.author {
+			@apply flex flex-col items-center gap-y-2 bg-box fluid:rounded-[32px] fluid:px-2 fluid:pb-2 fluid:pt-10;
+			&__image {
+			}
+
+			&__title {
+			}
+
+			&__text {
+			}
+
+			&__social {
+			}
+		}
+	</style>
+</div>

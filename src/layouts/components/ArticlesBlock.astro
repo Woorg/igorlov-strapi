@@ -1,0 +1,47 @@
+---
+import { Picture } from 'astro:assets';
+import BlogCard from './BlogCard.astro';
+import { getEntry } from 'astro:content';
+
+const blogSection = await getEntry('sections', 'blog');
+
+import config from '@/config/config.json';
+const { summary_length, blog_folder }: { summary_length: number; blog_folder: string } =
+	config.settings;
+
+const { style, posts, sectionTitle } = Astro.props;
+const className = Astro.props.class;
+const { title } = blogSection.data;
+
+// console.log(sectionTitle);
+---
+
+<section class:list={['blog', className]} style={style}>
+	{
+		sectionTitle ? (
+			<h1 class="blog__title">{sectionTitle}</h1>
+		) : (
+			<h1 class="blog__title">{title}</h1>
+		)
+	}
+
+	<div class="blog__list">
+		{
+			posts.map((post: object, key: number) => {
+				let i = 1;
+				return <BlogCard post={post} class:list={`blog__article`} />;
+			})
+		}
+	</div>
+</section>
+<style>
+	.blog {
+		@apply grid bg-box text-dark fluid:gap-y-2 fluid:rounded-3xl fluid:px-12 fluid:py-8 dark:bg-box-dark dark:text-white;
+		&__title {
+			@apply mt-0 font-medium  fluid:text-5xl;
+		}
+		&__list {
+			@apply grid grid-cols-1 fluid:gap-2;
+		}
+	}
+</style>

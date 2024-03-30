@@ -1,0 +1,50 @@
+{
+	"metadata": {
+		"title": "Игорь Горлов - full-stack веб-разработчик",
+		"meta_author": "Игорь Горлов",
+		"meta_image": "assets/images/og-image.png",
+		"meta_description": "Игорь Горлов - full-stack веб-разработчик с опытом работы с Next.js, Astro и React на фронтенде, а также с NestJs, MongoDB, PostgreSQL и MySQL на бэкенде. Профессионально воплощаю ваши идеи в качественные веб-приложения."
+	},
+	"site": {
+		"title": "Игорь Горлов - Full-stack Web Developer",
+		"base_url": "https://igorlov.ru/",
+		"base_path": "/",
+		"trailing_slash": false,
+		"favicon": "/public/favicon.ico",
+		"logo": "",
+		"logo_darkmode": "",
+		"logo_width": "150",
+		"logo_height": "30",
+		"logo_text": "ФCВР",
+		"telegram": "https://t.me/gorlovfrontend",
+		"copyright": "все права защищены. ©"
+	},
+
+	"settings": {
+		"search": false,
+		"sticky_header": false,
+		"theme_switcher": false,
+		"default_theme": "system",
+		"pagination": 9,
+		"summary_length": 70,
+		"blog_folder": "blog",
+		"tags_folder": "tags",
+		"projects_folder": "projects"
+	},
+
+	"params": {
+		"contact_form_action": "#"
+	},
+
+	"navigation_button": {
+		"enable": false,
+		"label": "Контакты",
+		"link": "/contact"
+	},
+
+	"disqus": {
+		"enable": true,
+		"shortname": "igorlov-ru",
+		"settings": {}
+	}
+}

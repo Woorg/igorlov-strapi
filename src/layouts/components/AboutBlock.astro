@@ -1,0 +1,48 @@
+---
+import { getEntry } from 'astro:content';
+// import { markdownify } from '@/lib/utils/textConverter';
+// import { Picture } from 'astro:assets';
+// import myPicture from '../../assets/images/avatar-new-1.png';
+
+const about = await getEntry('sections', 'about');
+
+interface AboutBlock {
+	aboutBlock: {
+		title: string;
+		content: string;
+	};
+}
+
+const { aboutBlock }: AboutBlock = about.data;
+const { style } = Astro.props;
+const className = Astro.props.class;
+// console.log(className);
+---
+
+<section class:list={['about block', className]} style={style}>
+	{
+		aboutBlock.title && (
+			<p class="about__title">
+				{aboutBlock.title} <span class="about__text">{aboutBlock.content}</span>
+			</p>
+		)
+	}
+</section>
+
+<style>
+	.about {
+		@apply flex flex-col justify-center bg-box  fluid:gap-6 fluid:rounded-3xl fluid:p-8 lg:fluid:px-12 lg:fluid:py-8 dark:bg-box-dark;
+
+		&__title,
+		&__text {
+			@apply font-medium fluid:text-3xl lg:fluid:text-4xl;
+		}
+		&__title {
+			@apply text-black dark:text-white;
+		}
+
+		&__text {
+			@apply text-gray-dark dark:text-gray;
+		}
+	}
+</style>

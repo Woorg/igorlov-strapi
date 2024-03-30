@@ -1,0 +1,19 @@
+---
+export interface Props {
+	blockId: string;
+	platform: 'touch' | 'desktop';
+}
+
+const { blockId, platform } = Astro.props;
+---
+
+<script is:inline define:vars={{ blockId, platform }}>
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.Context.AdvManager.render({
+			blockId: blockId,
+			type: 'floorAd',
+			platform: platform,
+		});
+	});
+</script>

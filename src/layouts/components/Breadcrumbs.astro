@@ -1,0 +1,57 @@
+---
+import { humanize } from '@/lib/utils/textConverter';
+const { style } = Astro.props;
+const className = Astro.props.class;
+
+const paths = Astro.url.pathname.split('/').filter((x) => x);
+let parts = [
+	{
+		label: 'Главная',
+		href: '/',
+		'aria-label': Astro.url.pathname === '/' ? 'page' : undefined,
+	},
+];
+
+paths.forEach((label: string, i: number) => {
+	// console.log(parts);
+	const href = `/${paths.slice(0, i + 1).join('/')}`;
+	label !== 'page' &&
+		parts.push({
+			label: humanize(label.replace(/[-_]/g, ' ')) || '',
+			href,
+			'aria-label': Astro.url.pathname === href ? 'page' : undefined,
+		});
+});
+---
+
+<nav aria-label="Breadcrumbs" class:list={['breadcrumbs', className]} style={style}>
+	<ol class="breadcrumbs__list" role="list">
+		{
+			parts.map(({ label, ...attrs }, index) => (
+				<li class="breadcrumbs__item" role="listitem">
+					{index !== parts.length - 1 ? (
+						<a class="breadcrumbs__link" {...attrs}>
+							{label}
+						</a>
+					) : null}
+				</li>
+			))
+		}
+	</ol>
+</nav>
+
+<style>
+	.breadcrumbs {
+		@apply bg-box text-dark fluid:rounded-3xl fluid:px-8 fluid:py-4 dark:bg-box-dark dark:text-white;
+		&__list {
+			@apply flex items-center fluid:gap-0.5;
+		}
+
+		&__item {
+		}
+
+		&__link {
+			@apply rounded-full bg-red-light font-medium transition-colors hover:bg-red fluid:px-3 fluid:py-0.5 dark:bg-gray-dark dark:text-white dark:hover:bg-gray dark:hover:text-box;
+		}
+	}
+</style>

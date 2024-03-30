@@ -1,0 +1,186 @@
+---
+export const prerender = true;
+import ProjectCard from '@/components/ProjectCard.astro';
+import Share from '@/components/Share.astro';
+import config from '@/config/config.json';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import dateFormat from '@/lib/utils/dateFormat';
+import similerItems from '@/lib/utils/similarItems';
+import CircularNavigation from '@/components/CircularNavigation.astro';
+import { humanize, markdownify, slugify } from '@/lib/utils/textConverter';
+import { Image, Picture } from 'astro:assets';
+
+const { projects_folder } = config.settings;
+
+const posts = await getSinglePage(projects_folder);
+const { post, style, prevPost, nextPost, type } = Astro.props;
+const similarPosts = similerItems(post, posts, post.slug);
+const { Content } = await post.render();
+const { title, description, author, categories, image, images, date, tags, link, repository } =
+	post.data;
+
+const className = Astro.props.class;
+
+// console.log(prevPost, nextPost);
+---
+
+<article class:list={['work', className]}>
+	<div class="work__header">
+		<ul class="work__categories categories">
+			{
+				categories.map((category: string, index: number) => (
+					<li class="categories__item">
+						<span class="categories__link">
+							{humanize(category)}
+							{index !== categories.length - 1 && ','}
+						</span>
+					</li>
+				))
+			}
+		</ul>
+
+		<h1 class="work__title">
+			{title}
+		</h1>
+
+		<ul class="work__tags tags">
+			{
+				tags.map((tag: string) => (
+					<li class="tags__item">
+						<span class="tags__link">{humanize(tag)}</span>
+					</li>
+				))
+			}
+		</ul>
+
+		<time class="work__date">
+			{dateFormat(date)} by {humanize(author)}
+		</time>
+	</div>
+
+	<!-- {
+		image && (
+			<figure class="work__image ">
+				<Picture
+					src={image}
+					width={1200}
+					height={600}
+					alt={title}
+					formats={['avif', 'webp']}
+					quality={60}
+					loading="eager"
+					class=" gralight aspect-auto h-full w-full object-cover object-center"
+					transition:animate={'initial'}
+					transition:name={`project-image-${post.slug}`}
+				/>
+			</figure>
+		)
+	} -->
+
+	<div class="work__images">
+		{
+			images.map((item: any) => (
+				<figure class="work__thumb">
+					<Picture
+						src={item}
+						width={1200}
+						height={600}
+						alt="work thumb"
+						formats={['avif', 'webp']}
+						quality={60}
+						class="aspect-auto h-full w-full object-cover object-center"
+					/>
+				</figure>
+			))
+		}
+	</div>
+
+	<div
+		class="work__content prose text-dark transition-colors fluid:px-9 fluid:py-10 prose-headings:my-6 prose-headings:tracking-tight prose-headings:text-white prose-headings:text-4xl prose-a:text-white hover:prose-a:text-gray prose-strong:text-dark prose-code:text-white prose-pre:fluid:rounded-3xl prose-img:fluid:rounded-3xl dark:text-white dark:prose-strong:text-white"
+	>
+		<div class="work__links links">
+			{
+				link && (
+					<a href={link} class="links__link btn">
+						Ссылка
+					</a>
+				)
+			}
+
+			{
+				repository && (
+					<a href={repository} class="links__link btn">
+						Github
+					</a>
+				)
+			}
+		</div>
+
+		<Content />
+
+		<CircularNavigation type={type} prevPost={prevPost} nextPost={nextPost} />
+	</div>
+</article>
+
+<style>
+	.work {
+		@apply bg-box text-dark fluid:rounded-[32px] fluid:px-2 fluid:pb-2 fluid:pt-10 dark:bg-box-dark dark:text-white;
+		&__header {
+			@apply flex flex-col items-center justify-center fluid:gap-y-3 fluid:py-10;
+		}
+
+		&__categories {
+		}
+
+		&__title {
+			@apply m-0 text-center font-medium fluid:text-6xl;
+		}
+
+		&__tags {
+		}
+
+		&__date {
+			@apply font-medium text-gray text-lg;
+		}
+
+		&__image {
+			@apply overflow-hidden fluid:rounded-3xl;
+		}
+
+		&__images {
+			@apply grid grid-cols-4 fluid:py-10;
+		}
+
+		&__thumb {
+			@apply overflow-hidden fluid:rounded-3xl;
+		}
+
+		&__links {
+		}
+	}
+
+	.categories,
+	.tags,
+	.links {
+		@apply flex flex-wrap items-center justify-center fluid:gap-3;
+		&__item {
+		}
+
+		&__link {
+			@apply rounded-full font-medium transition-colors fluid:px-3  fluid:py-0.5;
+		}
+	}
+
+	.tags {
+		&__link {
+			/* @apply ; */
+		}
+	}
+
+	.links {
+		@apply justify-start;
+		&__link {
+			@apply flex font-medium no-underline leading-none hover:text-dark;
+		}
+	}
+</style>

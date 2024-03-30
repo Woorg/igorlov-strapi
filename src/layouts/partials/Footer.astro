@@ -1,0 +1,36 @@
+---
+import Logo from '@/components/Logo.astro';
+import config from '@/config/config.json';
+
+const { site } = config;
+const className = Astro.props.class;
+const { style } = Astro.props;
+const currentYear = new Date().getFullYear();
+const { copyright } = site;
+---
+
+<footer class:list={['footer', className]}>
+	<div class="footer__container container">
+		<Logo class="footer__logo" />
+		<small class="footer__copyright">{copyright} {currentYear}</small>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		@apply mt-3 bg-gray-light dark:bg-box-dark;
+		&__container {
+			@apply flex flex-wrap items-center justify-between text-dark fluid:p-8 fluid:py-2 lg:fluid:px-12 lg:fluid:py-3 dark:text-white;
+		}
+
+		&__logo {
+			@apply text-base;
+		}
+		&__copyright {
+			@apply font-medium text-gray fluid:text-sm;
+		}
+
+		&__nav {
+		}
+	}
+</style>

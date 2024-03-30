@@ -1,0 +1,148 @@
+---
+type Pagination = {
+	section?: string;
+	currentPage?: number;
+	totalPages?: number;
+	url?: string;
+	label?: string;
+	nextUrl?: string;
+};
+
+const { section, currentPage = 1, totalPages = 1 }: Pagination = Astro.props;
+
+// console.log(Astro.props);
+
+const indexPageLink = currentPage === 2;
+const hasPrevPage = currentPage > 1;
+const hasNextPage = totalPages > currentPage!;
+
+let pageList: number[] = [];
+for (let i = 1; i <= totalPages; i++) {
+	pageList.push(i);
+}
+
+// console.log(pageList);
+---
+
+{
+	totalPages > 1 && (
+		<nav class="pagination" aria-label="Pagination">
+			{/* First Page Button */}
+			{currentPage > 1 && (
+				<a href={`/${section ?? ''}`} class="pagination__link" aria-label="В начало">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-first"
+					>
+						<path d="m17 18-6-6 6-6" />
+						<path d="M7 6v12" />
+					</svg>
+				</a>
+			)}
+
+			{/* Previous Page Button */}
+			{currentPage > 1 && (
+				<a
+					href={currentPage === 2 ? `/${section ?? ''}` : `/${section ?? ''}/${currentPage - 1}`}
+					class="pagination__link"
+					aria-label="Предыдущие"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-left"
+					>
+						<path d="m15 18-6-6 6-6" />
+					</svg>
+				</a>
+			)}
+
+			{/* Page Index */}
+			{pageList
+				.slice(Math.max(0, currentPage - 3), Math.min(totalPages, currentPage + 2))
+				.map((pagination) => (
+					<a
+						href={pagination === 1 ? `/${section ?? ''}` : `/${section ?? ''}/${pagination}`}
+						aria-current={pagination === currentPage ? 'page' : null}
+						class={`pagination__link${pagination === currentPage ? ' pagination__link--current' : ''}`}
+					>
+						{pagination}
+					</a>
+				))}
+
+			{/* Next Page Button */}
+			{currentPage < totalPages && (
+				<a
+					href={`/${section ?? ''}/${currentPage + 1}`}
+					class="pagination__link"
+					aria-label="Следующие"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-right"
+					>
+						<path d="m9 18 6-6-6-6" />
+					</svg>
+				</a>
+			)}
+
+			{/* Last Page Button */}
+			{currentPage < totalPages && (
+				<a href={`/${section ?? ''}/${totalPages}`} class="pagination__link" aria-label="В конец">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="lucide lucide-chevron-last"
+					>
+						<path d="m7 18 6-6-6-6" />
+						<path d="M17 6v12" />
+					</svg>
+				</a>
+			)}
+		</nav>
+	)
+}
+
+<style>
+	.pagination {
+		@apply flex flex-nowrap items-center justify-center gap-2 rounded-3xl bg-box px-2 py-6 dark:bg-box-dark;
+
+		&__link {
+			@apply flex  font-medium text-dark  transition-colors hover:text-gray fluid:px-1 fluid:py-2 lg:fluid:px-4 lg:fluid:py-2 dark:text-gray-light;
+		}
+
+		&__link--current {
+			@apply rounded text-gray lg:fluid:px-4 lg:fluid:py-2;
+		}
+	}
+</style>

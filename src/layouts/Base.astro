@@ -1,0 +1,69 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/nunito-sans';
+import config from '@/config/config.json';
+import { plainify } from '@/lib/utils/textConverter';
+import '../../public/assets/styles/style.css';
+import { SEO } from 'astro-seo';
+import Header from '@/partials/Header.astro';
+import Footer from '@/partials/Footer.astro';
+import { ViewTransitions } from 'astro:transitions';
+
+// types for frontmatters
+export interface Props {
+	title?: string;
+	meta_title?: string;
+	description?: string;
+	image?: string;
+	noindex?: boolean;
+	canonical?: string;
+}
+
+// distructure frontmatters
+const { title, meta_title, description, image, noindex, canonical } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+	<head>
+		<SEO
+			title={plainify(meta_title ? meta_title : title ? title : config.site.title)}
+			description={plainify(description ? description : config.metadata.meta_description)}
+			noindex={noindex}
+			canonical={canonical}
+		/>
+
+		<!-- favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="theme-color" content="#ffffff" />
+
+		<!-- theme meta -->
+		<meta name="theme-name" content="igorlov.ru" />
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+		<meta name="generator" content={Astro.generator} />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+		<!-- responsive meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+
+		<meta name="google-adsense-account" content="ca-pub-0634695143666394" />
+
+		<ViewTransitions />
+	</head>
+
+	<body
+		class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"
+	>
+		<Header class="" style="" />
+		<main id="main-content" class="main flex-1">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

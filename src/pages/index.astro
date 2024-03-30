@@ -1,0 +1,89 @@
+---
+export const prerender = true;
+import Base from '@/layouts/Base.astro';
+// import { markdownify } from "@/lib/utils/textConverter";
+// import CallToAction from "@/partials/CallToAction.astro";
+// import Testimonial from "@/partials/Testimonial.astro";
+// import type { Feature } from "@/types";
+
+// import BlogCard from "@/components/BlogCard.astro";
+import ProjectCard from '@/components/ProjectCard.astro';
+
+import config from '@/config/config.json';
+import { getAllTaxonomy, getTaxonomy } from '@/lib/taxonomyParser.astro';
+import { sortByDate } from '@/lib/utils/sortFunctions';
+
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { getEntryBySlug, getEntry } from 'astro:content';
+const { blog_folder } = config.settings;
+const { projects_folder } = config.settings;
+const projectIndex = await getEntryBySlug<any, string>(projects_folder, '-index');
+const projects = await getSinglePage(projects_folder);
+const postIndex = await getEntryBySlug<any, string>(blog_folder, '-index');
+const posts = await getSinglePage(blog_folder);
+const allCategories = await getAllTaxonomy(blog_folder, 'categories');
+const categories = await getTaxonomy(blog_folder, 'categories');
+const tags = await getTaxonomy(blog_folder, 'tags');
+const sortedPosts = sortByDate(posts);
+const sortedProjects = sortByDate(projects);
+const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
+const currentPosts = sortedPosts.slice(0, 3);
+const currentProjects = sortedProjects.slice(0, 5);
+
+import { Picture } from 'astro:assets';
+import CtaBlock from '@/components/CtaBlock.astro';
+import HeroBlock from '@/components/HeroBlock.astro';
+import Social from '@/components/Social.astro';
+import BasedInBlock from '@/components/BasedInBlock.astro';
+import AboutBlock from '@/components/AboutBlock.astro';
+import TestimonialsBlock from '@/components/TestimonialsBlock.astro';
+import WorksBlock from '@/components/WorksBlock.astro';
+import ArticlesBlock from '@/components/ArticlesBlock.astro';
+---
+
+<Base
+	title="Игорь Горлов - Fullstack Web Developer"
+	description="Игорь Горлов - full-stack веб-разработчик с опытом работы с Next.js, Astro и React на фронтенде, а также с NestJs, MongoDB, PostgreSQL и MySQL на бэкенде. Профессионально воплощаю ваши идеи в качественные веб-приложения."
+>
+	<div class="blocks">
+		<div class="blocks__container container">
+			<HeroBlock class="" />
+		</div>
+		<div class="blocks__container container">
+			<AboutBlock class="" />
+		</div>
+		<div class="blocks__container container">
+			<WorksBlock class="" works={currentProjects} />
+		</div>
+
+		<div class="blocks__container container">
+			<CtaBlock class="" />
+			<!-- <BasedInBlock class=" " /> -->
+		</div>
+
+		<!-- <div class="blocks__container container">
+			<TestimonialsBlock class="" />
+		</div> -->
+
+		<div class="blocks__container container">
+			<ArticlesBlock class="" posts={currentPosts} />
+		</div>
+
+		<!-- <div class="blocks__container container lg:grid-cols-1">
+<CtaBlock id="cta" class=" "
+		</div> -->
+	</div>
+
+	<!-- {currentProjects.map((project) => <ProjectCard data={project} />)} -->
+
+	<!-- {currentPosts.map((post) => <BlogCard data={post} />)} -->
+</Base>
+
+<style>
+	.blocks {
+		@apply flex flex-col fluid:gap-y-2;
+		&__container {
+			@apply grid fluid:gap-2;
+		}
+	}
+</style>

@@ -1,0 +1,36 @@
+{
+	"left": [
+		{
+			"index": 3,
+			"name": "Linkedin",
+			"link": "https://www.linkedin.com/in/igor-gorlov-79a4bb36/"
+		},
+		{
+			"index": 2,
+			"name": "Youtube.",
+			"link": "https://www.youtube.com/@IgorDoesFrontend"
+		},
+		{
+			"index": 1,
+			"name": "Github.",
+			"link": "https://github.com/woorg"
+		}
+	],
+	"right": [
+		{
+			"index": 1,
+			"name": "Facebook.",
+			"link": "https://www.facebook.com/igorgorlov/"
+		},
+		{
+			"index": 2,
+			"name": "Twitter.",
+			"link": "https://twitter.com/Woorg"
+		},
+		{
+			"index": 3,
+			"name": "Instagram.",
+			"link": "https://www.instagram.com/gorlovfrontend/"
+		}
+	]
+}

@@ -1,0 +1,28 @@
+---
+import { site } from '@/config/config.json';
+import { getEntry } from 'astro:content';
+import { Image, Picture } from 'astro:assets';
+
+const offersData = await getEntry('sections', 'textads');
+
+const offers = offersData?.data.offers;
+const telegram = site.telegram;
+// console.log(telegram);
+
+const randomIndex = Math.floor(Math.random() * offers.length);
+const randomOffer = offers[randomIndex];
+
+const { style } = Astro.props;
+const className = Astro.props.class;
+---
+
+<a
+	href={telegram}
+	class:list={[
+		'flex rounded-3xl border border-green-700 bg-green-950 px-5 py-2 font-bold text-green-300 transition-colors text-xs hover:border-green-800 lg:text-lg',
+
+		className,
+	]}
+	style={style}
+	><span class="some-special__text" set:html={randomOffer}>""</span>
+</a>

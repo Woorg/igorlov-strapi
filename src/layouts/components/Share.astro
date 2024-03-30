@@ -1,0 +1,93 @@
+---
+import config from '@/config/config.json';
+
+const { base_url }: { base_url: string } = config.site;
+const { blog_folder }: { blog_folder: string } = config.settings;
+const { title, description, slug }: { title?: string; description?: string; slug?: string } =
+	Astro.props;
+
+const fullUrl = `${base_url}${blog_folder}/${slug}`;
+const className = Astro.props.class;
+// console.log(className);
+---
+
+<div class:list={['share', className]}>
+	<h3 class="share__title">Поделиться:</h3>
+	<ul class="share__list">
+		<li class="share__item">
+			<a
+				class="share__link"
+				aria-label="facebook share button"
+				href={`https://vk.com/share.php?url=${fullUrl}`}
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				Vk
+			</a>
+		</li>
+		<li class="share__item">
+			<a
+				class="share__link"
+				aria-label="facebook share button"
+				href={`https://facebook.com/sharer/sharer.php?u=${fullUrl}`}
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				Fb
+			</a>
+		</li>
+		<li class="share__item">
+			<a
+				class="share__link"
+				aria-label="twitter share button"
+				href={`https://twitter.com/share?title=${title}&url=${fullUrl}`}
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				X
+			</a>
+			<li class="share__item">
+				<a
+					class="share__link"
+					aria-label="linkedin share button"
+					href={`https://www.linkedin.com/shareArticle?mini=true&url=${fullUrl}&title=${title}&summary=${description}&source=${base_url}`}
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					Linkd
+				</a>
+			</li>
+			<li class="share__item">
+				<a
+					class="share__link"
+					aria-label="pinterest share button"
+					href={`https://pinterest.com/pin/create/button/?url=${fullUrl}&media=&description=${description}`}
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					Pint
+				</a>
+			</li>
+		</li>
+	</ul>
+
+	<style>
+		.share {
+			@apply flex flex-wrap items-center text-dark leading-none fluid:gap-3 dark:text-white;
+
+			&__title {
+				@apply m-0 mr-3 fluid:text-2xl;
+			}
+			&__list {
+				@apply mb-0 flex list-none flex-wrap items-center p-0 fluid:gap-0.5 fluid:text-2xl;
+			}
+			&__item {
+				@apply p-0;
+			}
+
+			&__link {
+				@apply rounded-full bg-red-light text-dark no-underline hover:bg-red hover:text-dark fluid:px-3 fluid:py-0.5 dark:bg-gray-dark dark:text-white dark:hover:bg-gray dark:hover:text-box;
+			}
+		}
+	</style>
+</div>

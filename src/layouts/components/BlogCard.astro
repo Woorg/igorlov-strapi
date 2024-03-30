@@ -1,0 +1,83 @@
+---
+import { Picture } from 'astro:assets';
+import config from '@/config/config.json';
+import { humanize, plainify, slugify } from '@/lib/utils/textConverter';
+import dateFormat from '@/lib/utils/dateFormat';
+
+const { summary_length, blog_folder }: { summary_length: number; blog_folder: string } =
+	config.settings;
+const { style, post } = Astro.props;
+const { title, image, date, author, categories } = post.data;
+const { slug, body } = post;
+const className = Astro.props.class;
+---
+
+<article class:list={['blog-card', className]}>
+	<a href={`/${blog_folder}/${slug}`} title={title} class="blog-card__link">
+		<!-- {
+			image && (
+				<div class="blog-card__image">
+					<Picture
+						class="aspect-auto h-full w-full object-cover object-center"
+						src={image}
+						alt={title}
+						width={445}
+						height={430}
+						formats={['avif', 'webp']}
+						quality={60}
+						loading="lazy"
+						transition:animate={'initial'}
+						transition:name={`blog-image-${slug}`}
+					/>
+				</div>
+			)
+		} -->
+		<div class="blog-card__header">
+			<h3 class="blog-card__title">
+				{title}
+			</h3>
+
+			<time class="blog-card__date" datetime={dateFormat(date)}>{dateFormat(date)}</time>
+
+			<!-- <p class="blog-card__extra line-clamp-2">
+				{plainify(body?.slice(0, Number(summary_length)))}
+			 -->
+		</div>
+	</a>
+</article>
+
+<style>
+	.blog-card {
+		@apply border-t border-gray-light bg-box text-dark dark:bg-box-light dark:text-white;
+
+		&:hover {
+		}
+		&__link {
+			@apply flex h-full flex-col justify-between fluid:gap-y-2 fluid:p-2;
+		}
+
+		&__header {
+			@apply mb-auto flex flex-col items-start lowercase leading-normal fluid:gap-3;
+		}
+
+		&__title {
+			@apply font-medium text-dark first-letter:uppercase fluid:text-2xl dark:text-white;
+		}
+
+		&__date {
+			@apply font-normal text-gray fluid:text-lg;
+		}
+
+		&__extra {
+			@apply font-medium text-dark fluid:text-xl dark:text-white;
+		}
+
+		&__button {
+			@apply lg:mt-2;
+		}
+
+		&__image {
+			@apply overflow-hidden rounded-3xl fluid:mb-3;
+		}
+	}
+</style>

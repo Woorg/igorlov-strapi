@@ -1,0 +1,60 @@
+---
+import { getEntry } from 'astro:content';
+// import { markdownify } from '@/lib/utils/textConverter';
+// import { Picture } from 'astro:assets';
+// import myPicture from '../../assets/images/avatar-new-1.png';
+
+const testimonials = await getEntry('sections', 'testimonials');
+
+interface TestimonialsBlock {
+	testimonialsBlock: {
+		title: string;
+		content: string;
+	};
+}
+
+const { testimonialsBlock }: TestimonialsBlock = testimonials.data;
+const { style } = Astro.props;
+const className = Astro.props.class;
+// console.log(className);
+---
+
+<section class:list={['testimonials', className]} style={style}>
+	<svg
+		class="testimonials__icon"
+		width="112"
+		height="112"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		><path
+			d="M104 56c0 14.912-21.49 27-48 27m48-27c0-14.912-21.49-27-48-27m48 27H8m48 27C29.49 83 8 70.912 8 56m48 27V29m0 54c12.876 0 21.306-12.088 21.306-27S68.876 29 56 29m0 54c-12.876 0-21.306-12.088-21.306-27S43.124 29 56 29m0 54c12.876 0 37.002-12.088 37.002-27S68.876 29 56 29m0 54c-12.876 0-36.216-12.088-36.216-27S43.124 29 56 29m0 54c4.816 0 8.72-12.088 8.72-27S60.816 29 56 29m0 54c-4.816 0-8.72-12.088-8.72-27S51.184 29 56 29M8 56c0-14.912 21.49-27 48-27"
+			stroke="currentColor"
+			stroke-width="4"
+			stroke-linecap="round"
+			stroke-linejoin="round"></path></svg
+	>
+
+	<!-- {basedInBlock.title && <p class="based-in__title">{basedInBlock.title}} -->
+	<!-- {basedInBlock.content && <p class="based-in__text">{basedInBlock.content}} -->
+</section>
+
+<style>
+	.testimonials {
+		@apply bg-box fluid:rounded-3xl fluid:p-8 lg:fluid:px-12 lg:fluid:py-8;
+		&__icon {
+			@apply overflow-hidden rounded-full bg-box fluid:h-28 fluid:w-28;
+		}
+
+		&__title,
+		&__text {
+			@apply inline font-medium lowercase fluid:text-3xl lg:fluid:text-5xl;
+		}
+		&__title {
+			@apply text-white;
+		}
+
+		&__text {
+			@apply uppercase text-gray;
+		}
+	}
+</style>

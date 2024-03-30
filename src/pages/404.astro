@@ -1,0 +1,54 @@
+---
+export const prerender = true;
+import Base from '@/layouts/Base.astro';
+import { Image } from 'astro:assets';
+import { markdownify } from '@/lib/utils/textConverter';
+import { getEntryBySlug } from 'astro:content';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+const entry = await getEntryBySlug('pages', '404');
+const { Content } = await entry.render();
+
+function counterInc() {
+	let i = 0;
+
+	return function () {
+		return i++;
+	};
+}
+
+const counter = counterInc();
+
+console.log(counter());
+console.log(counter());
+console.log(counter());
+---
+
+<Base
+	title={entry.data.title}
+	meta_title={entry.data.meta_title}
+	description={entry.data.description}
+>
+	<div class="blocks">
+		<div class="blocks__container container">
+			<Breadcrumbs class="" />
+		</div>
+
+		<div class="blocks__container container">
+			<h1 class="not-found">
+				{entry.data.title}
+				{entry.body}
+			</h1>
+		</div>
+
+		<div class="blocks__container container">
+			<CtaBlock class="" />
+		</div>
+	</div>
+</Base>
+
+<style>
+	.not-found {
+		@apply m-0 bg-box font-medium text-dark fluid:rounded-3xl fluid:px-12 fluid:py-10 fluid:text-4xl lg:fluid:text-5xl dark:bg-box-dark dark:text-white;
+	}
+</style>

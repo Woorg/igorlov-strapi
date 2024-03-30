@@ -1,0 +1,38 @@
+---
+import Logo from '@/components/Logo.astro';
+import Nav from '@/components/Nav.astro';
+import ThemeToggle from '@/components/ThemeToggle.vue';
+import config from '@/config/config.json';
+import menu from '@/config/menu.json';
+
+const className = Astro.props.class;
+
+const { style } = Astro.props;
+
+// console.log(className);
+---
+
+<header class:list={['header', className]}>
+	<div class="header__container container">
+		<Logo class="header__logo" />
+		<Nav class="header__nav" />
+		<ThemeToggle client:only />
+	</div>
+</header>
+
+<style>
+	.header {
+		@apply fixed left-0 top-0 z-20 mb-3 w-full bg-sky text-dark dark:bg-box-dark dark:text-white;
+		&__container {
+			@apply flex items-center justify-between gap-6 fluid:rounded-3xl fluid:p-8 fluid:py-2 lg:fluid:px-12 lg:fluid:py-3;
+		}
+
+		&__logo {
+			@apply text-base;
+		}
+
+		&__nav {
+			@apply w-full;
+		}
+	}
+</style>

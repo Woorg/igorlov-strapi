@@ -1,0 +1,65 @@
+---
+import social from '@/config/social.json';
+
+const { className } = Astro.props;
+
+const socialLeft = social.left;
+const socialRight = social.right;
+
+export interface ISocial {
+	index: number;
+	name: string;
+	link: string;
+}
+
+// console.log(socialLeft);
+---
+
+<ul class:list={['social', className]}>
+	{
+		socialLeft.map((social: ISocial) => (
+			<li class="social__item social__item--left">
+				<a
+					class="social__link"
+					aria-label={social.name}
+					href={social.link}
+					target="_blank"
+					rel="noopener noreferrer nofollow"
+				>
+					{social.name}
+				</a>
+			</li>
+		))
+	}
+	{
+		socialRight.map((social: ISocial) => (
+			<li class="social__item social__item--right">
+				<a
+					class="social__link"
+					aria-label={social.name}
+					href={social.link}
+					target="_blank"
+					rel="noopener noreferrer nofollow"
+				>
+					{social.name}
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.social {
+		@apply grid grid-cols-2 items-center justify-center gap-y-2 overflow-hidden fluid:gap-x-2 lg:grid-cols-6 lg:gap-y-0;
+		&__item {
+			@apply flex;
+		}
+
+		&__link {
+			@apply flex grow items-center justify-center bg-box text-center font-medium text-white transition-colors fluid:rounded-3xl fluid:px-4 fluid:py-2.5;
+			&:hover {
+				@apply bg-box-light transition-colors;
+			}
+		}
+	}
+</style>

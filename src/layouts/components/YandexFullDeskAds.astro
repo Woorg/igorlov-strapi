@@ -1,0 +1,16 @@
+import { useEffect } from 'react';
+
+const YandexFullDeskAds = () => {
+	useEffect(() => {
+		const yaContextCb = window.yaContextCb || [];
+		window.yaContextCb.push(() => {
+			Ya.Context.AdvManager.render({
+				blockId: 'R-A-2592503-4',
+				type: 'fullscreen',
+				platform: 'desktop',
+			});
+		});
+	}, []);
+};
+
+export default YandexFullDeskAds;

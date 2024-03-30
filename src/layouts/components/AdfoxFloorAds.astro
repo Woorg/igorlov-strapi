@@ -1,0 +1,26 @@
+---
+export interface Props {
+	blockId: string;
+	platform: string;
+}
+
+const { blockId, platform } = Astro.props;
+---
+
+<div id={blockId}></div>
+
+<script is:inline define:vars={{ blockId, platform }}>
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.create({
+			ownerId: 1493338,
+			containerId: blockId,
+			type: 'floorAd',
+			platform: platform,
+			params: {
+				p1: 'dawov',
+				p2: 'y',
+			},
+		});
+	});
+</script>

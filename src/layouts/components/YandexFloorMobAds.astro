@@ -1,0 +1,17 @@
+import { useEffect } from 'react';
+
+const YandexFloorMobAds = () => {
+	useEffect(() => {
+		window.yaContextCb = window.yaContextCb || [];
+		window.yaContextCb.push(() => {
+			Ya.Context.AdvManager.render({
+				blockId: 'R-A-2592503-6',
+				type: 'floorAd',
+				platform: 'touch',
+			});
+		});
+	}, []);
+	return <div id="R-A-2592503-6"></div>;
+};
+
+export default YandexFloorMobAds;

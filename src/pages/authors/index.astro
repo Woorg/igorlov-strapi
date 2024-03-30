@@ -1,0 +1,51 @@
+---
+export const prerender = true;
+import AuthorCard from '@/components/AuthorCard.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import Base from '@/layouts/Base.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { getEntryBySlug } from 'astro:content';
+
+const authorIndex: any = await getEntryBySlug<any, string>('authors', '-index');
+const authors = await getSinglePage('authors');
+---
+
+<Base
+	title={authorIndex.data.title}
+	meta_title={authorIndex.data.meta_title}
+	description={authorIndex.data.description}
+>
+	<div class="blocks">
+		<div class="blocks__container container">
+			<Breadcrumbs class="" />
+		</div>
+
+		<div class="blocks__container container lg:grid-cols-3">
+			<div class="authors">
+				<h1 class="authors__title">🪪 {authorIndex.data.title}</h1>
+
+				<div class="authors__list">
+					{
+						authors.map((author) => (
+							<div class="authors__item ">
+								<AuthorCard data={author} />
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</Base>
+
+<style>
+	.authors {
+		@apply grid fluid:gap-y-2;
+		&__title {
+			@apply m-0 flex items-center bg-box font-medium fluid:rounded-3xl fluid:px-12 fluid:py-10 fluid:text-4xl lg:fluid:text-5xl;
+		}
+		&__list {
+			@apply grid grid-cols-1 fluid:gap-2;
+		}
+	}
+</style>

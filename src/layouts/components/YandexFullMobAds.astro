@@ -1,0 +1,18 @@
+import { useEffect } from 'react';
+
+const YandexFullMobAds = () => {
+	useEffect(() => {
+		const yaContextCb = window.yaContextCb || [];
+		window.yaContextCb.push(() => {
+			Ya.Context.AdvManager.render({
+				blockId: 'R-A-2592503-3',
+				type: 'fullscreen',
+				platform: 'touch',
+			});
+		});
+	}, []);
+
+	// return <div id="yandex_rtb_C-A-2592503-3"></div>;
+};
+
+export default YandexFullMobAds;

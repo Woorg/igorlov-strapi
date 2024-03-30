@@ -1,0 +1,43 @@
+---
+const { type, prevPost, nextPost, className } = Astro.props;
+
+import config from '@/config/config.json';
+import { slugify } from '@/lib/utils/textConverter';
+
+const prevSlug = prevPost.slug;
+const nextSlug = nextPost.slug;
+console.log(type);
+---
+
+<nav class:list={['circular-pagination', className]} aria-label="Circular Pagination">
+	{
+		prevPost.data?.title ? (
+			<a
+				href={'/' + slugify(type) + '/' + slugify(prevSlug)}
+				class="circular-pagination__link circular-pagination__link--prev"
+			>
+				{prevPost.data.title}
+			</a>
+		) : null
+	}
+	{
+		nextPost.data?.title ? (
+			<a
+				href={'/' + slugify(type) + '/' + slugify(nextSlug)}
+				class="circular-pagination__link circular-pagination__link--next"
+			>
+				{nextPost.data.title}
+			</a>
+		) : null
+	}
+</nav>
+
+<style>
+	.circular-pagination {
+		@apply flex w-full flex-wrap items-center justify-center overflow-hidden border-t border-dark fluid:mt-5;
+
+		&__link {
+			@apply w-full bg-red-light  text-dark no-underline hover:bg-box fluid:px-6 fluid:py-2;
+		}
+	}
+</style>
