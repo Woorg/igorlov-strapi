@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime.K1e75nIr.js";import{r as t}from"./index.NEDEFKed.js";const a=()=>(t.useEffect(()=>{yaContextCb.push(()=>{window.Ya.Context.AdvManager.renderWidget({renderTo:"yandex_rtb_C-A-2592503-2",blockId:"C-A-2592503-2"})})},[]),e.jsx("div",{id:"yandex_rtb_C-A-2592503-2"}));export{a as default};

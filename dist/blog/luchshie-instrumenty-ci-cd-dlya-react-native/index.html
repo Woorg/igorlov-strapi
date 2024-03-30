@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Лучшие Инструменты CI/CD Для React Native - Фул Фронт Дев
+</title><link rel="canonical" href="https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native"><meta name="description" content="Непрерывная интеграция (CI) и непрерывная доставка (CD) - это набор автоматизированных процессов, которые помогают командам разработчиков доставлять...
+"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-luchshie-instrumenty-ci-cd-dlya-react-native; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Лучшие инструменты CI/CD для React Native </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/react-native" data-astro-cid-axzg2cw6> React Native </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 27 окт., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/luchshie-instrumenty-ci-cd-dlya-react-native-Oct-27-2023.DIwdRHEu_1bJ50U.avif" type="image/avif"><source srcset="/_astro/luchshie-instrumenty-ci-cd-dlya-react-native-Oct-27-2023.DIwdRHEu_ZqEV5k.webp" type="image/webp"> <img src="/_astro/luchshie-instrumenty-ci-cd-dlya-react-native-Oct-27-2023.DIwdRHEu_22Os0h.png" alt="Лучшие инструменты CI/CD для React Native" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Лучшие инструменты CI/CD для React Native&#38;url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native&#38;title=Лучшие инструменты CI/CD для React Native&#38;summary=Непрерывная интеграция (CI) и непрерывная доставка (CD) - это набор автоматизированных процессов, которые помогают командам разработчиков доставлять...
+&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native&#38;media=&#38;description=Непрерывная интеграция (CI) и непрерывная доставка (CD) - это набор автоматизированных процессов, которые помогают командам разработчиков доставлять...
+" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details class="toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer"><summary class="title">Оглавление</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#какие-проблемы-решает-cicd-конвейер">Какие проблемы решает CI/CD-конвейер?</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#expo-app-services">Expo App Services</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#плюсы-и-минусы-eas">Плюсы и минусы EAS</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#microsoft-app-center">Microsoft App Center</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#плюсы-и-минусы-mac">Плюсы и минусы MAC</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#github-actions">GitHub Actions</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#преимущества-и-недостатки-github-actions">Преимущества и недостатки GitHub Actions</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#codemagic">CodeMagic</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#преимущества-и-недостатки-codemagic">Преимущества и недостатки CodeMagic</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#почетные-упоминания">Почетные упоминания</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#bitrise">Bitrise</a><ol class="toc-level toc-level-3"><li class="toc-item toc-item-h4"><a class="toc-link toc-link-h4" href="#преимущества-и-недостатки-bitrise">Преимущества и недостатки Bitrise</a></li></ol></li><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#jenkins">Jenkins</a></li><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#преимущества-и-недостатки-jenkins">Преимущества и недостатки Jenkins</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#таблица-сравнения">Таблица сравнения</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#заключение">Заключение</a></li></ol></details><p>Непрерывная интеграция (CI) и непрерывная доставка (CD) - это набор автоматизированных процессов, которые помогают командам разработчиков доставлять программное обеспечение быстрее и надежнее. CI-процессы автоматизируют процесс создания, тестирования и развертывания кода, в то время как CD-процессы автоматизируют процесс доставки этого кода конечному пользователю.</p>
+<p>В этой статье мы рассмотрим самые популярные CI/CD-процессы, используемые разработчиками React Native.
+Вот о чем мы поговорим сегодня:</p>
+<h2 id="какие-проблемы-решает-cicd-конвейер">Какие проблемы решает CI/CD-конвейер?<a aria-hidden="true" tabindex="-1" href="#какие-проблемы-решает-cicd-конвейер"><span class="icon icon-link"></span></a></h2>
+<p>Как разработчики, мы знаем, что одним из наиболее важных шагов при программировании является сборка, развертывание и тестирование нашего кода. Для этого мы можем выполнить следующие действия:</p>
+<ul>
+<li>Создать отдельную ветку в нашем репозитории с именем “production”.</li>
+<li>Когда кто-то из команды делает коммит в эту ветку, этот член команды должен выполнить сценарий сборки для создания исполняемого файла.</li>
+<li>Наконец, разработчику приходится скачать этот файл на свой компьютер и затем загрузить его на платформу распространения. Через эту платформу клиенты могут скачать и запустить приложение.</li>
+</ul>
+<p>Несмотря на то, что этот способ работает, у него есть несколько проблем:</p>
+<ul>
+<li>Этот процесс утомителен. На первом этапе разработчики должны сначала внести изменения в ветку, а затем запустить сценарий сборки.
+<ul>
+<li>Это занимает много времени, потому что процесс сборки включает в себя компиляцию проекта, тестирование и создание исполняемого файла.</li>
+</ul>
+</li>
+<li>Кроме того, это потребляет ценные ресурсы на локальной машине, что может привести к серьезным проблемам в случаях, когда кодовая база проекта большая и сложная.</li>
+</ul>
+<p>И вот здесь на помощь приходит CI/CD-конвейер. Давайте рассмотрим несколько различных вариантов для разработки в React Native.</p>
+<h2 id="expo-app-services">Expo App Services<a aria-hidden="true" tabindex="-1" href="#expo-app-services"><span class="icon icon-link"></span></a></h2>
+<p>Инструмент Expo Application Services (EAS) нацелен на проекты React Native и Expo с самого начала. В результате это означает, что процесс развертывания и сборки легок, это самый простой инструмент в этом списке для работы, потому что для начала работы требуется всего несколько команд:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/expo-app-services-dashboard.png" alt=""></figure>
+<p>Например, для создания и публикации нам достаточно сделать следующее:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#91B4D5">npm</span><span style="color:#ADD7FF"> install</span><span style="color:#ADD7FF"> --global</span><span style="color:#ADD7FF"> eas-cli</span></span>
+<span class="line"><span style="color:#91B4D5">npx</span><span style="color:#ADD7FF"> eas-login</span><span style="color:#767C9DB0;font-style:italic"> # sign into the service</span></span>
+<span class="line"><span style="color:#91B4D5">eas</span><span style="color:#ADD7FF"> build:configure</span><span style="color:#767C9DB0;font-style:italic"> # this will generate an eas.json file</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># this file will allow you to configure your building process.</span></span>
+<span class="line"></span></code></pre>
+<h3 id="плюсы-и-минусы-eas">Плюсы и минусы EAS<a aria-hidden="true" tabindex="-1" href="#плюсы-и-минусы-eas"><span class="icon icon-link"></span></a></h3>
+<p>Вот несколько вещей, которые мне нравятся в EAS:</p>
+<ul>
+<li>Это самый простой вариант для размещения и развертывания приложений, особенно если они созданы с использованием Expo.</li>
+<li>Разработчики предоставляют опцию размещения процесса сборки Expo на вашем сервере, но, следовательно, она подходит для компаний, где код проекта должен быть сохранен в частном порядке.</li>
+<li>Он берет на себя напряженные моменты, такие как подпись сертификатов и файлы хранилища ключей, что экономит много времени и усилий инженера.</li>
+<li>Предоставляет обширную документацию, если вам понадобится помощь.</li>
+<li>Поддерживает как Expo, так и приложения React Native.</li>
+</ul>
+<p>Вот некоторые из минусов:</p>
+<ul>
+<li>Бесплатный тариф ограничен, если сборки происходят часто.</li>
+<li>В пиковые часы вам, возможно, придется подождать некоторое время, пока сборки завершатся на бесплатном тарифе, что может стать проблемой, если у вас сжатый срок.</li>
+<li>На момент написания этой статьи, запуск E2E-тестов находится в начальном состоянии, хотя поддержка продолжает развиваться.</li>
+</ul>
+<h2 id="microsoft-app-center">Microsoft App Center<a aria-hidden="true" tabindex="-1" href="#microsoft-app-center"><span class="icon icon-link"></span></a></h2>
+<p>Microsoft App Center (MAC) - это платформа CI/CD, посвященная разработке приложений. В отличие от Expo Application Services, она поддерживает как React Native, так и другие кроссплатформенные технологии, такие как Unity и Xamarin.</p>
+<p>Вот как это выглядит:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/microsoft-app-center-dashboard.png" alt=""></figure>
+<p>Создание приложения в App Center требует определенных усилий, но все равно не вызывает сложностей. Сначала загрузите свой проект на GitHub, Azure или другую платформу для размещения кода:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/select-service-mac.png" alt=""></figure>
+<p>Затем в настройках App Center укажите местоположение проекта:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/specify-project-location-mac.png" alt=""></figure>
+<p>Наконец, сервис попросит вас настроить параметры сборки. В этом этапе вам также может потребоваться создать и загрузить файл хранилища ключей.</p>
+<p>Вот и все! Когда это будет сделано, процесс сборки приложения начнется.</p>
+<h3 id="плюсы-и-минусы-mac">Плюсы и минусы MAC<a aria-hidden="true" tabindex="-1" href="#плюсы-и-минусы-mac"><span class="icon icon-link"></span></a></h3>
+<p>Microsoft App Center обладает некоторыми значительными преимуществами, которые выделяют его среди конкурентов.</p>
+<p>Он может выполнять тест для проверки того, может ли приложение успешно запуститься. Это особенно полезно в ситуациях, когда вам необходимо убедиться в функциональности новой сборки.</p>
+<p>Благодаря этой функции вы можете проверить это без ручного запуска приложения на мобильном устройстве:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/build-verification-device-optional.png" alt=""></figure>
+<p>Вот еще несколько преимуществ, которые стоит упомянуть:</p>
+<ul>
+<li>Бесплатный уровень щедрый. Во многих случаях он достаточен для личных и маломасштабных проектов, но сервис также предоставляет бесплатную пробную версию на 30 дней для платного уровня.</li>
+<li>Предоставляет четкую и исчерпывающую документацию.</li>
+<li>Поддерживает тесты end-to-end.</li>
+<li>Широко используется в корпоративных средах, поэтому доступна обширная поддержка от сообщества.</li>
+</ul>
+<p>Однако есть несколько моментов, которые мне не понравились:</p>
+<ul>
+<li>Нет возможности выполнять сборки на локальной инфраструктуре. Как уже обсуждалось ранее, это может быть проблемой в ситуациях, где важна конфиденциальность исходного кода.</li>
+<li>Платный вариант может быть слишком дорогим для малых стартапов.</li>
+<li>Тесты end-to-end доступны только при платном использовании.</li>
+<li>На момент написания этой статьи Microsoft не поддерживает приложения Expo.</li>
+</ul>
+<h2 id="github-actions">GitHub Actions<a aria-hidden="true" tabindex="-1" href="#github-actions"><span class="icon icon-link"></span></a></h2>
+<p>GitHub Actions - это выдающийся вариант среди множества открытых программистов. Одной из причин его популярности является то, что это инструмент интегрируется с GitHub, поэтому разработчики могут использовать его для автоматизации своих рабочих процессов непосредственно из своего репозитория на GitHub:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/github-actions-repository.png" alt=""></figure>
+<p>Хотя создание приложения с использованием GitHub Actions может быть непростым, оно предоставляет больший контроль над процессом сборки по сравнению с другими платформами, что делает его полезным компромиссом.</p>
+<p>Для развертывания с помощью GitHub Actions создайте папку в своем репозитории с именем .github/workflows. Затем создайте новый файл с именем ci.yml:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/new-file-ci-yml.png" alt=""></figure>
+<p>Это сообщает GitHub, что наш проект будет использовать GitHub Actions для развертывания. После этого следуйте инструкциям в этой статье <a href="https://blog.logrocket.com/react-native-ci-cd-using-github-actions/" rel="noopener noreferrer nofollow" target="_blank">LogRocket</a> , чтобы создать конвейер CI/CD с использованием GitHub Actions в React Native.</p>
+<h3 id="преимущества-и-недостатки-github-actions">Преимущества и недостатки GitHub Actions<a aria-hidden="true" tabindex="-1" href="#преимущества-и-недостатки-github-actions"><span class="icon icon-link"></span></a></h3>
+<p>Вот несколько причин, почему эта служба конвейера может вам подойти:</p>
+<ul>
+<li>Служба позволяет больше контролировать процесс, что означает, что вы можете добавлять тесты и даже изменять агента сборки.</li>
+<li>Ее бесплатный уровень более чем достаточен для личных проектов. Кроме того, GitHub предоставляет студентам бесплатные профессиональные аккаунты, которые позволяют им бесплатно перейти к платному варианту.</li>
+<li>Помимо создания приложений, GitHub Actions также может выполнять автоматическую проверку качества кода. Это подходит в ситуациях, когда вы хотите выявить запахи кода и ошибки в вашем проекте перед развертыванием.</li>
+<li>Функция самостоятельных раннеров позволяет компаниям размещать свою версию Actions на локальной инфраструктуре. Как было упомянуто ранее, это отлично подходит для частных репозиториев кода.</li>
+<li>Бесплатный уровень позволяет проводить тесты “end-to-end”.</li>
+</ul>
+<p>Однако по сравнению с другими платформами есть несколько вещей, которые мне не понравились:</p>
+<ul>
+<li>Процесс создания конвейера CI/CD слишком сложен. В некоторых случаях он может быть слишком сложным для начинающих, которые хотят развернуть свое приложение.</li>
+<li>GitHub Actions не имеет специальной документации для приложений React Native. Из-за этого вам, возможно, придется полагаться на помощь сообщества.</li>
+</ul>
+<h2 id="codemagic">CodeMagic<a aria-hidden="true" tabindex="-1" href="#codemagic"><span class="icon icon-link"></span></a></h2>
+<p>CodeMagic - это еще один конвейер CI/CD, специально ориентированный на мобильные фреймворки разработки приложений, включая Flutter, Cordova, Ionic и другие:</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/codemagic-dashboard.png" alt=""></figure>
+<p>Как и в Expo и Microsoft App Center, развертывание и сборка приложения React Native довольно просты. Для начала создайте в приложении React Native файл codemagic.yml и напишите следующий код:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#5DE4C7">workflows</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  sample-workflow</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">    name</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Codemagic Sample Workflow</span></span>
+<span class="line"><span style="color:#5DE4C7">    max_build_duration</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7">120</span></span>
+<span class="line"><span style="color:#5DE4C7">    instance_type</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">mac_mini_m1</span></span>
+<span class="line"></span></code></pre>
+<p>Это сообщает конвейеру, что нашу сборку будет выполнять машина Apple M1 для развертывания.</p>
+<p>После этого этапа лучше перейти к документации CodeMagic, чтобы узнать, как создать сборку и развернуть ваш проект.</p>
+<h3 id="преимущества-и-недостатки-codemagic">Преимущества и недостатки CodeMagic<a aria-hidden="true" tabindex="-1" href="#преимущества-и-недостатки-codemagic"><span class="icon icon-link"></span></a></h3>
+<p>Вот некоторые из вещей, которые мне понравились:</p>
+<ul>
+<li>Их серверы используют машины серии M от Apple, что обеспечивает быстрые времена сборки</li>
+<li>CodeMagic использует модель оплаты по мере использования, что означает, что вы платите только за используемые ресурсы. В некоторых случаях это может быть более дешевым вариантом по сравнению с другими службами в этом списке</li>
+<li>Удивительная документация с пошаговыми инструкциями
+Поддерживает тесты “end-to-end” на бесплатном уровне</li>
+</ul>
+<p>Однако есть несколько вещей, которые мне не понравились:</p>
+<ul>
+<li>Отсутствует опция самостоятельного размещения, что может вызвать проблемы для чувствительных к конфиденциальности кодов</li>
+</ul>
+<h2 id="почетные-упоминания">Почетные упоминания<a aria-hidden="true" tabindex="-1" href="#почетные-упоминания"><span class="icon icon-link"></span></a></h2>
+<p>Профессиональные мобильные разработчики также широко используют другие службы CI, такие как Bitrise и Jenkins CI. Поскольку эти службы имеют шаги компиляции, аналогичные Microsoft App Center, мы не будем здесь рассматривать их процессы создания сборки.</p>
+<h3 id="bitrise">Bitrise<a aria-hidden="true" tabindex="-1" href="#bitrise"><span class="icon icon-link"></span></a></h3>
+<p>Как и CodeMagic, эта служба ориентирована на разработку мобильных приложений. Кроме того, она поддерживает дополнения, которые помогают в разработке, например, отчеты об отладке или управление выпусками.</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/bitrise-dashboard.png" alt=""></figure>
+<h4 id="преимущества-и-недостатки-bitrise">Преимущества и недостатки Bitrise<a aria-hidden="true" tabindex="-1" href="#преимущества-и-недостатки-bitrise"><span class="icon icon-link"></span></a></h4>
+<p>Вот некоторые аспекты Bitrise, которые могут сделать его привлекательным вариантом:</p>
+<ul>
+<li>Быстрые времена сборки: так же как CodeMagic, он также поддерживает машины серии M от Apple для компиляции и сборки кода</li>
+<li>Модель оплаты по мере использования: самое большое преимущество этой службы заключается в том, что вы можете экономить деньги, платя только за использованные ресурсы</li>
+<li>Поддерживает тесты “end-to-end” на бесплатном уровне</li>
+</ul>
+<p>Однако были выявлены некоторые недостатки, которые могут быть решающими для некоторых:</p>
+<ul>
+<li>Не предоставляет опцию самостоятельного размещения</li>
+</ul>
+<h3 id="jenkins">Jenkins<a aria-hidden="true" tabindex="-1" href="#jenkins"><span class="icon icon-link"></span></a></h3>
+<p>Jenkins - это еще одна служба конвейера, ориентированная на предприятия и крупные компании. Это связано с тем, что програмное обеспечение полностью самостоятельное. Как уже обсуждалось ранее, это отлично подходит для ситуаций, когда исходный код проекта должен оставаться конфиденциальным.</p>
+<figure class="igorlov-figure"><img src="https://blog.logrocket.com/wp-content/uploads/2023/07/jenkins-dashboard.png" alt=""></figure>
+<h3 id="преимущества-и-недостатки-jenkins">Преимущества и недостатки Jenkins<a aria-hidden="true" tabindex="-1" href="#преимущества-и-недостатки-jenkins"><span class="icon icon-link"></span></a></h3>
+<p>Одним из основных факторов, который мне понравился в Jenkins, было то, что он полностью самостоятельный. Из-за этого Jenkins популярен среди крупных предприятий. Это связано с тем, что самостоятельное размещение позволяет компаниям избежать затрат на дорогие тарифы и вместо этого использовать локальное оборудование.</p>
+<p>Однако это связано с определенными затратами: поддержание и обеспечение безопасности вашего сервера Jenkins может вызвать некоторые хлопоты для некоторых команд.</p>
+<h2 id="таблица-сравнения">Таблица сравнения<a aria-hidden="true" tabindex="-1" href="#таблица-сравнения"><span class="icon icon-link"></span></a></h2>
+<p>Вот небольшая таблица, которая подводит итоги всех преимуществ и недостатков всех платформ, обсуждаемых в этой статье:</p>
+<table>
+<thead>
+<tr>
+<th>Инструмент</th>
+<th>Основные характеристики</th>
+<th>Преимущества</th>
+<th>Недостатки</th>
+<th>Ценообразование</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expo Application Services</td>
+<td>Создан для проектов React Native и Expo</td>
+<td>
+<ul>
+<li>Самый простой способ развертывания</li>
+<li>Управление сертификатами и файлами keystore</li>
+<li>Обширная документация</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Ограниченная бесплатная версия</li>
+<li>В пиковые часы может потребоваться ожидание</li>
+<li>Начальный этап E2E-тестирования</li>
+</ul>
+</td>
+<td>Бесплатная версия и платные версии</td>
+</tr>
+<tr>
+<td>Microsoft App Center</td>
+<td>Поддерживает несколько платформ, включая React Native</td>
+<td>
+<ul>
+<li>Щедрая бесплатная версия</li>
+<li>Запуск тестов на запуск приложения</li>
+<li>Поддержка E2E-тестирования</li>
+<li>Обширная документация</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Отсутствие локальной инфраструктуры</li>
+<li>Может быть дорогим для стартапов</li>
+<li>E2E-тестирование доступно только за плату</li>
+<li>Отсутствие поддержки Expo-приложений</li>
+</ul>
+</td>
+<td>Бесплатная версия и платные версии</td>
+</tr>
+<tr>
+<td>GitHub Actions</td>
+<td>Интеграция напрямую с репозиторием GitHub</td>
+<td>
+<ul>
+<li>Больше контроля</li>
+<li>Профессиональные аккаунты для студентов</li>
+<li>Автоматизированная проверка качества кода</li>
+<li>Самостоятельные среды выполнения</li>
+<li>E2E-тестирование в бесплатной версии</li>
+</ul>
+</td>
+<td>
+<ul>
+<li>Сложная настройка</li>
+<li>Отсутствие специализированной документации для React Native</li>
+</ul>
+</td>
+<td>Бесплатная версия и платные версии</td>
+</tr>
+<tr>
+<td>CodeMagic</td>
+<td>Специально ориентирован на мобильные фреймворки</td>
+<td>
+<ul>
+<li>Использует машины серии M от Apple, что обеспечивает быстрое время сборки</li>
+<li>Плати по мере использования</li>
+<li>Отличная документация</li>
+<li>E2E-тестирование в бесплатной версии</li>
+</ul>
+</td>
+<td>Отсутствие самостоятельной хостинг-опции</td>
+<td>Плата по мере использования</td>
+</tr>
+<tr>
+<td>Bitrise</td>
+<td>Создан для мобильных приложений, использует машины серии M от Apple</td>
+<td>
+<ul>
+<li>Быстрые сроки сборки</li>
+<li>Плати по мере использования</li>
+<li>Отличная документация</li>
+<li>E2E-тестирование в бесплатной версии</li>
+</ul>
+</td>
+<td>Отсутствие самостоятельной хостинг-опции</td>
+<td>Плата по мере использования</td>
+</tr>
+<tr>
+<td>Jenkins CI</td>
+<td>Полностью самостоятельное размещение, отсутствует возможность онлайн-хостинга</td>
+<td>
+<ul>
+<li>Отлично подходит для обеспечения максимальной конфиденциальности и безопасности</li>
+<li>Полностью бесплатно</li>
+</ul>
+</td>
+<td>Поддержание и обеспечение безопасности сервера Jenkins на локальной инфраструктуре может вызвать некоторые хлопоты</td>
+<td>Бесплатно</td>
+</tr>
+</tbody>
+</table>
+<h2 id="заключение">Заключение<a aria-hidden="true" tabindex="-1" href="#заключение"><span class="icon icon-link"></span></a></h2>
+<p>В данной статье мы кратко рассмотрели некоторые популярные платформы CI/CD для React Native и почему они являются важными в мире программирования. В нашей таблице сравнения мы также упомянули честные упоминания, такие как Jenkins CI и Bitrise. Важно помнить, что каждый проект уникален, и поэтому важно оценивать преимущества и недостатки каждого инструмента.</p>
+<p>В моих проектах я обычно использую Expo Services, потому что он невероятно легко настраивается и используется, и его бесплатная версия более чем достаточна для моих потребностей. Большое спасибо за прочтение!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Лучшие инструменты CI/CD для React Native&#38;url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native&#38;title=Лучшие инструменты CI/CD для React Native&#38;summary=Непрерывная интеграция (CI) и непрерывная доставка (CD) - это набор автоматизированных процессов, которые помогают командам разработчиков доставлять...
+&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/luchshie-instrumenty-ci-cd-dlya-react-native&#38;media=&#38;description=Непрерывная интеграция (CI) и непрерывная доставка (CD) - это набор автоматизированных процессов, которые помогают командам разработчиков доставлять...
+" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/sozdanie-prilozheniya-react-native-dlya-pereklyucheniya-tem" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Создание приложения React Native для переключения тем </a> <a href="/blog/proverka-torawsql" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Проверка toRawSql </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

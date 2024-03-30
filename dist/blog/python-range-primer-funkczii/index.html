@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Python range() Пример функции - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/python-range-primer-funkczii"><meta name="description" content="В этой статье вы узнаете, как использовать функцию range() в Python с некоторыми примерами кода по ходу дела."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-python-range-primer-funkczii; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Python range() Пример функции </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/python" data-astro-cid-axzg2cw6> Python </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 20 мар., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Mar-20-2023.C_8u7ie6_lcfR9.avif" type="image/avif"><source srcset="/_astro/undefined-Mar-20-2023.C_8u7ie6_Z1WdvTG.webp" type="image/webp"> <img src="/_astro/undefined-Mar-20-2023.C_8u7ie6_Z1Hxvf2.png" alt="Python range() Пример функции" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/python-range-primer-funkczii" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/python-range-primer-funkczii" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Python range() Пример функции&#38;url=https://igorlov.ru/blog/python-range-primer-funkczii" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/python-range-primer-funkczii&#38;title=Python range() Пример функции&#38;summary=В этой статье вы узнаете, как использовать функцию range() в Python с некоторыми примерами кода по ходу дела.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/python-range-primer-funkczii&#38;media=&#38;description=В этой статье вы узнаете, как использовать функцию range() в Python с некоторыми примерами кода по ходу дела." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>В этой статье вы узнаете, как использовать функцию range() в Python с некоторыми примерами кода по ходу дела.</p>
+<p>Что такое функция range() в Python? Разбивка синтаксиса функции range()</p>
+<p>Встроенная в Python функция range() в основном используется при работе с циклами for - с ее помощью вы можете перебирать определенные блоки кода заданное количество раз.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"99f12ddb-6bcd-4486-b2d0-ba7bb52ef366","content":"Как использовать функцию range() только с аргументом stop","level":2,"link":"#как-использовать-функцию-range-только-с-аргументом-stop","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"9a427252-2962-4a30-9667-d55d1f661115","content":"Как использовать функцию range() с аргументами start и stop","level":2,"link":"#как-использовать-функцию-range-с-аргументами-start-и-stop","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"21b2667d-e1cb-4d06-b2fb-f6b9235bd0af","content":"Как создать список чисел с помощью функции range()","level":2,"link":"#как-создать-список-чисел-с-помощью-функции-range","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"3ffbf150-33a8-4b46-81b5-d9e1ad69a964","content":"Как использовать функцию len() с range() в Python","level":2,"link":"#как-использовать-функцию-len-с-range-в-python","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f253006e-8efd-4cd6-949c-d8d84569f70b","content":"Заключение","level":2,"link":"#заключение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#как-использовать-функцию-range-только-с-аргументом-stop">Как использовать функцию range() только с аргументом stop</a></li><li class=""><a href="#как-использовать-функцию-range-с-аргументами-start-и-stop">Как использовать функцию range() с аргументами start и stop</a></li><li class=""><a href="#как-создать-список-чисел-с-помощью-функции-range">Как создать список чисел с помощью функции range()</a></li><li class=""><a href="#как-использовать-функцию-len-с-range-в-python">Как использовать функцию len() с range() в Python</a></li><li class=""><a href="#заключение">Заключение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<p>Функция range() принимает три аргумента — один обязательный, а два необязательных.</p>
+<p>По умолчанию синтаксис функции range() выглядит следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">range(stop)
+</code></pre>
+<!-- /wp:code -->
+<p><code class="language-range(stop)"><code class="language-range(stop)"></code></code></p>
+<p>Аргумент stop является обязательным.</p>
+<p>Функция range() возвращает последовательность чисел, начинающуюся с 0, увеличивающуюся на 1 и заканчивающуюся на значении, которое вы указали в качестве stop (не включительно).</p>
+<p>Но что если вы хотите выполнить итерацию по диапазону из двух указанных вами чисел и не хотите начинать отсчет с 0?</p>
+<p>Вы можете передать второй необязательный аргумент start, start, чтобы указать начальное число. Синтаксис для этого выглядит следующим образом:</p>
+<p><code class="language-range(stop)"><code class="language-range(stop)"></code></code></p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">range(start, stop)
+</code></pre>
+<!-- /wp:code -->
+<p><code class="language-range(stop)"><code class="language-range(stop)"></code></code></p>
+<p>Этот синтаксис генерирует последовательность чисел на основе значений start (включительно) и stop (не включительно), которые увеличиваются на 1.</p>
+<p>И наконец, если вы не хотите, чтобы по умолчанию инкремент был равен 1, вы можете указать третий необязательный аргумент, step. Синтаксис для этого выглядит следующим образом:</p>
+<p><code class="language-range(stop)"><code class="language-range(stop)"></code></code></p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">range(start, stop, step)
+</code></pre>
+<!-- /wp:code -->
+<p><code class="language-range(stop)"><code class="language-range(stop)"></code></code></p>
+<p>Этот синтаксис генерирует последовательность чисел, которая начинает отсчет с start (включительно) и увеличивается в соответствии с шагом, пока не достигнет stop (не включительно).</p>
+<h2 class="wp-block-heading" id="как-использовать-функцию-range-только-с-аргументом-stop">Как использовать функцию range() только с аргументом stop</h2>
+<p>При использовании только аргумента stop в функции range() подсчет начинается с 0 и увеличивается на 1. Подсчет останавливается при достижении значения, указанного в качестве stop.</p>
+<p>Помните, что указанное значение stop не является полным!</p>
+<p>Если вы укажете аргумент stop, равный 5, диапазон будет включать числа 0 - 4, а не 0 - 5 - подсчет остановится на 4, а не на 5.</p>
+<p>Давайте посмотрим на пример ниже:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(5):
+    print(num)
+    
+# output 
+
+# 0
+# 1
+# 2
+# 3
+# 4
+</code></pre>
+<!-- /wp:code -->
+<p>В этом примере я указал range(5).</p>
+<p>Функция начала отсчет с 0, увеличивала на 1 на каждой итерации и закончила на 4.</p>
+<h2 class="wp-block-heading" id="как-использовать-функцию-range-с-аргументами-start-и-stop">Как использовать функцию range() с аргументами start и stop</h2>
+<p>Если вы хотите получить диапазон из двух чисел, вы используете два аргумента - start и stop. Имейте в виду, что значение start является инклюзивным, а значение stop - нет.</p>
+<p>Если вам нужен диапазон значений от 5 включительно до 10 включительно, вы напишете range(5,11) следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(5,11):
+  print(num)
+  
+# output
+
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+</code></pre>
+<!-- /wp:code -->
+<p>В range() можно передавать и отрицательные целые значения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(-5, 1):
+  print(num)
+
+# output
+
+# -5
+# -4
+# -3
+# -2
+# -1
+# 0
+</code></pre>
+<!-- /wp:code -->
+<p>Следует отметить, что в range() нельзя передавать значения с плавающей точкой.</p>
+<p>В этом примере, когда я передаю два значения с плавающей точкой в качестве аргументов, возникает ошибка:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(5.2, 4.3):
+  print(num)
+
+# output
+
+# Traceback (most recent call last):
+#  File "main.py", line 1, in &#x3C;module>
+#    for num in range(5.2, 4.3):
+# TypeError: 'float' object cannot be interpreted as an integer
+</code></pre>
+<!-- /wp:code -->
+<p>В качестве аргументов start и stop можно передавать как отрицательные, так и положительные целые числа.</p>
+<p>Как использовать функцию range() с аргументами start, stop и step</p>
+<p>По умолчанию значение инкремента равно 1 и не указывается. Однако его можно изменить, передав в функцию range() аргумент step.</p>
+<p>Давайте рассмотрим следующий пример:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(10,21,2):
+  print(num)
+  
+# output
+
+# 10
+# 12
+# 14
+# 16
+# 18
+# 20
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном примере я создал последовательность чисел от 10 до 20 и увеличил шаги на 2. Я достиг этого, указав значение шага 2.</p>
+<p>Следует отметить, что step может быть как отрицательным, так и положительным числом, но он не может быть равен 0.</p>
+<p>Вот как можно сгенерировать диапазон с отрицательным аргументом step:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(20, 11, -2):
+  print(num)
+
+# output
+
+# 20
+# 18
+# 16
+# 14
+# 12
+</code></pre>
+<!-- /wp:code -->
+<p>Приведенный выше код генерирует последовательность чисел в обратном порядке.</p>
+<p>Посмотрите, что происходит, когда шаг равен 0:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">for num in range(10, 21 0):
+  print(num)
+
+# output
+
+#  File "main.py", line 1
+#    for num in range(10, 21 0):
+                            ^
+# SyntaxError: invalid syntax
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="как-создать-список-чисел-с-помощью-функции-range">Как создать список чисел с помощью функции range()</h2>
+<p>Вы можете создать список чисел, передав функцию range() в качестве аргумента конструктору list() следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">my_numbers_list = list(range(5))
+
+print(my_numbers_list)
+
+# output
+
+# [0, 1, 2, 3, 4]
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше примере я создал список чисел от 0 до 4.</p>
+<h2 class="wp-block-heading" id="как-использовать-функцию-len-с-range-в-python">Как использовать функцию len() с range() в Python</h2>
+<p>Допустим, у вас есть список элементов и вы хотите что-то сделать с элементами в зависимости от длины списка.</p>
+<p>Для этого вы можете использовать функцию range() и передать ей в качестве аргумента длину списка.</p>
+<p>Чтобы вычислить длину списка, используйте функцию len().</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">programming_languages = ["Python", "JavaScript", "Java", "C++"]
+
+programming_languages_length = len(programming_languages)
+
+for languages in range(programming_languages_length):
+  print("Hello World")
+  
+# output
+
+# Hello World
+# Hello World
+# Hello World
+# Hello World
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="заключение">Заключение</h2>
+<p>Вот и все! Теперь вы знаете, как использовать функцию range() в Python.</p>
+<p>Спасибо, что дочитали, и счастливого кодинга!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/python-range-primer-funkczii" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/python-range-primer-funkczii" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Python range() Пример функции&#38;url=https://igorlov.ru/blog/python-range-primer-funkczii" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/python-range-primer-funkczii&#38;title=Python range() Пример функции&#38;summary=В этой статье вы узнаете, как использовать функцию range() в Python с некоторыми примерами кода по ходу дела.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/python-range-primer-funkczii&#38;media=&#38;description=В этой статье вы узнаете, как использовать функцию range() в Python с некоторыми примерами кода по ходу дела." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Python скрипты автоматизации, которые вам стоит освоить </a> <a href="/blog/protokoly-tcp-i-udp-obyasnenie-na-prostom-anglijskom-yazyke" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Протоколы TCP и UDP - объяснение на простом английском языке </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

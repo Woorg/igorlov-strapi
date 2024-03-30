@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Модный эффект наведения для аватара - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara"><meta name="description" content="Знаете ли вы такой эффект, когда чья-то голова просовывается сквозь круг или отверстие? Знаменитая анимация Порки Пига, где он машет на прощание, выскакивая..."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-modnyj-effekt-navedeniya-dlya-avatara; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Модный эффект наведения для аватара </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/css" data-astro-cid-axzg2cw6> Css </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/gradients" data-astro-cid-axzg2cw6> Gradients </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 16 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Feb-16-2023.Bt978EJ__8MCvr.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-16-2023.Bt978EJ__Z29C9go.webp" type="image/webp"> <img src="/_astro/undefined-Feb-16-2023.Bt978EJ__Z1TW8AJ.png" alt="Модный эффект наведения для аватара" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Модный эффект наведения для аватара&#38;url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara&#38;title=Модный эффект наведения для аватара&#38;summary=Знаете ли вы такой эффект, когда чья-то голова просовывается сквозь круг или отверстие? Знаменитая анимация Порки Пига, где он машет на прощание, выскакивая...&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara&#38;media=&#38;description=Знаете ли вы такой эффект, когда чья-то голова просовывается сквозь круг или отверстие? Знаменитая анимация Порки Пига, где он машет на прощание, выскакивая..." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Знаете ли вы такой эффект, когда чья-то голова просовывается сквозь круг или отверстие? Знаменитая анимация Порки Пига, где он машет на прощание, выскакивая из серии красных колец, является идеальным примером, и Килиан Валкхоф фактически воссоздал этот эффект здесь, на CSS-Tricks, некоторое время назад.</p>
+<p>У меня есть похожая идея, но реализованная другим способом и с добавлением анимации. Я думаю, что это довольно практично и создает аккуратный эффект наведения курсора, который можно использовать на чем-нибудь вроде вашего собственного аватара.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"3715a9d5-528c-4539-846b-a4f76d002cfd","content":"The HTML: Just one element","level":2,"link":"#the-html-just-one-element","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"bfbb05d4-9655-4702-843f-5dc5c4d4c8e9","content":"Приступаем к работе!","level":2,"link":"#приступаем-к-работе","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"4bfe7e81-8cb1-4f17-8220-53ebe771198d","content":"Эффект масштаба","level":3,"link":"#эффект-масштаба","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"eb67516e-861a-4ca6-820e-ac15643c8306","content":"Круг","level":2,"link":"#круг","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"759d21ac-5eeb-4512-86c3-709ab81d499d","content":"Нижняя граница","level":2,"link":"#нижняя-граница","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"526d6117-5682-4099-a555-d34c31213386","content":"Добавление CSS-маски","level":2,"link":"#добавление-css-маски","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"a1fb25b7-b5d2-4513-9a20-523995355ecf","content":"Вот наш окончательный вариант CSS:","level":2,"link":"#вот-наш-окончательный-вариант-css","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"0c11c847-7ef9-460a-a05e-a7608af418e6","content":"Завершение работы","level":2,"link":"#завершение-работы","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#the-html-just-one-element">The HTML: Just one element</a></li><li class=""><a href="#приступаем-к-работе">Приступаем к работе!</a><ul><li class=""><a href="#эффект-масштаба">Эффект масштаба</a></li></ul></li><li class=""><a href="#круг">Круг</a></li><li class=""><a href="#нижняя-граница">Нижняя граница</a></li><li class=""><a href="#добавление-css-маски">Добавление CSS-маски</a></li><li class=""><a href="#вот-наш-окончательный-вариант-css">Вот наш окончательный вариант CSS:</a></li><li class=""><a href="#завершение-работы">Завершение работы</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/MWBjraa","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/MWBjraa
+</div></figure>
+<!-- /wp:embed -->
+<p>Видите это? Мы сделаем анимацию масштабирования, при которой аватар как бы выскочит из круга, в котором он находится. Круто, правда? Не смотрите на код, давайте вместе шаг за шагом создадим эту анимацию.</p>
+<h2 class="wp-block-heading" id="the-html-just-one-element">The HTML: Just one element</h2>
+<p>Если вы не проверили код демо-версии и вам интересно, сколько div’ов это займет, то остановитесь прямо здесь, потому что наша разметка - это всего лишь один элемент изображения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markup" class="language-markup">&#x3C;img src="" alt=""></code></pre>
+<!-- /wp:code -->
+<p>Да, один элемент! Самое сложное в этом упражнении - использовать как можно меньшее количество кода. Если вы следите за мной некоторое время, вы должны быть привычны к этому. Я изо всех сил стараюсь найти CSS-решения, которые можно реализовать с помощью минимально возможного, наиболее удобного в обслуживании кода.</p>
+<p>Я написал серию статей на CSS-Tricks, в которых я исследую различные эффекты наведения, используя одну и ту же HTML-разметку, содержащую один элемент. Я подробно рассказываю о градиентах, маскировке, обтравке, контурах и даже о технике компоновки. Я настоятельно рекомендую ознакомиться с ними, потому что многие приемы я повторно использую в этом посте.</p>
+<p>Для нашей работы лучше всего подойдет квадратный файл изображения с прозрачным фоном. Вот тот, который я использую, если вы хотите начать с него.</p>
+<img sizes="(min-width: 735px) 864px, 96vw" srcset="https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?w=1600&#x26;ssl=1 1600w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?resize=300%2C300&#x26;ssl=1 300w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?resize=1024%2C1024&#x26;ssl=1 1024w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?resize=150%2C150&#x26;ssl=1 150w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?resize=768%2C768&#x26;ssl=1 768w, https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?resize=1536%2C1536&#x26;ssl=1 1536w" width="200" height="200" data-recalc-dims="1" class="wp-image-376677" src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673429708961_av1.png?resize=200%2C200&#x26;ssl=1" alt="">
+<p>Разработано Кангом</p>
+<p>Я надеюсь увидеть множество примеров этого, по возможности, с использованием реальных изображений - поэтому, пожалуйста, поделитесь своим конечным результатом в комментариях, когда вы закончите, чтобы мы могли собрать коллекцию!</p>
+<p>Прежде чем перейти к CSS, давайте сначала разберем эффект. Изображение увеличивается при наведении, поэтому мы наверняка используем transform: scale(). За аватаром находится круг, и радиальный градиент должен помочь. Наконец, нам нужен способ создать границу в нижней части круга, которая создаст видимость аватара за кругом.</p>
+<h2 class="wp-block-heading" id="приступаем-к-работе">Приступаем к работе!</h2>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="эффект-масштаба">Эффект масштаба</h3>
+<p>Начнем с добавления трансформации:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">img {
+  width: 280px;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: .5s;
+}
+img:hover {
+  transform: scale(1.35);
+}</code></pre>
+<!-- /wp:code -->
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/JjBNozR/9731ac6d1db49eab010b2b1b133abe30","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/JjBNozR/9731ac6d1db49eab010b2b1b133abe30
+</div></figure>
+<!-- /wp:embed -->
+<p>Пока ничего сложного, верно? Давайте двигаться дальше.</p>
+<h2 class="wp-block-heading" id="круг">Круг</h2>
+<p>Мы сказали, что фон будет радиальным градиентом. Это идеально, потому что мы можем создавать жесткие остановки между цветами радиального градиента, что создает впечатление, что мы рисуем круг со сплошными линиями.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">img {
+  --b: 5px; /* border width */
+
+  width: 280px;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(
+      circle closest-side,
+      #ECD078 calc(99% - var(--b)),
+      #C02942 calc(100% - var(--b)) 99%,
+      #0000
+    );
+  cursor: pointer;
+  transition: .5s;
+}
+img:hover {
+  transform: scale(1.35);
+}</code></pre>
+<!-- /wp:code -->
+<p>Обратите внимание на переменную CSS, —b, которую я использую. Она представляет собой толщину ”границы”, которая на самом деле используется для определения жестких цветовых ограничителей для красной части радиального градиента.</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/yLqbNYB/de195eef4df8dfe4c45dee3f6dcd507f","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/yLqbNYB/de195eef4df8dfe4c45dee3f6dcd507f
+</div></figure>
+<!-- /wp:embed -->
+<p>Следующим шагом будет игра с размером градиента при наведении. Круг должен сохранять свой размер при увеличении изображения. Поскольку мы применяем преобразование scale(), нам нужно уменьшить размер круга, так как в противном случае он увеличивается вместе с аватаром. Поэтому, пока изображение увеличивается, нам нужно, чтобы градиент уменьшался.</p>
+<p>Давайте начнем с определения переменной CSS, —f, которая определяет ”коэффициент масштабирования”, и используем ее для установки размера круга. Я использую 1 в качестве значения по умолчанию, так как это начальный масштаб для изображения и круга, от которого мы трансформируем.</p>
+<p>Вот демонстрация, иллюстрирующая этот трюк. Наведите курсор, чтобы увидеть, что происходит за кулисами:</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/ExpmjXW/288f0e4bdc2b062d4f03b7db6d56da03","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/ExpmjXW/288f0e4bdc2b062d4f03b7db6d56da03
+</div></figure>
+<!-- /wp:embed -->
+<p>Я добавил третий цвет к радиальному градиенту, чтобы лучше определить область градиента при наведении:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">radial-gradient(
+  circle closest-side,
+  #ECD078 calc(99% - var(--b)),
+  #C02942 calc(100% - var(--b)) 99%,
+  lightblue
+);</code></pre>
+<!-- /wp:code -->
+<p>Теперь нам нужно расположить наш фон в центре круга и убедиться, что он занимает всю высоту. Мне нравится объявлять все непосредственно в свойстве background shorthand, поэтому мы можем добавить позиционирование фона и убедиться, что оно не повторяется, добавив эти значения сразу после radial-gradient():</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">background: radial-gradient() 50% / calc(100% / var(--f)) 100% no-repeat;</code></pre>
+<!-- /wp:code -->
+<p>Фон размещается в центре (50%), имеет ширину, равную calc(100%/var(—f)), и высоту, равную 100%.</p>
+<p>Ничего не масштабируется, когда —f равно 1 - опять же, наш начальный масштаб. Тем временем градиент занимает всю ширину контейнера. Когда мы увеличиваем —f, размер элемента увеличивается - благодаря преобразованию scale() - а размер градиента уменьшается.</p>
+<p>Вот что мы получим, если применим все это к нашему демонстрационному примеру:</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/eYjWNed/cf9da694f79514eb6a619439de6896c3","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/eYjWNed/cf9da694f79514eb6a619439de6896c3
+</div></figure>
+<!-- /wp:embed -->
+<p>Мы подошли ближе! У нас есть эффект перелива в верхней части, но нам все еще нужно скрыть нижнюю часть изображения, чтобы оно выглядело так, как будто выскакивает из круга, а не сидит перед ним. Это самая сложная часть всей этой работы, и именно этим мы займемся дальше.</p>
+<h2 class="wp-block-heading" id="нижняя-граница">Нижняя граница</h2>
+<p>Сначала я попытался решить эту задачу с помощью свойства border-bottom, но мне не удалось найти способ согласовать размер границы с размером круга. Вот лучшее, что у меня получилось, и вы сразу видите, что это неправильно:</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/zYLwvxp/46302a3bb090e857947572e12795dfac","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/zYLwvxp/46302a3bb090e857947572e12795dfac
+</div></figure>
+<!-- /wp:embed -->
+<p>Реальное решение - использовать свойство outline. Да, контура, а не границы. В предыдущей статье я показал, что свойство outline является мощным и позволяет нам создавать классные эффекты наведения. В сочетании с outline-offset у нас есть именно то, что нужно для нашего эффекта.</p>
+<p>Идея заключается в том, чтобы установить контур на изображение и настроить его смещение для создания нижней границы. Смещение будет зависеть от коэффициента масштабирования так же, как и размер градиента.</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/eYjWpZG/d748690660aa7fff5982f911fa622ace","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/eYjWpZG/d748690660aa7fff5982f911fa622ace
+</div></figure>
+<!-- /wp:embed -->
+<p>Теперь у нас есть нижняя ”граница” (фактически контур) в сочетании с “границей”, созданной градиентом, чтобы создать полный круг. Нам все еще нужно скрыть части контура (сверху и по бокам), к чему мы перейдем через некоторое время.</p>
+<p>Вот наш код на данный момент, включая еще пару переменных CSS, которые можно использовать для настройки размера изображения (—s) и цвета ”границы” (—c):</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">img {
+  --s: 280px; /* image size */
+  --b: 5px; /* border thickness */
+  --c: #C02942; /* border color */
+  --f: 1; /* initial scale */
+
+  width: var(--s);
+  aspect-ratio: 1;
+  cursor: pointer;
+  border-radius: 0 0 999px 999px;
+  outline: var(--b) solid var(--c);
+  outline-offset: calc((1 / var(--f) - 1) * var(--s) / 2 - var(--b));
+  background: 
+    radial-gradient(
+      circle closest-side,
+      #ECD078 calc(99% - var(--b)),
+      var(--c) calc(100% - var(--b)) 99%,
+      #0000
+    ) 50% / calc(100% / var(--f)) 100% no-repeat;
+  transform: scale(var(--f));
+  transition: .5s;
+}
+img:hover {
+  --f: 1.35; /* hover scale */
+}</code></pre>
+<!-- /wp:code -->
+<p>Поскольку нам нужна круговая нижняя граница, мы добавили границу-радиус с нижней стороны, что позволяет контуру соответствовать кривизне градиента.</p>
+<p>Вычисления, используемые в outline-offset, гораздо более просты, чем кажется. По умолчанию контур рисуется за пределами рамки элемента. А в нашем случае нам нужно, чтобы он перекрывал элемент. Точнее, нам нужно, чтобы он следовал за окружностью, созданной градиентом.</p>
+<!-- wp:image {"id":376678} -->
+<figure class="wp-block-image"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673437632687_image.png?resize=727%2C569&#x26;ssl=1" alt="Диаграмма фонового перехода." class="wp-image-376678"></figure>
+<!-- /wp:image -->
+<p>Когда мы масштабируем элемент, мы видим пространство между кругом и краем. Не будем забывать, что идея заключается в том, чтобы сохранить круг в том же размере после выполнения преобразования масштаба, что оставляет нам пространство, которое мы будем использовать для определения смещения контура, как показано на рисунке выше.</p>
+<p>Не стоит забывать, что второй элемент масштабируется, поэтому наш результат также масштабируется… что означает, что нам нужно разделить результат на f, чтобы получить реальное значение смещения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">Offset = ((f - 1) * S/2) / f = (1 - 1/f) * S/2</code></pre>
+<!-- /wp:code -->
+<p>Мы добавляем отрицательный знак, так как нам нужно, чтобы контур шел от внешней стороны к внутренней:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">Offset = (1/f - 1) * S/2</code></pre>
+<!-- /wp:code -->
+<p>Вот быстрый демонстрационный пример, показывающий, как контур следует за градиентом:</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/VwBbvRw/4474e963f2823899e5b24635c56998fc","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/VwBbvRw/4474e963f2823899e5b24635c56998fc
+</div></figure>
+<!-- /wp:embed -->
+<p>Возможно, вы уже видите это, но нам все еще нужно, чтобы нижний контур перекрывал круг, а не проникал сквозь него. Мы можем сделать это, удалив размер границы из смещения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">outline-offset: calc((1 / var(--f) - 1) * var(--s) / 2) - var(--b));</code></pre>
+<!-- /wp:code -->
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/qBymOGz/a4b0f3652cc89ed1613fc78ec89912a4","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/qBymOGz/a4b0f3652cc89ed1613fc78ec89912a4
+</div></figure>
+<!-- /wp:embed -->
+<p>Теперь нам нужно найти, как удалить верхнюю часть из контура. Другими словами, нам нужна только нижняя часть контура изображения.</p>
+<p>Сначала добавим пространство в верхней части с помощью padding, чтобы избежать перекрытия в верхней части:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">img {
+  --s: 280px; /* image size */
+  --b: 5px;   /* border thickness */
+  --c: #C02942; /* border color */
+  --f: 1; /* initial scale */
+
+  width: var(--s);
+  aspect-ratio: 1;
+  padding-block-start: calc(var(--s)/5);
+  /* etc. */
+}
+img:hover {
+  --f: 1.35; /* hover scale */
+}</code></pre>
+<!-- /wp:code -->
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/VwBbaYM/380b4bfb346acea592849f6a1d511c23","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/VwBbaYM/380b4bfb346acea592849f6a1d511c23
+</div></figure>
+<!-- /wp:embed -->
+<p>Нет никакой особой логики в этом верхнем отступе. Идея заключается в том, чтобы контур не касался головы аватара. Я использовал размер элемента для определения этого пространства, чтобы оно всегда имело одинаковую пропорцию.</p>
+<p>Обратите внимание, что я добавил значение content-box к фону:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">background:
+  radial-gradient(
+    circle closest-side,
+    #ECD078 calc(99% - var(--b)),
+    var(--c) calc(100% - var(--b)) 99%,
+    #0000
+  ) 50%/calc(100%/var(--f)) 100% no-repeat content-box;</code></pre>
+<!-- /wp:code -->
+<p>Нам это нужно, потому что мы добавили подложку, и мы хотим, чтобы фон был установлен только на поле содержимого, поэтому мы должны явно указать фону остановиться на этом месте.</p>
+<h2 class="wp-block-heading" id="добавление-css-маски">Добавление CSS-маски</h2>
+<p>Мы добрались до последней части! Все, что нам нужно сделать, это скрыть некоторые части, и все готово. Для этого мы воспользуемся свойством mask и, конечно же, градиентами.</p>
+<p>Вот рисунок, иллюстрирующий то, что нам нужно скрыть или что нам нужно показать, чтобы быть более точным</p>
+<!-- wp:image {"id":376679} -->
+<figure class="wp-block-image"><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2023/01/s_4BDCAE75E12C1EF4B0F3D6ACE87A49C2ED374481A0BCA5961B57D20797041FE3_1673443822002_image.png?resize=932%2C526&#x26;ssl=1" alt="Показывает, как маска применяется к нижней части круга." class="wp-image-376679"></figure>
+<!-- /wp:image -->
+<p>Левое изображение - это то, что мы имеем сейчас, а правое - то, что мы хотим получить. Зеленая часть иллюстрирует маску, которую мы должны применить к исходному изображению, чтобы получить конечный результат.</p>
+<p>Мы можем выделить две части нашей маски:</p>
+<p>круглая часть внизу, которая имеет те же размеры и кривизну, что и радиальный градиент, который мы использовали для создания круга за аватаром.</p>
+<p>прямоугольник в верхней части, который охватывает область внутри контура. Обратите внимание, что контур находится за пределами зеленой области в верхней части - это самая важная часть, поскольку она позволяет обрезать контур так, чтобы была видна только нижняя часть.</p>
+<h2 class="wp-block-heading" id="вот-наш-окончательный-вариант-css">Вот наш окончательный вариант CSS:</h2>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">img {
+  --s: 280px; /* image size */
+  --b: 5px; /* border thickness */
+  --c: #C02942; /* border color */
+  --f: 1; /* initial scale */
+
+  --_g: 50% / calc(100% / var(--f)) 100% no-repeat content-box;
+  --_o: calc((1 / var(--f) - 1) * var(--s) / 2 - var(--b));
+
+  width: var(--s);
+  aspect-ratio: 1;
+  padding-top: calc(var(--s)/5);
+  cursor: pointer;
+  border-radius: 0 0 999px 999px;
+  outline: var(--b) solid var(--c);
+  outline-offset: var(--_o);
+  background: 
+    radial-gradient(
+      circle closest-side,
+      #ECD078 calc(99% - var(--b)),
+      var(--c) calc(100% - var(--b)) 99%,
+      #0000) var(--_g);
+  mask:
+    linear-gradient(#000 0 0) no-repeat
+    50% calc(-1 * var(--_o)) / calc(100% / var(--f) - 2 * var(--b)) 50%,
+    radial-gradient(
+      circle closest-side,
+      #000 99%,
+      #0000) var(--_g);
+  transform: scale(var(--f));
+  transition: .5s;
+}
+img:hover {
+  --f: 1.35; /* hover scale */
+}</code></pre>
+<!-- /wp:code -->
+<p>Давайте разберем это свойство маски. Для начала, обратите внимание, что там находится аналогичный радиальный градиент() из свойства background. Я создал новую переменную, —_g, для общих частей, чтобы сделать ситуацию менее беспорядочной.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">--_g: 50% / calc(100% / var(--f)) 100% no-repeat content-box;
+
+mask:
+  radial-gradient(
+    circle closest-side,
+    #000 99%,
+    #0000) var(--_g);</code></pre>
+<!-- /wp:code -->
+<p>Далее, там же есть linear-gradient():</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">--_g: 50% / calc(100% / var(--f)) 100% no-repeat content-box;
+
+mask:
+  linear-gradient(#000 0 0) no-repeat
+    50% calc(-1 * var(--_o)) / calc(100% / var(--f) - 2 * var(--b)) 50%,
+  radial-gradient(
+    circle closest-side,
+    #000 99%,
+    #0000) var(--_g);</code></pre>
+<!-- /wp:code -->
+<p>Это создает прямоугольную часть маски. Его ширина равна ширине радиального градиента минус удвоенная толщина границы:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">calc(100% / var(--f) - 2 * var(--b))</code></pre>
+<!-- /wp:code -->
+<p>Высота прямоугольника равна половине, 50%, размера элемента.</p>
+<p>Нам также нужен линейный градиент, размещенный в центре горизонтали (50%) и смещенный от вершины на ту же величину, что и смещение контура. Я создал еще одну переменную CSS, —_o, для смещения, которое мы определили ранее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">--_o: calc((1 / var(--f) - 1) * var(--s) / 2 - var(--b));</code></pre>
+<!-- /wp:code -->
+<p>Одна из непонятных вещей здесь заключается в том, что нам нужно отрицательное смещение для контура (чтобы переместить его снаружи внутрь), но положительное смещение для градиента (чтобы переместить его сверху вниз). Поэтому, если вам интересно, почему мы умножаем смещение, —_o, на -1, то теперь вы знаете!</p>
+<p>Вот демонстрация, иллюстрирующая конфигурацию градиента маски:</p>
+<!-- wp:embed {"url":"https://codepen.io/t_afif/pen/RwBVRNO/dd563d0f41b9c22fcb9aac141bbef029","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/t_afif/pen/RwBVRNO/dd563d0f41b9c22fcb9aac141bbef029
+</div></figure>
+<!-- /wp:embed -->
+<p>Наведите курсор и посмотрите, как все движется вместе. Средняя рамка иллюстрирует слой маски, состоящий из двух градиентов. Представьте его как видимую часть левого изображения, и вы получите конечный результат справа!</p>
+<h2 class="wp-block-heading" id="завершение-работы">Завершение работы</h2>
+<p>Вот мы и закончили! И мы не только получили замечательную анимацию наведения, но и сделали все это с помощью одного элемента HTML. Только это и менее 20 строк CSS!</p>
+<p>Конечно, мы использовали некоторые маленькие хитрости и математические формулы, чтобы добиться такого сложного эффекта. Но мы точно знали, что делать, потому что заранее определили все необходимые элементы.</p>
+<p>Могли бы мы упростить CSS, если бы позволили себе больше HTML? Безусловно. Но мы здесь для того, чтобы научиться новым трюкам CSS! Это было хорошее упражнение для изучения градиентов CSS, маскировки, поведения свойств контура, трансформаций и многого другого. Если в какой-то момент вы почувствуете себя потерянным, обязательно посмотрите мою серию, в которой используются те же общие понятия. Иногда полезно увидеть больше примеров и примеров использования, чтобы донести суть.</p>
+<p>На прощание я покажу вам последнюю демонстрацию, в которой используются фотографии популярных разработчиков CSS. Не забудьте показать мне демо с вашим собственным изображением, чтобы я мог добавить его в коллекцию!</p>
+<!-- wp:acf/acf-donate {"id":"block_64678dc93985f","name":"acf/acf-donate","data":{"title":"Задонатить на поддержку!","_title":"field_646b621e8617c","list_0_name":"Donatepay","_list_0_name":"field_646b623e8617e","list_0_url":"https://new.donatepay.ru/@1117856","_list_0_url":"field_646b62528617f","list_0_address":"","_list_0_address":"field_646b625d86180","list_1_name":"Donationalerts","_list_1_name":"field_646b623e8617e","list_1_url":"https://www.donationalerts.com/c/woorg_","_list_1_url":"field_646b62528617f","list_1_address":"","_list_1_address":"field_646b625d86180","list_2_name":"USDT (TRC20)","_list_2_name":"field_646b623e8617e","list_2_url":"","_list_2_url":"field_646b62528617f","list_2_address":"TR121HxpTDF71TMm9idZkBaZxnjSMcCPWj","_list_2_address":"field_646b625d86180","list_3_name":"ETH","_list_3_name":"field_646b623e8617e","list_3_url":"","_list_3_url":"field_646b62528617f","list_3_address":"0x442721192987047eDeEC69Ca1D4c706f9Adb16B3","_list_3_address":"field_646b625d86180","list_4_name":"BTC","_list_4_name":"field_646b623e8617e","list_4_url":"","_list_4_url":"field_646b62528617f","list_4_address":"36dLKv5uRozphSQa55w2XgsF42AugPu2QT","_list_4_address":"field_646b625d86180","list":5,"_list":"field_646b62308617d"},"align":"","mode":"edit"} /--> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Модный эффект наведения для аватара&#38;url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara&#38;title=Модный эффект наведения для аватара&#38;summary=Знаете ли вы такой эффект, когда чья-то голова просовывается сквозь круг или отверстие? Знаменитая анимация Порки Пига, где он машет на прощание, выскакивая...&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/modnyj-effekt-navedeniya-dlya-avatara&#38;media=&#38;description=Знаете ли вы такой эффект, когда чья-то голова просовывается сквозь круг или отверстие? Знаменитая анимация Порки Пига, где он машет на прощание, выскакивая..." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/nachalo-raboty-s-amazon-s3" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Начало работы с Amazon S3 </a> <a href="/blog/missing-1-required-positional-argument-self-v-python" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Missing 1 required positional argument: self в Python </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

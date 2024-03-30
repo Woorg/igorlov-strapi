@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок | Игорь Горлов - Fullstack Developer</title><link rel="canonical" href="https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok"><meta name="description" content="Если вы запустите этот проект после обновления Godot 4.1.1, вы заметите несколько ошибок, которые появятся в панели Errors. Я не говорю о желтых предупреждения"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-пофиксить" class="categories__link" data-astro-cid-axzg2cw6> Как пофиксить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/godot" data-astro-cid-axzg2cw6> Godot </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 18 дек., 2023 by Игорь Горлов </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok-Dec-18-2023.CNrhYn35_ZLYlJh.avif" type="image/avif"><source srcset="/_astro/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok-Dec-18-2023.CNrhYn35_ZXdOCI.webp" type="image/webp"> <img src="/_astro/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok-Dec-18-2023.CNrhYn35_Z2m1Eb1.png" alt="Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок&#38;url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok&#38;title=Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок&#38;summary=Если вы запустите этот проект после обновления Godot 4.1.1, вы заметите несколько ошибок, которые появятся в панели Errors. Я не говорю о желтых предупреждения&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok&#38;media=&#38;description=Если вы запустите этот проект после обновления Godot 4.1.1, вы заметите несколько ошибок, которые появятся в панели Errors. Я не говорю о желтых предупреждения" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details class="toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer"><summary class="title">Оглавление</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#ошибка-вызова-из-сигнала-scene_changed-в-callable">Ошибка вызова из сигнала ‘scene_changed’ в callable.</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#ошибка-вызова-из-сигналов-health_updated-и-stamina_updated-в-callable">Ошибка вызова из сигналов ‘health_updated’ и ‘stamina_updated’ в callable.</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#ошибка-условие-p_scene--p_scene-get_parent--root-является-истинным">Ошибка Условие “p_scene &#x26;&#x26; p_scene->get_parent() != root” является истинным.</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#ошибка-узел-не-найден-player-относительно-rootmainmenu">Ошибка: Узел не найден: “Player” (относительно “/root/MainMenu”).</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#ошибка-data_to_load-таймер-не-был-добавлен-в-сцену">Ошибка data_to_load() Таймер не был добавлен в сцену.</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#ошибка-change_scene-невозможно-изменить-это-состояние-во-время-промывки-запросов">Ошибка change_scene(): Невозможно изменить это состояние во время промывки запросов.</a></li></ol></details><p>Если вы запустите этот проект после обновления Godot 4.1.1, вы заметите несколько ошибок, которые появятся в панели Errors. Я не говорю о желтых предупреждениях (они желтые, они плавные), нет, я говорю о красных предупреждениях. Сама игра по-прежнему работает нормально с этими предупреждениями, но их легко исправить, так что давайте исправим их, чтобы они не загромождали наш журнал вывода.</p>
+<p>ЧТО ВЫ УЗНАЕТЕ В ЭТОЙ ЧАСТИ:</p>
+<ul>
+<li>Исправление основных ошибок.</li>
+</ul>
+<h2 id="ошибка-вызова-из-сигнала-scene_changed-в-callable">Ошибка вызова из сигнала ‘scene_changed’ в callable.<a aria-hidden="true" tabindex="-1" href="#ошибка-вызова-из-сигнала-scene_changed-в-callable"><span class="icon icon-link"></span></a></h2>
+<p>Если вы меняете сцены через Главное меню или переходы между сценами, вы можете получить эту ошибку. Это происходит из-за несоответствия между количеством аргументов, передаваемых сигналом, и количеством аргументов, ожидаемых функцией, подключенной к сигналу.</p>
+<p>В нашем скрипте Global.gd есть сигнал scene_changed, который настроен на выдачу с одним аргументом (новая сцена).</p>
+<p><code>###Global.gd extends Node  #notifies scene change signal scene_changed(new_scene)</code></p>
+<p>Позже в функции change_scene мы подаем сигнал с одним аргументом.</p>
+<p><code>###Global.gd  extends Node  func change_scene(scene_path): # older code scene_changed.emit(new_scene)</code></p>
+<p>Но в наших скриптах Main и Main_2.gd есть функция, связанная с нашим сигналом - у которой нет параметров. Поэтому, когда сигнал ‘scene_changed’ испускается и пытается вызвать _on_scene_changed с одним аргументом (новая сцена), происходит ошибка, потому что _on_scene_changed не настроена на прием аргументов.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>### Main.gd extends Node2D</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Connect signal to function</span></span>
+<span class="line"><span>func _ready():</span></span>
+<span class="line"><span>    Global.scene_changed.connect(_on_scene_changed)  # older code</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Only after scene has been changed, do we free our resource</span></span>
+<span class="line"><span>func _on_scene_changed():</span></span>
+<span class="line"><span>    queue_free()</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Чтобы решить эту проблему, мы можем обновить нашу функцию _on_scene_changed в скрипте Main.gd, чтобы она принимала один аргумент. Мы также должны подключать сигнал к нашей функции только при изменении сцены, а не при ее загрузке.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>### Main.gd extends Node2D</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Transports player to saloon scene</span></span>
+<span class="line"><span>func _on_saloon_body_entered(body):</span></span>
+<span class="line"><span>    if body.name == "Player":</span></span>
+<span class="line"><span>        Global.change_scene("res://Scenes/Main_2.tscn")</span></span>
+<span class="line"><span>        Global.scene_changed.connect(_on_scene_changed)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Saves game every 5 minutes</span></span>
+<span class="line"><span>func _on_timer_timeout():</span></span>
+<span class="line"><span>    if Global.current_scene_name != "MainMenu":</span></span>
+<span class="line"><span>        print("Autosaved game.")</span></span>
+<span class="line"><span>        Global.save()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Only after scene has been changed, do we free our resource</span></span>
+<span class="line"><span>func _on_scene_changed(new_scene):</span></span>
+<span class="line"><span>    queue_free()</span></span>
+<span class="line"><span></span></span></code></pre>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>### Main_2.gd - previously Saloon extends Node2D</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># plays different background music</span></span>
+<span class="line"><span>func _ready():</span></span>
+<span class="line"><span>    $Player/BackgroundMusic.stream = load("res://../../assets/FX/Music/Free Retro SFX by @inertsongs/Imposter Syndrome (theme).wav")</span></span>
+<span class="line"><span>    $Player/BackgroundMusic.play()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># transports player to main scene</span></span>
+<span class="line"><span>func _on_trigger_area_body_entered(body):</span></span>
+<span class="line"><span>    if body.name == "Player":</span></span>
+<span class="line"><span>        Global.change_scene("res://Scenes/Main.tscn")</span></span>
+<span class="line"><span>        Global.scene_changed.connect(_on_scene_changed)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># only after scene has been changed, do we free our resource</span></span>
+<span class="line"><span>func _on_scene_changed(new_scene):</span></span>
+<span class="line"><span>    queue_free()</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="ошибка-вызова-из-сигналов-health_updated-и-stamina_updated-в-callable">Ошибка вызова из сигналов ‘health_updated’ и ‘stamina_updated’ в callable.<a aria-hidden="true" tabindex="-1" href="#ошибка-вызова-из-сигналов-health_updated-и-stamina_updated-в-callable"><span class="icon icon-link"></span></a></h2>
+<p>Эта ошибка возникает всякий раз, когда игра пытается обновить здоровье и выносливость с помощью сигналов. Как и в случае с ошибкой выше, это происходит из-за несоответствия номеров аргументов. Когда мы испускаем сигнал ‘health_updated’ в скрипте Player.gd, мы передаем аргумент. Затем, в скрипте Health.gd, метод ‘update_health’ подключается к этому сигналу и ожидает получить этот аргумент. Однако наш метод ‘update_health’ определен без каких-либо параметров, поэтому возникает несоответствие и ошибка.</p>
+<p>Чтобы исправить это, нам просто нужно передать обе переменные x и max_x в сигналах здоровья и выносливости.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>### Player.gd</span></span>
+<span class="line"><span># older code</span></span>
+<span class="line"><span># updates player xp</span></span>
+<span class="line"><span>func update_xp(value):</span></span>
+<span class="line"><span>    xp += value</span></span>
+<span class="line"><span>    # check if player leveled up after reaching xp requirements</span></span>
+<span class="line"><span>    if xp >= xp_requirements:</span></span>
+<span class="line"><span>        # older code</span></span>
+<span class="line"><span>        # update signals for Label values</span></span>
+<span class="line"><span>        health_updated.emit(health, max_health)</span></span>
+<span class="line"><span>        stamina_updated.emit(stamina, max_stamina)</span></span>
+<span class="line"><span>        ammo_pickups_updated.emit(ammo_pickup)</span></span>
+<span class="line"><span>        health_pickups_updated.emit(health_pickup)</span></span>
+<span class="line"><span>        stamina_pickups_updated.emit(stamina_pickup)</span></span>
+<span class="line"><span>        xp_updated.emit(xp)</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="ошибка-условие-p_scene--p_scene-get_parent--root-является-истинным">Ошибка Условие “p_scene &#x26;&#x26; p_scene->get_parent() != root” является истинным.<a aria-hidden="true" tabindex="-1" href="#ошибка-условие-p_scene--p_scene-get_parent--root-является-истинным"><span class="icon icon-link"></span></a></h2>
+<p>При загрузке игры может возникнуть эта ошибка. Эта ошибка обычно возникает, когда мы пытаемся установить текущую сцену в Godot, а сцена, которую мы пытаемся установить, уже имеет родительский узел, который не является корнем дерева сцен. При смене сцены мы обычно хотим добавить новую сцену в качестве дочернего узла корневого узла, а затем установить ее в качестве текущей сцены. Однако если у сцены уже есть родитель, не являющийся корнем, Godot не позволит нам установить ее в качестве текущей сцены, что приведет к этой ошибке.</p>
+<p>Мы можем исправить это с помощью объекта call_deferred, который позволит нам установить текущую сцену и изменить сцену при загрузке игры в одном и том же кадре, избежав ошибки, с которой мы столкнулись.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>### Global.gd</span></span>
+<span class="line"><span># older code</span></span>
+<span class="line"><span># load game func</span></span>
+<span class="line"><span>load_game():</span></span>
+<span class="line"><span>    if loading and FileAccess.file_exists(save_path):</span></span>
+<span class="line"><span>        # older code</span></span>
+<span class="line"><span>        # Change to the loaded scene</span></span>
+<span class="line"><span>        get_tree().root.call_deferred("add_child", game)</span></span>
+<span class="line"><span>        get_tree().call_deferred("set_current_scene", game)</span></span>
+<span class="line"><span>        current_scene_name = game.name</span></span>
+<span class="line"><span>        # code remains the same</span></span>
+<span class="line"><span>    else:</span></span>
+<span class="line"><span>        print("Save file not found!")</span></span>
+<span class="line"><span>        return false</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="ошибка-узел-не-найден-player-относительно-rootmainmenu">Ошибка: Узел не найден: “Player” (относительно “/root/MainMenu”).<a aria-hidden="true" tabindex="-1" href="#ошибка-узел-не-найден-player-относительно-rootmainmenu"><span class="icon icon-link"></span></a></h2>
+<p>При загрузке игры может возникнуть эта ошибка. Эта ошибка происходит потому, что мы пытаемся получить доступ к узлу “Player” из сцены “MainMenu”. Похоже, что сцена “MainMenu” не имеет узла “Player”.</p>
+<p>В нашей функции load<em>data() мы пытаемся найти узел “Player” из текущей</em>сцены, которая в данном случае является “MainMenu”. Вот проблемная строка:</p>
+<p><code>var player = current_scene.get_node("Player")</code></p>
+<p>Если в сцене “MainMenu” нет узла “Player”, мы получим ошибку “Node not found”. Чтобы избежать этой ошибки, мы можем сначала проверить, существует ли узел “Player” в текущей_сцене, прежде чем пытаться получить к нему доступ:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>### Global.gd</span></span>
+<span class="line"><span># Older code</span></span>
+<span class="line"><span># Player data to load when changing scenes</span></span>
+<span class="line"><span>func load_data():</span></span>
+<span class="line"><span>    var current_scene = get_tree().get_current_scene()</span></span>
+<span class="line"><span>    if current_scene and FileAccess.file_exists(save_path):</span></span>
+<span class="line"><span>        print("Save file found!")</span></span>
+<span class="line"><span>        var file = FileAccess.open(save_path, FileAccess.READ)</span></span>
+<span class="line"><span>        var data = JSON.parse_string(file.get_as_text())</span></span>
+<span class="line"><span>        file.close()</span></span>
+<span class="line"><span>        # Now you can load data into the nodes</span></span>
+<span class="line"><span>        if current_scene.has_node("Player"):</span></span>
+<span class="line"><span>            var player = current_scene.get_node("Player")</span></span>
+<span class="line"><span>            if player and data.has("player"):</span></span>
+<span class="line"><span>                player.values_to_load(data["player"])</span></span>
+<span class="line"><span>            else:</span></span>
+<span class="line"><span>                print("Save file not found!")</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="ошибка-data_to_load-таймер-не-был-добавлен-в-сцену">Ошибка data_to_load() Таймер не был добавлен в сцену.<a aria-hidden="true" tabindex="-1" href="#ошибка-data_to_load-таймер-не-был-добавлен-в-сцену"><span class="icon icon-link"></span></a></h2>
+<p>В функции data_to_load() нашего EnemySpawner мы можем просто удалить последнюю строку, добавляющую узел таймера, поскольку у нас уже есть узел таймера, добавленный в нашу сцену, и этот узел таймера настроен на автовоспроизведение при запуске.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>###EnemySpawner.gd</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Load data from save file</span></span>
+<span class="line"><span>func data_to_load(data):</span></span>
+<span class="line"><span>    enemy_count = data.size()</span></span>
+<span class="line"><span>    for enemy_data in data:</span></span>
+<span class="line"><span>        var enemy = enemy_scene.instantiate()</span></span>
+<span class="line"><span>        enemy.data_to_load(enemy_data)</span></span>
+<span class="line"><span>        add_child(enemy)</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="ошибка-change_scene-невозможно-изменить-это-состояние-во-время-промывки-запросов">Ошибка change_scene(): Невозможно изменить это состояние во время промывки запросов.<a aria-hidden="true" tabindex="-1" href="#ошибка-change_scene-невозможно-изменить-это-состояние-во-время-промывки-запросов"><span class="icon icon-link"></span></a></h2>
+<p>Эта ошибка возникает, когда мы пытаемся изменить сцену, в то время как некоторые запросы физики все еще решаются. Godot не позволяет напрямую изменять некоторые свойства физики или менять сцены во время процесса физики, так как это может привести к сбоям или неожиданному поведению.</p>
+<p>Одним из решений является использование функции call_deferred(), которая планирует вызов метода во время простоя следующего кадра. Это может предотвратить гоночные условия, которые могут возникнуть, если запросы к физике будут сбрасываться, пока мы пытаемся изменить сцену.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>###Global.gd</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func change_scene(scene_path):</span></span>
+<span class="line"><span>    # Save the game before changing scenes</span></span>
+<span class="line"><span>    save()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Then change the scene</span></span>
+<span class="line"><span>    current_scene_name = scene_path.get_file().get_basename()</span></span>
+<span class="line"><span>    var current_scene = get_tree().get_root().get_child(get_tree().get_root().get_child_count() - 1)</span></span>
+<span class="line"><span>    current_scene.queue_free()</span></span>
+<span class="line"><span>    var new_scene = load(scene_path).instantiate()</span></span>
+<span class="line"><span>    get_tree().get_root().call_deferred("add_child", new_scene)</span></span>
+<span class="line"><span>    get_tree().call_deferred("set_current_scene", new_scene)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Carries persistent data across scenes</span></span>
+<span class="line"><span>    load_data()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    scene_changed.emit(new_scene)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>С этими проблемами красные ошибки из нашего журнала должны быть удалены. Оставшиеся желтые предупреждения не имеют значения, поскольку удаление некоторых “затененных” переменных приведет к появлению реальных ошибок. Однако вы можете исправить предупреждения о том, что переменная x никогда не используется, добавив отступы к неиспользуемым параметрам.</p>
+<p>Ваш окончательный код должен выглядеть следующим образом.</p>
+<p>Если возникнут другие критические ошибки, эта часть серии уроков будет обновляться для их устранения по мере необходимости. Пожалуйста, помните, что исправление ошибок - это постоянная часть разработки, особенно в разработке игр, где наш движок постоянно обновляется, что приводит к поломкам кода! Не забудьте сохранить свой проект, и до встречи в следующей части.</p>
+<p>Серия учебников состоит из 25 глав. Я буду выпускать все главы по частям в течение следующих нескольких недель.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок&#38;url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok&#38;title=Изучаем Godot 4, делая ролевую игру - часть 24: Исправление ошибок&#38;summary=Если вы запустите этот проект после обновления Godot 4.1.1, вы заметите несколько ошибок, которые появятся в панели Errors. Я не говорю о желтых предупреждения&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/yzuchaem-godot-4-delaia-rolevuiu-yhru-chast-24-yspravlenye-oshybok&#38;media=&#38;description=Если вы запустите этот проект после обновления Godot 4.1.1, вы заметите несколько ошибок, которые появятся в панели Errors. Я не говорю о желтых предупреждения" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/sozdaite-svoi-sobstvenn-i-http-server-na-yaz-ke-ruby" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Создайте свой собственный HTTP-сервер на языке ruby </a> <a href="/blog/vvedenye-v-sozdanye-b-k-nda-ruby-on-rails" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Введение в создание бэкэнда Ruby on Rails </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

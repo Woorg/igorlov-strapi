@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Astro 2.5 - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/astro-2-5"><meta name="description" content="Мы только что выпустили Astro 2.5 с большим списком функций, включая:"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-astro-2-5; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/новости" class="categories__link" data-astro-cid-axzg2cw6> Новости  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Astro 2.5 </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/astro" data-astro-cid-axzg2cw6> Astro </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 22 мая, 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-May-22-2023.UTMn4RZg_1HncYA.avif" type="image/avif"><source srcset="/_astro/undefined-May-22-2023.UTMn4RZg_ZA2yMf.webp" type="image/webp"> <img src="/_astro/undefined-May-22-2023.UTMn4RZg_Zlmy7A.png" alt="Astro 2.5" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/astro-2-5" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/astro-2-5" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Astro 2.5&#38;url=https://igorlov.ru/blog/astro-2-5" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/astro-2-5&#38;title=Astro 2.5&#38;summary=Мы только что выпустили Astro 2.5 с большим списком функций, включая:&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/astro-2-5&#38;media=&#38;description=Мы только что выпустили Astro 2.5 с большим списком функций, включая:" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details class="toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer"><summary class="title">Оглавление</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#-srccontentblogwelcomemd"># src/content/blog/welcome.md</a></li></ol></details><p>Мы только что выпустили Astro 2.5 с большим списком функций, включая:</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"ce17bc5b-3969-459e-9522-1022105ad026","content":"Коллекции данных и ссылки","level":2,"link":"#коллекции-данных-и-ссылки","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"bbc20bd8-7d7b-4283-b851-ec78ab6e1227","content":"Статический гибридный рендеринг по умолчанию (экспериментальный)","level":2,"link":"#статический-гибридный-рендеринг-по-умолчанию-экспериментальный","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"2dd4ecb7-f7c8-4412-8dd8-9f6846f30bee","content":"Пользовательские клиентские директивы (экспериментально)","level":2,"link":"#пользовательские-клиентские-директивы-экспериментально","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"ae6698dd-5ad2-443b-b06a-eae6bb387f92","content":"Минификация HTML","level":2,"link":"#минификация-html","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f8b45e7e-273f-41dd-bb97-3a606da6cd75","content":"Параллельный рендеринг","level":2,"link":"#параллельный-рендеринг","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"13725dd3-45b2-4b0c-9b04-cb30a96c1970","content":"Помощник полиморфного типа","level":2,"link":"#помощник-полиморфного-типа","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"e5b39195-0eb6-4ec0-8f81-3b3ac1dc76d0","content":"Подробнее","level":2,"link":"#подробнее","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#коллекции-данных-и-ссылки">Коллекции данных и ссылки</a></li><li class=""><a href="#статический-гибридный-рендеринг-по-умолчанию-экспериментальный">Статический гибридный рендеринг по умолчанию (экспериментальный)</a></li><li class=""><a href="#пользовательские-клиентские-директивы-экспериментально">Пользовательские клиентские директивы (экспериментально)</a></li><li class=""><a href="#минификация-html">Минификация HTML</a></li><li class=""><a href="#параллельный-рендеринг">Параллельный рендеринг</a></li><li class=""><a href="#помощник-полиморфного-типа">Помощник полиморфного типа</a></li><li class=""><a href="#подробнее">Подробнее</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="коллекции-данных-и-ссылки">Коллекции данных и ссылки</h2>
+<p>Коллекции данных — это первоклассное решение Astro для управления и создания контента. В Astro 2.5 эта история получила еще большее развитие благодаря новым форматам данных и ссылкам на коллекции.</p>
+<p>Во-первых, мы ввели новый тип: свойство ‘data’ для хранения форматов данных, таких как JSON и YAML, в собственных коллекциях. Это открывает возможности использования коллекций для новых форм контента, включая профили авторов, многократно используемый альт текст изображений, словари переводов и многое другое.</p>
+<p>Создавайте коллекции данных вместе с существующими коллекциями контента:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">src/content/
+    blog/
+        week-1.md
+        week-2.md
++    authors/
++        grace-hopper.json
++        alan-turing.json</code></pre>
+<!-- /wp:code -->
+<p>Настройте их с помощью нового свойства type: ‘data’:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// src/content/config.ts
+import { defineCollection, z } from "astro:content"
+
+const authors = defineCollection({
+	type: "data",
+	schema: z.object({
+		name: z.string(),
+		socialLink: z.string().url(),
+	}),
+})
+
+const blog = defineCollection({
+	type: "content",
+	schema: z.object({
+		/* ... */
+	}),
+})
+
+export const collections = { blog: blog, authors: authors }</code></pre>
+<!-- /wp:code -->
+<p>Вы также можете захотеть ”ссылаться” на связанные записи. Обычный пример - запись в блоге, которая ссылается на многократно используемые профили авторов, хранящиеся в виде JSON в коллекции данных, или URL-адреса связанных записей, хранящиеся в той же коллекции. Вы можете настроить эти отношения с помощью новой функции reference():</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { defineCollection, reference, z } from "astro:content"
+
+const blog = defineCollection({
+	type: "content",
+	schema: z.object({
+		title: z.string(),
+		// Reference a single author from the `authors` collection by `id`
+		author: reference("authors"),
+		// Reference an array of related posts from the `blog` collection by `slug`
+		relatedPosts: z.array(reference("blog")),
+	}),
+})
+
+const authors = defineCollection({
+	type: "data",
+	schema: z.object({
+		/** ... */
+	}),
+})
+
+export const collections = { blog, authors }</code></pre>
+<!-- /wp:code -->
+<p>Теперь каждая запись блога может ссылаться на связанные записи с безопасной для типов валидацией:</p>
+<!-- wp:code -->
+<h2 id="-srccontentblogwelcomemd"><pre class="wp-block-code"><code lang="javascript" class="language-javascript"># src/content/blog/welcome.md<a aria-hidden="true" tabindex="-1" href="#-srccontentblogwelcomemd"><span class="icon icon-link"></span></a></code></pre></h2><code lang="javascript" class="language-javascript">
+<p>title: “Welcome to my blog”
+author: ben-holmes # references <code>src/content/authors/ben-holmes.json</code>
+relatedPosts:</p>
+</code><ul><code lang="javascript" class="language-javascript">
+<li>about-me # references <code>src/content/blog/about-me.md</code></li>
+</code><li><code lang="javascript" class="language-javascript">my-year-in-review # references <code>src/content/blog/my-year-in-review.md</code>
+---</code></li>
+</ul>
+<!-- /wp:code -->
+<p>Подробные примеры смотрите в <a href="https://docs.astro.build/en/guides/content-collections/" target="_blank" rel="noreferrer noopener nofollow">обновленном руководстве по коллекциям контента</a>.</p>
+<h2 class="wp-block-heading" id="статический-гибридный-рендеринг-по-умолчанию-экспериментальный">Статический гибридный рендеринг по умолчанию (экспериментальный)</h2>
+<p>В версии 2.0 мы добавили возможность предварительного рендеринга отдельных страниц в приложениях SSR. Теперь в версии 2.5 вы можете сделать и обратное; в основном статическом сайте вы можете указать некоторые маршруты, которые не будут подвергаться предварительному рендерингу.</p>
+<p>Эта новая ”гибридная” опция вывода на сервер перевернет стандартное поведение пререндеринга в SSR так, что вам больше не придется отмечать каждый статический маршрут, который вы хотите пререндерить. Эта опция будет помечена как экспериментальная в течение короткого периода времени, пока мы стабилизируем крайние случаи. Вы можете использовать ее уже сегодня, включив флаг hybridOutput в экспериментальной секции вашего конфига и добавив адаптер:</p>
+<p>astro.config.mjs</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { defineConfig } from "astro/config"
+import nodejs from "@astrojs/node"
+
+export default defineConfig({
+	output: "hybrid",
+	adapter: nodejs(),
+	experimental: {
+		hybridOutput: true,
+	},
+})</code></pre>
+<!-- /wp:code -->
+<p>Как только вы это сделаете, весь ваш сайт будет предварительно отрисован по умолчанию. Вы можете отказаться от предварительного рендеринга, установив значение false для экспорта предварительного рендеринга любой страницы или конечной точки:</p>
+<p>src/pages/contact.astro</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">--- 
+
+export const prerender = false
+
+if (Astro.request.method === "POST") {
+	// handle form submission
+}
+--- 
+
+
+&#x3C;form method="POST">
+	&#x3C;input type="text" name="name" />
+	&#x3C;input type="email" name="email" />
+	&#x3C;button type="submit">Submit&#x3C;/button>
+&#x3C;/form></code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="пользовательские-клиентские-директивы-экспериментально">Пользовательские клиентские директивы (экспериментально)</h2>
+<p>Пользовательские клиентские директивы позволяют авторам интеграций определять новые директивы client: для получения большего контроля над загрузкой компонентов.</p>
+<p>Интеграции могут добавлять их через новый API addClientDirective() хука astro:config:setup. Чтобы использовать этот API, включите customClientDirectives в экспериментальном разделе вашего конфига.</p>
+<p>astro.config.mjs</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { defineConfig } from "astro/config"
+import onClickDirective from "astro-click-directive"
+
+export default defineConfig({
+	integrations: [onClickDirective()],
+	experimental: {
+		customClientDirectives: true,
+	},
+})</code></pre>
+<!-- /wp:code -->
+<p>astro-click-directive</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export default function onClickDirective() {
+	return {
+		hooks: {
+			"astro:config:setup": ({ addClientDirective }) => {
+				addClientDirective({
+					name: "click",
+					entrypoint: "astro-click-directive/click.js",
+				})
+			},
+		},
+	}
+}</code></pre>
+<!-- /wp:code -->
+<p>Теперь вы можете использовать client:click для любых компонентов вашего фреймворка с полной поддержкой типов.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;Counter client:click /></code></pre>
+<!-- /wp:code -->
+<p>См. документацию по клиентским директивам, чтобы узнать, как создавать такие типы интеграций.</p>
+<h2 class="wp-block-heading" id="минификация-html">Минификация HTML</h2>
+<p>Теперь вы можете отказаться от минификации HTML, создаваемого вашими компонентами Astro.</p>
+<p>Используя опцию compressHTML, Astro удалит все пробельные символы из вашего HTML, включая переносы строк.</p>
+<p>Мы хотели включить минификацию без ущерба для производительности. Для приложений с серверным рендерингом минификация при каждом рендеринге может оказаться дорогостоящей. С compressHTML ваши компоненты сжимаются только один раз компилятором Astro, а затем во время сборки.</p>
+<p>Вы можете включить эту функцию в конфигурации:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { defineConfig } from "astro/config"
+export default defineConfig({
+	compressHTML: true,
+})</code></pre>
+<!-- /wp:code -->
+<p>Примечание: сжатие происходит как в режиме разработки, так и в финальной сборке.</p>
+<p>Хотя эта опция не сжимает HTML, создаваемый компонентом фреймворка, вы можете написать промежуточное ПО для сжатия HTML-ответов.</p>
+<h2 class="wp-block-heading" id="параллельный-рендеринг">Параллельный рендеринг</h2>
+<p>Теперь Astro будет рендерить компоненты параллельно, так что компоненты, загружающие данные выше в дереве, больше не будут блокировать другие компоненты, которые также загружают данные, как в примере ниже:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;Delayed ms={30} />
+&#x3C;Delayed ms={20} />
+&#x3C;Delayed ms={40} />
+&#x3C;Delayed ms={10} /></code></pre>
+<!-- /wp:code -->
+<p>Этот <code>&#x3C;Delayed /></code> компонент ждет определенное количество миллисекунд. Раньше каждый компонент должен был дождаться завершения предыдущего, прежде чем начать рендеринг. Теперь в версии 2.5 все они будут отрисовываться одновременно.</p>
+<p>Забавный факт: мы пытались добавить эту оптимизацию в прошлом, но нам не хватало хороших бенчмарков, чтобы убедиться, что это не замедляет рендеринг. Недавние улучшения в нашей инфраструктуре бенчмарков CI позволили нам реализовать эту оптимизацию с уверенностью.</p>
+<h2 class="wp-block-heading" id="помощник-полиморфного-типа">Помощник полиморфного типа</h2>
+<p>Astro теперь включает помощник TypeScript (Polymorphic) для упрощения создания компонентов, которые могут отображаться как различные элементы HTML с полной безопасностью типов. Это полезно для таких компонентов, как <code>&#x3C;Link></code>, которые могут отображаться как <code>&#x3C;a></code> или <code>&#x3C;button></code> в зависимости от переданных им реквизитов.</p>
+<p>В приведенном ниже примере реализован полностью типизированный, полиморфный компонент, который может отображаться как любой элемент HTML. Тип HTMLTag используется для обеспечения того, что реквизит <code>as</code> является допустимым элементом HTML.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">--- 
+
+import { HTMLTag, Polymorphic } from "astro/types"
+
+type Props&#x3C;Tag extends HTMLTag> = Polymorphic&#x3C;{ as: Tag }>
+
+const { as: Tag, ...props } = Astro.props
+--- 
+
+
+&#x3C;Tag {...props} /></code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="подробнее">Подробнее</h2>
+<p>В этот выпуск включены дополнительные исправления ошибок и улучшения. Ознакомьтесь с <a href="https://github.com/withastro/astro/pull/7090" target="_blank" rel="noreferrer noopener nofollow">примечаниями к выпуску</a>, чтобы узнать больше.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/astro-2-5" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/astro-2-5" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Astro 2.5&#38;url=https://igorlov.ru/blog/astro-2-5" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/astro-2-5&#38;title=Astro 2.5&#38;summary=Мы только что выпустили Astro 2.5 с большим списком функций, включая:&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/astro-2-5&#38;media=&#38;description=Мы только что выпустили Astro 2.5 с большим списком функций, включая:" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/audioreaktivnye-shejdery-s-pomoshhyu-three-js-i-shader-park" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Аудиореактивные шейдеры с помощью Three.js и Shader Park </a> <a href="/blog/arhitekturnye-patterny-node-js-s-primerami" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Архитектурные паттерны Node.js с примерами </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

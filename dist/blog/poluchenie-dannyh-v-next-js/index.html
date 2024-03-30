@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Получение данных в Next.js - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/poluchenie-dannyh-v-next-js"><meta name="description" content="Next.js – это отличный фреймворк React, который отличается высокой скоростью, большим количеством настроек, хорошими функциями оптимизации изображений и возможностями рендеринга. "><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-poluchenie-dannyh-v-next-js; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/others" class="categories__link" data-astro-cid-axzg2cw6> Others  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Получение данных в Next.js </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/others" data-astro-cid-axzg2cw6> Others </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 25 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_1VvX78.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_ZlSNEH.webp" type="image/webp"> <img src="/_astro/undefined-Feb-25-2023.BscJLvqp_Z7dN03.png" alt="Получение данных в Next.js" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Получение данных в Next.js&#38;url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js&#38;title=Получение данных в Next.js&#38;summary=Next.js – это отличный фреймворк React, который отличается высокой скоростью, большим количеством настроек, хорошими функциями оптимизации изображений и возможностями рендеринга. &#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js&#38;media=&#38;description=Next.js – это отличный фреймворк React, который отличается высокой скоростью, большим количеством настроек, хорошими функциями оптимизации изображений и возможностями рендеринга. " target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Next.js - это отличный фреймворк React, который отличается высокой скоростью, большим количеством настроек, хорошими функциями оптимизации изображений и возможностями рендеринга. В нем также есть методы, помогающие получать данные с обратной стороны. В этой статье мы рассмотрим, как происходит получение данных на стороне клиента, на стороне сервера и при генерации статического сайта.<br>Сначала давайте рассмотрим, что такое выборка данных и как она выполняется в Next.js.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"9bf201b5-5955-40fe-b6a1-a34e53e3bb71","content":"Что такое получение данных?","level":2,"link":"#что-такое-получение-данных","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"92ad73b4-552c-4919-b6fa-d95c2d7b6979","content":"Функции получения данных","level":2,"link":"#функции-получения-данных","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"c94dbb9d-412e-49a4-9a53-3598339f9e9c","content":"Выборка данных на стороне клиента: ","level":2,"link":"#выборка-данных-на-стороне-клиента","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"a029062e-6c32-4523-97c6-e98a79c4b767","content":"Выборка данных на стороне сервера: ","level":2,"link":"#выборка-данных-на-стороне-сервера","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"797172f9-08d2-4216-8266-4e20e39d30b3","content":"Генерация статических сайтов: ","level":2,"link":"#генерация-статических-сайтов","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"c51d6723-0cf9-423a-a429-7694c29ff1b8","content":"Когда использовать каждую функцию?","level":2,"link":"#когда-использовать-каждую-функцию","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f97f5b24-e5e9-40ac-87e8-5b41be1270b3","content":"Когда необходим рендеринг на стороне клиента?","level":3,"link":"#когда-необходим-рендеринг-на-стороне-клиента","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"0d846955-a38e-4340-8a28-30154977e5e1","content":"Когда использовать рендеринг на стороне сервера?","level":3,"link":"#когда-использовать-рендеринг-на-стороне-сервера","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"51c618cb-4fbe-4af1-b583-113c7b114c20","content":"Когда использовать генерацию статических сайтов?","level":3,"link":"#когда-использовать-генерацию-статических-сайтов","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"310f1717-5967-4bc0-87dd-7f0e874301f8","content":"Методы получения данных в Next.js","level":2,"link":"#методы-получения-данных-в-next-js","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"d04debea-d0a9-4fc3-a076-b69861219636","content":"Использование метода получения данных на стороне клиента","level":2,"link":"#использование-метода-получения-данных-на-стороне-клиента","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"30c65432-72c4-49ac-b3f8-5a702d5ae716","content":"Использование метода выборки данных на стороне сервера","level":2,"link":"#использование-метода-выборки-данных-на-стороне-сервера","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"0234227f-a6ec-44c4-a8f0-ac6f7ec77507","content":"Заключение","level":2,"link":"#заключение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#что-такое-получение-данных">Что такое получение данных?</a></li><li class=""><a href="#функции-получения-данных">Функции получения данных</a></li><li class=""><a href="#выборка-данных-на-стороне-клиента">Выборка данных на стороне клиента: </a></li><li class=""><a href="#выборка-данных-на-стороне-сервера">Выборка данных на стороне сервера: </a></li><li class=""><a href="#генерация-статических-сайтов">Генерация статических сайтов: </a></li><li class=""><a href="#когда-использовать-каждую-функцию">Когда использовать каждую функцию?</a><ul><li class=""><a href="#когда-необходим-рендеринг-на-стороне-клиента">Когда необходим рендеринг на стороне клиента?</a></li><li class=""><a href="#когда-использовать-рендеринг-на-стороне-сервера">Когда использовать рендеринг на стороне сервера?</a></li><li class=""><a href="#когда-использовать-генерацию-статических-сайтов">Когда использовать генерацию статических сайтов?</a></li></ul></li><li class=""><a href="#методы-получения-данных-в-next-js">Методы получения данных в Next.js</a></li><li class=""><a href="#использование-метода-получения-данных-на-стороне-клиента">Использование метода получения данных на стороне клиента</a></li><li class=""><a href="#использование-метода-выборки-данных-на-стороне-сервера">Использование метода выборки данных на стороне сервера</a></li><li class=""><a href="#заключение">Заключение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="что-такое-получение-данных">Что такое получение данных?</h2>
+<p>Выборка данных - это просто способ получения данных. Данные могут быть получены из базы данных, файла JSON или другого программного обеспечения через API, и это может быть сделано во время рендеринга на стороне клиента, рендеринга на стороне сервера или генерации статического сайта.</p>
+<p>Получение данных на стороне сервера, на стороне клиента или при генерации статического сайта может иметь некоторые преимущества:</p>
+<p>Доступ к данным, поступающим из бэкенда.<br>Он может кэшировать ваши данные, храня их в определенном месте, чтобы сократить время загрузки.<br>Возможность выполнять многократный забор данных.</p>
+<h2 class="wp-block-heading" id="функции-получения-данных">Функции получения данных</h2>
+<p>В Next.js, существует несколько способов получения данных. Данные поступают либо со стороны клиента, либо со стороны сервера, либо генерируются статическим сайтом.</p>
+<h2 class="wp-block-heading" id="выборка-данных-на-стороне-клиента">Выборка данных на стороне клиента: </h2>
+<p>При выборке данных на стороне клиента данные выбираются на клиенте, например, в браузере, после отправки пользовательского интерфейса пользователю, даже когда в бэкэнд добавляются новые данные.Это снижает оптимизацию поисковых систем, поскольку пользовательский интерфейс отправляется пользователю без разметки макета. (HTML tags such as <code>&#x3C;a></code>, <code>&#x3C;p></code>, <code>&#x3C;h1></code>, etc. ), и когда данные получены, тогда делается разметка.</p>
+<p><br>Для получения данных на стороне клиента в Next.js используются хуки useState и useEffect из React для рендеринга данных в браузере.</p>
+<h2 class="wp-block-heading" id="выборка-данных-на-стороне-сервера">Выборка данных на стороне сервера: </h2>
+<p>При выборке данных на стороне сервера данные выбираются, пока пользовательский интерфейс все еще находится на локальной машине, прежде чем отобразить их пользователю. Каждый раз, когда данные добавляются или обновляются, пользовательский интерфейс запрашивает все данные снова, что означает, что при каждом обновлении браузера данные снова запрашиваются перед тем, как отобразить их пользователю. Пользовательский интерфейс создается на локальной машине благодаря фронтенд-библиотекам и фреймворкам, таким как React или Next.js, которые мы используем для создания пользовательского интерфейса. Наша локальная машина выступает в роли сервера. Сбор данных на стороне сервера в Next.js работает с помощью getServerSideProps для получения данных из базы данных или API в качестве бэкенда.</p>
+<h2 class="wp-block-heading" id="генерация-статических-сайтов">Генерация статических сайтов: </h2>
+<p>Для дальнейшего изложения давайте рассмотрим, что такое генерация статических сайтов. При генерации статического сайта предположим, что у вас есть пользовательский интерфейс, созданный на локальной машине, и API или база данных в качестве бэкенда, содержащая данные, которые должны быть отображены на пользовательском интерфейсе.<br>В этом сценарии данные предварительно извлекаются из бэкенда и отправляются в пользовательский интерфейс до того, как он будет отправлен пользователю. Допустим, мы добавляем новый контент в базу данных; предыдущие данные не нужно извлекать снова, поскольку они уже были предварительно извлечены. Вместо этого выполняется предварительная выборка новых данных и добавление их в пользовательский интерфейс перед отправкой пользователю. Это происходит потому, что предыдущие данные статически хранятся в пользовательском интерфейсе, отсюда и название ”генерация статических сайтов”, и это самый быстрый способ получения данных и отправки их пользователю. Генерация статических сайтов в Next js работает с getStaticProps и getStaticPaths для рендеринга статических страниц.</p>
+<h2 class="wp-block-heading" id="когда-использовать-каждую-функцию">Когда использовать каждую функцию?</h2>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="когда-необходим-рендеринг-на-стороне-клиента">Когда необходим рендеринг на стороне клиента?</h3>
+<p>Когда поисковая оптимизация не нужна на вашем сайте, например, на приборной панели сайта.<br>Когда пользовательский интерфейс немного сложен.<br>Когда у сайта много пользователей.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="когда-использовать-рендеринг-на-стороне-сервера">Когда использовать рендеринг на стороне сервера?</h3>
+<p>Он может работать для более динамичных сайтов, таких как сайт электронной коммерции с большим количеством изменяющихся данных.<br>Это противоположность рендерингу на стороне клиента и полезно для сайтов с высокими показателями SEO.<br>Он также хорошо подходит для сайтов с простым пользовательским интерфейсом.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="когда-использовать-генерацию-статических-сайтов">Когда использовать генерацию статических сайтов?</h3>
+<p>Она подходит при создании сайта, данные которого редко меняются, например, сайта-портфолио, где данные редко меняются.<br>Вы можете использовать его для блога с динамическим содержанием данных, которые часто меняются, так как генерация статических сайтов имеет другой тип предварительного рендеринга, инкрементную статическую генерацию.</p>
+<p>В конечном итоге, вы можете попробовать эти возможности или функции выборки данных, чтобы выбрать лучшую для вашего сайта или приложения.</p>
+<h2 class="wp-block-heading" id="методы-получения-данных-в-next-js">Методы получения данных в Next.js</h2>
+<p>В Next.js для получения данных используются некоторые методы получения данных. К этим методам относятся;</p>
+<p>useEffect и useState для выборки данных на стороне клиента.<br>getServerSideProps для получения данных на стороне сервера<br>getStaticProps для генерации статического сайта<br>getStaticPath для генерации статического сайта, который использует динамические маршруты.</p>
+<p>Поэтому давайте узнаем, как их использовать. Для получения данных я использую внешний API под названием Fake Store API. Внешний API будет выступать для нас в качестве бэкенда или базы данных.</p>
+<h2 class="wp-block-heading" id="использование-метода-получения-данных-на-стороне-клиента">Использование метода получения данных на стороне клиента</h2>
+<p>Получить данные на стороне клиента довольно просто. Поэтому давайте рассмотрим, как получить данные на стороне клиента.</p>
+<p>В папке pages вашего приложения Next.js создайте файл и назовите его index.js.</p>
+<p>В файле index.js напишите следующий код. Сначала импортируйте useState и useEffect.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    import React from 'react'
+    import { useEffect, useState } from 'react'</code></pre>
+<!-- /wp:code -->
+<p>Затем создайте функцию и получите данные, используя URL-адрес API. В нашем случае мы используем API Fake Store, задаем данные в формате JSON и сохраняем их в состоянии. Мы также получим данные с помощью хука useEffect.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    export default function csr() {
+        const [state, setState] = useState([]);
+      async function getData() {
+        const res = await fetch('https://fakestoreapi.com/products?limit=8');
+        const data = await res.json();
+        setState(data);
+      }
+      console.log('i am:',state);
+      useEffect(() => {
+        getData();
+      }, [])</code></pre>
+<!-- /wp:code -->
+<p>Наконец, верните данные для отображения пользователю путем сопоставления с данными, хранящимися в состоянии.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    return (
+        &#x3C;div>
+          &#x3C;h1> Welcome to My blog gallery ssg&#x3C;/h1>
+          &#x3C;div>
+          {
+            state.map((e) => (
+                &#x3C;a key={e.id}>
+                &#x3C;h2> {e.title} &#x26;rarr;&#x3C;/h2>
+                &#x3C;img src={e.image} width={250} height={200}/>
+                &#x3C;p>{e.description}&#x3C;/p>
+                &#x3C;h3>${e.price}&#x3C;/h3>
+            &#x3C;/a>
+            ))
+            }
+          &#x3C;/div>
+        &#x3C;/div>
+      )
+    }</code></pre>
+<!-- /wp:code -->
+<p>А затем запустите приложение.</p>
+<h2 class="wp-block-heading" id="использование-метода-выборки-данных-на-стороне-сервера">Использование метода выборки данных на стороне сервера</h2>
+<p>Теперь давайте поработаем над получением данных на стороне сервера. Во-первых, давайте начнем с getServerSideProps;</p>
+<p>Для начала создайте папку в папке pages в вашем приложении Next js.<br>Создайте файл с именем index.js, а затем напишите в нем приведенный ниже код;</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    import React from 'react'
+    export const getServerSideProps = async () => {
+        const res = await fetch('https://fakestoreapi.com/products?limit=8');
+        const data = await res.json();
+        console.log(data);
+        return{
+          props: {product: data}
+        }
+    }
+    const index = ({product}) => {
+      return (
+        &#x3C;div>
+          &#x3C;h1> Welcome to My blog gallery ssg&#x3C;/h1>
+            {product.map(item =>(
+            &#x3C;div key={item.id}>
+                &#x3C;a> &#x3C;h3>{item.title}&#x3C;/h3> &#x3C;/a>
+                &#x3C;img src={item.url} />
+            &#x3C;/div>
+        ))}
+        &#x3C;/div>
+      )
+    }
+    export default index</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде мы используем функцию getServerSideProps для получения данных. Я добавил console.log в функцию, чтобы вывести данные JSON из API. Таким образом, вы можете быть уверены, что данные получены из API. Вы можете удалить console.log; я использовал его только для тестирования.</p>
+<p>При получении данных из URL мы устанавливаем ограничение, используя ?limit=8. Это ограничивает количество полученных данных до восьми. Вы можете установить любое число, если оно не превышает общее количество данных или количество элементов.</p>
+<p>Самое важное, что нужно отметить, это то, что функция getServerSideProps() не записана в функции компонента, которая называется index. Вместо этого данные передаются как свойство в функцию компонента через возвращаемый объект.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    return {
+      props:{product: data}
+    }</code></pre>
+<!-- /wp:code -->
+<p>В реквизите данные передаются объекту продукта, который, в свою очередь, передается компоненту. Вы также можете записать данные как свойство и передать их компоненту.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    return {
+      props:{data}
+    }</code></pre>
+<!-- /wp:code -->
+<p>Также следует отметить, что по умолчанию передается только функция компонента, но не функция getServerSideProps. Это относится и к другим функциям получения данных в Next js.</p>
+<p>В функции компонента, после передачи свойства из getServerSideProps, мы отображаем данные с помощью функции map для получения каждого элемента.</p>
+<p>(Не обращайте внимания на стилизацию в div или h1, вы можете использовать свою стилизацию).</p>
+<p>Использование метода получения данных для генерации статических сайтов</p>
+<p>В этом разделе вы узнаете, как использовать getStaticProps и getStaticPaths для генерации статического сайта.<br>Теперь давайте рассмотрим, как работает getStaticProps(). Честно говоря, это просто и похоже на использование getServerSideProps(), просто измените название функции.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    import React from 'react'
+    
+    export const getStaticProps = async () =>{
+        const res = await fetch('https://fakestoreapi.com/products?limit=8');
+        const data = await res.json()
+        
+        console.log(data)
+        return {
+            props: {blog: data}
+        }
+    }
+    const index = ({ blog}) => {
+      return (
+        &#x3C;div className={styles.div}>
+          &#x3C;h1 className={styles.header}> Welcome to My blog gallarey ssg&#x3C;/h1>
+          &#x3C;div className={styles.content}>
+            {blog.map(item =>(
+              &#x3C;div className={styles.card} key={item.id}>
+                &#x3C;img src={item.image} width={200} height={200} />
+                &#x3C;div className={styles.text}>
+                  &#x3C;a> &#x3C;h3>{item.title}&#x3C;/h3> &#x3C;/a>
+                  &#x3C;p> {item.description}&#x3C;/p>
+                  &#x3C;h3> ${item.price} &#x3C;/h3>
+                &#x3C;/div>
+              &#x3C;/div>
+            ))}
+          &#x3C;/div> 
+        &#x3C;/div>
+      )
+    }
+    export default index</code></pre>
+<!-- /wp:code -->
+<p>Разница в том, что при загрузке страницы генерируется предварительно загруженная статическая страница, даже если элемент изменен из базы данных или, в нашем случае, URL API путем изменения ограничения числа на ?limit=7.<br>То есть, предварительно загруженная статическая страница на экране меняется немедленно, в отличие от getServerSideProps, в котором страницу необходимо обновить из браузера, чтобы показать обновленные данные. Это одно из различий между рендерингом на стороне сервера и генерацией статических сайтов.<br>Зная это, давайте рассмотрим генерацию статических путей.</p>
+<p>Допустим, вы получаете и показываете список элементов на странице, и вам нужна возможность, при которой пользователь щелкает на любом элементе, и генерируется новая страница, которая отображает информацию о фактическом элементе, который был щелкнут, на основе id элемента. В этом случае вы можете использовать getStaticPaths.</p>
+<p>Использование getStaticPaths немного запутанно для некоторых людей, поэтому я разложу это пошагово.</p>
+<p>Во-первых, в папке pages вашего приложения Next js создайте папку с названием products. Мы будем использовать это название в качестве примера. На данный момент вы можете использовать любое имя, которое вы хотите использовать в нашем проекте.<br>В папке products создайте файл с именем index.js и еще один с именем [id].js. Этот файл будет использоваться в качестве динамического маршрута для каждого id товара. Вы можете даже назвать его [itemid].js, но для простоты остановитесь на первом, как на изображении ниже.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://blog.openreplay.com/images/data-fetching-in-next-js/images/image01.jpg" alt="1"></figure>
+<!-- /wp:image -->
+<p>В файле index.js мы напишем следующий код для получения и отображения всех списков элементов/продуктов на странице. Мы сделаем это с помощью getStaticProps.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    import React from "react";
+    import Link from "Next/link";
+    export const getStaticProps = async () => {
+      const res = await fetch("http://localhost:3000/api/data");
+      const data = await res.json();
+      return {
+        props: { products: data },
+        revalidate: 20,
+      };
+    };
+    const index = ({ products }) => {
+      return (
+        &#x3C;div>
+          {products.map((product) => (
+            &#x3C;Link href={`products/${product.id}`}>
+              &#x3C;div key={product.id}>
+                &#x3C;h1>{product.title}&#x3C;/h1>
+                &#x3C;p>{[product.description]}&#x3C;/p>
+              &#x3C;/div>
+            &#x3C;/Link>
+          ))}
+        &#x3C;/div>
+      );
+    };
+    export default index;</code></pre>
+<!-- /wp:code -->
+<p>Теперь, чтобы сгенерировать статические страницы для отображения информации о каждом элементе на основе id, в файле [id].js мы получим данные с помощью getStaticProps().</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    export const getStaticProps = async ({params}) => {
+        const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
+        const data = await res.json();
+        console.log(params)
+        console.log(data)
+        return{
+            props: {item: data}
+        }
+    }</code></pre>
+<!-- /wp:code -->
+<p>Цель использования getStaticProps() здесь заключается в том, что Next js необходимо получить id каждого элемента, чтобы создать путь для отображения содержимого каждого элемента на основе его id на странице.<br>Параметр params используется в коде в качестве контекста.</p>
+<p>После этого можно добавить функцию компонента, которая отобразит все данные с помощью функции map.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    const product = ({item}) => {
+      return (
+        &#x3C;>
+            &#x3C;Head>
+                &#x3C;title>
+                    Products page
+                &#x3C;/title>
+            &#x3C;/Head>
+            &#x3C;h1>Product / Item&#x3C;/h1>
+            &#x3C;h2>{item.title}&#x3C;/h2>
+            &#x3C;img src={item.image} width={200} height={200}/>
+            &#x3C;p>{item.description}&#x3C;/p>
+            &#x3C;p>price: {item.price}&#x3C;/p>
+        &#x3C;/>
+      )
+    }
+    export default product</code></pre>
+<!-- /wp:code -->
+<p>Над функцией компонента мы добавим функцию getStaticPaths для работы с путями.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    export const getStaticPaths = async () =>{
+        const res = await fetch('https://fakestoreapi.com/products');
+        const prod = await res.json();
+        return{
+            paths: prod.map(post => (
+                {
+                    params:{id: post.id.toString()}
+                }
+            )),
+            fallback: true,
+        }
+    }</code></pre>
+<!-- /wp:code -->
+<p>Данные извлекаются в приведенном выше коде, а ответ отправляется в формате JSON. В возвращаемом объекте мы используем paths, а не props, затем выполняем map через него, чтобы получить id в качестве параметров. Затем мы устанавливаем fallback в true. Если не установить fallback, это может привести к ошибке. Поэтому вы должны установить его.<br>Кроме того, мы получаем id динамически, а не жестко кодируем. Вы можете посмотреть в документации Next js, как это делается жестко.</p>
+<p>Всегда передавайте параметры как строки, используя toString().</p>
+<p>Весь исходный код файла [id].js будет выглядеть так, как показано ниже.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    import Head from 'next/head';
+    import React from 'react'
+    
+    export const getStaticProps = async ({params}) => {
+        const res = await fetch(`https://fakestoreapi.com/products/${params.id}`);
+        const data = await res.json();
+        console.log(params)
+        console.log(data)
+        return{
+            props: {item: data}
+        }
+    }
+    export const getStaticPaths = async () =>{
+        const res = await fetch('https://fakestoreapi.com/products');
+        const prod = await res.json();
+        return{
+            paths: prod.map(post => (
+                {
+                    params:{id: post.id.toString()}
+                }
+            )),
+            fallback: true,
+        }
+    }
+    const product = ({item}) => {
+      return (
+        &#x3C;>
+            &#x3C;Head>
+                &#x3C;title>
+                    Products page
+                &#x3C;/title>
+            &#x3C;/Head>
+            &#x3C;h1>Product / Item&#x3C;/h1>
+            &#x3C;h2>{item.title}&#x3C;/h2>
+            &#x3C;img src={item.image} width={200} height={200}/>
+            &#x3C;p>{item.description}&#x3C;/p>
+            &#x3C;p>price: {item.price}&#x3C;/p>
+        &#x3C;/>
+      )
+    }
+    export default product</code></pre>
+<!-- /wp:code -->
+<p>Когда вы запустите свое приложение, вы можете изменить id из URL или щелкнув по списку, как показано на скринкасте ниже.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://blog.openreplay.com/images/data-fetching-in-next-js/images/image02.gif" alt="2"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading" id="заключение">Заключение</h2>
+<p>Получение данных в Next js - это просто, хотя и может быть сложным, но если следовать основам и понимать их, то все получится. Надеюсь, эта статья поможет вам, когда вы захотите создать свой магазин электронной коммерции или сайт портфолио, где данные хранятся в базе данных или из API.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Получение данных в Next.js&#38;url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js&#38;title=Получение данных в Next.js&#38;summary=Next.js – это отличный фреймворк React, который отличается высокой скоростью, большим количеством настроек, хорошими функциями оптимизации изображений и возможностями рендеринга. &#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/poluchenie-dannyh-v-next-js&#38;media=&#38;description=Next.js – это отличный фреймворк React, который отличается высокой скоростью, большим количеством настроек, хорошими функциями оптимизации изображений и возможностями рендеринга. " target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/ponimanie-cloudflare-workers-v-rust" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Понимание Cloudflare Workers в Rust </a> <a href="/blog/playwright-vizualnye-sravneniya" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Playwright — визуальные сравнения </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

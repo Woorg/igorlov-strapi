@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Творческий подход к прокрутке с бесконечным циклом - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom"><meta name="description" content="Бесконечная прокрутка – это техника веб-дизайна, которая позволяет пользователям прокручивать бесконечный список контента путем автоматической загрузки новых элементов по мере того, как пользователь достигает нижней части страницы. "><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Творческий подход к скроллу с бесконечным циклом </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/3d" data-astro-cid-axzg2cw6> 3d </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/animation" data-astro-cid-axzg2cw6> Animation </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/gsap" data-astro-cid-axzg2cw6> Gsap </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/прокрутка" data-astro-cid-axzg2cw6> Прокрутка </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 29 янв., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Jan-29-2023.CHhA-Fd4_18Q1Ej.avif" type="image/avif"><source srcset="/_astro/undefined-Jan-29-2023.CHhA-Fd4_Z19yK7w.webp" type="image/webp"> <img src="/_astro/undefined-Jan-29-2023.CHhA-Fd4_ZTSJrR.png" alt="Творческий подход к скроллу с бесконечным циклом" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Творческий подход к скроллу с бесконечным циклом&#38;url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom&#38;title=Творческий подход к скроллу с бесконечным циклом&#38;summary=Бесконечная прокрутка – это техника веб-дизайна, которая позволяет пользователям прокручивать бесконечный список контента путем автоматической загрузки новых элементов по мере того, как пользователь достигает нижней части страницы. &#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom&#38;media=&#38;description=Бесконечная прокрутка – это техника веб-дизайна, которая позволяет пользователям прокручивать бесконечный список контента путем автоматической загрузки новых элементов по мере того, как пользователь достигает нижней части страницы. " target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a href="http://tympanus.net/Tutorials/LoopScrolling/"><img src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/loopscroll-1.jpg" alt=""></a></figure>
+<!-- /wp:image -->
+<p>Бесконечная прокрутка - это техника веб-дизайна, которая позволяет пользователям прокручивать бесконечный список контента путем автоматической загрузки новых элементов по мере того, как пользователь достигает нижней части страницы. Вместо того чтобы переходить на новую страницу, чтобы увидеть больше контента, он автоматически загружается и добавляется в нижнюю часть страницы по мере того, как пользователь прокручивает страницу. Это может создать плавный и увлекательный просмотр для пользователей, поскольку они могут легко получить доступ к большому количеству контента, не дожидаясь загрузки новых страниц. Забудьте о том, чтобы дойти до нижнего колонтитула!</p>
+<p>Петля прокрутки страницы - это процесс автоматического возврата пользователей в начало страницы, когда они достигают конца прокрутки. Это означает, что они смогут постоянно прокручивать один и тот же контент снова и снова, а не получать новый контент по мере прокрутки страницы вниз.</p>
+<p>В этой статье мы покажем несколько примеров креативной циклической прокрутки, а затем переделаем этот эффект под бюро DAM. Мы будем использовать Lenis от Studio Freight для реализации эффекта зацикливания и GSAP для анимации.</p>
+<h2 class="wp-block-heading">Что такое циклическая прокрутка?</h2>
+<p>Когда объем контента ограничен, можно применить творческий подход, используя циклическую прокрутку, которая, по сути, является бесконечной прокруткой с повторяющимся контентом. Отличным примером такого творческого использования является эффект, наблюдаемый в Бюро DAM:</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/dam.mp4"></video></figure>
+<!-- /wp:video -->
+<p>Несколько отличных идей о том, как зацикливание прокрутки можно использовать творчески и придать сайту дополнительную ценность:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Это может создать у пользователей эффект погружения. Постоянно прокручивая один и тот же контент, пользователи могут почувствовать себя более погруженными в сайт и вовлеченными в его содержание. Это может быть особенно полезно для сайтов, которые хотят создать сильную эмоциональную связь со своей аудиторией.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Это может быть использовано для создания игры или интерактивного опыта. Добавляя интерактивные элементы к зацикленному контенту, разработчики могут создать игру или интерактивный опыт для пользователей. Например, веб-сайт может использовать зацикливание прокрутки для создания игры с прокруткой или для того, чтобы пользователи могли взаимодействовать с контентом новым способом.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Его можно использовать для создания эффекта "временной петли". Зацикливая прокрутку определенным образом, разработчики могут создать иллюзию "временной петли", когда контент повторяется в непрерывном цикле. Это может быть особенно эффективно для сайтов, которые хотят передать ощущение непрерывности или вневременности.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<h2 class="wp-block-heading">Простой пример</h2>
+<p>Давайте создадим простой пример. Мы создадим сетку из 6 изображений, которые будут повторяться при прокрутке. Как мы можем этого добиться? Все просто: нам нужно повторять контент таким образом, чтобы при достижении конца мы могли просто сбросить прокрутку к вершине, и никто этого не заметил! Ранее мы уже рассматривали эту концепцию в нашем CSS-эффекте ”шатра”. В другой демонстрации мы также показываем, как играть с этим видом бесконечной анимации.</p>
+<p>Итак, для нашего первого примера у нас есть следующая разметка:</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">&#x3C;div class="grid">
+	&#x3C;div class="grid__item" style="background-image:url(img/1.jpg);">&#x3C;/div>
+	&#x3C;div class="grid__item" style="background-image:url(img/4.jpg);">&#x3C;/div>
+	&#x3C;div class="grid__item" style="background-image:url(img/3.jpg);">&#x3C;/div>
+	&#x3C;div class="grid__item" style="background-image:url(img/5.jpg);">&#x3C;/div>
+	&#x3C;div class="grid__item" style="background-image:url(img/2.jpg);">&#x3C;/div>
+	&#x3C;div class="grid__item" style="background-image:url(img/6.jpg);">&#x3C;/div>
+&#x3C;/div></code></pre>
+<!-- /wp:code -->
+<p>Наши стили создадут сетку 3×3:</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="css" class="language-css line-numbers">.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 5vh;
+}
+
+.grid__item {
+	height: 47.5vh; /* 50vh minus half of the gap */
+	background-size: cover;
+	background-position: 50% 20%;
+}
+
+.grid__item:nth-child(3n-2) {
+	border-radius: 0 2rem 2rem 0;
+}
+
+.grid__item:nth-child(3n) {
+	border-radius: 2rem 0 0 2rem;
+}
+
+.grid__item:nth-child(3n-1) {
+	border-radius: 2rem;
+}</code></pre>
+<!-- /wp:code -->
+<p>Lenis поставляется с удобной опцией, позволяющей сделать прокрутку бесконечной. В нашем скрипте мы обязательно повторим видимые элементы сетки (в данном случае это 6):</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">const lenis = new Lenis({
+    smooth: true,
+    infinite: true,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+// repeat first six items by cloning them and appending them to the .grid
+const repeatItems = (parentEl, total = 0) => {
+    const items = [...parentEl.children];
+    for (let i = 0; i &#x3C;= total-1; ++i) {
+        var cln = items[i].cloneNode(true);
+        parentEl.appendChild(cln);
+    }
+};
+repeatItems(document.querySelector('.grid'), 6);</code></pre>
+<!-- /wp:code -->
+<p>В результате получается сетка, которая повторяется при прокрутке:</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/looping1.mp4"></video></figure>
+<!-- /wp:video -->
+<p>Мы также можем изменить направление прокрутки и пойти вбок!</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/loop_hor.mp4"></video></figure>
+<!-- /wp:video -->
+<h2 class="wp-block-heading">Игра с анимацией</h2>
+<p>Во время прокрутки мы можем добавить несколько причудливых анимаций к элементам сетки. В сочетании с переключением начала преобразования в нужное время мы можем получить что-то игривое, как здесь:</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/loop_scale.mp4"></video></figure>
+<!-- /wp:video -->
+<p>Мы также можем поиграть со значениями масштаба и непрозрачности, чтобы создать что-то вроде эффекта исчезновения:</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/loop_scaleopac.mp4"></video></figure>
+<!-- /wp:video -->
+<p>Или добавьте экстремальную растяжимость:</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="Или добавьте экстремальную растяжимость:"></video></figure>
+<!-- /wp:video -->
+<p>Мы также можем поиграть с 3D-анимацией и дополнительным эффектом фильтра:</p>
+<!-- wp:video -->
+<figure class="wp-block-video"><video controls src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/loop_3d.mp4"></video></figure>
+<!-- /wp:video -->
+<h2 class="wp-block-heading">Пример Бюро DAM</h2>
+<p>Теперь давайте посмотрим, как мы можем переделать анимацию Bureau DAM. Поскольку здесь у нас нет сетки, все немного упрощается. Как и в этом случае, мы будем использовать SVG для типографского элемента, так как хотим растянуть его на весь экран:</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="markup" class="language-markup line-numbers">&#x3C;div class="grid">
+	&#x3C;div class="grid__item grid__item--stack">
+		&#x3C;svg class="grid__item-logo" width="100%" height="100%" viewBox="0 0 503 277" preserveAspectRatio="none">
+		&#x3C;path d="M56.3 232.3 56.3 193.8C56.3 177.4 54.7 174.1 48.5 165.9 35.4 148.8 17.6 133 8.5 120.8.7 110.3.1 103.7.1 85.6L.1 45.2C.1 14.9 13.5.5 41 .5 68.8.5 79.1 15.3 79.1 45.2L79.1 94.5 56.9 94.5 56.9 48.5C56.9 35 53.5 25.8 40.7 25.8 29.8 25.8 24.1 32.4 24.1 45.2L24.1 85.3C24.1 96.8 25.1 100.1 29.8 106.3 41 121.8 59.1 137.6 68.8 150.4 77.2 161.6 80 169.8 80 193.5L80 232.3C80 260.9 68.8 277 40.4 277 12.3 277 .1 261.5.1 232.3L.1 174.7 22.9 174.7 22.9 228.7C22.9 243.1 26.9 252.3 40.1 252.3 51.6 252.3 56.3 245.1 56.3 232.3ZM176.5 277 101.5 277 101.5.5 127.1.5 127.1 251.8 176.5 251.8 176.5 277ZM290 277 264.5 277 258.4 230.6 217.1 230.6 211 277 186.2 277 224.1.5 254.1.5 290 277ZM218.1 207.1 253.4 207.1C247.7 159.7 241.6 114 236.3 65.3 230.5 114 224.5 159.7 218.1 207.1ZM399.6 277 374 277 326.3 75.1C326.6 117.1 326.6 155.7 326.6 197.7L326.6 277 304.5 277 304.5.5 335 .5 377.4 203.1C377 165.1 377 129.2 377 91.2L377 .5 399.6.5 399.6 277ZM471.5 277 446.3 277 446.3 26.3 415.3 26.3 415.3.5 502.4.5 502.4 26.3 471.5 26.3 471.5 277Z" id="SLANT" fill="#fff">&#x3C;/path>
+		&#x3C;/svg>
+		&#x3C;p class="grid__item-text credits">An infinite scrolling demo based on &#x3C;a href="https://www.bureaudam.com/">Bureau DAM&#x3C;/a>&#x3C;/p>
+	&#x3C;/div>
+	&#x3C;div class="grid__item">
+		&#x3C;div class="grid__item-inner">
+			&#x3C;div class="grid__item-img" style="background-image:url(img/1.jpg);">&#x3C;/div>
+			&#x3C;p class="grid__item-text">&#x3C;a href="#">View all projects →&#x3C;/a>&#x3C;/p>
+		&#x3C;/div>
+	&#x3C;/div>
+&#x3C;/div></code></pre>
+<!-- /wp:code -->
+<p>В нашем CSS мы зададим несколько стилей, которые обеспечат растягивание элементов на весь экран:</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="css" class="language-css line-numbers">.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+.grid__item {
+    height: 100vh; 
+	place-items: center;
+    display: grid;
+}
+
+.grid__item-inner {
+	display: grid;
+	gap: 1rem;
+	place-items: center;
+	text-align: center;
+}
+
+.grid__item--stack {
+	display: grid;
+	gap: 2rem;
+	grid-template-rows: 1fr auto;
+}
+
+.grid__item-logo {
+	padding: 8rem 1rem 0;
+}
+
+.grid__item-img {
+	background-size: cover;
+    background-position: 50% 50%;
+	height: 70vh;
+	aspect-ratio: 1.5;
+}
+
+.grid__item-text {
+	margin: 0;
+}</code></pre>
+<!-- /wp:code -->
+<p>Правильная настройка происхождения трансформации гарантирует, что мы получим нужный визуальный эффект:</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">gsap.registerPlugin(ScrollTrigger);
+
+// repeat first three items by cloning them and appending them to the .grid
+const repeatItems = (parentEl, total = 0) => {
+    const items = [...parentEl.children];
+    for (let i = 0; i &#x3C;= total-1; ++i) {
+        var cln = items[i].cloneNode(true);
+        parentEl.appendChild(cln);
+    }
+};
+
+const lenis = new Lenis({
+    smooth: true,
+    infinite: true
+});
+
+lenis.on('scroll',()=>{
+    ScrollTrigger.update() // Thank you Clément!
+})
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+imagesLoaded( document.querySelectorAll('.grid__item'), { background: true }, () => {
+
+    document.body.classList.remove('loading');
+
+    repeatItems(document.querySelector('.grid'), 1);
+
+    const items = [...document.querySelectorAll('.grid__item')];
+
+    // first item
+    const firtsItem = items[0];
+    gsap.set(firtsItem, {transformOrigin: '50% 100%'})
+    gsap.to(firtsItem, {
+        ease: 'none',
+        startAt: {scaleY: 1},
+        scaleY: 0,
+        scrollTrigger: {
+            trigger: firtsItem,
+            start: 'center center',
+            end: 'bottom top',
+            scrub: true,
+            fastScrollEnd: true,
+            onLeave: () => {
+                gsap.set(firtsItem, {scaleY: 1,})
+            },
+        }
+    });
+
+    // last item  
+    const lastItem = items[2];
+    gsap.set(lastItem, {transformOrigin: '50% 0%', scaleY: 0})
+    gsap.to(lastItem, {
+        ease: 'none',
+        startAt: {scaleY: 0},
+        scaleY: 1,
+        scrollTrigger: {
+            trigger: lastItem,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+            fastScrollEnd: true,
+            onLeaveBack: () => {
+                gsap.set(lastItem, {scaleY: 1})
+            }
+        }
+    });
+    
+    // in between
+    let ft;
+    let st;
+    const middleItem = items[1];
+        
+    ft = gsap.timeline()
+    .to(middleItem, {
+        ease: 'none',
+        onStart: () => {
+            if (st) st.kill()
+        },
+        startAt: {scale: 0},
+        scale: 1,
+        scrollTrigger: {
+            trigger: middleItem,
+            start: 'top bottom',
+            end: 'center center',
+            scrub: true,
+            onEnter: () => gsap.set(middleItem, {transformOrigin: '50% 0%'}),
+            onEnterBack: () => gsap.set(middleItem, {transformOrigin: '50% 0%'}),
+            onLeave: () => gsap.set(middleItem, {transformOrigin: '50% 100%'}),
+            onLeaveBack: () => gsap.set(middleItem, {transformOrigin: '50% 100%'}),
+        },
+    });
+
+    st = gsap.timeline()
+    .to(middleItem, {
+        ease: 'none',
+        onStart: () => {
+            if (ft) ft.kill()
+        },
+        startAt: {scale: 1},
+        scale: 0,
+        scrollTrigger: {
+            trigger: middleItem,
+            start: 'center center',
+            end: 'bottom top',
+            scrub: true,
+            onEnter: () => gsap.set(middleItem, {transformOrigin: '50% 100%'}),
+            onEnterBack: () => gsap.set(middleItem, {transformOrigin: '50% 100%'}),
+            onLeave: () => gsap.set(middleItem, {transformOrigin: '50% 0%'}),
+            onLeaveBack: () => gsap.set(middleItem, {transformOrigin: '50% 0%'}),
+        },
+    });
+    
+    requestAnimationFrame(raf);
+    
+    const refresh = () => {
+        ScrollTrigger.clearScrollMemory();
+        window.history.scrollRestoration = 'manual';
+        ScrollTrigger.refresh(true);
+    }
+
+    refresh();
+    window.addEventListener('resize', refresh);
+
+});</code></pre>
+<!-- /wp:code -->
+<p>В результате получается сминаемая и сжимаемая последовательность радости:</p>
+<!-- wp:image {"id":69501,"linkDestination":"custom"} -->
+<figure class="wp-block-image"><img src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2023/01/loopingfinal.gif" alt="" class="wp-image-69501"><figcaption class="wp-element-caption"><a href="https://tympanus.net/Tutorials/LoopScrolling" target="_blank" rel="noreferrer noopener nofollow">Check out the demo</a></figcaption></figure>
+<!-- /wp:image --> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Творческий подход к скроллу с бесконечным циклом&#38;url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom&#38;title=Творческий подход к скроллу с бесконечным циклом&#38;summary=Бесконечная прокрутка – это техника веб-дизайна, которая позволяет пользователям прокручивать бесконечный список контента путем автоматической загрузки новых элементов по мере того, как пользователь достигает нижней части страницы. &#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/tvorcheskij-podhod-k-prokrutke-s-beskonechnym-cziklom&#38;media=&#38;description=Бесконечная прокрутка – это техника веб-дизайна, которая позволяет пользователям прокручивать бесконечный список контента путем автоматической загрузки новых элементов по мере того, как пользователь достигает нижней части страницы. " target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/udalenie-obrazov-tomov-i-kontejnerov-docker-za-schitannye-sekundy" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Удаление образов, томов и контейнеров Docker за считанные секунды </a> <a href="/blog/na-toi-nedele-v-react-173-million-storybook-visionos-expo-conform-next-js-remix-astro-apollo-useformstatus" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> На этой неделе в React #173: Million, Storybook, visionOS, Expo, Conform, Next.js, Remix, Astro, Apollo, useFormStatus... </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

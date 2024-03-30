@@ -1,0 +1,454 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Как исправить ошибку Terraform for_each | Игорь Горлов - Фронтeндер</title><link rel="canonical" href="https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each"><meta name="description" content="# Что такое ошибка for_each?Атрибут for_each в Terraform позволяет создать набор похожих ресурсов на основе заданных вами критериев.Когда вам нужно созд"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-kak-yspravyt-oshybku-terraform-for__each; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Как исправить ошибку Terraform for_each </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/terraform" data-astro-cid-axzg2cw6> Terraform </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 15 дек., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/kak-yspravyt-oshybku-terraform-for_each-Dec-15-2023.CyI5LwIN_26BMLi.avif" type="image/avif"><source srcset="/_astro/kak-yspravyt-oshybku-terraform-for_each-Dec-15-2023.CyI5LwIN_naE56.webp" type="image/webp"> <img src="/_astro/kak-yspravyt-oshybku-terraform-for_each-Dec-15-2023.CyI5LwIN_Z1vFh8j.png" alt="Как исправить ошибку Terraform for_each" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как исправить ошибку Terraform for_each&#38;url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each&#38;title=Как исправить ошибку Terraform for_each&#38;summary=# Что такое ошибка for_each?
+
+Атрибут for_each в Terraform позволяет создать набор похожих ресурсов на основе заданных вами критериев.
+
+Когда вам нужно созд&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each&#38;media=&#38;description=# Что такое ошибка for_each?
+
+Атрибут for_each в Terraform позволяет создать набор похожих ресурсов на основе заданных вами критериев.
+
+Когда вам нужно созд" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details class="toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer"><summary class="title">Оглавление</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#что-такое-ошибка-for_each">Что такое ошибка for_each?</a></li><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#цели">Цели:</a></li><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#предварительные-условия">Предварительные условия:</a></li><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#используемые-ресурсы">Используемые ресурсы:</a></li><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#шаги-для-внедрения-в-этот-проект">Шаги для внедрения в этот проект:</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#1-войдите-в-консоль-управления-aws">1. Войдите в консоль управления AWS</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#2-создайте-инфраструктуру-для-блока-ресурсов">2. Создайте инфраструктуру для блока ресурсов</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#3-в-директории-ресурсов-terraform_files-создадим-4-файла---maintf-variablestf-outputstf-и-terrafprmtfvars">3. В директории ресурсов terraform_files создадим 4 файла - main.tf, variables.tf, outputs.tf и terrafprm.tfvars.</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#4-инициализация-рабочей-директории">4. Инициализация рабочей директории</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#5-исправление-ошибки-for_each">5. Исправление ошибки for_each</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#6-развертывание-ресурсов">6. Развертывание ресурсов</a></li></ol></li><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#очистка">Очистка</a></li><li class="toc-item toc-item-h1"><a class="toc-link toc-link-h1" href="#что-мы-сделали-на-данный-момент">Что мы сделали на данный момент</a></li></ol></details><h1 id="что-такое-ошибка-for_each">Что такое ошибка for_each?<a aria-hidden="true" tabindex="-1" href="#что-такое-ошибка-for_each"><span class="icon icon-link"></span></a></h1>
+<p>”Атрибут for_each в Terraform позволяет создать набор похожих ресурсов на основе заданных вами критериев.”</p>
+<p>”Когда вам нужно создать набор похожих экземпляров, каждый из которых назначен отдельной группе безопасности. Terraform не может разобрать aws<em>security_group.</em>.id в этом атрибуте, поскольку выражение splat (_) интерполирует только типы списков, а атрибут for_each предназначен для типов map.</p>
+<ul>
+<li>Локальное значение может возвращать тип map.</li>
+<li>Определите локальное значение в файле main.tf. Это преобразует список групп безопасности в карту.</li>
+</ul>
+<p>Пожалуйста, посетите мой <strong><a href="https://github.com/awsmine/Terraform_projects" rel="noopener noreferrer nofollow" target="_blank">GitHub-репозиторий статей по Terraform</a></strong> по различным темам, которые постоянно обновляются.</p>
+<p>Давайте начнем!</p>
+<h1 id="цели"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#objectives" rel="noopener noreferrer nofollow" target="_blank"></a>Цели:<a aria-hidden="true" tabindex="-1" href="#цели"><span class="icon icon-link"></span></a></h1>
+<p><strong>1.</strong> Войдите в AWS Management Console</p>
+<p><strong>2.</strong> Создайте инфраструктуру для блока ресурсов</p>
+<p><strong>3.</strong> В каталоге ресурсов <strong>terraform_files</strong> создайте 4 файла - <strong><em><code>main.tf</code></em></strong>, <strong><em><code>variables.tf</code></em></strong>, <strong><em><code>outputs.tf</code></em></strong> и <strong><em><code>terrafprm.tfvars</code></em></strong>.</p>
+<p><strong>4.</strong> Инициализация рабочего каталога</p>
+<p><strong>5.</strong> Исправьте ошибку for_each</p>
+<p><strong>6.</strong> Разверните ваши ресурсы</p>
+<h1 id="предварительные-условия"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#prerequisites" rel="noopener noreferrer nofollow" target="_blank"></a>Предварительные условия:<a aria-hidden="true" tabindex="-1" href="#предварительные-условия"><span class="icon icon-link"></span></a></h1>
+<ul>
+<li>Учетная запись пользователя AWS с правами администратора, но не root.</li>
+<li>Cloud9 IDE с AWS CLI.</li>
+</ul>
+<h1 id="используемые-ресурсы"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#resources-used" rel="noopener noreferrer nofollow" target="_blank"></a>Используемые ресурсы:<a aria-hidden="true" tabindex="-1" href="#используемые-ресурсы"><span class="icon icon-link"></span></a></h1>
+<p><strong><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs" rel="noopener noreferrer nofollow" target="_blank">Документация Terraform</a>.</strong>
+<strong><a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami" rel="noopener noreferrer nofollow" target="_blank">Документация Terraform для AMI</a>.</strong>.
+<strong><a href="https://developer.hashicorp.com/terraform/tutorials/configuration-language/troubleshooting-workflow" rel="noopener noreferrer nofollow" target="_blank">Troubleshoot Terraform - Correct a for_each error</a></strong>.
+<strong><a href="https://github.com/hashicorp/learn-terraform-troubleshooting/tree/main" rel="noopener noreferrer nofollow" target="_blank">learn-terraform-troubleshooting</a></strong>.</p>
+<h1 id="шаги-для-внедрения-в-этот-проект"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#steps-for-implementation-to-this-project" rel="noopener noreferrer nofollow" target="_blank"></a>Шаги для внедрения в этот проект:<a aria-hidden="true" tabindex="-1" href="#шаги-для-внедрения-в-этот-проект"><span class="icon icon-link"></span></a></h1>
+<h2 id="1-войдите-в-консоль-управления-aws"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#1-login-to-aws-management-console" rel="noopener noreferrer nofollow" target="_blank"></a>1. Войдите в консоль управления AWS<a aria-hidden="true" tabindex="-1" href="#1-войдите-в-консоль-управления-aws"><span class="icon icon-link"></span></a></h2>
+<ul>
+<li>Убедитесь, что вы находитесь в регионе N. Virginia (us-east-1).</li>
+</ul>
+<h2 id="2-создайте-инфраструктуру-для-блока-ресурсов"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#2-create-infrastructure-for-resources-block" rel="noopener noreferrer nofollow" target="_blank"></a>2. Создайте инфраструктуру для блока ресурсов<a aria-hidden="true" tabindex="-1" href="#2-создайте-инфраструктуру-для-блока-ресурсов"><span class="icon icon-link"></span></a></h2>
+<ul>
+<li>Создадим следующую организационную структуру, как показано ниже.</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--pQ6rhLGO--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/263mpsoydcfpwqfpol6h.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--pQ6rhLGO--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/263mpsoydcfpwqfpol6h.png" alt="Описание изображения"></a></p>
+<h2 id="3-в-директории-ресурсов-terraform_files-создадим-4-файла---maintf-variablestf-outputstf-и-terrafprmtfvars"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#3-under-terraformfiles-resources-directory-create-4-files-raw-maintf-endraw-raw-variablestf-endraw-raw-outputstf-endraw-and-raw-terrafprmtfvars-endraw-" rel="noopener noreferrer nofollow" target="_blank"></a>3. В директории ресурсов <strong>terraform_files</strong> создадим 4 файла - <strong><code>main.tf</code></strong>, <strong><code>variables.tf</code></strong>, <strong><code>outputs.tf</code></strong> и <strong><code>terrafprm.tfvars</code></strong>.<a aria-hidden="true" tabindex="-1" href="#3-в-директории-ресурсов-terraform_files-создадим-4-файла---maintf-variablestf-outputstf-и-terrafprmtfvars"><span class="icon icon-link"></span></a></h2>
+<ul>
+<li><strong>1. main.tf</strong></li>
+<li>замените vpc_id на свой собственный VPC</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">терраформа</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  required_providers</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    aws</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">      источник</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">hashicorp/aws</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">      версия</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">~> 4.23</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">    }</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  required_version</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">>= 0.14.9</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">провайдер</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  регион</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">region</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">данные</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_ami</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">linux</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">   most_recent</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> true</span></span>
+<span class="line"><span style="color:#E4F0FB">   owners</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">amazon</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  фильтр</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">name</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">    values</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">amzn2-ami-hvm-*-x86_64-gp2</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  фильтр</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">тип виртуализации</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">    значения</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">hvm</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_instance</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">web_app</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  for_each</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#91B4D5">*</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">  ami</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> data</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">aws_ami</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">linux</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">  availability_zone</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">az_1a</span></span>
+<span class="line"><span style="color:#E4F0FB">  instance_type</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">instance_type</span></span>
+<span class="line"><span style="color:#E4F0FB">  vpc_security_group_ids</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#E4F0FB">each</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#E4F0FB">  user_data</span><span style="color:#91B4D5"> =</span><span style="color:#91B4D5"> &#x3C;&#x3C;-</span><span style="color:#E4F0FB">EOF</span></span>
+<span class="line"><span style="color:#A6ACCD">              #</span><span style="color:#91B4D5">!/</span><span style="color:#E4F0FB">bin</span><span style="color:#91B4D5">/</span><span style="color:#E4F0FB">bash</span></span>
+<span class="line"><span style="color:#E4F0FB">              echo</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Hello, World</span><span style="color:#A6ACCD">"</span><span style="color:#91B4D5"> ></span><span style="color:#E4F0FB"> index</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">html</span></span>
+<span class="line"><span style="color:#E4F0FB">              nohup</span><span style="color:#E4F0FB"> busybox</span><span style="color:#E4F0FB"> httpd</span><span style="color:#91B4D5"> -</span><span style="color:#E4F0FB">f</span><span style="color:#91B4D5"> -</span><span style="color:#E4F0FB">p</span><span style="color:#5DE4C7"> 8080</span><span style="color:#91B4D5"> &#x26;</span></span>
+<span class="line"><span style="color:#E4F0FB">              EOF</span></span>
+<span class="line"><span style="color:#E4F0FB">  теги</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    Name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">${var.name}-mywebapp</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"><span style="color:#E4F0FB"> ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_ping</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">   name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Allow Ping</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">   vpc_id</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">&#x3C;DUMMY VALUE></span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_8080</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">   имя</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Разрешить 8080</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">   vpc_id</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">&#x3C;DUMMY VALUE></span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB"> ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group_rule</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_ping</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">   тип</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">ingress</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">   from_port</span><span style="color:#91B4D5"> =</span><span style="color:#91B4D5"> -</span><span style="color:#5DE4C7">1</span></span>
+<span class="line"><span style="color:#E4F0FB">   to_port</span><span style="color:#91B4D5"> =</span><span style="color:#91B4D5"> -</span><span style="color:#5DE4C7">1</span></span>
+<span class="line"><span style="color:#E4F0FB">   протокол</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">icmp</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">   security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_ping</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">   source_security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_8080</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB"> ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group_rule</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_8080</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">   типe</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">ingress</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">   from_port</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> 8080</span></span>
+<span class="line"><span style="color:#E4F0FB">   to_port</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> 8080</span></span>
+<span class="line"><span style="color:#E4F0FB">   протокол</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">tcp</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">   security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_8080</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">   source_security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_ping</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li><strong>2. переменные.tf</strong></li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>переменная "регион" {</span></span>
+<span class="line"><span>  описание = "регион"</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>переменная "name" {</span></span>
+<span class="line"><span>  description = "Значение тега Name для экземпляра EC2"</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>переменная "az_1a" {</span></span>
+<span class="line"><span>  описание = "зона доступности 1"</span></span>
+<span class="line"><span>  тип = строка</span></span>
+<span class="line"><span>  по умолчанию = "us-east-1a"</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>переменная "instance_type" {</span></span>
+<span class="line"><span>  description = "Значение тега Name для типа экземпляра EC2"</span></span>
+<span class="line"><span>  тип = строка</span></span>
+<span class="line"><span>  default = "t2.micro"</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li><strong>3. outputs.tf</strong></li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>output "instance_id" {</span></span>
+<span class="line"><span>  description = "ID экземпляра EC2"</span></span>
+<span class="line"><span>  value = [for instance in aws_instance.web_app: instance.id]</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>output "instance_public_ip" {</span></span>
+<span class="line"><span>  description = "Публичный IP-адрес экземпляра EC2"</span></span>
+<span class="line"><span>  value = [for instance in aws_instance.web_app: instance.public_ip]</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>выход "instance_name" {</span></span>
+<span class="line"><span>  description = "Теги экземпляра EC2"</span></span>
+<span class="line"><span>  value = [for instance in aws_instance.web_app: instance.tags.Name]</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li><strong>4. terrafprm.tfvars</strong></li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>имя = "rev"</span></span>
+<span class="line"><span>регион = "us-east-1"</span></span>
+<span class="line"><span></span></span></code></pre>
+<h2 id="4-инициализация-рабочей-директории"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#4-initialize-your-working-directory" rel="noopener noreferrer nofollow" target="_blank"></a>4. Инициализация рабочей директории<a aria-hidden="true" tabindex="-1" href="#4-инициализация-рабочей-директории"><span class="icon icon-link"></span></a></h2>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>cd terraform_files</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li>Формат терраформы</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>terraform fmt</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--pmm-9nji--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jzp1pqeshtp1xnufub88.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--pmm-9nji--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jzp1pqeshtp1xnufub88.png" alt="Описание изображения"></a></p>
+<ul>
+<li>Создайте рабочий каталог</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>terraform init</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--hGHxQZTA--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f9phi1nieh1bhiwg1s9j.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--hGHxQZTA--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f9phi1nieh1bhiwg1s9j.png" alt="Описание изображения"></a></p>
+<ul>
+<li>Проверка конфигурации</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>terraform validate</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li>получить ряд ошибок в конфигурационном файле</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--82NtWmrt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k6wtvabfsbdxka7xl5k8.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--82NtWmrt--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/k6wtvabfsbdxka7xl5k8.png" alt="Описание изображения"></a></p>
+<h2 id="5-исправление-ошибки-for_each"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#5-fix-the-foreach-error" rel="noopener noreferrer nofollow" target="_blank"></a>5. Исправление ошибки for_each<a aria-hidden="true" tabindex="-1" href="#5-исправление-ошибки-for_each"><span class="icon icon-link"></span></a></h2>
+<p><strong>Ошибки</strong></p>
+<ul>
+<li>в <strong>main.tf</strong> - Просмотреть детали всех сообщений об ошибках
+<ul>
+<li>1. Исправьте ошибку интерполяции переменных - В строке 33 имеется недопустимая ссылка на атрибут for_each для группы aws_security.</li>
+<li>Ошибка возникает потому, что выражение * в значении aws_security_group.*.id не поддерживается атрибутом for_each.</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>Ошибка: Недопустимая ссылка</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>│ на main.tf строка 33, в ресурсе "aws_instance" "web_app":</span></span>
+<span class="line"><span>│ 33: for_each = aws_security_group.*.id</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>│ За ссылкой на тип ресурса должно следовать как минимум одно обращение к атрибуту, указывающее на имя ресурса.</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li>в <strong>main.tf</strong> - Просмотр деталей сообщения об ошибке Invalid “each” attribute
+<ul>
+<li>2. В строке 37 недопустимый объект “each”, в котором отсутствует атрибут vpc_security_group_ids.</li>
+<li>Ошибка возникает потому, что значение [each.id] зависит от атрибута for_each</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>Ошибка: Неверный атрибут "each"</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>│ на main.tf строка 37, в ресурсе "aws_instance" "web_app":</span></span>
+<span class="line"><span>│ 37: vpc_security_group_ids = [each.id]</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><strong>1. Исправление ошибок</strong></p>
+<ul>
+<li>в нижней части файла main.tf объявите локальные переменные для групп безопасности, создаваемых в конфигурационном файле:</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">локальные</span><span style="color:#E4F0FB"> переменные</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  security_groups</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    sg_ping</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_ping</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#E4F0FB">    sg_8080</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_8080</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span></code></pre>
+<p><strong>2. Исправление ошибок</strong></p>
+<ul>
+<li>В строке 33 замените значение aws_security_group.*.id на local.security.groups</li>
+<li>заменить</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">for_each</span><span style="color:#91B4D5">     =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#91B4D5">*</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>с</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">for_each</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> local</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">security_groups</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"></span></code></pre>
+<p><strong>3. Исправление ошибок</strong></p>
+<ul>
+<li>В строке 37 замените значение [each.id] на [each.value]</li>
+<li>заменить</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">vpc_security_group_ids</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#E4F0FB">each</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span><span style="color:#A6ACCD">];</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>с</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">vpc_security_group_ids</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#E4F0FB">each</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">value</span><span style="color:#A6ACCD">];</span></span>
+<span class="line"></span></code></pre>
+<p><strong>4. Исправление ошибок</strong></p>
+<ul>
+<li>В строке 44 для атрибута Name тега</li>
+<li>замените значение</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">$</span><span style="color:#A6ACCD">{</span><span style="color:#E4F0FB">var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">name</span><span style="color:#A6ACCD">}</span><span style="color:#91B4D5">-</span><span style="color:#E4F0FB">mywebapp</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>с</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">$</span><span style="color:#A6ACCD">{</span><span style="color:#E4F0FB">var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">name</span><span style="color:#A6ACCD">}</span><span style="color:#91B4D5">-</span><span style="color:#E4F0FB">mywebapp</span><span style="color:#91B4D5">-</span><span style="color:#E4F0FB">$</span><span style="color:#A6ACCD">{</span><span style="color:#E4F0FB">each</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">key</span><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li><strong>main.tf</strong> выглядит следующим образом</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">терраформа</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  required_providers</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    aws</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">      источник</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">hashicorp/aws</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">      версия</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">~> 4.23</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">    }</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  required_version</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">>= 0.14.9</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">провайдер</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  регион</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">region</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">данные</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_ami</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">linux</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  most_recent</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> true</span></span>
+<span class="line"><span style="color:#E4F0FB">  owners</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">amazon</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  фильтр</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">name</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">    values</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">amzn2-ami-hvm-*-x86_64-gp2</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">  фильтр</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">тип виртуализации</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">    значения</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">hvm</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_instance</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">web_app</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  for_each</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> local</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">security_groups</span></span>
+<span class="line"><span style="color:#E4F0FB">  ami</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> data</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">aws_ami</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">linux</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">  availability_zone</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">az_1a</span></span>
+<span class="line"><span style="color:#E4F0FB">  instance_type</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> var</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">instance_type</span></span>
+<span class="line"><span style="color:#E4F0FB">  vpc_security_group_ids</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span><span style="color:#E4F0FB">each</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">value</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#E4F0FB">  user_data</span><span style="color:#91B4D5"> =</span><span style="color:#91B4D5"> &#x3C;&#x3C;-</span><span style="color:#E4F0FB">EOF</span></span>
+<span class="line"><span style="color:#A6ACCD">              #</span><span style="color:#91B4D5">!/</span><span style="color:#E4F0FB">bin</span><span style="color:#91B4D5">/</span><span style="color:#E4F0FB">bash</span></span>
+<span class="line"><span style="color:#E4F0FB">              echo</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Hello, World</span><span style="color:#A6ACCD">"</span><span style="color:#91B4D5"> ></span><span style="color:#E4F0FB"> index</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">html</span></span>
+<span class="line"><span style="color:#E4F0FB">              nohup</span><span style="color:#E4F0FB"> busybox</span><span style="color:#E4F0FB"> httpd</span><span style="color:#91B4D5"> -</span><span style="color:#E4F0FB">f</span><span style="color:#91B4D5"> -</span><span style="color:#E4F0FB">p</span><span style="color:#5DE4C7"> 8080</span><span style="color:#91B4D5"> &#x26;</span></span>
+<span class="line"><span style="color:#E4F0FB">              EOF</span></span>
+<span class="line"><span style="color:#E4F0FB">  теги</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    Name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">${var.name}-mywebapp-${each.key}</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_ping</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  name</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Allow Ping</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">  vpc_id</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">vpc-0da931f5deb73c9e2</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_8080</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  имя</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Разрешить 8080</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">  vpc_id</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">vpc-0da931f5deb73c9e2</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group_rule</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_ping</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  тип</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">ingress</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">  from_port</span><span style="color:#91B4D5"> =</span><span style="color:#91B4D5"> -</span><span style="color:#5DE4C7">1</span></span>
+<span class="line"><span style="color:#E4F0FB">  to_port</span><span style="color:#91B4D5"> =</span><span style="color:#91B4D5"> -</span><span style="color:#5DE4C7">1</span></span>
+<span class="line"><span style="color:#E4F0FB">  протокол</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">icmp</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">  security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_ping</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">  source_security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_8080</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">ресурс</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">aws_security_group_rule</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">sg_8080</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  тип</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">ingress</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">  from_port</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> 8080</span></span>
+<span class="line"><span style="color:#E4F0FB">  to_port</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> 8080</span></span>
+<span class="line"><span style="color:#E4F0FB">  протокол</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">tcp</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">  security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_8080</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#E4F0FB">  source_security_group_id</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_ping</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">локали</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">  security_groups</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#E4F0FB">    sg_ping</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_ping</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#E4F0FB">    sg_8080</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> aws_security_group</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">sg_8080</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">id</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">  }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>Проверьте конфигурацию:</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">проверить</span><span style="color:#E4F0FB"> конфигурацию</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>Вы должны получить сообщение об успешном завершении конфигурации.</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--pf4sLnC1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zcig1audzinjkvd6g9vm.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--pf4sLnC1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zcig1audzinjkvd6g9vm.png" alt="Описание изображения"></a></p>
+<h2 id="6-развертывание-ресурсов"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#6-deploy-your-resources" rel="noopener noreferrer nofollow" target="_blank"></a>6. Развертывание ресурсов<a aria-hidden="true" tabindex="-1" href="#6-развертывание-ресурсов"><span class="icon icon-link"></span></a></h2>
+<ul>
+<li>Создайте план Terraform</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#E4F0FB">план</span><span style="color:#E4F0FB"> terraform</span></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--T5Nsr3SR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x68ayv1fz24neugdtz2l.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--T5Nsr3SR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x68ayv1fz24neugdtz2l.png" alt="Описание изображения"></a></p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--gxidj4CQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/obaucc2tav4jmrwcmsyt.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--gxidj4CQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/obaucc2tav4jmrwcmsyt.png" alt="Описание изображения"></a></p>
+<ul>
+<li>Создайте ресурсы</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>применить терраформу</span></span>
+<span class="line"><span></span></span></code></pre>
+<ul>
+<li>введите yes для подтверждения развертывания</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--U-oQ6l4x--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/d8lla6znd92dqozs1r28.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--U-oQ6l4x--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/d8lla6znd92dqozs1r28.png" alt="Описание изображения"></a></p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--IjDh5KiR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yzhjbv5rusns7ufusssw.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--IjDh5KiR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yzhjbv5rusns7ufusssw.png" alt="Описание изображения"></a></p>
+<ul>
+<li>Инстансы EC2 - rev-mywebapp-sg_8080 и rev-mywebapp-sg_ping</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--Zfo_9FYY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/352jylboxi4hp2j2fxza.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Zfo_9FYY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/352jylboxi4hp2j2fxza.png" alt="Описание изображения"></a></p>
+<h1 id="очистка"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#cleanup" rel="noopener noreferrer nofollow" target="_blank"></a>Очистка<a aria-hidden="true" tabindex="-1" href="#очистка"><span class="icon icon-link"></span></a></h1>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>разрушение терраформы</span></span>
+<span class="line"><span></span></span></code></pre>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--XaLIQs7K--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xkeulnm8d33azt2zrrgu.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--XaLIQs7K--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xkeulnm8d33azt2zrrgu.png" alt="Описание изображения"></a></p>
+<h1 id="что-мы-сделали-на-данный-момент"><a href="https://dev.to/aws-builders/how-to-fix-a-terraform-foreach-error-46hg#what-we-have-done-so-far" rel="noopener noreferrer nofollow" target="_blank"></a>Что мы сделали на данный момент<a aria-hidden="true" tabindex="-1" href="#что-мы-сделали-на-данный-момент"><span class="icon icon-link"></span></a></h1>
+<p>Мы успешно исправили ошибку <strong>for_each</strong> и развернули наши ресурсы.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как исправить ошибку Terraform for_each&#38;url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each&#38;title=Как исправить ошибку Terraform for_each&#38;summary=# Что такое ошибка for_each?
+
+Атрибут for_each в Terraform позволяет создать набор похожих ресурсов на основе заданных вами критериев.
+
+Когда вам нужно созд&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-yspravyt-oshybku-terraform-for_each&#38;media=&#38;description=# Что такое ошибка for_each?
+
+Атрибут for_each в Terraform позволяет создать набор похожих ресурсов на основе заданных вами критериев.
+
+Когда вам нужно созд" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kak-kontrolyrovat-zapros-mezhdu-neskolkymy-prylozhenyiamy" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Как контролировать запросы между несколькими приложениями... 🤔 </a> <a href="/blog/kak-yspolzovat-proektnoe-obuchenye-chtob-stat-luchshym-razrabotchykom" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Как использовать проектное обучение, чтобы стать лучшим разработчиком </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

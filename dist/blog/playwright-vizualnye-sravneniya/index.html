@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Playwright — визуальные сравнения - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/playwright-vizualnye-sravneniya"><meta name="description" content="Сегодня я хочу поговорить о визуальных сравнениях в Playwright. В некоторых проектах очень важно соблюдать одинаковый размер компонента на странице, или гарантировать точную визуализацию каждый раз, или обеспечить одинаковый цвет и т.д."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-playwright-vizualnye-sravneniya; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Playwright — визуальные сравнения </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/e2e" data-astro-cid-axzg2cw6> E2E </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/playwright" data-astro-cid-axzg2cw6> Playwright </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 25 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_1VvX78.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_ZlSNEH.webp" type="image/webp"> <img src="/_astro/undefined-Feb-25-2023.BscJLvqp_Z7dN03.png" alt="Playwright — визуальные сравнения" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/playwright-vizualnye-sravneniya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Playwright — визуальные сравнения&#38;url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya&#38;title=Playwright — визуальные сравнения&#38;summary=Сегодня я хочу поговорить о визуальных сравнениях в Playwright. В некоторых проектах очень важно соблюдать одинаковый размер компонента на странице, или гарантировать точную визуализацию каждый раз, или обеспечить одинаковый цвет и т.д.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya&#38;media=&#38;description=Сегодня я хочу поговорить о визуальных сравнениях в Playwright. В некоторых проектах очень важно соблюдать одинаковый размер компонента на странице, или гарантировать точную визуализацию каждый раз, или обеспечить одинаковый цвет и т.д." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Здравствуйте,</p>
+<p>Сегодня я хочу поговорить о визуальных сравнениях в Playwright.</p>
+<p>В некоторых проектах очень важно соблюдать одинаковый размер компонента на странице, или гарантировать точную визуализацию каждый раз, или обеспечить одинаковый цвет и т.д.</p>
+<p>Playwright предоставляет эту возможность из коробки. Для этого Playwright использует моментальные снимки и сравнивает конкретный снимок с результатом тестирования, чтобы проверить, что ничего не изменилось.</p>
+<p>Но не будем терять времени и посмотрим, как это работает.</p>
+<p>Для этого примера я хочу использовать компонент Square, но перед переходом к тесту его нужно рефакторить. Сначала нужно переместить png-изображения X и O из общей папки в папку компонента Square. После этого нужно рефакторить компонент так, чтобы он импортировал эти изображения и использовал их для рендеринга иконки. В результате получится примерно следующее:</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"94082223-64e1-4206-964d-f88160c3c75a","content":"Структура папок","level":2,"link":"#структура-папок","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"6d5f285d-794e-4bf8-b4c6-55848cba1cf0","content":"Компонент квадрата","level":2,"link":"#компонент-квадрата","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#структура-папок">Структура папок</a></li><li class=""><a href="#компонент-квадрата">Компонент квадрата</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="структура-папок">Структура папок</h2>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript"> Square
+    O.png
+    Square.module.scss
+    Square.tsx
+    X.png
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="компонент-квадрата">Компонент квадрата</h2>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { TicTacToeValue } from '../../models/TicTacToeValue';
+import { Nullable } from '../../utils/Nullable';
+import Icon from '../Icon/Icon';
+import OIcon from './O.png';
+import styles from './Square.module.scss';
+import XIcon from './X.png';
+
+interface SquareProps {
+  value: Nullable&#x3C;TicTacToeValue>;
+  onSelect: () => void
+}
+
+export default function Square(
+  { value, onSelect }: SquareProps
+) {
+
+  const icon = value === 'X' ? XIcon : OIcon;
+
+  return (
+    &#x3C;button
+      type='button'
+      className={styles.Square}
+      onClick={onSelect}>
+      {value &#x26;&#x26; &#x3C;Icon src={icon} title={value} />}
+    &#x3C;/button>
+  )
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Отлично, теперь вы готовы создать свой первый тест для проверки визуальных сравнений.</p>
+<p>Прежде чем переходить к коду, вы должны познакомиться с тем, что нужно знать для проведения визуальных сравнений в Playwright, и единственное, что вам нужно знать, это утверждение toHaveScreenshot. Это утверждение - ваш лучший друг, если вы хотите реализовать визуальные сравнения в Playwright, у него есть несколько конфигураций, но самые распространенные вы увидите позже. Итак, не теряйте времени и пачкайте руки.</p>
+<p>Прежде всего, необходимо создать новый файл src/components/Square/Square.spec.tsx, который будет содержать ваши тесты. В качестве первого примера можно создать новый тест, который проверяет, показывает ли компонент Square значок X, если значение равно X. Для этого нужно создать тест следующего вида</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { expect, test } from '@playwright/experimental-ct-react';
+import Square from './Square';
+
+test.describe('Square', () => {
+  test('should show the X icon without regression', async ({ mount, page }) => {
+    await mount(&#x3C;Square value={'X'} onSelect={() => { }} />);
+    await expect(page).toHaveScreenshot();
+  });
+})
+</code></pre>
+<!-- /wp:code -->
+<p>Как вы заметили, в этой статье показано визуальное сравнение при тестировании компонентов, но вы можете использовать его и в e2e тестах.Хорошо, теперь пришло время посмотреть результат, выполнив команду npm run test-ct.Результат не такой, как ожидалось, я полагаю. На самом деле, результат показывает ошибку, как показано ниже:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">Error: A snapshot doesn't exist at playwright-series/snapshots/components/Square/Square.spec.tsx-snapshots/Square-should-show-the-X-icon-without-regression-1-chromium-darwin.png, writing actual.
+</code></pre>
+<!-- /wp:code -->
+<p>Как вы можете себе представить, Playwright пытается запустить ваши тесты, но не находит снимка для сравнения с вашим результатом, поэтому он выдает ошибку для каждой платформы (Chrome, Firefox и WebKit). Однако вы можете заметить, что в вашем проекте появилось три новых файла. Эти файлы являются снимками вашего теста. Вы можете найти их в корне проекта в папке <strong>snapshots</strong> . Отсюда Playwright может запустить ваш тест и проверить, похож ли результат на эти снимки. Чтобы проверить это, вы можете повторно выполнить предыдущую команду и заметить, что результат будет лучше и ваши тесты будут пройдены.</p>
+<p>Чтобы дважды проверить, работает ли визуальное сравнение, вы можете изменить размеры иконок в файле Square.module.scss. Например, со 100x100 пикселей на 101x101 пиксель.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="css" class="language-css">.Square {
+  width: 101px;
+  height: 101px;
+  background-color: #fff;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Если вы повторно выполните команду npm run test-ct, результат будет выглядеть примерно так:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">3 failed
+    [chromium] components/Square/Square.spec.tsx:6:3 Square should show the X icon without regression
+    [firefox] components/Square/Square.spec.tsx:6:3 Square should show the X icon without regression
+    [webkit] components/Square/Square.spec.tsx:6:3 Square should show the X icon without regression
+</code></pre>
+<!-- /wp:code -->
+<p>И как вы можете себе представить, ваш набор тестов не сработал, потому что результат не совсем такой, как ожидалось.</p>
+<p>Когда мы работаем с визуальным сравнением, как вы можете себе представить, ввести регрессию очень просто - пиксель разницы и бум, набор не работает. Playwright знает об этой проблеме и позволяет быть менее строгим в таких случаях. Важно помнить, что по умолчанию Playwright строг и проверяет каждый пиксель разницы, но вы можете настроить его с помощью порога. Наиболее распространенными являются maxDiffPixelRatio, maxDiffPixels или threshold. Каждая конфигурация позволяет вам быть менее строгим в разных случаях. Например, если вы выбрали конфигурацию maxDiffPixels, вы можете написать предыдущий тест таким образом</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">test('should show the X icon without regression', async ({ mount, page }) => {
+  await mount(&#x3C;Square value={'X'} onSelect={() => { }} />);
+  await expect(page).toHaveScreenshot({ maxDiffPixels: 500 });
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Если вы выполните команду npm run test-ct , то теперь набор тестов пройден, и, как вы можете себе представить, Playwright протестировал ваш новый снимок с использованием конфигурации maxDiffPixels. Таким образом, даже если размер отличается, результат будет нормальным, потому что он соответствует конфигурации maxDiffPixels.</p>
+<p>Такие конфигурации могут быть установлены по умолчанию, если вы хотите. Например, вы можете решить, что все тесты визуального сравнения должны иметь maxDiffPixels, равный 500. Для этого можно настроить Playwright на такую конфигурацию по умолчанию. В конфигурационном файле Playwright можно задать метод expect с такой конфигурацией:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { defineConfig } from '@playwright/test';
+export default defineConfig({
+  expect: {
+    toHaveScreenshot: { maxDiffPixels: 500 },
+  },
+});
+</code></pre>
+<!-- /wp:code -->
+<p>И последнее, но не менее важное: иногда требуется изменить структуру компонентов. В этих случаях необходимо изменить снимки, чтобы в будущем у Playwright были новые сравнительные изображения для проверки результатов. Для этого можно запустить тест с опцией —update-snapshots. Это укажет программе Playwright, что снимки старые и что она должна заменить предыдущие результаты новыми.</p>
+<p>Итак, я полагаю, что у вас есть хорошее представление о том, как работает визуальное сравнение в Playwright, и вы можете начать играть с ним без проблем. Думаю, это все, что касается визуального сравнения, надеюсь, вам понравилось это содержание, и если у вас есть вопросы, добро пожаловать!</p>
+<p>До скорой встречи, народные</p>
+<p>Пока-пока</p>
+<p>Вы можете найти исходный код этой статьи здесь.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/playwright-vizualnye-sravneniya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Playwright — визуальные сравнения&#38;url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya&#38;title=Playwright — визуальные сравнения&#38;summary=Сегодня я хочу поговорить о визуальных сравнениях в Playwright. В некоторых проектах очень важно соблюдать одинаковый размер компонента на странице, или гарантировать точную визуализацию каждый раз, или обеспечить одинаковый цвет и т.д.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/playwright-vizualnye-sravneniya&#38;media=&#38;description=Сегодня я хочу поговорить о визуальных сравнениях в Playwright. В некоторых проектах очень важно соблюдать одинаковый размер компонента на странице, или гарантировать точную визуализацию каждый раз, или обеспечить одинаковый цвет и т.д." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/poluchenie-dannyh-v-next-js" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Получение данных в Next.js </a> <a href="/blog/php-sozdanie-sobstvennogo-validatora-dannyh-na-php-shag-za-shagom" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> PHP – Создание собственного валидатора данных на PHP: Шаг за шагом </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

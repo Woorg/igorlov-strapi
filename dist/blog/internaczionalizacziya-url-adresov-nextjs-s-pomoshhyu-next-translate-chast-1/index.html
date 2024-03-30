@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Интернационализация URL-адресов NextJs с помощью next-translate (часть 1) - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1"><meta name="description" content="I18n URL были доступны во всех основных генераторах статических сайтов, но почему-то отсутствуют в NextJs, и это определенно жаль 😔."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Интернационализация URL-адресов NextJs с помощью next-translate (часть 1) </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/i18n" data-astro-cid-axzg2cw6> I18n </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/javascript" data-astro-cid-axzg2cw6> JavaScript </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/nextjs" data-astro-cid-axzg2cw6> Next.js </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 18 мар., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Mar-18-2023.BbyFCf0V_1CoTKK.avif" type="image/avif"><source srcset="/_astro/undefined-Mar-18-2023.BbyFCf0V_ZF0R15.webp" type="image/webp"> <img src="/_astro/undefined-Mar-18-2023.BbyFCf0V_ZqkQlq.png" alt="Интернационализация URL-адресов NextJs с помощью next-translate (часть 1)" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Интернационализация URL-адресов NextJs с помощью next-translate (часть 1)&#38;url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1&#38;title=Интернационализация URL-адресов NextJs с помощью next-translate (часть 1)&#38;summary=I18n URL были доступны во всех основных генераторах статических сайтов, но почему-то отсутствуют в NextJs, и это определенно жаль 😔.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1&#38;media=&#38;description=I18n URL были доступны во всех основных генераторах статических сайтов, но почему-то отсутствуют в NextJs, и это определенно жаль 😔." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>I18n URL были доступны во всех основных генераторах статических сайтов, но почему-то отсутствуют в NextJs, и это определенно жаль 😔.</p>
+<p>Я француз и всегда создаю свои сайты как минимум на французском и английском языках.</p>
+<p>Вот подробное объяснение того, как любой разработчик может добиться этого менее чем за 10 минут и наконец-то иметь возможность работать с такими урлами, как</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"cacc2905-c2bf-40a6-9791-c0e071cb0843","content":"TLDR","level":2,"link":"#tldr","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"714e3d73-2e4c-4988-971d-5bc11afd2dec","content":"Предварительные условия","level":2,"link":"#предварительные-условия","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"c13921f2-03ed-4618-887b-f656cc8eb96d","content":"Что будет сделано","level":2,"link":"#что-будет-сделано","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"cdc9a77a-262b-4bc5-af61-860614863053","content":"Процедура","level":2,"link":"#процедура","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"523163b3-b053-43f8-9b2b-120bba18bf2e","content":"Укажите пермалинки","level":3,"link":"#укажите-пермалинки","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"6319731e-ae23-4595-b22f-67f7a16a0eab","content":"Усиление функции nextTranslate","level":3,"link":"#усиление-функции-next-translate","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f45e3271-f95b-4747-a39e-90b18f0245f8","content":"Адаптация компонента Link","level":3,"link":"#адаптация-компонента-link","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"91ca38b6-9628-404c-a324-2c9adc08d19a","content":"Ссылка","level":2,"link":"#ссылка","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#tldr">TLDR</a></li><li class=""><a href="#предварительные-условия">Предварительные условия</a></li><li class=""><a href="#что-будет-сделано">Что будет сделано</a></li><li class=""><a href="#процедура">Процедура</a><ul><li class=""><a href="#укажите-пермалинки">Укажите пермалинки</a></li><li class=""><a href="#усиление-функции-next-translate">Усиление функции nextTranslate</a></li><li class=""><a href="#адаптация-компонента-link">Адаптация компонента Link</a></li></ul></li><li class=""><a href="#ссылка">Ссылка</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="tldr">TLDR</h2>
+<p>Репозиторий со всем исходным кодом можно найти на <a href="https://github.com/martinratinaud/next-translate-i18n-routes" target="_blank" rel="noreferrer noopener nofollow">GitHub</a></p>
+<h2 class="wp-block-heading" id="предварительные-условия">Предварительные условия</h2>
+<p>В этом руководстве используется отличная библиотека next-translate, но ее можно адаптировать для next-i18next.</p>
+<p>наличие next-translate, уже установленного в вашем проекте.</p>
+<h2 class="wp-block-heading" id="что-будет-сделано">Что будет сделано</h2>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Генерировать правила переписывания, которые заставят URL-адреса адаптироваться в соответствии с языком, выбранным пользователем</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Переоснастить функцию nextTranslate для использования этих перезаписей</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Написать пользовательский компонент Link, который будет использовать эти правила переписывания для создания соответствующих i18n-слогов и использовать их для навигации.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<h2 class="wp-block-heading" id="процедура">Процедура</h2>
+<p>Во всех последующих шагах созданные файлы и функции будут помещены в папку modules/I18n.Это практика, к которой я пришел после многих лет программирования и которая очень помогает разделять части приложения (в данном случае всю логику, связанную с I18n).Скоро я напишу об этом статью в блоге.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="укажите-пермалинки">Укажите пермалинки</h3>
+<p>Первое, что необходимо сделать, это указать пермалинки, которые мы хотим использовать.Давайте создадим modules/I18n/permalinks.json</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="json" class="language-json">{
+  "https://dev.to/": {
+    "fr": "/accueil"
+  }
+}
+</code></pre>
+<!-- /wp:code -->
+<p>ПРИМЕЧАНИЕ: это не идеальное решение для меня, так как оно отделяет фактическую страницу (jsx файл) от определения ее пермалинков, и было бы лучше иметь экспорт const пермалинков изнутри страницы. Эта проблема рассматривается в части 2 этой статьи (и вы также можете связаться со мной, если вам нужна дополнительная информация).</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="усиление-функции-next-translate">Усиление функции nextTranslate</h3>
+<p>Цель здесь - преобразовать созданные нами пермалинки в правила перезаписи, чтобы NextJS мог правильно переписывать URL в зависимости от языка.</p>
+<p>TLDR См. коммит на <a href="https://github.com/martinratinaud/next-translate-i18n-routes/commit/c03e2d74ad8c19e052e1ebb5b23e9babe65492d1" target="_blank" rel="noreferrer noopener nofollow">GitHub</a></p>
+<p>Создайте modules/I18n/next.config.js с</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const nextTranslate = require('next-translate-plugin');
+const fs = require('fs');
+const permalinks = require('./permalinks.json');
+
+/**
+ * 
+ * Transforms
+{
+  "https://dev.to/": {
+    "fr": "/accueil"
+  }
+}
+ * into
+[
+  {
+    source: '/fr/accueil',
+    destination: '/fr',
+    locale: false
+  }
+]
+*/
+const permalinksToRewriteRules = (permalinks) =>
+  Object.entries(permalinks).reduce(
+    (acc, [originalSlug, permalinks]) => [
+      ...acc,
+      ...Object.entries(permalinks).reduce(
+        (acc2, [locale, i18nSlug]) => [
+          ...acc2,
+          {
+            source: `/${locale}${i18nSlug}`,
+            destination: `/${locale}${originalSlug}`,
+            locale: false,
+          },
+        ],
+        []
+      ),
+    ],
+    []
+  );
+
+module.exports = (nextConfig) => {
+  const nextTranslateConfig = nextTranslate(nextConfig);
+
+  return {
+    ...nextTranslateConfig,
+    async rewrites() {
+      const existingRewrites = nextTranslateConfig.rewrites
+        ? await nextTranslateConfig.rewrites()
+        : [];
+      return [...permalinksToRewriteRules(permalinks), ...existingRewrites];
+    },
+  };
+};
+</code></pre>
+<!-- /wp:code -->
+<p>и замените вызов функции в файле next.config.js</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">- const nextTranslate = require('next-translate-plugin')
++ const nextTranslate = require('./src/modules/I18n/next.config');
+</code></pre>
+<!-- /wp:code -->
+<p>Отлично, теперь, если вы перезагрузите свой сервер, вы сможете получить доступ к странице</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>http://localhost:3000/fr/accueil</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Теперь давайте адаптируем компонент Link, чтобы он учитывал этот новый URL</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="адаптация-компонента-link">Адаптация компонента Link</h3>
+<p>Цель состоит в том, чтобы иметь возможность переходить непосредственно к красивым URL, определенным ранее.</p>
+<p>TLDR: См. коммит на <a href="https://github.com/martinratinaud/next-translate-i18n-routes/commit/24da9244238f65af9c9ab3077f74edc558b698b7" target="_blank" rel="noreferrer noopener nofollow">GitHub</a></p>
+<p>Необходимо создать новый компонент modules/I18n под названием Link и изменить все импорты next/link.</p>
+<p>Да, это действительно больная тема, я признаю, но я не смог найти способ сделать по-другому.</p>
+<p>На самом деле это не такая уж большая проблема, так как простой ”поиск и замена” будет работать</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">- import Link from 'next/link';
++ import { Link } from 'modules/I18n';
+</code></pre>
+<!-- /wp:code -->
+<p>Во-первых, переменная permalinks должна быть открыта для фронтенда, чтобы ее мог использовать создаваемый компонент Link.</p>
+<p>В nextJs это делается с помощью</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">  return {
+    ...nextTranslateConfig,
++    publicRuntimeConfig: {
++      ...nextTranslateConfig.publicRuntimeConfig,
++      permalinks, // add it to publicRuntimeConfig so it can be used by the Link component
++    },
+    async rewrites() {
+    ...
+</code></pre>
+<!-- /wp:code -->
+<p>Встроенный в nextJS компонент Link работает следующим образом: он строит URL из href и переданной (или существующей) локали.</p>
+<p>Это означает, что ссылка на / в fr приведет к /fr.</p>
+<p>Этот компонент создаст карту URL для прямого перехода к соответствующему правильному URL /fr/accueil</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+const permalinks: { [key: string]: { [key: string]: string } } =
+  publicRuntimeConfig.permalinks || {};
+
+/**
+ * Formats permalinks
+{
+  "https://dev.to/": {
+    "fr": "/accueil"
+  }
+}
+ * into
+{
+  "/fr/": "/fr/accueil",
+  "/en/accueil": "https://dev.to/"
+} 
+ */
+export const i18nFallbackUrls: { [key: string]: string } = Object.entries(
+  permalinks
+).reduce(
+  (acc, [originalSlug, permalinks]) => ({
+    ...acc,
+    ...Object.entries(permalinks || {}).reduce(
+      (acc2, [locale, permalink]) => ({
+        ...acc2,
+        [`/${locale}${originalSlug}`]: `/${locale}${permalink}`,
+        [`/en${permalink}`]: originalSlug,
+      }),
+      {}
+    ),
+  }),
+  {}
+);
+
+const I18nLink = ({ href, locale, ...props }: any) => {
+  const router = useRouter();
+  const wantedLocale = locale || router.locale;
+  let i18nProps: any = {
+    href,
+    locale,
+  };
+
+  if (i18nFallbackUrls[`/${wantedLocale}${href}`]) {
+    i18nProps = {
+      href: i18nFallbackUrls[`/${wantedLocale}${href}`],
+      locale: false,
+    };
+  }
+
+  return &#x3C;Link {...i18nProps} {...props} />;
+};
+
+export default I18nLink;
+</code></pre>
+<!-- /wp:code -->
+<p>И вуаля! Все готово, и вот как это выглядит.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--p6f97oQH--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/lxja36rhdydohaswfhdm.gif" alt="Image description"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading" id="ссылка">Ссылка</h2>
+<p>Посмотрите <a href="https://github.com/martinratinaud/next-translate-i18n-routes" target="_blank" rel="noreferrer noopener nofollow">Github Repo</a></p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Интернационализация URL-адресов NextJs с помощью next-translate (часть 1)&#38;url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1&#38;title=Интернационализация URL-адресов NextJs с помощью next-translate (часть 1)&#38;summary=I18n URL были доступны во всех основных генераторах статических сайтов, но почему-то отсутствуют в NextJs, и это определенно жаль 😔.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1&#38;media=&#38;description=I18n URL были доступны во всех основных генераторах статических сайтов, но почему-то отсутствуют в NextJs, и это определенно жаль 😔." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/ispolzovanie-elm-v-web-worker" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Использование Elm в Web Worker </a> <a href="/blog/integracziya-bazy-dannyh-sqlite-teper-dostupna-v-vide-plagina-dlya-testirovaniya" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Интеграция базы данных SQLite теперь доступна в виде плагина для тестирования </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

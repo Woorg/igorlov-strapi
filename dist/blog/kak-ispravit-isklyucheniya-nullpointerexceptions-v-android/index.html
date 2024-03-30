@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Как исправить исключения NullPointerExceptions в Android - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android"><meta name="description" content="Вы только что закончили создание приложения на базе Android и пытаетесь его выполнить. Насколько вы знаете, приложение в порядке, синтаксических ошибок нет, и код должен работать нормально."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-kak-ispravit-isklyucheniya-nullpointerexceptions-v-android; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Как исправить исключения NullPointerExceptions в Android </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/java" data-astro-cid-axzg2cw6> Java </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/kotlin" data-astro-cid-axzg2cw6> Kotlin </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 20 апр., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z11NVfz.avif" type="image/avif"><source srcset="/_astro/undefined-Apr-20-2023.DHTiNZ16_1JWpLw.webp" type="image/webp"> <img src="/_astro/undefined-Apr-20-2023.DHTiNZ16_1YCqrb.png" alt="Как исправить исключения NullPointerExceptions в Android" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как исправить исключения NullPointerExceptions в Android&#38;url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android&#38;title=Как исправить исключения NullPointerExceptions в Android&#38;summary=Вы только что закончили создание приложения на базе Android и пытаетесь его выполнить. Насколько вы знаете, приложение в порядке, синтаксических ошибок нет, и код должен работать нормально.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android&#38;media=&#38;description=Вы только что закончили создание приложения на базе Android и пытаетесь его выполнить. Насколько вы знаете, приложение в порядке, синтаксических ошибок нет, и код должен работать нормально." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Вы только что закончили создание приложения на базе Android и пытаетесь его выполнить. Насколько вы знаете, приложение в порядке, синтаксических ошибок нет, и код должен работать нормально. Но когда вы запускаете его, приложение завершает работу, сообщая, что возникло не пойманное исключение RuntimeException. Пытаясь докопаться до причины, вы находите нечто, что дает вам подсказку: произошло NullPointerException.</p>
+<p>С этого вы начинаете свое путешествие в мир обработки исключений в Android, в частности, обработки NullPointerException. В этой статье мы обсудим, как исправить NullPointerException в приложениях Android.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"95a4fdc7-3690-4dc0-a2f2-e926c87a6915","content":"Что такое NullPointerException?","level":2,"link":"#что-такое-null-pointer-exception","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"01133239-676d-4d82-8630-33da20dcaa7e","content":"Почему возникают исключения NullPointerException?","level":2,"link":"#почему-возникают-исключения-null-pointer-exception","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f2be2bf8-0fd9-4df5-b6cd-6fd2c8a7c6e5","content":"Избегание исключений NullPointerExceptions в Java","level":2,"link":"#избегание-исключений-null-pointer-exceptions-в-java","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"e2673878-a98f-4bde-bc01-bd1abd53ab9b","content":"Использование SmartCast","level":2,"link":"#использование-smart-cast","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"a347ceb8-23ed-4e0b-8171-fff427916b03","content":"Использование оператора Elvis","level":2,"link":"#использование-оператора-elvis","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"380124fe-f6d5-4245-9f73-49c8a53aff7f","content":"Избегание исключений NullPointerException в Kotlin","level":2,"link":"#избегание-исключений-null-pointer-exception-в-kotlin","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"657bc2a6-e300-4aff-806c-c783c073887e","content":"Использование logcat для обнаружения и устранения NullPointerException в Android Studio","level":2,"link":"#использование-logcat-для-обнаружения-и-устранения-null-pointer-exception-в-android-studio","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"03ca4da3-b665-496e-b356-a7858415f34e","content":"Установка точек останова для отладки NullPointerExceptions","level":2,"link":"#установка-точек-останова-для-отладки-null-pointer-exceptions","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"3cb435ec-3d09-4dac-a30d-c1251c3f5ef1","content":"Заключение","level":2,"link":"#заключение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#что-такое-null-pointer-exception">Что такое NullPointerException?</a></li><li class=""><a href="#почему-возникают-исключения-null-pointer-exception">Почему возникают исключения NullPointerException?</a></li><li class=""><a href="#избегание-исключений-null-pointer-exceptions-в-java">Избегание исключений NullPointerExceptions в Java</a></li><li class=""><a href="#использование-smart-cast">Использование SmartCast</a></li><li class=""><a href="#использование-оператора-elvis">Использование оператора Elvis</a></li><li class=""><a href="#избегание-исключений-null-pointer-exception-в-kotlin">Избегание исключений NullPointerException в Kotlin</a></li><li class=""><a href="#использование-logcat-для-обнаружения-и-устранения-null-pointer-exception-в-android-studio">Использование logcat для обнаружения и устранения NullPointerException в Android Studio</a></li><li class=""><a href="#установка-точек-останова-для-отладки-null-pointer-exceptions">Установка точек останова для отладки NullPointerExceptions</a></li><li class=""><a href="#заключение">Заключение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="что-такое-null-pointer-exception">Что такое NullPointerException?</h2>
+<p>Во-первых, давайте быстро освежим в памяти информацию об исключениях. Это события или аномальные условия в программе, которые возникают во время выполнения и нарушают нормальный ход программы.</p>
+<p>Исключение может возникнуть по разным причинам, например:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>пользователь вводит недопустимые данные в поле</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>файл, который должен быть открыт, не может быть найден</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Сетевое соединение потеряно в середине коммуникации</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>в JVM закончилась память.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Когда внутри метода возникает ошибка, он выбрасывает исключение. Исключение NullPointerException является одним из наиболее распространенных исключений во время выполнения.</p>
+<p>В Java null - это специальное значение, которое представляет собой отсутствие значения. Когда вы пытаетесь использовать нулевое значение, вы получаете исключение NullPointerException, потому что операция, которую вы пытаетесь выполнить, не может быть завершена для нулевого значения.</p>
+<p>В Kotlin null - это не значение, а собственный тип, называемый nullable. По умолчанию каждый объект в Kotlin не имеет null, что означает, что он не может иметь нулевое значение.</p>
+<h2 class="wp-block-heading" id="почему-возникают-исключения-null-pointer-exception">Почему возникают исключения NullPointerException?</h2>
+<p>Вы можете столкнуться с NullPointerException при попытке получить доступ к представлению, ресурсу или данным, которые еще не были должным образом инициализированы или загружены. Согласно спецификации языка Java, некоторые из ситуаций, в которых может возникнуть NullPointerException, включают:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Попытка доступа к элементам нулевого массива</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Использование switch с нулевым выражением</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Доступ к полям экземпляра нулевых ссылок</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>вызов методов экземпляра нулевой ссылки</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>использование целочисленного оператора или оператора с плавающей точкой, один из операндов которого является нулевой ссылкой в квадрате</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Попытка преобразования без вставки с вложенным значением в виде null</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Вызов super для нулевой ссылки</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<h2 class="wp-block-heading" id="избегание-исключений-null-pointer-exceptions-в-java">Избегание исключений NullPointerExceptions в Java</h2>
+<p>Ниже приведены некоторые лучшие практики для предотвращения NullPointerExceptions в Java:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Сравнение строк с литералами</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Избегайте возврата null из ваших методов</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Постоянно проверяйте аргументы методов</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Используйте String.valueOf(), а не toString()</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Используйте примитивные типы данных как можно чаще</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Избегайте цепочек вызовов методов</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Используйте тернарный оператор</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>В отличие от него, Kotlin является более умным и современным языком, который был разработан для предотвращения NullPointerExceptions с помощью нескольких механизмов, таких как:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>использование нуллируемых и ненуллируемых типов</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>использование функции SmartCast</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Безопасные вызовы</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Оператор Elvis</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>В Kotlin все регулярные типы являются ненулевыми, если только вы явно не пометите их как нулевые с помощью вопросительного знака ?, например, String?</p>
+<p>Рассмотрим приведенный ниже код Kotlin:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">fun getlen(name: String) = name.length
+</code></pre>
+<!-- /wp:code -->
+<p>Имя параметра имеет тип String, что означает, что оно всегда должно содержать экземпляр String и не может содержать null. Этот код гарантирует, что исключение NullPointerException во время выполнения вряд ли произойдет.</p>
+<p>Вместо этого любая попытка передать нулевое значение в функцию getlen(name: String) приведет к ошибке компиляции: Null не может быть значением ненулевого типа String. Это происходит потому, что компилятор ввел правило, согласно которому аргументы функции getlen() не могут быть нулевыми.</p>
+<p>Рассмотрим приведенный ниже фрагмент, в котором код очевиден для нас, но может быть не сразу очевиден для компилятора:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">class TestNPE {
+    companion object {
+        @JvmStatic
+        fun main(args: Array&#x3C;String>) {
+        var m : String? // here, m is declared as nullable
+println("m is : $m")
+var x: Int
+x = 150
+if (x == 150)
+    println("Value of m is : $m")
+        }
+    }
+}
+</code></pre>
+<!-- /wp:code -->
+<!-- wp:image {"align":"center","id":167767} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/04/compiler-error-m-not-initialized.png?is-pending-load=1" alt="A compiler error is raised because m is not initialized" class="wp-image-167767"></figure>
+<!-- /wp:image -->
+<p>Компилятор выдает ошибку компилятора, поскольку m не инициализирован:</p>
+<p>Таким образом, вместо того, чтобы перейти к выполнению и затем выдать исключение, он останавливается на этапе компиляции с ошибкой компилятора.</p>
+<h2 class="wp-block-heading" id="использование-smart-cast">Использование SmartCast</h2>
+<p>Для того чтобы использовать типы с нулевыми значениями, в Kotlin есть возможность, называемая safe cast, или smart cast. Благодаря этой функции компилятор Kotlin будет отслеживать ситуации внутри if и других условных выражений. Таким образом, если компилятор обнаружит переменную, принадлежащую к ненулевому типу, он позволит вам безопасно получить доступ к этой переменной.</p>
+<p>В некоторых случаях компилятор не может выполнить приведение типов, в этом случае он выбросит исключение; это называется небезопасным приведением. Рассмотрим строку с нулевым типом (String?), которую нельзя привести к строке без нуля (String). Это приведет к исключению.</p>
+<p>Kotlin решает эту проблему, предоставляя оператор safe cast as? для безопасного приведения к другому типу. Если приведение невозможно, он возвращает null, а не выбрасывает исключение ClassCastException.</p>
+<p>Пример:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">val aInt: Int? = a as? Int
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="использование-оператора-elvis">Использование оператора Elvis</h2>
+<p>В Kotlin также есть расширенный оператор, называемый оператором Elvis (?:), который возвращает либо ненулевое значение, либо значение по умолчанию, даже если условное выражение равно null. Он также проверяет нулевую безопасность значений.</p>
+<p>Рассмотрим пример:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">val count = attendance?.length ?: -1
+</code></pre>
+<!-- /wp:code -->
+<p>Это значит:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">val count: Int = if (attendance != null) attendance.length else -1
+</code></pre>
+<!-- /wp:code -->
+<p>Несмотря на это, исключение NullPointerException все равно может возникнуть в Android-приложениях на базе Kotlin.</p>
+<p>Рассмотрим предыдущий пример класса TestNPE. Теперь код изменен таким образом, что m инициализируется, но используется с оператором утверждения non-null (!!), который преобразует заданное значение к типу non-null и выбрасывает исключение, если значение равно null.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">class TestNPE {
+    companion object {
+        @JvmStatic
+        fun main(args: Array&#x3C;String>) {
+            var m: String?=null // here, m is declared
+//as nullable
+            var x: Int
+            x = 150
+            if (x == 150)
+            println("m is : $m")
+            var mlen = m!!.length
+            println("length of m is : $mlen")
+        }
+    }
+}
+</code></pre>
+<!-- /wp:code -->
+<!-- wp:image {"align":"center","id":167769} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/04/nullpointerexception-thrown.png?is-pending-load=1" alt="A NullPointerException is thrown" class="wp-image-167769"></figure>
+<!-- /wp:image -->
+<p>В этом случае возникнет исключение NullPointerException, как показано здесь:</p>
+<!-- wp:image {"sizeSlug":"large"} -->
+<figure class="wp-block-image size-large"><img src="https://blog.logrocket.com/wp-content/uploads/2023/04/nullpointerexception-thrown.png" alt=""></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading" id="избегание-исключений-null-pointer-exception-в-kotlin">Избегание исключений NullPointerException в Kotlin</h2>
+<p>Несколько причин возникновения NullPointerException в Kotlin:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Явный вызов throw NullPointerException()</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Использование оператора !!!</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Несогласованность данных при инициализации</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Взаимодействие с Java</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Чтобы предотвратить NullPointerException, вы всегда должны убедиться, что ваши переменные и объекты правильно инициализированы перед их использованием. Вы также можете использовать проверки на нулевые значения или блоки try … catch для обработки возможных нулевых значений и предотвращения сбоя вашего приложения.</p>
+<p>Ниже приведен чрезвычайно упрощенный пример использования try … catch:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="kotlin" class="language-kotlin">class TestNPE {
+    companion object {
+        @JvmStatic
+        fun main(args: Array&#x3C;String>) {
+            var m: String?=null // here, m is declared 
+//as nullable
+           try {
+               var x: Int
+               x = 150
+               if (x == 150)
+                   println("m is : $m")
+               var mlen = m!!.length
+               println("length of m is : $mlen")
+           }catch( ne: NullPointerException)
+           {
+               println("Null Pointer Exception has 
+occurred. ")
+           }
+        }
+    }
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Код, который может вызвать NullPointerException, заключен в блок try … catch.</p>
+<p>Преимущество этого блока в том, что разработчик контролирует, что должно быть сделано, когда исключение будет выброшено. Здесь выводится простое сообщение. В практических сценариях перед завершением программы можно закрыть все открытые в данный момент ресурсы, например, файлы.</p>
+<h2 class="wp-block-heading" id="использование-logcat-для-обнаружения-и-устранения-null-pointer-exception-в-android-studio">Использование logcat для обнаружения и устранения NullPointerException в Android Studio</h2>
+<p>При сбое приложения Android в консоль записывается трассировка стека, содержащая важную информацию, которая может помочь определить и решить проблему. Есть два способа получить эту трассировку:</p>
+<p>С помощью утилиты adb shell от Google получить файл logcat, который может помочь объяснить причину сбоя приложения:</p>
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">adb logcat > logcat.txt
+</pre>
+<!-- /wp:preformatted -->
+<p>Откройте файл logcat.txt и найдите имя приложения. В нем будет информация о том, почему приложение потерпело неудачу, а также другие подробности, такие как номер строки, имя класса и т.д.</p>
+<p>В Android Studio либо нажмите Alt+6, либо нажмите кнопку Logcat в строке состояния. Убедитесь, что ваш эмулятор или устройство выбраны на панели ”Устройства”, затем найдите трассировку стека.</p>
+<p>В журнале может быть много записей, поэтому вам, возможно, придется немного прокрутить журнал, или вы можете очистить журнал через опцию ”Корзина” и снова дать приложению упасть, чтобы самый последний след стека в журнале оказался наверху.</p>
+<p>Важно отметить, что если ваше приложение уже работает, то вы не сможете использовать logcat.</p>
+<p>Последняя версия Android Studio Electric Eel имеет обновленный logcat, который облегчает разбор, запрос и отслеживание журналов. Новый logcat также:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Форматирует журналы для удобного сканирования на наличие тегов, сообщений и другой полезной информации</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Определяет различные типы журналов, такие как предупреждения и ошибки.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>упрощает отслеживание журналов вашего приложения при сбоях и перезагрузках приложения.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Когда logcat заметит, что процесс вашего приложения останавливался и перезапускался, вы увидите в выводе сообщение, подобное приведенному ниже:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">PROCESS ENDED</code></pre>
+<!-- /wp:code -->
+<p>Or:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">PROCESS STARTED</code></pre>
+<!-- /wp:code -->
+<p>Разработчики могут точно настроить команду, чтобы, например, указать временную метку сообщения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">adb logcat -v time</code></pre>
+<!-- /wp:code -->
+<p>С помощью logcat можно определить, объявлен ли виджет или компонент, но еще не определен, или переменная является нулевой и используется. Иногда может случиться так, что контекст становится нулевым во время перехода между экранами, и вы пытаетесь использовать этот контекст, не понимая, что он нулевой.</p>
+<h2 class="wp-block-heading" id="установка-точек-останова-для-отладки-null-pointer-exceptions">Установка точек останова для отладки NullPointerExceptions</h2>
+<p>Если у вас большое приложение, его отладка может быть довольно сложной. Вы можете установить в коде точки останова, которые позволят вам отлаживать код блок за блоком.</p>
+<p>Точка останова служит знаком остановки для отмеченного фрагмента кода. Когда точка останова встречается во время отладки приложения, она приостанавливает выполнение, что позволяет разработчикам детально изучить происходящее и при необходимости использовать другие инструменты отладки.</p>
+<p>Чтобы использовать точки останова:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Добавьте точку останова, щелкнув по желобу в редакторе кода рядом с номером строки, на которой вы хотите приостановить выполнение.Рядом с номером строки появится точка, а сама строка будет выделена. См. ниже; добавлены две точки останова:</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Click Run > Debug ‘app’</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<!-- wp:image {"align":"center","id":167776} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/04/debug-window-android-studio.png?is-pending-load=1" alt="The Debug window in Android Studio" class="wp-image-167776"></figure>
+<!-- /wp:image -->
+<p>Программа останавливается на первой точке останова, и вы можете просмотреть значения в окне Debug в нижней части Android Studio.</p>
+<!-- wp:image {"align":"center","id":167779} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/04/step-over-step-into-buttons.png?is-pending-load=1" alt="The Step Over and Step Into buttons" class="wp-image-167779"></figure>
+<!-- /wp:image -->
+<p>Существуют различные кнопки, такие как Step Over и Step Into, которые помогут вам ориентироваться дальше.</p>
+<p>Помимо изучения текущих значений определенных операндов и выражений, вы также можете оценивать выражения с помощью опции Evaluate.</p>
+<!-- wp:image {"align":"center","id":167782} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/04/result-current-value-x.png?is-pending-load=1" alt="Getting the result of the current value of X" class="wp-image-167782"></figure>
+<!-- /wp:image -->
+<p>В приведенном ниже примере я хотел узнать, каким будет значение x, прибавленное к 100. В окне отображается результат, основанный на текущем значении x:</p>
+<p>Здесь приведено подробное объяснение различных терминов, связанных с отладкой в Android Studio.</p>
+<h2 class="wp-block-heading" id="заключение">Заключение</h2>
+<p>В заключение следует отметить, что в разработке Android существуют различные механизмы, доступные в Java и Kotlin, которые призваны помочь разработчикам избежать NullPointerExceptions. В тех случаях, когда эти исключения все же возникают, у вас теперь должен быть целый ряд инструментов, которые помогут определить причину и отладить код.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как исправить исключения NullPointerExceptions в Android&#38;url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android&#38;title=Как исправить исключения NullPointerExceptions в Android&#38;summary=Вы только что закончили создание приложения на базе Android и пытаетесь его выполнить. Насколько вы знаете, приложение в порядке, синтаксических ошибок нет, и код должен работать нормально.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-ispravit-isklyucheniya-nullpointerexceptions-v-android&#38;media=&#38;description=Вы только что закончили создание приложения на базе Android и пытаетесь его выполнить. Насколько вы знаете, приложение в порядке, синтаксических ошибок нет, и код должен работать нормально." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kak-ispravit-oshibku-bool-object-is-not-callable-v-python" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Как исправить ошибку bool object is not callable в Python </a> <a href="/blog/kak-ispolzovat-uslovnye-vyrazheniya-v-python-primery-if-else-i-elif" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Как использовать условные выражения в Python - примеры if, else и elif </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

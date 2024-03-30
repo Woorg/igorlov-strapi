@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="ru"> <head><title>5 советов по улучшению интеграции бэкенда, React с Axios - Фул Фронт Девv</title><link rel="canonical" href="https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios"><meta name="description" content="Учебник"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> 5 советов по улучшению интеграции бэкенда, React с Axios </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/javascript" data-astro-cid-axzg2cw6> Javascript </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/react" data-astro-cid-axzg2cw6> React </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/axios" data-astro-cid-axzg2cw6> Axios </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 29 янв., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Jan-29-2023.CHhA-Fd4_18Q1Ej.avif" type="image/avif"><source srcset="/_astro/undefined-Jan-29-2023.CHhA-Fd4_Z19yK7w.webp" type="image/webp"> <img src="/_astro/undefined-Jan-29-2023.CHhA-Fd4_ZTSJrR.png" alt="5 советов по улучшению интеграции бэкенда, React с Axios" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=5 советов по улучшению интеграции бэкенда, React с Axios&#38;url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios&#38;title=5 советов по улучшению интеграции бэкенда, React с Axios&#38;summary=Учебник&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios&#38;media=&#38;description=Учебник" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"9b8f5744-91bf-4ee6-84a8-79d18fc824f2","content":"Введение","level":2,"link":"#введение","disable":false,"isUpdated":true,"isGeneratedLink":true},{"key":"eec44656-a15c-43f7-aace-bbeed1380adf","content":"Инкапсулировать услугу","level":2,"link":"#инкапсулировать-услугу","disable":false,"isUpdated":true,"isGeneratedLink":true},{"key":"979970a8-e4b8-4e34-b838-9d3668d75127","content":"Добавьте заголовки ко всем запросам","level":2,"link":"#добавьте-заголовки-ко-всем-запросам","disable":false,"isUpdated":true,"isGeneratedLink":true},{"key":"940056ca-2fbc-44e1-b856-07c4f9f687b0","content":"Перенаправление неавторизованного или не прошедшего аутентификацию пользователя","level":2,"link":"#перенаправление-неавторизованного-или-не-прошедшего-аутентификацию-пользователя","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"71344839-a4d9-4754-89b7-a082e5a57720","content":"Шаблон повторного запроса","level":2,"link":"#шаблон-повторного-запроса","disable":false,"isUpdated":true,"isGeneratedLink":true},{"key":"fc6588b6-7ccf-4f29-b00e-f4b19d3c40ab","content":"Обновить токен","level":2,"link":"#обновить-токен","disable":false,"isUpdated":true,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#введение">Введение</a></li><li class=""><a href="#инкапсулировать-услугу">Инкапсулировать услугу</a></li><li class=""><a href="#добавьте-заголовки-ко-всем-запросам">Добавьте заголовки ко всем запросам</a></li><li class=""><a href="#перенаправление-неавторизованного-или-не-прошедшего-аутентификацию-пользователя">Перенаправление неавторизованного или не прошедшего аутентификацию пользователя</a></li><li class=""><a href="#шаблон-повторного-запроса">Шаблон повторного запроса</a></li><li class=""><a href="#обновить-токен">Обновить токен</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="введение"><a name="introduction" href="#introduction"><br></a><br>Введение</h2>
+<p>В большинстве фронтенд-приложений мы должны интегрироваться с бэкендом, и с этим приходит несколько библиотек, которые мы можем использовать, такие как fetch, ajax, axios и другие, и каждая из них имеет свои характеристики, преимущества и недостатки.</p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--9PL0Knci--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n99dh3eb9oews0mbisou.png"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--9PL0Knci--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n99dh3eb9oews0mbisou.png" alt="Библиотеки для интеграции с бэкендом"></a></figure>
+<!-- /wp:image -->
+<p>Но независимо от того, какой из них мы собираемся использовать в нашем приложении, мы должны продумать моменты, которые помогут нам в обслуживании и лучшей коммуникации, чтобы не повлиять на удобство работы пользователя.</p>
+<p>В этой заметке я буду использовать axios с react и применять концепции, которые я считаю чрезвычайно важными и которые мы должны использовать в наших приложениях. Я приму во внимание, что у вас уже есть проект react с установленным axios.</p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--DQ_L4IQw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geuh8vey6x62vuavporf.jpeg"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--DQ_L4IQw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/geuh8vey6x62vuavporf.jpeg" alt="Логотип axios"></a></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading" id="инкапсулировать-услугу"><a name="1-encapsulate-service" href="#1-encapsulate-service"><br></a><br>Инкапсулировать услугу</h2>
+<p>Мы должны создать общий сервис с именем библиотеки, которую мы решили использовать для интеграции, и просто использовать его в приложении, с той же идеей компонентов, таких как карточка, входы и другие, что мы уже делаем.</p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a class="article-body-image-wrapper" href="https://i.giphy.com/media/qYytk8KxBPA1q/giphy.gif"><img src="https://i.giphy.com/media/qYytk8KxBPA1q/giphy.gif" alt="Сервис"></a></figure>
+<!-- /wp:image -->
+<p>Сначала мы должны создать файл http.js или http.ts (помня, что вы можете задать другое имя, если хотите) для экспорта axios с уже настроенным базовым url нашего бэкенда.</p>
+<!-- wp:code {"textColor":"base","lineNumbers":true} -->
+<pre class="wp-block-code has-base-color has-text-color"><code lang="javascript" class="language-javascript line-numbers">import Axios from 'axios';
+
+const http = Axios.create({
+  baseURL: process.env.REACT_APP_URL,
+});
+
+export default http;
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь мы должны создать еще один файл index.js или index.ts, куда мы экспортируем наиболее часто используемые http-методы, уже обернутые в try catch blog, чтобы разобраться с ошибками вызовов прямо здесь. Здесь мы уже используем созданный нами выше файл http.ts для запуска axios с параметрами, в последующих постах мы будем развивать этот файл.</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">import http from './http';
+
+export default {
+  async get(url: string) {
+    try {
+      const response = await http.get(url);
+      return response;
+    } catch (err: any) {
+      return false;
+    }
+  },
+  async post(url: string, send: object) {
+    try {
+      const response = await http.post(url, send);
+      return response;
+    } catch (err: any) {
+      return false;
+    }
+  },
+  async put(url: string, send: object) {
+    try {
+      const response = await http.put(url, send);
+      return response;
+    } catch (err: any) {
+      return false;
+    }
+  },
+  async delete(url: string) {
+    try {
+      await http.delete(url);
+      return true;
+    } catch (err: any) {
+      return false;
+    }
+  },
+};
+</code></pre>
+<!-- /wp:code -->
+<p>В итоге мы получим следующую структуру папок.</p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--VjIueyxS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ic98la9owmmyhnzehcy5.png"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--VjIueyxS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ic98la9owmmyhnzehcy5.png" alt="Структура папок"></a></figure>
+<!-- /wp:image -->
+<p>Таким образом, мы сможем вызывать метод на наших компонентах.</p>
+<p><code>await services.post( ’/authenticate’, { email, password } );</code></p>
+<p>Но почему необходимо использовать именно такой подход?</p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a class="article-body-image-wrapper" href="https://i.giphy.com/media/CaiVJuZGvR8HK/giphy.gif"><img src="https://i.giphy.com/media/CaiVJuZGvR8HK/giphy.gif" alt="Почему стоит использовать"></a></figure>
+<!-- /wp:image -->
+<p>Когда мы работаем с общим сервисом и только импортируем его в наше приложение, его становится проще поддерживать и изменять в дальнейшем. Ниже показано, как мы можем это сделать.</p>
+<h2 class="wp-block-heading" id="добавьте-заголовки-ко-всем-запросам"><a name="2-add-headers-to-all-requests" href="#2-add-headers-to-all-requests"><br></a>Добавьте заголовки ко всем запросам</h2>
+<p>Теперь давайте настроим заголовки для всех наших запросов, нам понадобится этот пункт для передачи токена и другой информации, которая может понадобиться вашему бэкенду в качестве бизнес-правил.</p>
+<p>Давайте создадим для этого перехватчики axios, так как это лучший способ не повторять код. Смотрите пример ниже.</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">import Axios, { AxiosRequestConfig } from 'axios';
+
+const http = Axios.create({
+  baseURL: process.env.REACT_APP_URL,
+});
+
+http.interceptors.request.use((config: AxiosRequestConfig) => {
+  const token = window.localStorage.getItem('token');
+  if (!token) return config;
+  if (config?.headers) {
+    config.headers = { Authorization: `Bearer ${token}` };
+  }
+  return config;
+});
+
+export default http;
+</code></pre>
+<!-- /wp:code -->
+<p>Здесь мы уже извлекли токен localstorage и добавили его во все обращения к бэкенду.</p>
+<h2 class="wp-block-heading" id="перенаправление-неавторизованного-или-не-прошедшего-аутентификацию-пользователя">Перенаправление неавторизованного или не прошедшего аутентификацию пользователя</h2>
+<p>Мы должны иметь стратегии перенаправления пользователей, когда у пользователя нет авторизации или разрешения, чтобы у него не было необходимости делать это в наших компонентах.</p>
+<p>Для этого мы должны создать еще один перехватчик, который будет заниматься этим процессом.</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">import Axios, { AxiosRequestConfig } from 'axios';
+
+const http = Axios.create({
+  baseURL: process.env.REACT_APP_URL,
+});
+
+http.interceptors.request.use((config: AxiosRequestConfig) => {
+  const token = window.localStorage.getItem('token');
+  if (!token) return config;
+  if (config?.headers) {
+    config.headers = { Authorization: `Bearer ${token}` };
+  }
+  return config;
+});
+
+http.interceptors.response.use(
+  (value) => {
+    return Promise.resolve(value);
+  },
+  (error) => {
+    const { isAxiosError = false, response = null } = error;
+
+    if (isAxiosError &#x26;&#x26; response &#x26;&#x26; response.status === 401) {
+      // User redirection rule for login page
+      return Promise.reject(error);
+    }
+    if (isAxiosError &#x26;&#x26; response &#x26;&#x26; response.status === 403) {
+      // User redirection rule for disallowed page
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
+  }
+);
+
+export default http;
+</code></pre>
+<!-- /wp:code -->
+<p>Оставьте открытым место, куда вы хотите отправить пользователя для 401(Unauthenticated) и 403(Unauthorized). Таким образом, даже если пользователю удастся получить доступ к странице, на которую он не мог попасть, когда запрос от бэкенда вернется с кодом статуса, система уже направит его. Этот подход также работает для случаев, когда срок действия токена истекает, с чем мы разберемся позже.</p>
+<h2 class="wp-block-heading" id="шаблон-повторного-запроса"><a name="4-request-retry-pattern" href="#4-request-retry-pattern"><br></a><br>Шаблон повторного запроса</h2>
+<p>Теперь нам нужно применить шаблон повторных попыток к нашим запросам, чтобы наш конечный пользователь не страдал от нестабильности приложения, поскольку в момент вызова оно может находиться в процессе развертывания или автоматического масштабирования инфраструктуры. Для этого мы определяем количество попыток в случае, если система возвращает ошибку 500 или выше. Пример ниже.</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">import Axios, { AxiosRequestConfig } from 'axios';
+
+const http = Axios.create({
+  baseURL: process.env.REACT_APP_URL,
+});
+
+http.interceptors.request.use((config: AxiosRequestConfig) => {
+  const token = window.localStorage.getItem('token');
+  if (!token) return config;
+  if (config?.headers) {
+    config.headers = { Authorization: `Bearer ${token}` };
+  }
+  return config;
+});
+
+http.interceptors.response.use(
+  (value) => {
+    return Promise.resolve(value);
+  },
+  (error) => {
+    const { isAxiosError = false, response = null } = error;
+
+    if (isAxiosError &#x26;&#x26; response &#x26;&#x26; response.status === 401) {
+      // Regra de redirecionamento de usuário para página de login
+      return Promise.reject(error);
+    }
+    if (isAxiosError &#x26;&#x26; response &#x26;&#x26; response.status === 403) {
+      // Regra de redirecionamento de usuário para página de não permitido
+      return Promise.reject(error);
+    }
+    return Promise.reject(error);
+  }
+);
+
+let counter = 1;
+
+http.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (
+      error.response.status >= 500 &#x26;&#x26;
+      counter &#x3C; Number(process.env.REACT_APP_RETRY)
+    ) {
+      counter++;
+      return http.request(error.config);
+    }
+    counter = 1;
+    return Promise.reject(error);
+  }
+);
+
+export default http;
+</code></pre>
+<!-- /wp:code -->
+<p>Перехватчик был создан таким образом, что он имеет повторную попытку в соответствии с количеством, определенным в process.env.REACT_APP_RETRY раз, когда запрос имеет код состояния больше 500.</p>
+<h2 class="wp-block-heading" id="обновить-токен"><a name="5-refresh-token" href="#5-refresh-token"><br></a><br>Обновить токен</h2>
+<p>Когда мы работаем с аутентификацией, хорошей практикой и правилом безопасности является наличие токенов, срок действия которых истекает, чтобы пользователь не оставался залогиненным навсегда, даже не используя приложение.</p>
+<p>Однако мы должны решить проблему, что если срок действия токена истекает, когда пользователь не может просто попросить его войти снова, для этого у нас есть маршруты для обновления токена.</p>
+<p>Мы можем улучшить наш файл index.ts так, чтобы он делал это автоматически во время вызовов маршрутов вашего приложения.</p>
+<!-- wp:code {"lineNumbers":true} -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript line-numbers">import http from './http';
+
+async function refreshToken() {
+  const value = Number(localStorage.getItem('expired'));
+  if (value &#x26;&#x26; new Date(value) &#x3C; new Date()) {
+    const result = await http.get('/refresh');
+    localStorage.setItem('token', result.data.token);
+    localStorage.setItem(
+      'expired',
+      String(new Date().setSeconds(result.data.expired))
+    );
+  }
+}
+
+export default {
+  async get(url: string) {
+    try {
+      await refreshToken();
+      const response = await http.get(url);
+      return response;
+    } catch (err: any) {
+      return false;
+    }
+  },
+  async post(url: string, send: object) {
+    try {
+      await refreshToken();
+      const response = await http.post(url, send);
+      return response;
+    } catch (err: any) {
+      return false;
+    }
+  },
+  async put(url: string, send: object) {
+    try {
+      await refreshToken();
+      const response = await http.put(url, send);
+      return response;
+    } catch (err: any) {
+      return false;
+    }
+  },
+  async delete(url: string) {
+    try {
+      await refreshToken();
+      await http.delete(url);
+      return true;
+    } catch (err: any) {
+      return false;
+    }
+  },
+};
+</code></pre>
+<!-- /wp:code -->
+<p>Мы создали функцию refreshToken(), которая всегда будет вызываться перед всеми вызовами нашего приложения. Она будет проверять, не истек ли уже срок действия токена, и если да, то делать новый вызов бэкенда, обновляя токен и его срок действия. Помня, что эта логика работает в зависимости от бэкенда, а маршрут обновления, например, имеет ограничение по времени после перехода от истечения срока действия к обновлению токена, это будет скорее бизнес-правило.</p>
+<p>В этом посте мы рассмотрели пять способов улучшить нашу связь с бэкендом, принимая во внимание лучший опыт для конечного пользователя, существует множество других подходов, которые могут улучшить нашу службу обращений к бэкенду, но просто реализовав эти концепции, мы получим лучшее обслуживание и удобство использования нашей системы. В следующих статьях мы рассмотрим, как еще больше улучшить этот сервис.</p>
+<!-- wp:image {"linkDestination":"custom"} -->
+<figure class="wp-block-image"><a class="article-body-image-wrapper" href="https://i.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"><img src="https://i.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="Спасибо вам до следующего раза"></a></figure>
+<!-- /wp:image -->
+<p>Axios - <a href="https://axios-http.com/docs/intro" target="_blank" rel="noreferrer noopener nofollow"></a><a href="https://axios-http.com/docs/intro" rel="noopener noreferrer nofollow" target="_blank">https://axios-http.com/docs/intro</a><br>React - <a href="https://reactjs.org/" target="_blank" rel="noreferrer noopener nofollow"></a><a href="https://reactjs.org/" rel="noopener noreferrer nofollow" target="_blank">https://reactjs.org/</a></p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=5 советов по улучшению интеграции бэкенда, React с Axios&#38;url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios&#38;title=5 советов по улучшению интеграции бэкенда, React с Axios&#38;summary=Учебник&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/5-sovetov-po-uluchsheniyu-integraczii-bekenda-react-s-axios&#38;media=&#38;description=Учебник" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/5-sposobov-czentrirovaniya-diva" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> 5 способов центрирования дива </a> <a href="/blog/kohda-0-2-0-1-ne-sovsem-0-3-komedyinoe-rukovodstvo-po-makhynatsyiam-s-plavaiuschei-zapiatoi" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Когда 0,2 + 0,1 не совсем 0,3: комедийное руководство по махинациям с плавающей запятой </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

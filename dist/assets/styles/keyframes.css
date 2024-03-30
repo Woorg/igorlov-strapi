@@ -1,0 +1,69 @@
+/* используйте для скрытия нежелательных анимаций-скачков при поворотах экрана */
+@keyframes disableBreakpointAnimation {
+	0% {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	100% {
+		visibility: hidden;
+		opacity: 0;
+	}
+}
+
+@keyframes marquee {
+	0% {
+		transform: translate(0);
+	}
+
+	100% {
+		transform: translate(-100%);
+	}
+}
+
+@keyframes fly-in-left {
+	0% {
+		transform: translateX(-1000%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+@keyframes fly-in-right {
+	0% {
+		transform: translateX(1000%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(50px); /* Start position */
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0); /* Final position */
+	}
+}
+
+@keyframes fadeInTopRight {
+	0% {
+		/* opacity: 1; */
+		transform: translateX(-100%);
+	}
+
+	50% {
+		transform: translateX(200%);
+	}
+	100% {
+		/* opacity: 1; */
+		transform: translateX(0%);
+	}
+}

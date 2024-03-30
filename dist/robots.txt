@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/*
+Disallow: /blog/page/*
+Disallow: /portfolio/page/*
+Disallow: /projects/page/*
+Disallow: /*.php
+Disallow: /tags/*
+Disallow: /categories/*

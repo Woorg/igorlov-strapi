@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Переход с Django на Next.js: Что является эквивалентом для Django-Guardian? - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian"><meta name="description" content="Django – это популярный веб-фреймворк на основе Python. Это огромный так называемый “battery-included” фреймворк, охватывающий многие аспекты веб-разработки: аутентификацию, ORM, формы, панели администратора и т.д."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Переход с Django на Next.js: Что является эквивалентом для Django-Guardian? </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/nextjs" data-astro-cid-axzg2cw6> Next.js </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/python" data-astro-cid-axzg2cw6> Python </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/zenstack" data-astro-cid-axzg2cw6> ZenStack </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 26 мар., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Mar-26-2023.C3vd0v_Z_1v4Yuf.avif" type="image/avif"><source srcset="/_astro/undefined-Mar-26-2023.C3vd0v_Z_ZMkMhA.webp" type="image/webp"> <img src="/_astro/undefined-Mar-26-2023.C3vd0v_Z_ZxELBV.png" alt="Переход с Django на Next.js: Что является эквивалентом для Django-Guardian?" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Переход с Django на Next.js: Что является эквивалентом для Django-Guardian?&#38;url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian&#38;title=Переход с Django на Next.js: Что является эквивалентом для Django-Guardian?&#38;summary=Django – это популярный веб-фреймворк на основе Python. Это огромный так называемый “battery-included” фреймворк, охватывающий многие аспекты веб-разработки: аутентификацию, ORM, формы, панели администратора и т.д.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian&#38;media=&#38;description=Django – это популярный веб-фреймворк на основе Python. Это огромный так называемый “battery-included” фреймворк, охватывающий многие аспекты веб-разработки: аутентификацию, ORM, формы, панели администратора и т.д." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Django - это популярный веб-фреймворк на основе Python. Это огромный так называемый “battery-included” фреймворк, охватывающий многие аспекты веб-разработки: аутентификацию, ORM, формы, панели администратора и т.д. Это также фреймворк с сильным мнением, который предлагает шаблоны почти для всего, что вы делаете, что позволяет вам чувствовать себя хорошо управляемым во время разработки.</p>
+<p>Однако в последние несколько лет Django, как и большинство не-JS стеков, уступает свои позиции JS-фреймворкам, таким как Next.js, Remix, Nuxt и др.</p>
+<p>Переход от одного фреймворка к другому требует тщательного планирования и исполнения, особенно если вы одновременно меняете язык. Популярным и мощным Javascript/Typescript эквивалентным стеком для Django может быть следующая комбинация:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><a href="https://nextjs.org/" target="_blank" rel="noreferrer noopener nofollow">Next.js</a>: маршрутизация URL, SSR и создание страниц с помощью ReactJS (слой представления + шаблонов Django).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://next-auth.js.org/" target="_blank" rel="noreferrer noopener nofollow">NextAuth</a>: аутентификация (аутентификация Django)</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="https://prisma.io/" target="_blank" rel="noreferrer noopener nofollow">Prisma</a>: ORM + миграция баз данных (слой моделей Django).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Эти части очень хорошо сочетаются друг с другом и достаточны для замены большинства возможностей, которые предоставляет Django. Однако одного элемента не хватает. В Django есть встроенная функция разрешений, но она ограничена контролем на уровне модели, т.е. если пользователь или группа имеют доступ X к модели типа Y. Многие пользователи используют популярный пакет django-guardian для реализации разрешений на уровне строк. Он позволяет устанавливать разрешения между пользователями/группами и объектами, управляет базовыми таблицами базы данных разрешений и предоставляет API для настройки и проверки таких разрешений.</p>
+<p>К счастью, если вы решите использовать Prisma ORM в своем новом стеке, вы можете использовать ZenStack для достижения аналогичных функций с меньшими усилиями. ZenStack - это набор инструментов, созданный как расширение возможностей Prisma ORM, и одним из его основных направлений является контроль доступа. В этом посте мы кратко сравним, как django-guardian и ZenStack решают проблему разрешений на уровне строк, соответственно.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"6c2e2155-5c6f-46b8-a725-c875e5ba69ee","content":"Назначение разрешений","level":2,"link":"#назначение-разрешений","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"3c7b5e0d-0af6-4f5b-ba46-6c16b31adcdb","content":"Проверка разрешений","level":2,"link":"#проверка-разрешений","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"66f76b88-468a-44c9-b85c-dc47902dcdb0","content":"Подведение итогов","level":2,"link":"#подведение-итогов","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#назначение-разрешений">Назначение разрешений</a></li><li class=""><a href="#проверка-разрешений">Проверка разрешений</a></li><li class=""><a href="#подведение-итогов">Подведение итогов</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="назначение-разрешений">Назначение разрешений</h2>
+<p>Предположим, мы создаем сайт для ведения блогов и имеем модель Post. В Django уже есть встроенные модели User и Group и предопределенные CRUD разрешения для каждой модели. С помощью django-guardian вы можете использовать API assign_perm для назначения разрешений:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">from django.contrib.auth.models import User, Group
+from guardian.shortcuts import assign_perm
+
+# establishing permission between a user and a post
+user1 = User.objects.create(username='user1')
+post1 = Post.object.create(title='My Post', slug='post1')
+assign_perm('view_post', user1, post1)
+assign_perm('change_post', user1, post1)
+
+# establishing permission between a group and a post
+group1 = Group.objects.create(name='group1')
+user1.groups.add(group1)
+assign_perm('view_post', group1, post1)
+assign_perm('change_post', group1, post1)
+</code></pre>
+<!-- /wp:code -->
+<p>В отличие от Django, Next.js + Prisma + ZenStack является неориентированным фреймворком и не имеет встроенных моделей для User и Group. Вам необходимо явно смоделировать их с помощью схемы ZenStack:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">model User {
+  id Int @id @default(autoincrement())
+  username String
+  groups Group[]
+}
+
+model Group {
+  id Int @id @default(autoincrement())
+  name String
+  users User[]
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Схема не только моделирует типы данных и отношения, но и позволяет выразить в ней полномочия. Давайте посмотрим, как смоделировать разрешения пользователя и группы на пост:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">model User {
+  id Int @id @default(autoincrement())
+  username String
+  groups Group[]
+  posts Post[]
+}
+
+model Group {
+  id Int @id @default(autoincrement())
+  name String
+  users User[]
+  posts Post[]
+}
+
+model Post {
+  id Int @id @default(autoincrement())
+  title String
+  slug String @unique
+  groups Group[]
+  users User[]
+
+  // if the current user is in the user list of the post, update is allowed
+  @@allow('read,update', users?[id == auth().id])
+
+  // if the current user is in any group of the group list of the post, 
+  // update is allowed
+  @@allow('read,update', groups?[users?[id == auth().id]])
+
+  // ... other permissions
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Некоторые разъяснения:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Синтаксис @@allow добавляет метаданные контроля доступа к модели. Действие разрешено, если любое из правил @@allow имеет значение true.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>auth() представляет текущего пользователя для входа в систему. Вскоре вы увидите, как он подключается.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Синтаксис model?[expression] представляет собой предикат над отношением to-many. users?[id == auth().id] читается как "имеет ли любой элемент в коллекции users id, равный id текущего пользователя".</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Как вы можете видеть, подход к моделированию разрешений совершенно разный для django-guardian и ZenStack. Django-guardian использует императивный код для управления разрешениями в коде приложения, в то время как ZenStack предпочитает декларативный стиль в схеме данных. Кроме того, в django-guardian установка и проверка разрешений (показанные в следующем разделе) разделены, в то время как в ZenStack вы моделируете данные о разрешениях и правила в одном месте.</p>
+<h2 class="wp-block-heading" id="проверка-разрешений">Проверка разрешений</h2>
+<p>Как и в случае с назначением разрешений, в django-guardian проверка разрешений также выполняется явно в коде приложения, в основном одним из двух способов:</p>
+<p><strong>1. Используя императивный код</strong></p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">user1 = User.objects.get(username='user1')
+post1 = Post.objects.get(slug='post1')
+
+from guardian.core import ObjectPermissionChecker
+checker = ObjectPermissionChecker(user1)
+if checker.has_perm('change_post', post1):
+  # update logic here
+</code></pre>
+<!-- /wp:code -->
+<p><strong>2. Использование декораторов</strong></p>
+<p>Вы также можете использовать декораторы для включения автоматической проверки разрешений в представлениях:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">from guardian.decorators import permission_required_or_403
+
+@permission_required_or_403('change_post', (Post, 'slug', 'post_slug'))
+def edit_post(request, post_slug):
+  # update logic here
+</code></pre>
+<!-- /wp:code -->
+<p>Независимо от того, какой метод вы используете, вы должны обеспечить добавление проверки везде, где необходимо проверить разрешения.</p>
+<p>В ZenStack проверка разрешений намного проще, поскольку правила выражены на уровне ORM, поэтому они автоматически применяются при вызове уровня данных:</p>
+<p>Когда перечисляются посты, возвращаются только те, которые принадлежат текущему пользователю или его группе.<br>Когда пост обновляется, операция отклоняется, если пользователь не принадлежит к посту или какой-либо группе этого поста.</p>
+<p>Единственная необходимая настройка - создать клиентскую обертку Prisma с контролем доступа и текущим пользователем в качестве контекста:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// update-post.ts: function for updating a post
+import { prisma } from './db';
+import { getSessionUser } from './auth';
+
+export function updatePost(request: Request, slug: string, data: PostUpdateInput) {
+  const user = await getSessionUser(req);
+
+  // get an access-control enabled Prisma wrapper
+  // the "user" context value supports the `auth()` 
+  // function in the permission rules
+  const db = withPresets(prisma, { user });
+
+  // error will be thrown if the current user doesn't
+  // have permission
+    return db.post.update({ where: { slug }, data });
+}
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="подведение-итогов">Подведение итогов</h2>
+<p>Как видите, и django-guardian, и ZenStack решают проблемы с разрешениями на уровне строк, хотя и в совершенно разных парадигмах. Django-guardian полагается на императивный код, и ответственность за то, чтобы обеспечить надлежащую логику проверки там, где это необходимо, в большей степени лежит на разработчике.</p>
+<p>С другой стороны, ZenStack отдает предпочтение декларативному моделированию. Поскольку правила выражаются на уровне ORM, они автоматически применяются ко всему коду приложения, использующему уровень данных, что повышает согласованность и надежность.</p>
+<p>Будучи относительно новым инструментарием, ZenStack не лишен своих ограничений. Например, по сравнению с django-guardian, в нем отсутствуют две основные функции:</p>
+<p><strong>Пользовательские разрешения</strong></p>
+<p>ZenStack моделирует фиксированный набор разрешений: CRUD, в то время как django-guardian позволяет вам определять пользовательские разрешения. Хотя все разрешения в конечном итоге сводятся к CRUD, пользовательские разрешения могут выражать тонкий контроль разрешений на уровне полей. Это пока не поддерживается ZenStack.</p>
+<p><strong>API для явной проверки разрешений</strong></p>
+<p>Проверка разрешений в ZenStack внедрена в CRUD API ORM. Однако иногда бывает удобно явно проверить, есть ли у пользователя разрешение на определенный объект, и использовать его, например, для динамического отображения пользовательского интерфейса.</p>
+<p>Я надеюсь, что эта статья поможет вам на пути перехода вашего стека python в мир Javascript, и удачи вам в этом начинании!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Переход с Django на Next.js: Что является эквивалентом для Django-Guardian?&#38;url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian&#38;title=Переход с Django на Next.js: Что является эквивалентом для Django-Guardian?&#38;summary=Django – это популярный веб-фреймворк на основе Python. Это огромный так называемый “battery-included” фреймворк, охватывающий многие аспекты веб-разработки: аутентификацию, ORM, формы, панели администратора и т.д.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/perehod-s-django-na-next-js-chto-yavlyaetsya-ekvivalentom-dlya-django-guardian&#38;media=&#38;description=Django – это популярный веб-фреймворк на основе Python. Это огромный так называемый “battery-included” фреймворк, охватывающий многие аспекты веб-разработки: аутентификацию, ORM, формы, панели администратора и т.д." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/peremeshivayushhayasya-animacziya-tipografiki" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Перемешивающаяся анимация типографики </a> <a href="/blog/perehod-ot-razrabotki-k-devops" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Переход от разработки к DevOps </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

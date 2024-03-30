@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Раскрытие изображений с помощью анимации CSS-маски - Фул Фронт Дев</title><link rel="canonical" href="https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomosh%D1%8Cyu-animacii-css-maski"><meta name="description" content="Давайте поиграем с изображениями и поэкспериментируем с CSS-масками. Идея довольно проста: берем один тег и используем возможности CSS для выполнения сложных..."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-raskrytie-izobrazhenij-s-pomosh\44Cyu-animacii-css-maski; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Раскрытие изображений с помощью анимации CSS-маски </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/css" data-astro-cid-axzg2cw6> Css </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 12 окт., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/raskrytie-izobrazhenij-s-pomosh%D1%8Cyu-animacii-css-maski-Oct-12-2023.CJH8OSnZ_Z2n3aWL.avif" type="image/avif"><source srcset="/_astro/raskrytie-izobrazhenij-s-pomosh%D1%8Cyu-animacii-css-maski-Oct-12-2023.CJH8OSnZ_Zy1jE7.webp" type="image/webp"> <img src="/_astro/raskrytie-izobrazhenij-s-pomosh%D1%8Cyu-animacii-css-maski-Oct-12-2023.CJH8OSnZ_Z1D62l1.png" alt="Раскрытие изображений с помощью анимации CSS-маски" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Раскрытие изображений с помощью анимации CSS-маски&#38;url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski&#38;title=Раскрытие изображений с помощью анимации CSS-маски&#38;summary=Давайте поиграем с изображениями и поэкспериментируем с CSS-масками. Идея довольно проста: берем один тег и используем возможности CSS для выполнения сложных...&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski&#38;media=&#38;description=Давайте поиграем с изображениями и поэкспериментируем с CSS-масками. Идея довольно проста: берем один тег и используем возможности CSS для выполнения сложных..." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Давайте поиграем с изображениями и поэкспериментируем с CSS-масками. Идея довольно проста: берем один тег <img> и используем возможности CSS для выполнения сложных переходов при наведении. На примере различных демонстрационных примеров вы увидите, как CSS-маски в сочетании с градиентами позволяют создавать причудливые эффекты - с эффективным, многократно используемым кодом.</p>
+<p>В предыдущей статье мы рассмотрели причудливые эффекты наведения для изображений, включающие блеск, вращение и 3D-перспективы. Мы продолжим играть с изображениями, но на этот раз мы создадим анимацию, раскрывающую изображения при наведении. В частности, мы узнаем о масках CSS и о том, как их можно использовать для закрытия частей изображения, которые раскрываются при наведении курсора на изображение.</p>
+<p>Вот HTML, который мы будем использовать в нашей работе:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;img src="" alt="">
+</code></pre>
+<!-- /wp:code -->
+<p>Да, именно так, только один тег image. Задача, которую я люблю решать в каждом новом CSS-проекте, такова: Пусть CSS сделает всю работу без лишней разметки.</p>
+<p>В процессе работы вы можете заметить небольшие различия между кодом, который я привожу в статье, и тем, что используется в демонстрационных версиях. Код, приведенный в статье, отражает спецификацию CSS. Но поскольку поддержка браузерами некоторых используемых нами функций не совпадает, я включаю свойства с префиксом для более широкой поддержки.</p>
+<h2 class="wp-block-heading">Пример 1: Раскрытие окружности</h2>
+<p>В первом случае изображение помещается в квадратный контейнер, который при наведении стирается, открывая изображение.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/abQGGew","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/abQGGew
+</div></figure>
+<!-- /wp:embed -->
+<p>Посмотрите анимацию раскрытия Pen Hover с использованием маски, созданную Темани Афифом.</p>
+<p>Первым шагом для нас является создание контейнера изображения и градиентной границы вокруг него. Контейнер фактически представляет собой повторяющийся линейный градиентный фон, установленный в теге . Если мы добавим небольшую подложку к изображению, это позволит градиентному фону проявиться.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  padding: 10px;
+  background: repeating-linear-gradient(45deg, #FF6B6B 0 10px, #4ECDC4 0 20px);
+}
+</code></pre>
+<!-- /wp:code -->
+<p><img sizes="100vw" srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://files.smashing.media/articles/revealing-images-css-mask-animations/1-square-images-sstriped-gradient-borders.png 400w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://files.smashing.media/articles/revealing-images-css-mask-animations/1-square-images-sstriped-gradient-borders.png 800w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://files.smashing.media/articles/revealing-images-css-mask-animations/1-square-images-sstriped-gradient-borders.png 1200w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://files.smashing.media/articles/revealing-images-css-mask-animations/1-square-images-sstriped-gradient-borders.png 1600w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://files.smashing.media/articles/revealing-images-css-mask-animations/1-square-images-sstriped-gradient-borders.png 2000w" width="800" height="313" src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://files.smashing.media/articles/revealing-images-css-mask-animations/1-square-images-sstriped-gradient-borders.png" alt="Two square images with striped gradient borders">Два квадратных изображения с полосатыми градиентными границами. (Большой предварительный просмотр)</p>
+<p>Итак, у нас есть два изображения, каждое с градиентным фоном, который раскрывается с помощью наложения. Мы могли бы добавить в разметку</p>
+<p>Итак, у нас есть два изображения, каждое с градиентным фоном, который раскрывается с помощью наложения. Мы могли бы добавить в разметку <code>div</code> или, возможно, даже <code>figure</code> для создания настоящего контейнера, но это противоречит задаче позволить CSS выполнять всю работу.</p>
+<p>Хотя нам удалось обойтись без дополнительной разметки, теперь мы должны задать себе вопрос: Как скрыть изображение, не затрагивая градиентный фон? Нам нужно скрыть изображение, но продолжать показывать область вокруг него. На помощь приходят маски CSS.</p>
+<p>Применить маску к элементу несложно, но в данном контексте это немного сложнее. Хитрость” заключается в том, чтобы связать два слоя-маски вместе и более четко определить, где применяются маски:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  /* etc. */
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0) content-box;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь у нас есть две маски-”источника”:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>content-box: ограничивающая содержимое изображения, </li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>padding-box: охватывающая всю область изображения, включая область с накладками.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Нам нужны два слоя, потому что тогда мы сможем объединить их с помощью свойства CSS mask-composite. Существуют различные способы объединения слоев-масок с помощью mask-composite, один из которых заключается в ”исключении” области, где две маски накладываются друг на друга.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  /* etc. */
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0) content-box;
+  mask-composite: exclude;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>В результате будет виден только градиент (область с накладками), как показано ниже.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/wvQOJrZ","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/wvQOJrZ
+</div></figure>
+<!-- /wp:embed -->
+<p>См. обзор пера для исключения композиции Темани Афиф.</p>
+<p>Обратите внимание, что мы можем убрать из кода padding-box, поскольку по умолчанию градиент покрывает всю область, а это то, что нам нужно.</p>
+<p>Есть ли другие способы сделать это без маски-композита? Существует множество способов скрыть контент-бокс и показать только область с накладкой. Вот один из них, использующий в качестве маски конический градиент:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">mask:
+  conic-gradient(from 90deg at 10px 10px, #0000 25%, #000 0)
+  0 0 / calc(100% - 10px) calc(100% - 10px);
+  /* 10px is the value of padding */
+</code></pre>
+<!-- /wp:code -->
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/vYQPxWr" rel="noopener noreferrer nofollow" target="_blank">Border-only using conic-gradient</a> by Temani Afif.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/vYQPxWr","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/vYQPxWr
+</div><figcaption class="wp-element-caption">См. статью Pen Border-only using conic-gradient от Temani Afif.</figcaption></figure>
+<!-- /wp:embed -->
+<p>Есть, конечно, и другие, но, думаю, вы поняли суть. Выбор подхода зависит только от вас. Лично я считаю, что использование маски-композита наиболее оптимально, поскольку не требует заранее знать значение padding или изменять его в нескольких местах. Кроме того, это хорошая возможность попрактиковаться в использовании маски-композиции.</p>
+<p>Теперь заменим второй градиент (тот, что покрывает только область содержимого) на радиальный. Ведь для перехода при наведении мы хотим получить свайп по окружности.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  mask:
+    linear-gradient(#000 0 0),
+    radial-gradient(#000 70%,#0000 71%) content-box;
+  mask-composite: exclude;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/wvQOJmb" rel="noopener noreferrer nofollow" target="_blank">Adding the radial-gradient</a> by Temani Afif.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/wvQOJmb","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/wvQOJmb
+</div></figure>
+<!-- /wp:embed -->
+<p>Видите? Композит исключающей маски создает отверстие в изображении. Давайте поиграем с размером и положением этого выреза и посмотрим, что происходит. В частности, я уменьшу размер в два раза и расположу круг в центре изображения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">mask:
+  linear-gradient(#000 0 0),
+  radial-gradient(#000 70%,#0000 71%) content-box
+    center / 50% 50% no-repeat;
+  mask-composite: exclude;
+</code></pre>
+<!-- /wp:code -->
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/YzRgZvj" rel="noopener noreferrer nofollow" target="_blank">Updating the radial-gradient size and position</a> by Temani Afif.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/YzRgZvj","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/YzRgZvj
+</div></figure>
+<!-- /wp:embed -->
+<p>См. статью Обновление размера и положения радиального градиента от Temani Afif.</p>
+<p>Наверняка вы уже поняли, к чему все идет. Мы регулируем размер радиального градиента, чтобы либо скрыть изображение (увеличить), либо раскрыть его (уменьшить). Чтобы полностью скрыть изображение, нам нужно увеличить масштаб маски настолько, чтобы круг закрывал изображение. Это означает, что нам нужно что-то большее, чем 100%. Я провел скучные математические вычисления и пришел к выводу, что 141% - это точная величина, но при желании можно воспользоваться и круглым числом.</p>
+<p>Таким образом, мы получаем окончательный вариант CSS для эффекта:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  padding: 10px; /* control the thickness of the gradient "border" */
+  background: repeating-linear-gradient(45deg, #FF6B6B 0 10px, #4ECDC4 0 20px);
+  mask:
+    linear-gradient(#000 0 0),
+    radial-gradient(#000 70%, #0000 71%) content-box
+      50% / var(--_s, 150% 150%) no-repeat;
+  mask-composite: exclude;
+  transition: .5s;
+}
+img:hover {
+  --_s: 0% 0%;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Несколько мелких деталей:</p>
+<p>Мы начинаем с размера, равного 150% 150%, чтобы первоначально скрыть изображение. Я делаю дополнительный шаг, применяя размер в качестве CSS-переменной (—_s) с полным размером (150% 150%) в качестве запасного значения. Таким образом, все, что нам нужно сделать, это обновить переменную при наведении.Добавьте состояние наведения, которое уменьшает размер до нуля, чтобы изображение было полностью раскрыто.Примените небольшой переход на .5 с, чтобы сгладить эффект наведения.</p>
+<p>Вот еще раз финальная демонстрация:</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/abQGGew" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask</a> by Temani Afif.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/abQGGew","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/abQGGew
+</div></figure>
+<!-- /wp:embed -->
+<p>Посмотрите анимацию раскрытия Pen Hover с использованием маски, созданную Темани Афифом.</p>
+<p>Мы только что создали красивую анимацию раскрытия с помощью всего нескольких строк CSS - и никакой дополнительной разметки! Нам даже не пришлось прибегать к псевдоэлементам. И это всего лишь один из способов настройки. Например, мы можем изменить положение маски, чтобы создать изящную вариацию этого эффекта:</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/dyQrvEq" rel="noopener noreferrer nofollow" target="_blank">Another variation of the circular reveal animation</a> by Temani Afif.</p>
+<!-- wp:embed {"url":"https://codepen.io/smashingmag/pen/dyQrvEq","type":"wp-embed","providerNameSlug":"codepen"} -->
+<figure class="wp-block-embed is-type-wp-embed is-provider-codepen wp-block-embed-codepen"><div class="wp-block-embed__wrapper">
+https://codepen.io/smashingmag/pen/dyQrvEq
+</div></figure>
+<!-- /wp:embed -->
+<p>Еще одна вариация анимации кругового раскрытия, созданная Темани Афифом.</p>
+<p>Я большой поклонник того, чтобы выложить идею и продвигать ее дальше с помощью экспериментов. Запустите демо-версию и сообщите мне, какие интересные вещи вы можете из нее сделать!</p>
+<img width="257" height="355" class="feature-panel-image-img" src="/images/smashing-cat/cat-scubadiving-panel.svg" alt="Feature Panel">
+<h2 class="wp-block-heading">Пример 2: Раскрытие диагонали</h2>
+<p>Давайте усложним задачу и попробуем создать эффект наведения, для которого потребуется не два, а три градиента.</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/qBQKMKa" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask II</a> by Temani Afif.</p>
+<p>Анимация раскрытия при наведении с использованием маски II</p>
+<p>Не стоит пока рассматривать код. Давайте попробуем создать его шаг за шагом, начав с более простого эффекта, который повторяет ту же схему, что мы создали в первом примере. Разница заключается в том, что мы заменяем радиальный градиент на линейный:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  padding: 10px; /* control the thickness of the gradient "border" */
+  background: repeating-linear-gradient(45deg, #FF6B6B 0 10px, #4ECDC4 0 20px);
+  mask:
+    linear-gradient(#000 0 0),
+    linear-gradient(135deg, #000 50%, #0000 0) content-box 
+      0% 0% / 200% 200% no-repeat;
+  mask-composite: exclude;
+  transition: .5s;
+}
+img:hover {
+  mask-position: 100% 100%;
+    }
+</code></pre>
+<!-- /wp:code -->
+<p>Вы заметите, что еще одно небольшое отличие этого CSS от первого примера заключается в том, что размер маски равен 200% 200%. Кроме того, на этот раз при наведении обновляется положение маски, а не ее размер: от 0% 0% (слева вверху) до 100% 100% (справа внизу), чтобы создать эффект пролистывания.</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/OJaqmWV" rel="noopener noreferrer nofollow" target="_blank">Diagonal reveal animation using mask</a> by Temani Afif.</p>
+<p>Анимация раскрытия диагонали с использованием маски</p>
+<p>Мы можем изменить направление пролистывания, просто изменив угол линейного градиента со 135 на -45 градусов, а затем обновив позицию на 0% 0% при наведении вместо 100% 100%:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  padding: 10px; /* control the thickness of the gradient "border" */
+  background: repeating-linear-gradient(45deg, #FF6B6B 0 10px, #4ECDC4 0 20px);
+  mask:
+    linear-gradient(#000 0 0),
+    linear-gradient(-45deg, #000 50%, #0000 0) content-box 
+      100% 100% / 200% 200% no-repeat;
+  mask-composite: exclude;
+  transition: .5s;
+}
+img:hover {
+  mask-position: 0% 0%;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/ZEmPaYM" rel="noopener noreferrer nofollow" target="_blank">Diagonal reveal animation using mask</a> by Temani Afif.</p>
+<p>Анимация диагонального раскрытия с использованием маски</p>
+<p>Еще один момент: я задал только одно значение позиции маски при наведении, но у нас два градиента. Если вам интересно, как это работает, то положение маски применяется к первому градиенту, но поскольку градиент занимает всю область, к которой он применяется, его нельзя перемещать с помощью процентных значений. Это означает, что мы можем спокойно задать только одно значение для обоих градиентов, и оно будет влиять только на второй градиент. Более подробно я объясняю эту идею в ответе на Stack Overflow. В ответе рассматривается положение фона, но та же логика применима и к положению маски.</p>
+<p>Далее я хотел бы попробовать объединить два последних созданных нами эффекта. Посмотрите демонстрационный пример, приведенный ниже, чтобы понять, как я хочу, чтобы эта комбинация работала:</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/OJaqOym" rel="noopener noreferrer nofollow" target="_blank">Combination of two diagonal reveal</a> by Temani Afif.</p>
+<p>Комбинация двух диагональных раскрытий</p>
+<p>На этот раз оба градиента начинаются в центре (50% 50%). Первый градиент скрывает левую верхнюю часть изображения, а второй - правую нижнюю. При наведении курсора оба градиента сдвигаются в противоположном направлении, открывая полное изображение.</p>
+<p>Если вы похожи на меня, то наверняка подумали: Сложить все градиенты вместе, и готово. Да, это наиболее интуитивное решение, и выглядеть оно будет следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  padding: 10px; /* control the thickness of the gradient "border" */
+  background: repeating-linear-gradient(45deg, #FF6B6B 0 10px, #4ECDC4 0 20px);
+  mask:
+    linear-gradient(#000 0 0),
+    linear-gradient(135deg, #000 50%, #0000 0) content-box 
+      50% 50% / 200% 200% no-repeat,
+    linear-gradient(-45deg, #000 50%, #0000 0) content-box 
+      50% 50 / 200% 200% no-repeat;
+  mask-composite: exclude;
+  transition: .5s;
+  cursor: pointer;
+}
+img:hover {
+  mask-position: 0% 0%, 100% 100%;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/qBQvVPd" rel="noopener noreferrer nofollow" target="_blank">Combining both effects</a> by Temani Afif.</p>
+<p>Сочетание обоих эффектов</p>
+<p>Этот подход вроде бы работает, но у нас есть небольшой визуальный глюк. Обратите внимание, что из-за природы градиентов и проблем со сглаживанием видна странная диагональная линия. Мы можем попытаться исправить это, немного увеличив процентное соотношение до 50,5% вместо 50%:</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/ZEmPaXP" rel="noopener noreferrer nofollow" target="_blank">Trying to fix the anti-aliasing issue</a> by Temani Afif.</p>
+<p>Попытка исправить проблему сглаживания</p>
+<p>Это еще хуже. Вероятно, вы задаетесь вопросом, не следует ли мне уменьшить процент, а не увеличить его. Попробуйте, и произойдет то же самое.</p>
+<p>Исправление заключается в обновлении свойства mask-composite. Если вы помните, мы уже используем значение exclude. Вместо того чтобы объявлять только значение exclude, нам нужно также применить значение add, чтобы нижние слои (сметающие градиенты) не исключались друг из друга, а складывались:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img {
+  mask:
+    /* 1st layer */
+    linear-gradient(#000 0 0),
+
+    /* 2nd layer */
+    linear-gradient(135deg, #000 50.5%, #0000 0) content-box 
+      50% 50% / 200% 200% no-repeat,
+
+    /* 3rd layer */
+    linear-gradient(-45deg, #000 50.5%, #0000 0) content-box 
+      50% 50% / 200% 200% no-repeat;
+
+  mask-composite: exclude, add;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь во втором и третьем слоях с помощью композиции add будет создан промежуточный слой, который будет исключен из первого. Другими словами, мы должны исключить все слои из первого.</p>
+<p>Я знаю, что маска-композиция - это сложная концепция. Я настоятельно рекомендую вам прочитать краткий курс Аны Тюдор по композиции масок, чтобы получить более глубокое и подробное объяснение того, как свойство ”маска-композиция” работает с несколькими слоями.</p>
+<p>Это исправляет проблему с линией в нашем эффекте наведения:</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/zYMbPLY" rel="noopener noreferrer nofollow" target="_blank">Diagonal reveal animation using mask</a> by Temani Afif.</p>
+<p>Анимация раскрытия диагонали с использованием маски</p>
+<p>Еще одна небольшая деталь, которую вы могли заметить: в коде мы определили три градиента, но только два значения mask-position для состояния hover:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img:hover {
+  mask-position: 0% 0%, 100% 100%;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Первое значение (0% 0%) применяется к первому градиентному слою; он не будет перемещаться, как раньше. Второе значение (100% 100%) применяется ко второму градиентному слою. При этом третий градиентный слой использует первое значение! Если в параметре mask-position объявлено меньше значений, чем количество слоев маски, то серия значений, разделенных запятыми, повторяется до тех пор, пока не будут учтены все слои маски.</p>
+<p>В данном случае серия повторяется по кругу до первого значения (0% 0%), чтобы третий слой маски принял значение. Таким образом, в действительности приведенный выше код является более кратким эквивалентом написания этого:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">img:hover {
+  mask-position: 0% 0%, 100% 100%, 0% 0%;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Вот окончательный вариант демонстрации с обоими вариантами. Видно, что во втором примере используется тот же код с небольшими изменениями.</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/qBQKMKa" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask II</a> by Temani Afif.</p>
+<p>See the Pen Анимация раскрытия при наведении с использованием маски II by Temani Afif.</p>
+<h2 class="wp-block-heading">Пример 3: Зигзагообразное раскрытие</h2>
+<p>У меня есть еще один пример, на этот раз раскрывающий изображение с зигзагообразными краями, раздвигающимися, как бы вгрызающимися в изображение зубами.</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/vYQaLaZ" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask III</a> by Temani Afif.</p>
+<p>Анимация раскрытия при наведении с использованием маски III</p>
+<p>Хотя этот эффект может показаться более сложным, чем два предыдущих, в нем используется все тот же базовый CSS-шаблон, который мы применяли все это время. На самом деле, я даже не буду углубляться в код, поскольку хочу, чтобы вы сами проанализировали его, используя то, что вы теперь знаете об использовании градиентов CSS в качестве масок и комбинировании слоев-масок с помощью mask-composite.</p>
+<p>Я не дам вам ответа на этот вопрос, но поделюсь статьей, в которой показано, как я создал зигзагообразную форму. И поскольку я чувствую себя щедрым, то в качестве еще одного ресурса приведу ссылку на этот онлайновый генератор границ.</p>
+<h2 class="wp-block-heading">Подведение итогов</h2>
+<p>Надеюсь, вам понравился этот небольшой эксперимент с CSS-масками и градиентами! Градиенты могут быть запутанными, но смешение их с масками - это не что иное, как сложность. Однако, потратив время на рассмотрение трех примеров по частям, мы можем ясно увидеть, как градиенты могут использоваться в качестве масок, а также как их можно комбинировать для ”рисования” видимых областей.</p>
+<p>Как только мы получили представление о том, как это работает, поражает тот факт, что для получения эффекта нам достаточно обновить положение или размер маски в зависимости от состояния наведения элемента. И тот факт, что все это можно сделать с помощью одного HTML-элемента, показывает, насколько мощным средством является CSS.</p>
+<p>Мы увидели, как один и тот же общий CSS-шаблон может быть настроен для создания бесчисленных вариаций одного и того же эффекта. В завершение статьи я решил привести еще несколько примеров, с которыми вы можете поиграть.</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/PoxLMOy" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask IV</a> by Temani Afif.</p>
+<p>Анимация раскрытия при наведении с использованием маски IV</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/jOQJgxN" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask V</a> by Temani Afif.</p>
+<p>Анимация раскрытия при наведении с использованием маски V</p>
+<p>See the Pen <a href="https://codepen.io/smashingmag/pen/gOQEVdQ" rel="noopener noreferrer nofollow" target="_blank">Hover reveal animation using mask VI</a> by Temani Afif.</p>
+<p>Анимация раскрытия при наведении с использованием маски VI</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Раскрытие изображений с помощью анимации CSS-маски&#38;url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski&#38;title=Раскрытие изображений с помощью анимации CSS-маски&#38;summary=Давайте поиграем с изображениями и поэкспериментируем с CSS-масками. Идея довольно проста: берем один тег и используем возможности CSS для выполнения сложных...&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/raskrytie-izobrazhenij-s-pomoshьyu-animacii-css-maski&#38;media=&#38;description=Давайте поиграем с изображениями и поэкспериментируем с CSS-масками. Идея довольно проста: берем один тег и используем возможности CSS для выполнения сложных..." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/ii-v-testirovanii-po-revolyuciya-v-obespechenii-kachestva" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> ИИ в тестировании ПО: Революция в обеспечении качества </a> <a href="/blog/raskrojte-moshь-javascript-weakset" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Раскройте мощь JavaScript WeakSet! </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

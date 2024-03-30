@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Next.js против React? Это партнерство, а не конкуренция - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya"><meta name="description" content="Современные веб-разработчики не испытывают недостатка в библиотеках и фреймворках JavaScript. Одной из самых распространенных библиотек является React, которая была создана Facebook (теперь Meta) для создания многофункциональных приложений."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Next.js против React? Это партнерство, а не конкуренция </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/nextjs" data-astro-cid-axzg2cw6> Next.js </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/react" data-astro-cid-axzg2cw6> React </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 26 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Feb-26-2023.DJvCah9V_ZRi0lh.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-26-2023.DJvCah9V_1TtlFO.webp" type="image/webp"> <img src="/_astro/undefined-Feb-26-2023.DJvCah9V_299mlt.png" alt="Next.js против React? Это партнерство, а не конкуренция" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Next.js против React? Это партнерство, а не конкуренция&#38;url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya&#38;title=Next.js против React? Это партнерство, а не конкуренция&#38;summary=Современные веб-разработчики не испытывают недостатка в библиотеках и фреймворках JavaScript. Одной из самых распространенных библиотек является React, которая была создана Facebook (теперь Meta) для создания многофункциональных приложений.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya&#38;media=&#38;description=Современные веб-разработчики не испытывают недостатка в библиотеках и фреймворках JavaScript. Одной из самых распространенных библиотек является React, которая была создана Facebook (теперь Meta) для создания многофункциональных приложений." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Современные веб-разработчики не испытывают недостатка в библиотеках и фреймворках JavaScript. Одной из самых распространенных библиотек является React, которая была создана Facebook (теперь Meta) для создания многофункциональных приложений. Приложения React традиционно запускаются в веб-браузерах, но фреймворк Next.js расширяет функциональность React на серверную сторону с помощью среды выполнения JavaScript Node.js.</p>
+<p>В этой статье мы рассмотрим Next.js и React, чтобы вы могли решить, подходят ли они для вашего следующего проекта.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"7939d540-c379-45c8-b104-699cf69de507","content":"Next.js и React: JavaScript на новом уровне","level":2,"link":"#next-js-и-react-java-script-на-новом-уровне","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"3819db14-92db-4f94-b552-28e3dc74ed15","content":"Что такое Next.js?","level":2,"link":"#что-такое-next-js","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"03db8093-98c5-4db8-b34b-8336c3f25e54","content":"Что такое React?","level":2,"link":"#что-такое-react","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"42a8c494-3891-4ba3-8c6d-09d85760ab69","content":"Next.js против React","level":2,"link":"#next-js-против-react","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"5a398765-0421-4b9a-9a47-f774ed35b0e7","content":"Простота использования","level":3,"link":"#простота-использования","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"5abba8c3-53e1-4f5c-844e-9035ffc0bc38","content":"Особенности Next.js и React","level":2,"link":"#особенности-next-js-и-react","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"a4d18821-eb9a-4c28-ad83-12a3b7ce6a4b","content":"Выборка данных","level":3,"link":"#выборка-данных","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"24415566-a00e-444a-9710-7fa82b316554","content":"Расщепление кода","level":3,"link":"#расщепление-кода","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"ddb7d522-e435-4825-9333-73dfb5f88c0b","content":"Поддержка API в Next.js по сравнению с React","level":3,"link":"#поддержка-api-в-next-js-по-сравнению-с-react","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"7ade6890-5311-4c02-af48-d465db94f85e","content":"Производительность","level":3,"link":"#производительность","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"9999d6de-aec3-4c01-a612-7760d87f5cc1","content":"Поддержка","level":3,"link":"#поддержка","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"4ba35182-a8e1-4ab5-b089-5fc887c6e118","content":"Резюме","level":2,"link":"#резюме","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#next-js-и-react-java-script-на-новом-уровне">Next.js и React: JavaScript на новом уровне</a></li><li class=""><a href="#что-такое-next-js">Что такое Next.js?</a></li><li class=""><a href="#что-такое-react">Что такое React?</a></li><li class=""><a href="#next-js-против-react">Next.js против React</a><ul><li class=""><a href="#простота-использования">Простота использования</a></li></ul></li><li class=""><a href="#особенности-next-js-и-react">Особенности Next.js и React</a><ul><li class=""><a href="#выборка-данных">Выборка данных</a></li><li class=""><a href="#расщепление-кода">Расщепление кода</a></li><li class=""><a href="#поддержка-api-в-next-js-по-сравнению-с-react">Поддержка API в Next.js по сравнению с React</a></li><li class=""><a href="#производительность">Производительность</a></li><li class=""><a href="#поддержка">Поддержка</a></li></ul></li><li class=""><a href="#резюме">Резюме</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="next-js-и-react-java-script-на-новом-уровне">Next.js и React: JavaScript на новом уровне</h2>
+<p>Исследование SlashData, проведенное в 2022 году, показало, что в мире насчитывается более 17 миллионов программистов на JavaScript, возглавляя группу, в которую входят такие популярные языки, как Python и Java. JavaScript может использоваться как на стороне клиента, так и на стороне сервера, и эта универсальность означает, что разработчики могут создавать полноценные приложения, используя один язык программирования.</p>
+<p><img width="960" height="908" src="https://kinsta.com/wp-content/uploads/2023/01/programming-language-community-sizes-worldwide-2022.png" alt=" Chart showing the number of programmers using various languages suggests many are wondering about Next.js vs React.">Исследование Slash/Data о языках, используемых программистами в 2022 году. (Источник: Statista)</p>
+<p>Появление библиотек JavaScript, таких как React, и фреймворков, таких как Next.js, еще больше усилило это развитие. Эти библиотеки и фреймворки предоставляют возможности, которые упрощают интеграцию фронтенда и бэкенда. Кроме того, разработчики могут расширить возможности JavaScript с помощью менеджеров пакетов, таких как npm (менеджер пакетов Node.js), для установки библиотек и инструментов JavaScript. Эти ресурсы предоставляют сложные функции, которые сокращают объем кода, который приходится писать самостоятельно.</p>
+<p>Расширяемость JavaScript означает, что всестороннее знание его наиболее распространенных инструментов является залогом вашего успеха как веб-разработчика.</p>
+<h2 class="wp-block-heading" id="что-такое-next-js">Что такое Next.js?</h2>
+<p>Изначально выпущенный в 2016 году компанией Vercel, Next.js - это фреймворк React с открытым исходным кодом, который предоставляет строительные блоки для создания высокопроизводительных веб-приложений. С тех пор на него перешли крупнейшие компании, включая Twitch, TikTok, Uber и другие.</p>
+<p>Next.js предлагает один из лучших опытов для разработчиков, позволяющий создавать быстрые, SEO-дружественные приложения. Ниже перечислены некоторые особенности Next.js, которые делают его исключительным производственным фреймворком:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Возможность гибридного рендеринга</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Автоматическое разделение кода</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Оптимизация изображений</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Встроенная поддержка препроцессоров CSS и библиотек CSS-in-JS</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Встроенная маршрутизация</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Эти возможности помогают разработчикам Next.js сэкономить значительное время на настройке и инструментарии. Вы можете сразу перейти к созданию приложения, которое может поддерживать такие проекты, как следующие:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Магазины электронной коммерции</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Блоги</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Приборные панели</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Одностраничные приложения</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Взаимодействующие пользовательские интерфейсы</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Статические веб-сайты</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<h2 class="wp-block-heading" id="что-такое-react">Что такое React?</h2>
+<p>React - это библиотека JavaScript, используемая для создания динамических пользовательских интерфейсов. Помимо создания веб-интерфейсов, вы можете создавать мобильные приложения с помощью React Native.</p>
+<p>Некоторые преимущества использования React включают:</p>
+<p><strong>Улучшенная производительность</strong>: Вместо обновления каждого компонента в DOM, React использует виртуальный DOM для обновления только измененных компонентов.<br><strong>Сильно ориентирован на компоненты:</strong> Однажды создав компонент, вы можете использовать его многократно.<br><strong>Простая отладка:</strong> Приложения React используют однонаправленный поток данных - только от родительских компонентов к дочерним.</p>
+<h2 class="wp-block-heading" id="next-js-против-react">Next.js против React</h2>
+<p>Хотя разработчики часто используют Next.js и React для одной и той же цели, между ними есть некоторые фундаментальные различия.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="простота-использования">Простота использования</h3>
+<p>Начать работу с Next.js и React очень просто. Каждый из них требует выполнения отдельных команд в терминале с помощью npx, который является частью npm для Node.js.</p>
+<p>Для Next.js самой простой командой является:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npx create-next-app</code></pre>
+<!-- /wp:code -->
+<p>При отсутствии дополнительных аргументов для create-next-app установка будет проходить в интерактивном режиме. Вам будет предложено ввести имя проекта (которое будет использоваться для каталога проекта), а также указать, хотите ли вы включить поддержку TypeScript и линтера кода ESLint.</p>
+<p>Это будет выглядеть примерно так:</p>
+<p><img width="1040" height="467" src="https://kinsta.com/wp-content/uploads/2023/01/using-npx-to-create-next-app.png" alt="Screenshot of a Next.js application being created with npx.">Создание приложения Next.js в интерактивном режиме.</p>
+<p>При инициализации экземпляра React простейшая команда включает имя каталога проекта:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npx create-react-app new-app</code></pre>
+<!-- /wp:code -->
+<p>В результате создается папка, содержащая все необходимые начальные конфигурации и зависимости:</p>
+<p><img width="1040" height="756" src="https://kinsta.com/wp-content/uploads/2023/01/using-npx-to-create-react-app.png" alt="Screenshot of a React project being created with npx.">Создание проекта React в командной строке терминала.</p>
+<p>Хотя оба варианта позволяют легко начать, помните, что Next.js построен поверх React. Поэтому вы не сможете освоить Next.js, не изучив сначала React и не поняв, как он работает. К счастью, React может похвастаться легкой кривой обучения и отлично подходит для новичков.</p>
+<p>Важно также отметить, что React относительно неструктурирован. Вы должны установить и настроить маршрутизатор React и решить, как обрабатывать получение данных, оптимизацию изображений и разделение кода. Эта настройка требует установки и конфигурирования дополнительных библиотек и инструментов.</p>
+<p>В отличие от этого, Next.js поставляется с предустановленными и предварительно настроенными инструментами. В Next.js любой файл, добавленный в папку pages, автоматически становится маршрутом. Благодаря этой встроенной поддержке, с Next.js легче работать ежедневно, что позволяет сразу же приступить к кодированию логики вашего приложения.</p>
+<h2 class="wp-block-heading" id="особенности-next-js-и-react">Особенности Next.js и React</h2>
+<p>Поскольку Next.js основан на React, у них есть общие черты. Однако Next.js идет дальше и включает в себя дополнительные возможности, такие как маршрутизация, разделение кода, предварительный рендеринг и поддержка API прямо из коробки. Эти функции вам придется настраивать самостоятельно при использовании React.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="выборка-данных">Выборка данных</h3>
+<p>React рендерит данные на стороне клиента. Сервер отправляет статические файлы в браузер, а затем браузер получает данные из API для наполнения приложения. Этот процесс снижает производительность приложения и обеспечивает плохой пользовательский опыт, поскольку приложение загружается медленно. Next.js решает эту проблему с помощью предварительного рендеринга.</p>
+<p>При предварительном рендеринге сервер выполняет необходимые вызовы API и извлекает данные перед отправкой приложения браузеру. Таким образом, браузер получает готовые к рендерингу веб-страницы.</p>
+<p>Предварительный рендеринг может относиться к статической генерации сайта (SSG) или рендерингу на стороне сервера (SSR). В SSG HTML-страницы генерируются во время сборки и повторно используются для нескольких запросов. Next.js может генерировать HTML-страницы с данными или без них.</p>
+<p>Ниже приведен пример того, как Next.js генерирует страницы без данных:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">function App() {
+  return &#x3C;div>Welcome&#x3C;/div>
+}
+export default App</code></pre>
+<!-- /wp:code -->
+<p>Для статических страниц, потребляющих внешние данные, используйте функцию getStaticProps(). После экспорта getStaticProps() из страницы Next.js будет предварительно рендерить страницу, используя возвращаемые реквизиты. Эта функция всегда выполняется на сервере, поэтому используйте getStaticProps(), когда данные, которые использует страница, доступны во время сборки. Например, вы можете использовать ее для получения записей блога из CMS.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const Posts= ({ posts }) => {
+    return (
+        &#x3C;div className={styles.container}>
+            {posts.map((post, index) => (
+                // render each post
+            ))}
+        &#x3C;/div>
+    );
+  };
+
+export const getStaticProps = async () => {
+    const posts = getAllPosts();
+    return {
+        props: { posts },
+    };
+};</code></pre>
+<!-- /wp:code -->
+<p>В ситуациях, когда пути страницы зависят от внешних данных, используйте функцию getStaticPaths(). Так, чтобы создать путь на основе ID поста, экспортируйте функцию getStaticPaths() из страницы.</p>
+<p>Например, вы можете экспортировать getStaticPaths() из pages/posts/[id].js, как показано ниже.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export getStaticPaths = async()  => {
+  // Get all the posts
+  const posts = await getAllPosts()
+
+  // Get the paths you want to pre-render based on posts
+  const paths = posts.map((post) => ({
+    params: { id: post.id },
+  }))
+  return { paths, fallback: false }
+}</code></pre>
+<!-- /wp:code -->
+<p><code>getStaticPaths() часто используется в паре с getStaticProps(). В этом примере вы используете getStaticProps() для получения подробной информации об идентификаторе в пути.</code></p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const getStaticProps = async ({ params }) => {
+    const post = await getSinglePost(params.id);
+    return {
+        props: { post }
+    };
+};</code></pre>
+<!-- /wp:code -->
+<p>В SSR данные извлекаются в запрошенное время и отправляются в браузер. Чтобы использовать SSR, экспортируйте функцию реквизита getServerSide() из страницы, которую вы хотите отобразить. Сервер вызывает эту функцию при каждом запросе, что делает SSR полезным для страниц, потребляющих динамические данные.</p>
+<p>Например, вы можете использовать ее для получения данных из новостного API.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const News = ({ data }) => {
+    return (
+        // render data
+    );
+  };
+
+export async function getServerSideProps() {
+    const res = await fetch(`https://app-url/data`)
+    const data = await res.json()
+    return { props: { data } }
+}</code></pre>
+<!-- /wp:code -->
+<p>Данные извлекаются при каждом запросе и передаются компоненту News через props.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="расщепление-кода">Расщепление кода</h3>
+<p>Расщепление кода - это разделение кода на фрагменты, которые браузер может загружать по требованию. Это уменьшает количество кода, отправляемого в браузер при первоначальной загрузке, поскольку сервер отправляет только то, что нужно пользователю. Такие бандлеры, как Webpack, Rollup и Browserify, поддерживают разделение кода в React.</p>
+<p>Next.js поддерживает разделение кода из коробки.</p>
+<p>В Next.js каждая страница разделяется по коду, и добавление страниц в приложение не увеличивает размер бандла. Next.js также поддерживает динамический импорт, что позволяет импортировать модули JavaScript и загружать их динамически во время выполнения. Динамический импорт способствует более высокой скорости работы страниц, поскольку пакеты загружаются в ленивом режиме.</p>
+<p>Например, в приведенном ниже компоненте Home сервер не будет включать компонент hero в начальный пакет.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const DynamicHero = dynamic(() => import('../components/Hero'), {
+  suspense: true,
+})
+
+export default function Home() {
+  return (
+    &#x3C;Suspense fallback={`Loading...`}>
+      &#x3C;DynamicHero />
+    &#x3C;/Suspense>
+  )
+}</code></pre>
+<!-- /wp:code -->
+<p>Вместо этого перед загрузкой компонента героя будет отрисован fallback-элемент suspense.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="поддержка-api-в-next-js-по-сравнению-с-react">Поддержка API в Next.js по сравнению с React</h3>
+<p>Функция маршрутизации API в Next.js позволяет вам писать код бэкенда и фронтенда в одной кодовой базе. Любая страница, сохраненная в папке /pages/api/, привязывается к маршруту /api/*, и Next.js рассматривает ее как конечную точку API.</p>
+<p>Например, вы можете создать API-маршрут pages/api/user.js, который возвращает имя текущего пользователя следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export default function user(req, res) {
+    res.status(200).json({ username: 'Jane' });
+}</code></pre>
+<!-- /wp:code -->
+<p>Если вы посетите URL <a href="https://app-url/api/user" rel="noopener noreferrer nofollow" target="_blank">https://app-url/api/user</a>, вы увидите объект имени пользователя.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">{
+        username: 'Jane'
+}</code></pre>
+<!-- /wp:code -->
+<p>Маршруты API полезны, когда вы хотите скрыть URL службы, к которой вы обращаетесь, или хотите сохранить переменные среды в тайне без кодирования всего внутреннего приложения.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="производительность">Производительность</h3>
+<p>Next.js, несомненно, лучше в своей способности создавать более производительные приложения с упрощенным процессом. Приложения SSR и SSG Next.js работают лучше, чем приложения React с рендерингом на стороне клиента (CSR). Получая данные на сервере и отправляя браузеру все необходимое для рендеринга, Next.js устраняет необходимость в запросе на получение данных для API. Это означает более быстрое время загрузки.</p>
+<p>Кроме того, поскольку Next.js поддерживает маршрутизацию на стороне клиента. Браузеру не нужно получать данные с сервера каждый раз, когда пользователь переходит на другой маршрут. Кроме того, компонент изображений Next.js обеспечивает автоматическую оптимизацию изображений. Изображения загружаются только тогда, когда они попадают в область просмотра. Там, где это возможно, Next.js также предоставляет изображения в современных форматах, таких как WebP.</p>
+<p>Next.js также обеспечивает оптимизацию шрифтов, интеллектуальную предварительную выборку маршрутов и оптимизацию комплектации. Эти оптимизации не доступны автоматически в React.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="поддержка">Поддержка</h3>
+<p>Поскольку React существует дольше, чем Next.js, у него более обширное сообщество. Однако многие разработчики React переходят на Next.js, поэтому сообщество постоянно растет. Разработчикам легче найти существующие решения проблем, с которыми они сталкиваются, вместо того, чтобы создавать решения с нуля.</p>
+<p>Next.js также имеет отличную документацию с исчерпывающими примерами, которые легко понять. Несмотря на свою популярность, документация по React не так удобна для навигации.</p>
+<h2 class="wp-block-heading" id="резюме">Резюме</h2>
+<p>Выбор Next.js или React сводится к требованиям приложения.</p>
+<p>Next.js расширяет возможности React, предоставляя структуру и инструменты, повышающие производительность. Эти инструменты, такие как маршрутизация, разделение кода и оптимизация изображений, встроены в Next.js, что означает, что разработчикам не нужно ничего настраивать вручную. Благодаря этим функциям Next.js прост в использовании, и разработчики могут сразу приступить к кодированию бизнес-логики.</p>
+<p>Благодаря различным вариантам рендеринга Next.js подходит для приложений с рендерингом на стороне сервера или приложений, сочетающих статическую генерацию и рендеринг на стороне сервера Node.js. Кроме того, благодаря функции оптимизации, предоставляемой Next.js, он идеально подходит для сайтов, которые должны быть быстрыми, например, для магазинов электронной коммерции.</p>
+<p>React - это библиотека JavaScript, которая поможет вам создавать и масштабировать надежные фронтенд-приложения. Ее синтаксис также прост, особенно для разработчиков с опытом работы с JavaScript. Кроме того, у вас есть контроль над инструментами, которые вы используете в своем приложении, и над тем, как вы их настраиваете.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Next.js против React? Это партнерство, а не конкуренция&#38;url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya&#38;title=Next.js против React? Это партнерство, а не конкуренция&#38;summary=Современные веб-разработчики не испытывают недостатка в библиотеках и фреймворках JavaScript. Одной из самых распространенных библиотек является React, которая была создана Facebook (теперь Meta) для создания многофункциональных приложений.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/next-js-protiv-react-eto-partnerstvo-a-ne-konkurencziya&#38;media=&#38;description=Современные веб-разработчики не испытывают недостатка в библиотеках и фреймворках JavaScript. Одной из самых распространенных библиотек является React, которая была создана Facebook (теперь Meta) для создания многофункциональных приложений." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/startov-i-shablon-next-js" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Стартовый шаблон Next.js </a> <a href="/blog/nastrojka-nabora-replik-mongodb-lokalno-v-docker-ili-s-pomoshhyu-atlas-dlya-prisma-orm" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Настройка набора реплик MongoDB локально в docker или с помощью Atlas для Prisma ORM </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

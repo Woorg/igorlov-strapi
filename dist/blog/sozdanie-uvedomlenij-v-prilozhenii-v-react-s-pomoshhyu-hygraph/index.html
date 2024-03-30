@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Создание уведомлений в приложении в React с помощью Hygraph - Фул Фронт Дев</title><link rel="canonical" href="https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph"><meta name="description" content="С уведомлениями сегодня знаком практически каждый. Их можно разделить на две большие группы: push-уведомления и уведомления в приложении."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Создание уведомлений в приложении в React с помощью Hygraph </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/hygraph" data-astro-cid-axzg2cw6> Hygraph </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/react" data-astro-cid-axzg2cw6> React </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/webhooks" data-astro-cid-axzg2cw6> Webhooks </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/websockets" data-astro-cid-axzg2cw6> WebSockets </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 09 сент., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/undefined-Sep-09-2023.C6r3kBHp_Z25NWxS.avif" type="image/avif"><source srcset="/_astro/undefined-Sep-09-2023.C6r3kBHp_FWotd.webp" type="image/webp"> <img src="/_astro/undefined-Sep-09-2023.C6r3kBHp_UCp8R.png" alt="Создание уведомлений в приложении в React с помощью Hygraph" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Создание уведомлений в приложении в React с помощью Hygraph&#38;url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph&#38;title=Создание уведомлений в приложении в React с помощью Hygraph&#38;summary=С уведомлениями сегодня знаком практически каждый. Их можно разделить на две большие группы: push-уведомления и уведомления в приложении.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph&#38;media=&#38;description=С уведомлениями сегодня знаком практически каждый. Их можно разделить на две большие группы: push-уведомления и уведомления в приложении." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>С уведомлениями сегодня знаком практически каждый. Их можно разделить на две большие группы: push-уведомления и уведомления в приложении.</p>
+<p>Поскольку push-уведомления обрабатываются мобильным устройством или браузером пользователя, они должны быть реализованы особым образом. В свою очередь, уведомления в приложении отображаются в приложении, поэтому решение о том, как они будут реализованы - от внешнего вида до технологии, лежащей в их основе, - полностью зависит от вас.</p>
+<p>Такая настраиваемость in-app уведомлений имеет то преимущество, что они глубоко интегрированы с вашим приложением, что позволяет улучшить пользовательский опыт по сравнению с типовыми push-уведомлениями. Однако из-за того, что уведомления in-app различаются в каждом конкретном случае, их бывает сложно реализовать. Не существует единого ”правильного способа”.</p>
+<p>Однако общим для большинства уведомлений является то, что они позволяют отправлять контент пользователям, которые активно работают с вашим приложением. Это лучшее окно возможностей для того, чтобы поделиться с ними новостями, такими как новые функции, распродажи или рекламные акции.</p>
+<p>В этом руководстве вы узнаете, как создать простые уведомления в приложении, используя мощную систему контента Hygraph, веб-крючки и WebSockets с фронтендом React.js. Уведомления в приложении будут отображать пользователю несколько текстовых полей и цвет, указывающий на важность уведомления.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"1ecabd5b-d88b-4ced-93ad-1411fdffa302","content":"Обзор проекта","level":2,"link":"#обзор-проекта","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"a34c0c79-f9e3-4b37-966f-476bccc8db9c","content":"Требования","level":2,"link":"#требования","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f3d16f03-0e54-4dad-86db-f6b1e3f9307a","content":"Создание бэкенда","level":2,"link":"#создание-бэкенда","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"481d0a31-82b0-4cdc-ab01-e1fb61199a5f","content":"#Настройка ngrok","level":2,"link":"#настройка-ngrok","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"ee57f6cb-b391-4b73-abbe-5b6e44f0ddd8","content":"#Создание фронтенда","level":2,"link":"#создание-фронтенда","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"adad6295-612f-4044-bcf1-f7d7821ce734","content":"Подведение итогов","level":2,"link":"#подведение-итогов","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#обзор-проекта">Обзор проекта</a></li><li class=""><a href="#требования">Требования</a></li><li class=""><a href="#создание-бэкенда">Создание бэкенда</a></li><li class=""><a href="#настройка-ngrok">#Настройка ngrok</a></li><li class=""><a href="#создание-фронтенда">#Создание фронтенда</a></li><li class=""><a href="#подведение-итогов">Подведение итогов</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="обзор-проекта">Обзор проекта</h2>
+<p>Прежде чем приступить к работе, просмотрите эту диаграмму последовательности действий, чтобы понять, как будут взаимодействовать различные компоненты:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/FL8vM0zBSC6Ug4UwN7Bc" alt=""></figure>
+<!-- /wp:image -->
+<p>Hygraph может быть настроен на отправку запросов на конечную точку webhook при наступлении определенных событий. Поскольку бэкенд будет выполняться локально, ngrok позволяет вывести его через туннель в Интернет, который Hygraph может использовать в качестве конечной точки webhook. Когда бэкенд получает запрос на конечной точке webhook, он будет рассылать полученные данные всем подключенным клиентам через WebSockets. Наконец, когда фронтенд получает сообщение WebSocket, содержащее уведомление, он его отображает.</p>
+<p>Готовый код этого руководства можно найти в этом публичном репозитории GitHub.</p>
+<h2 class="wp-block-heading" id="требования">Требования</h2>
+<p>Для выполнения этого руководства вам потребуется несколько вещей:</p>
+<p>Node.jsРедактор кода. VS Code - хороший выбор, если у вас нет предпочтений.Учетная запись HygraphУчетная запись Ngrok и соответствующая загрузка для выбранной вами ОСОпционально: Google Chrome или браузер на базе Chrome для запуска определенного расширения браузера для тестирования WebSocket-соединения. Если у вас нет Chrome или вы не хотите его устанавливать, этот пункт можно пропустить.#Настройка Hygraph</p>
+<p>Первая часть головоломки - Hygraph. Hygraph - это платформа для работы с контентом, которая обладает большой гибкостью. В этом руководстве вы будете использовать ее для публикации фрагментов контента и их автоматической отправки через webhook в бэкенд вашего приложения.</p>
+<p>Если вы еще не сделали этого, создайте учетную запись. После входа в систему выберите на главном экране опцию создания нового пустого проекта. Дайте ему название, например Notification demo, и нажмите кнопку Add project:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/wIV3hLDZR0uquACLOTUk" alt=""></figure>
+<!-- /wp:image -->
+<p>После того как новый проект создан и вы попали на панель управления проектом, в левом меню выберите пункт Schema. В появившемся меню нажмите кнопку Add рядом с Enumerations. Откроется диалоговое окно, в котором необходимо ввести некоторые данные. Перечисление, которое вы создаете, будет обозначать ”намерение” ваших уведомлений, чтобы можно было показывать уведомления с разной степенью серьезности. Заполните диалог этими данными, как показано на скриншоте ниже:</p>
+<p>Display name: Use intent.API ID: Использовать Intent.Description: Это необязательно; вы можете оставить его пустым.Значения перечисления: Используйте info, warning, error и success, нажимая Enter после каждого значения.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/UH3UNQJaQqqj9imvtzJS" alt=""></figure>
+<!-- /wp:image -->
+<p>Затем нажмите кнопку Add Enumeration (Добавить перечисление):</p>
+<p>Далее в верхней части меню Schema нажмите кнопку Add рядом с Models. В результате откроется новый диалог, позволяющий создать модель, представляющую ваши уведомления. Заполните диалог этими данными, как показано на скриншоте ниже:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Display name: Use Notification.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>API ID: Use Notification.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Plural API ID: Использовать Notifications.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Description: Это необязательный параметр; его можно оставить пустым.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/UBlvBrE2Sne4ygAM9Yzr" alt=""></figure>
+<!-- /wp:image -->
+<p>Затем нажмите кнопку Добавить модель.</p>
+<p>Hygraph переведет вас на новую страницу, где вам будет предложено добавить поля в вашу модель. Поля можно выбрать из правого меню. В данном учебном пособии добавлены следующие поля:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Однострочный текст: В качестве имени поля используйте "Заголовок".</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Многострочный текст: В качестве имени поля используйте Message (Сообщение).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Dropdown (Выпадающее поле): В качестве имени поля используйте Intent. Для этого поля выберите в качестве значения поля Enumeration перечисление Intent.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>После создания этих полей ваша модель должна выглядеть следующим образом:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/81Hsv03JRcuTd7fm2fTx" alt=""></figure>
+<!-- /wp:image -->
+<p>Далее необходимо настроить веб-крючок для этой модели, чтобы убедиться, что все работает как надо.</p>
+<p>Выберите Webhooks в нижней части левого меню, а затем выберите Add Webhook. Откроется форма, позволяющая настроить веб-крючок.</p>
+<p>Поскольку бэкэнд еще не создан, для проверки работоспособности можно использовать простую службу тестирования webhook. В новой вкладке перейдите на страницу <a href="https://webhook.site/" rel="noopener noreferrer nofollow" target="_blank">https://webhook.site/</a>, где вам будет предоставлен уникальный URL. Скопируйте этот URL и используйте его в качестве значения Url в форме веб-хука Hygraph.</p>
+<p>В разделе Triggers выберите модель (уведомление), а также стадию (Published) и действие (Publish), на которые она должна срабатывать. Заполненная форма должна выглядеть примерно так:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/iTk2oWUDTrOC2QKYgpZ9" alt=""></figure>
+<!-- /wp:image -->
+<p>Отправьте форму, нажав кнопку Добавить в правом верхнем углу.</p>
+<p>Далее в левом меню выберите пункт Content и затем Add entry. Заполните три поля — используйте My title для Title, My message для Message и Success для Intent, как показано ниже, — и нажмите Save &#x26; publish.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/1dhZD8hHRtqyNlg0yqCk" alt=""></figure>
+<!-- /wp:image -->
+<p>После сохранения вернитесь на вкладку webhook.site. Вы должны увидеть, что на нее пришло сообщение, содержащее указанные вами значения:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/KyjIiwKSTqqfJfMUe5PA" alt=""></figure>
+<!-- /wp:image -->
+<p>При этом проверяется, что все в Hygraph настроено правильно.</p>
+<p>После создания бэкенда вы измените URL webhook, а пока можете оставить его как есть.</p>
+<h2 class="wp-block-heading" id="создание-бэкенда">Создание бэкенда</h2>
+<p>Следующее, что необходимо создать, - это сервис backend, который будет выполнять две задачи. Во-первых, он будет получать веб-крючки POST-запросов от Hygraph. Во-вторых, он будет размещать WebSocket-сервер и рассылать сообщения всем подключенным клиентам, содержащие информацию об уведомлениях, полученных через webhook.</p>
+<p>Это простая, надуманная форма того, что в реальных условиях, скорее всего, было бы более сложным приложением, но она служит для демонстрации используемых архитектурных паттернов.</p>
+<p>Чтобы начать работу, создайте новую директорию, в которой будет храниться код этого руководства. Внутри этого каталога создайте еще один каталог, в котором будет храниться код для сервера:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">mkdir -p hygraph-notifications/server
+cd hygraph-notifications/server</code></pre>
+<!-- /wp:code -->
+<p>Попав в этот каталог, необходимо установить несколько зависимостей. Сначала инициализируйте новый проект npm (можно принять значения по умолчанию для всех вопросов, которые он задаст), а затем установите следующие зависимости:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">npm init 
+npm i -D typescript @types/ws @types/express 
+npm i body-parser express ws</code></pre>
+<!-- /wp:code -->
+<p>Далее создайте файл tsconfig.json и придайте ему следующее содержание:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "./dist/server",
+        "strict": true,
+        "sourceMap": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+</code></pre>
+<!-- /wp:code -->
+<p>Наконец, создайте файл index.ts и придайте ему следующее содержание:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import express from "express";
+import http from "http";
+import WebSocket from "ws";
+import bodyParser from "body-parser";
+import { randomUUID } from "crypto";
+
+// Create a new express app instance
+const app = express();
+
+// Parse JSON bodies
+const jsonParser = bodyParser.json();
+
+// Create a new HTTP server
+const server = http.createServer(app);
+
+// Create a new WebSocket server
+const wss = new WebSocket.Server({ server });
+
+app.post("/webhook", jsonParser, (req, res) => {
+  // Broadcast the notification to all connected clients
+  // In a real app, you would probably want to send to specific clients
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(
+        JSON.stringify({
+          id: randomUUID(), // Generate a random ID for the message
+          type: "notification", // Give the message a type
+          // Encode the data from the webhook into the message
+          data: {
+            title: req.body.data.title,
+            message: req.body.data.message,
+            intent: req.body.data.intent,
+          },
+        })
+      );
+    }
+  });
+  res.sendStatus(200);
+});
+
+// Handle new WebSocket connections
+wss.on("connection", (ws: WebSocket) => {
+  // Acknowledge connection
+  ws.send(JSON.stringify({ id: randomUUID(), type: "connection", data: null }));
+});
+
+const port = process.env.PORT || 8999;
+
+// Start the server
+server.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});</code></pre>
+<!-- /wp:code -->
+<p>Комментарии в этом коде описывают, что делает каждая секция, но суть заключается в том, что создается веб-сервер для обработки входящих веб-хуков и соединений WebSocket, как описано выше.</p>
+<p>Поскольку код написан на TypeScript, перед выполнением его необходимо транспонировать. Для этого выполните следующие команды:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">./node_modules/.bin/tsc
+node dist/server/index.js</code></pre>
+<!-- /wp:code -->
+<p>В терминале должно появиться сообщение о том, что сервер запущен на порту 8999.</p>
+<p>На этом этапе целесообразно проверить, все ли работает. Самый простой способ сделать это еще до создания фронтенда - использовать расширение Simple WebSocket Client для Google Chrome.</p>
+<p>Установите это расширение, а затем щелкните на значке, который оно добавляет в омнибар. В результате откроется простой пользовательский интерфейс с полем URL:. В этом поле введите ws://localhost:8999 и нажмите кнопку Открыть. Должно получиться что-то вроде этого:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/9vciztKSR9K99SDZYa2y" alt=""></figure>
+<!-- /wp:image -->
+<p>Этот вывод указывает на то, что клиент успешно подключился к вашему WebSocket-серверу.</p>
+<h2 class="wp-block-heading" id="настройка-ngrok">#Настройка ngrok</h2>
+<p>Далее вы используете ngrok для того, чтобы вывести ваш сервер в Интернет, чтобы Hygraph мог отправлять на него webhook-запросы.</p>
+<p>Если вы еще не сделали этого, создайте учетную запись в ngrok, следуйте инструкциям по загрузке бинарного файла ngrok для выбранной вами ОС и авторизуйтесь с помощью учетной записи ngrok.</p>
+<p>После этого выполните следующую команду, чтобы запустить сессию ngrok на вашей машине:</p>
+<p>Вы должны увидеть примерно такой вывод:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/RBc2rnQsQ5O2abMn4U0L" alt=""></figure>
+<!-- /wp:image -->
+<p>Скопируйте URL-адрес из строки Forwarding (размыто выше) и вернитесь в Hygraph. Перейдите к пункту меню Webhooks в нижней части левого меню и отредактируйте существующий webhook. Замените предыдущий URL на скопированный вами ngrok URL с суффиксом /webhook, поскольку именно по этому маршруту ваш сервер настроен на прослушивание. Сохраните изменения в конфигурации webhook, нажав кнопку Update в правом верхнем углу.</p>
+<p>Далее вернитесь в меню Content. Нажмите Add Entry и создайте еще одно уведомление, заполнив и отправив форму.</p>
+<p>Если вы посмотрите в терминал ngrok, то увидите, что он зарегистрировал POST-запрос к конечной точке /webhook. Если это так, посмотрите в WebSocket-клиенте, где также должно появиться уведомление:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/NKNKaqpPQ9eZUpOaNFps" alt=""></figure>
+<!-- /wp:image -->
+<p>Если сообщение не появилось, проверьте, что все перечисленное ниже верно:</p>
+<p>Сервер запущен локально.ngrok запущен.URL, переданный ngrok, является URL, настроенным в Hygraph, и что вы добавили к нему суффикс /webhook.</p>
+<p>Чтобы возобновить соединение, нажмите Close и затем снова Open в клиенте WebSocket.</p>
+<p>Если все работает, то можно переходить к последней части - фронтенду.</p>
+<h2 class="wp-block-heading" id="создание-фронтенда">#Создание фронтенда</h2>
+<p>Теперь у вас есть данные, поступающие от Hygraph через веб-хук и отправляемые на WebSocket-клиент. Если реализовать обработку этих WebSocket-сообщений в приложении React, то можно показывать уведомления в приложении, управляемые системой контента Hygraph. Это React-приложение будет создано с использованием TypeScript, Vite и Tailwind.</p>
+<p>Чтобы начать работу, вернитесь в корневой каталог проекта и создайте новый проект Vite с помощью следующей команды:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript"># From hygraph-notifications/
+npm create vite@latest frontend --template react-ts
+# If you are using the most recent versions of npm, use the following command instead:
+# npm create vite@latest frontend -- --template react-ts
+cd frontend
+npm install</code></pre>
+<!-- /wp:code -->
+<p>Далее необходимо установить некоторые другие зависимости для Tailwind и для работы с WebSockets:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">npm i react-use-websocket
+npm i -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p</code></pre>
+<!-- /wp:code -->
+<p>Эта команда должна была создать новый файл tailwind.config.js. Откройте этот файл и замените его содержимое на следующее, чтобы убедиться, что Tailwind следит за соответствующими файлами:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};</code></pre>
+<!-- /wp:code -->
+<p>Далее необходимо добавить Tailwind в базовый CSS-файл и несколько правил сброса. Откройте файл src/index.css и замените его содержимое на следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code></pre>
+<!-- /wp:code -->
+<p>Наконец, откройте файл src/App.tsx и замените его содержимое на следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { useCallback, useEffect, useState } from "react";
+import useWebSocket from "react-use-websocket";
+
+// Define some types for better autocomplete
+type Intent = "success" | "warning" | "error" | "info";
+
+type MessageType = "notification" | "connection";
+
+type MessageData = {
+  notification: {
+    title: string;
+    message: string;
+    intent: Intent;
+  };
+  connection: null;
+};
+
+type Message&#x3C;T extends MessageType> = {
+  id: string;
+  type: T;
+  data: MessageData[T];
+};
+
+// Define a map of intents to Tailwind CSS classes to color your notifications
+const intentMap: Record&#x3C;Intent, string> = {
+  success: "bg-green-500",
+  warning: "bg-yellow-500",
+  error: "bg-red-500",
+  info: "bg-blue-500",
+};
+
+function App() {
+  // Store the message history in state
+  const [messageHistory, setMessageHistory] = useState&#x3C;Message&#x3C;MessageType>[]>(
+    []
+  );
+
+  // Connect to the websocket server
+  const [socketUrl] = useState("ws://localhost:8999");
+  const { lastMessage } = useWebSocket(socketUrl);
+
+  // When a new message is received, parse it and add it to the message history
+  useEffect(() => {
+    if (lastMessage !== null) {
+      const parsedData = JSON.parse(lastMessage.data);
+      setMessageHistory((prev) => prev.concat(parsedData));
+    }
+  }, [lastMessage, setMessageHistory]);
+
+  // Define a function to dismiss a notification
+  const handleDismiss = useCallback(
+    (message: Message&#x3C;"notification">) => {
+      setMessageHistory((prev) => prev.filter((m) => m.id !== message.id));
+    },
+    [setMessageHistory]
+  );
+
+  // Filter the message history to only include notifications
+  const notifications = messageHistory.filter(
+    (data): data is Message&#x3C;"notification"> => data.type === "notification"
+  );
+
+  // Render the notifications
+  if (notifications.length > 0) {
+    return (
+      &#x3C;div className="bg-gray-800 text-white flex justify-center items-center h-full w-full flex-col p-12">
+        &#x3C;h1 className="text-3xl font-bold font-sans mb-4">Notifications&#x3C;/h1>
+        &#x3C;ul className="w-full">
+          {notifications.map((message, idx) => (
+            &#x3C;li
+              key={message.id}
+              className={`w-full p-2 rounded-md my-2 flex items-start justify-start flex-col ${
+                intentMap[message.data.intent]
+              }`}
+            >
+              &#x3C;div className="font-bold flex justify-between w-full">
+                &#x3C;span>{message.data?.title}&#x3C;/span>
+                &#x3C;button onClick={() => handleDismiss(message)}>x&#x3C;/button>
+              &#x3C;/div>
+              &#x3C;div>{message.data?.message}&#x3C;/div>
+            &#x3C;/li>
+          ))}
+        &#x3C;/ul>
+      &#x3C;/div>
+    );
+  }
+
+  // If there are no notifications, render a waiting message
+  return (
+    &#x3C;div className="bg-gray-800 text-white flex justify-center items-center h-full w-full">
+      &#x3C;div>Waiting for notifications...&#x3C;/div>
+    &#x3C;/div>
+  );
+}
+
+export default App;</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде есть комментарии, описывающие действия каждого элемента, но, по сути, он подключается к серверу WebSocket, работающему на порту 8999, и ожидает получения сообщения с типом ”уведомление”.</p>
+<p>Как только одно из таких уведомлений получено, оно отображается с помощью простых стилей. Цвет уведомления зависит от намерения, выбранного в Hygraph при создании записи, а на отрисованном уведомлении имеется кнопка для его отмены.</p>
+<p>Кроме этого, в коде присутствуют некоторые типы для работы с автозаполнением. В реальном приложении все это, скорее всего, было бы разбросано по нескольким файлам, но в данном надуманном примере для краткости все это собрано в одном файле.</p>
+<p>В терминале выполните следующую команду, чтобы запустить фронтенд-приложение:</p>
+<p>В выводе должно быть указано, на каком порту оно работает. Перейдите по этому адресу в браузере, где вы увидите примерно следующее:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/R71w1QVTHORflV3uPgOl" alt=""></figure>
+<!-- /wp:image -->
+<p>Если вы ранее останавливали службу backend или ngrok, убедитесь, что они работают и что URL, который выдает ngrok, по-прежнему настроен для ваших веб-крючков в Hygraph. Если все эти компоненты работают, опубликуйте уведомление из Hygraph. Оно должно появиться в виде уведомления в приложении:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://media.graph../../assets.com/xFaK0mxRQcuaaLpspbIy" alt=""></figure>
+<!-- /wp:image -->
+<p>С помощью мощных инструментов Hygraph для работы с контентом вы можете отправлять уведомления в приложении на фронтенд React в режиме реального времени.</p>
+<h2 class="wp-block-heading" id="подведение-итогов">Подведение итогов</h2>
+<p>В этом руководстве мы рассмотрели, как использовать Hygraph, webhooks, WebSockets и React для реализации базовых уведомлений в реальном времени.</p>
+<p>В этом примере все было очень просто - всего несколько текстовых полей и перечисление. Однако Hygraph поддерживает множество полезных типов полей, включая геокоординаты, загрузку файлов и ввод текста. Благодаря такой гибкости, а также инструментам и методам, рассмотренным в этом учебном пособии, нет предела возможностям, которые вы можете привнести в свои приложения, работающие в реальном времени и управляемые контентом.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Создание уведомлений в приложении в React с помощью Hygraph&#38;url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph&#38;title=Создание уведомлений в приложении в React с помощью Hygraph&#38;summary=С уведомлениями сегодня знаком практически каждый. Их можно разделить на две большие группы: push-уведомления и уведомления в приложении.&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/sozdanie-uvedomlenij-v-prilozhenii-v-react-s-pomoshhyu-hygraph&#38;media=&#38;description=С уведомлениями сегодня знаком практически каждый. Их можно разделить на две большие группы: push-уведомления и уведомления в приложении." target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/sravnenie-vue-3-options-api-i-composition-api" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Сравнение Vue 3 Options API и Composition API </a> <a href="/blog/sozdanie-stilnogo-staticheskogo-veb-sajta-s-eleventy-11ty" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Создание стильного статического веб-сайта с Eleventy (11ty) </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

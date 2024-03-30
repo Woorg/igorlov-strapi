@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Разработка Бэкенда Web3 И Смарт-Контрактов Для...
+</title><link rel="canonical" href="https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chast%D1%8C-8-bekend-django-funkcional%D1%8Cnost%D1%8C-logirovaniya-i-vyhoda-iz-sistemy"><meta name="description" content="Теперь перейдем к рассмотрению бэкенда Django. Первым шагом, как всегда, является активация соответствующего виртуального окружения Python. Из...
+"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chast\44C-8-bekend-django-funkcional\44Cnost\44C-logirovaniya-i-vyhoda-iz-sistemy; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Разработка бэкенда Web3 и смарт-контрактов для Python-разработчиков часть 8: Бэкенд Django функциональность логирования и выхода из системы </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/python" data-astro-cid-axzg2cw6> Python </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 18 окт., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chast%D1%8C-8-bekend-django-funkcional%D1%8Cnost%D1%8C-logirovaniya-i-vyhoda-iz-sistemy-Oct-18-2023.Dfy1aKgO_Z1GCINg.avif" type="image/avif"><source srcset="/_astro/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chast%D1%8C-8-bekend-django-funkcional%D1%8Cnost%D1%8C-logirovaniya-i-vyhoda-iz-sistemy-Oct-18-2023.Dfy1aKgO_ZcRYRy.webp" type="image/webp"> <img src="/_astro/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chast%D1%8C-8-bekend-django-funkcional%D1%8Cnost%D1%8C-logirovaniya-i-vyhoda-iz-sistemy-Oct-18-2023.Dfy1aKgO_Z1vGXyK.png" alt="Разработка бэкенда Web3 и смарт-контрактов для Python-разработчиков часть 8: Бэкенд Django функциональность логирования и выхода из системы" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Разработка бэкенда Web3 и смарт-контрактов для Python-разработчиков часть 8: Бэкенд Django функциональность логирования и выхода из системы&#38;url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy&#38;title=Разработка бэкенда Web3 и смарт-контрактов для Python-разработчиков часть 8: Бэкенд Django функциональность логирования и выхода из системы&#38;summary=Теперь перейдем к рассмотрению бэкенда Django. Первым шагом, как всегда, является активация соответствующего виртуального окружения Python. Из...
+&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy&#38;media=&#38;description=Теперь перейдем к рассмотрению бэкенда Django. Первым шагом, как всегда, является активация соответствующего виртуального окружения Python. Из...
+" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Теперь перейдем к рассмотрению бэкенда Django. Первым шагом, как всегда, является активация соответствующего виртуального окружения Python. Из папки ./musical_nft_thumbnails</p>
+<p><code>$source env/bin/activate</code></p>
+<p>На данный момент нам нужна посадочная страница. Функции входа, выхода, регистрации, а также сброса пароля. После того как пользователь зарегистрируется и войдет в нашу платформу, мы перенаправим его на его персональную страницу. Там он сможет увидеть свою информацию, NFT, которыми он владеет, и купить новый NFT с помощью криптовалюты или кредитной карты.</p>
+<p>Создание нового приложения Django для аутентификации</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">$py manage.py startapp authentication
+</code></pre>
+<!-- /wp:code -->
+<p>В этом вновь созданном приложении мы будем управлять процессом регистрации, входом в систему, выходом из нее и сбросом пароля.</p>
+<p>Добавить в musical_nft/settings.py аутентификацию в список установленных приложений:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    INSTALLED_APPS = [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+        # here =>
+        "authentication",
+]
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь в глобальном файле urls.py внутри musical_nft/settings.py добавьте</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript"> from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("", include("authentication.urls"))
+    ]
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь все пути, которые мы имеем внутри приложения аутентификации, будут подключены к этому проекту urls.py</p>
+<p>В папке приложения аутентификации создайте еще один urls.py и передайте в него следующий код</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">   from django.urls import path
+    from .views import HomeView
+
+    urlpatterns = [
+        path("", HomeView.as_view(), name="home"),
+    ]
+</code></pre>
+<!-- /wp:code -->
+<p>Если вы не создали суперпользователя, давайте сделаем это сейчас</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">$python manage.py createsuperuser
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь откройте браузер http:127.0.0.1:8000/admin при запущенном локальном Django-сервере и введите учетные данные суперпользователя (обязательно убедитесь, что ваш postgres-сервер запущен $sudo service postgresql start).</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--rD1DZzeW--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j30gzl0by2akqcbh0n15.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>После того как вы вошли в систему, перейдите в раздел ”Пользователь” и добавьте нового пользователя (подтвердите пароль)</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--AM1AHf5i--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bma5py7k9bq9wt4sb44c.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>На данном этапе нам нужен класс представления аутентификации и несколько html-страниц для рендеринга. При создании приложений Django следует помнить, что это всегда трехступенчатый процесс: определение адресов (в приложении), представлений (в нашем случае представлений на основе классов. Если вы хотите поэкспериментировать с альтернативными реализациями этого кода, то можно сделать представление на основе функций) и шаблоны (html-страница, которая будет отображаться с небольшим количеством добавленных Django-элементов).</p>
+<p>В файл views.py приложения аутентификации добавьте следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">from django.shortcuts import render
+    from django.views.generic import TemplateView
+
+    class HomeView(TemplateView):
+
+        def get(self, request):
+            return render(request, "home.html", {})
+</code></pre>
+<!-- /wp:code -->
+<p>Только для тестирования создадим простой файл home.html с сообщением, которое будет отображаться в браузере. Для этого создадим в ./muscial_nft_thumbnails/tempaltes/home.html</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript"> {% extends "base.html" %}
+
+    {% block content%}
+        &#x3C;h1> Test screen &#x3C;/h1>
+    {% endblock content%}
+</code></pre>
+<!-- /wp:code -->
+<p>Эти своеобразные фигурные скобки являются частью синтаксиса Django, который мы должны использовать с нашими шаблонами</p>
+<p>Затем в settings.py добавьте определение корневой папки шаблона</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">TEMPLATES = [
+        {
+            "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "DIRS": [os.path.join(BASE_DIR, "templates")],
+            "APP_DIRS": True,
+            "OPTIONS": {
+                "context_processors": [
+                    "django.template.context_processors.debug",
+                    "django.template.context_processors.request",
+                    "django.contrib.auth.context_processors.auth",
+                    "django.contrib.messages.context_processors.messages",
+                ],
+            },
+        },
+    ]
+</code></pre>
+<!-- /wp:code -->
+<p>В этом проекте мы будем использовать bootstrap для стилизации. Перейдите на страницу их документации и возьмите из введения второй вариант номер два, Include Bootstrap’s CSS and JS. и вставьте этот код во вновь созданный файл base.html в корневой папке проекта ./templates (или просто скопируйте отсюда)</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;!doctype html>
+    &#x3C;html lang="en">
+    &#x3C;head>
+        &#x3C;meta charset="utf-8">
+        &#x3C;meta name="viewport" content="width=device-width, initial-scale=1">
+        &#x3C;title>Muscial NFT&#x3C;/title>
+        &#x3C;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    &#x3C;/head>
+    &#x3C;body>
+        &#x3C;div class="container ">       
+            &#x3C;br/>
+            &#x3C;br/>
+            {% block content %}
+            {% endblock content %}
+        &#x3C;/div>
+        &#x3C;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">&#x3C;/script>
+    &#x3C;/body>
+    &#x3C;/html>
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь добавим navbar на нашу страницу base.html.</p>
+<p>Это можно сделать, просто зайдя в документацию сайта bootstrap и поискав navbar в компонентах. Выбираем наиболее понравившийся. Для нашей демонстрации подойдет первый вариант.</p>
+<p>Вот отредактированный код, который нужно передать в файл navbar.html в папке ./templates в корневой директории проекта.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        &#x3C;div class="container-fluid">
+        &#x3C;a class="navbar-brand" href="https://dev.to/ilija/{% url"home' %}">Musical NFT &#x3C;/a>
+        &#x3C;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            &#x3C;span class="navbar-toggler-icon">&#x3C;/span>
+        &#x3C;/button>
+        &#x3C;div class="collapse navbar-collapse" id="navbarSupportedContent">
+            &#x3C;ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            &#x3C;li class="nav-item">
+                &#x3C;a class="nav-link" href="#">Link&#x3C;/a>
+            &#x3C;/li>
+                &#x3C;/ul>
+            &#x3C;/li>
+            &#x3C;/ul>
+        &#x3C;/div>
+        &#x3C;/div>
+    &#x3C;/nav>
+</code></pre>
+<!-- /wp:code -->
+<p>А затем просто перейдите в ранее созданный файл base.html и добавьте одну новую строку после первого тега body</p>
+<p>{% include “navbar.html”%}</p>
+<p>Из корневого каталога</p>
+<p>$py manage.py runserver</p>
+<p>Перейдите в браузер по адресу <a href="http://127.0.0.1:8000" rel="noopener noreferrer nofollow" target="_blank">http://127.0.0.1:8000</a> и проверьте, появилось ли на экране правильное сообщение.</p>
+<p>Теперь, если вы вернетесь в браузер, вы должны увидеть что-то вроде этого</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--cWJLMXC---/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/95po8ydnchwdpigdh521.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>После этого мы можем перейти к добавлению базовых функций входа, регистрации, выхода и сброса пароля. Для входа и выхода мы будем использовать систему аутентификации Django.</p>
+<p>Вот общий обзор того, как мы планируем подключить все, что связано с аутентификацией</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--YhN024Sk--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/87n9oiuq0t6vukbodhda.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>Сначала мы доработаем 3 основных шаблона: navbar, base и home (base включает в себя navbar, а home расширяет base, как показывает поток). Следует иметь в виду, что у home будет две возможности: 1) если пользователь залогинен, то мы будем показывать ему его персональную страницу; 2) если пользователь не залогинен, то мы будем предлагать ему формы входа (это можно проверить в файле home.html).</p>
+<p>navbar.html (модифицированный bootstrap navbar)</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        &#x3C;div class="container-fluid">
+        &#x3C;a class="navbar-brand" href="https://dev.to/ilija/{% url"home' %}">Musical NFT &#x3C;/a>
+        &#x3C;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            &#x3C;span class="navbar-toggler-icon">&#x3C;/span>
+        &#x3C;/button>
+        &#x3C;div class="collapse navbar-collapse" id="navbarSupportedContent">
+            &#x3C;ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated%}
+            &#x3C;li class="nav-item">
+            &#x3C;a class="nav-link" href="https://dev.to/ilija/{% url"logout'%}">Logout&#x3C;/a>
+            &#x3C;/li>
+            {% else %}
+            &#x3C;li class="nav-item">
+            &#x3C;a class="nav-link" href="https://dev.to/ilija/{% url"home'%}">Login&#x3C;/a>
+            &#x3C;/li>
+            {% endif%}
+                &#x3C;/ul>
+            &#x3C;/li>
+            &#x3C;/ul>
+        &#x3C;/div>
+        &#x3C;/div>
+    &#x3C;/nav>
+
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь base.html включает в себя navbar.html</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;!doctype html>
+    &#x3C;html lang="en">
+    &#x3C;head>
+        &#x3C;meta charset="utf-8">
+        &#x3C;meta name="viewport" content="width=device-width, initial-scale=1">
+        &#x3C;title>Muscial NFT&#x3C;/title>
+        &#x3C;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    &#x3C;/head>
+    &#x3C;body>
+        {% include "navbar.html"%}
+        &#x3C;div class="container ">       
+            &#x3C;br/>
+            &#x3C;br/>
+            {% if messages %}
+            {% for message in messages%}
+            &#x3C;div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            &#x3C;button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&#x3C;/button>
+            &#x3C;/div>
+
+            {% endfor%}
+            {% endif %}
+
+            {% block content %}
+
+            {% endblock content %}
+        &#x3C;/div>
+        &#x3C;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">&#x3C;/script>
+    &#x3C;/body>
+    &#x3C;/html>
+</code></pre>
+<!-- /wp:code -->
+<p>Здесь я хочу обратить ваше внимание на последний {% block content %} {% endblock content %} Это место, где base.html инжектирует любой другой шаблон, который наследует от него с помощью команды extends (в нашем случае home.html).</p>
+<p>Далее несколькими строками выше вы имеете немного странный синтаксис с {% if messages %} {% for message in messages%} Просто таким образом мы передаем в наш шаблон сообщение об успехе или ошибке. Более подробную информацию об этом можно найти в файле view.py.</p>
+<p>Как мы видим, home.html будет расширять base.html и иметь внутри себя специфические для Django статусы if/else. Эта строка if/else поможет нам проверить, вошел ли пользователь в систему, после чего мы предложим ему его персональную страницу. В случае если пользователь не вошел в систему, мы покажем ему форму входа.</p>
+<p>Ниже приведен пример кода:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript"> {% extends "base.html" %}
+
+    {% block content%}
+
+    &#x3C;div class="col-md-6 offset-md-3"> 
+
+        {% if user.is_authenticated %} 
+        &#x3C;h1> Welcome &#x3C;h1/>
+        {% else %}
+        &#x3C;h1> Login &#x3C;/h1>
+        &#x3C;br/>
+        &#x3C;form method="POST" action="https://dev.to/ilija/{% url"home' %}"> 
+            {% csrf_token %}
+            &#x3C;form>
+                &#x3C;div class="mb-3">
+                &#x3C;input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Username" name="username" required>
+                &#x3C;/div>
+                &#x3C;div class="mb-3">
+                &#x3C;input type="password" class="form-control" placeholder="Password" name="password" required>
+                &#x3C;/div>
+                &#x3C;button type="submit" class="btn btn-secondary">Submit&#x3C;/button>
+            &#x3C;/form>
+            &#x3C;/form> 
+    &#x3C;/div>
+
+    {% endif %}
+    {% endblock content%}
+
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь у нас есть все шаблоны, и мы можем перейти в папку authentication app, где нам нужно обновить наш urls.py следующим кодом</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">    from django.urls import path
+    from .views import HomeView, LogoutUser
+
+    urlpatterns = [
+        path("", HomeView.as_view(), name="home"),
+        # path("login/", LoginUser.as_view(), name="login"),
+        path("logout/", LogoutUser.as_view(), name="logout"),
+    ]
+</code></pre>
+<!-- /wp:code -->
+<p>Как видно, мы добавили новый путь выхода из системы (логин является частью обычного пути home и класса HomeView), который будет обрабатываться классом LogoutUser внутри authenticaiotn view.py.</p>
+<p>Как вы уже догадались, последний кусочек паззла, который нам нужен, это обработчик просмотра, который склеит все эти элементы вместе. Вот пример возможного кода:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">from django.shortcuts import render, redirect
+    from django.views.generic import TemplateView
+    from django.contrib.auth import authenticate, login, logout
+    from django.contrib import messages
+
+
+
+    class HomeView(TemplateView):
+        template_name="home.html"
+
+        def post(self, request):
+            # check to see if loggin in
+            if request.method == "POST":
+                user_name = request.POST["username"]
+                password = request.POST["password"]
+                user = authenticate(request, username=user_name, password=password)
+                if user is not None:
+                    login(request, user)
+                    messages.success(request, "You have been logged in!")
+                    return redirect("home")    
+                else:
+                    messages.success(request, "There was An Error login in, please try again")
+                    return redirect("home")  
+            else:
+                return render(request, "home.html", {})
+
+
+    class LogoutUser(TemplateView):    
+        def get(self, request):
+            logout(request)
+            messages.success(request, "You have been logged out!")
+            return redirect("home")  
+
+</code></pre>
+<!-- /wp:code -->
+<p>В этот момент запустите ваш Django-сервер локально (убедитесь, что ваш postgres-сервер работает и запущен), а затем перейдите по адресу <a href="http://127.0.0.1:8000" rel="noopener noreferrer nofollow" target="_blank">http://127.0.0.1:8000</a>. Если вы вошли в систему как администратор, вы должны увидеть что-то вроде этого</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--EJN6kDWB--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9trpf1oc5ag7r87oal6l.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>Теперь введите учетные данные администратора или только что созданного пользователя, и вы должны увидеть что-то вроде этого =></p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--122Yj87r--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/nvdn42rorgt57152qx36.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>Посмотрите на кнопку выхода из системы в левом верхнем углу навигационной панели. Эта кнопка попадет на наш путь logout/, а затем на обработчик класса LogoutUser (из views.py), который просто выйдет из системы и перенаправит текущего пользователя на домашнюю страницу.</p>
+<p>И на этом месте мы, наконец, можем увидеть очень красивый момент в файле home.html. Этот цикл внутри home.html увидит, что пользователь уже не вошел в систему, и покажет ему формат логина. И, в общем-то, благодаря этой приятной детали у нас все в одном месте: и вход, и выход, и профиль пользователя - все прекрасно связано в этом шаблонном цикле.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--VfHBD3x1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mugg7gkbqzuhmtzunupo.png" alt="Описание изображения"></figure>
+<!-- /wp:image -->
+<p>Теперь, когда у нас есть вход и выход, перейдем к разработке функциональности регистрации и сброса пароля, прежде чем приступать к интеграции с web3.</p>
+<p>Код для этого можно найти на <a href="https://github.com/ilijapet/musical_nft_thumbnails">github</a></p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Разработка бэкенда Web3 и смарт-контрактов для Python-разработчиков часть 8: Бэкенд Django функциональность логирования и выхода из системы&#38;url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy&#38;title=Разработка бэкенда Web3 и смарт-контрактов для Python-разработчиков часть 8: Бэкенд Django функциональность логирования и выхода из системы&#38;summary=Теперь перейдем к рассмотрению бэкенда Django. Первым шагом, как всегда, является активация соответствующего виртуального окружения Python. Из...
+&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/razrabotka-bekenda-web3-i-smart-kontraktov-dlya-python-razrabotchikov-chastь-8-bekend-django-funkcionalьnostь-logirovaniya-i-vyhoda-iz-sistemy&#38;media=&#38;description=Теперь перейдем к рассмотрению бэкенда Django. Первым шагом, как всегда, является активация соответствующего виртуального окружения Python. Из...
+" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/raskrytie-vozmozhnostej-struktur-dannyh-leetcode-706-proektirovanie-hashmap" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Раскрытие возможностей структур данных: Leetcode 706 - проектирование HashMap </a> <a href="/blog/kak-render-masshtabiroval-knative-dlya-podderzhki-100k" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Как Render масштабировал Knative для поддержки 100k+ </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

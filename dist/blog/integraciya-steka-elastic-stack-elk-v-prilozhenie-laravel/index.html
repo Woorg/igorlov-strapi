@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Интеграция Стека Elastic Stack (ELK) В Приложение Laravel...
+</title><link rel="canonical" href="https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel"><meta name="description" content="&#34;Сколько новых пользователей у нас было вчера?&#34; &#34;Больше ли их, чем два дня назад?&#34; Если вы когда-либо сталкивались с такими вопросами, то повезло! Сегодня мы...
+"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.5.1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ViewTransitions.astro_astro_type_script_index_0_lang.DqfSmqP7.js"></script><link rel="stylesheet" href="/_astro/_regular_.Dd2YhbvP.css" />
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw);padding-left:min(2rem,1.2125rem + 1.05vw);padding-right:min(2rem,1.2125rem + 1.05vw);padding-top:1rem;padding-bottom:1rem}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.breadcrumbs__link[data-astro-cid-vcbh62el]{border-radius:9999px;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover{--tw-bg-opacity: 1;background-color:#fce4e1;background-color:rgba(252,228,225,var(--tw-bg-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]{padding:.125rem .75rem}.breadcrumbs__link[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#6a6a6a;background-color:rgba(106,106,106,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.breadcrumbs__link[data-astro-cid-vcbh62el]:hover:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#8a8a93;background-color:rgba(138,138,147,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CyWP_2Jq.css" />
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#020202;border-color:rgba(2,2,2,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-bg-opacity: 1;background-color:#fef9f8;background-color:rgba(254,249,248,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.theme-toggle[data-v-8d8d9c54]{width:1.25rem;height:1.25rem}
+.comments[data-v-533071ec]{margin:auto;margin-top:1.25rem;max-width:42rem;--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.comments:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame[data-v-533071ec]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#020202;color:rgba(2,2,2,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-533071ec],[class=dark] *[data-v-533071ec]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/page.CFW0rSNk.js"></script><style>[data-astro-transition-scope="astro-vgmtzcrq-1"] { view-transition-name: blog-image-integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-white fluid:text-lg dark:bg-black"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> <span class="nav__open-line" data-astro-cid-7wkmezxd></span> </button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> <span class="nav__close-line" data-astro-cid-7wkmezxd></span> </button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/projects" class="nav__link" data-astro-cid-7wkmezxd> Работы. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог. </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты. </a> </li> </ul> </nav> </div>  <script type="module">document.addEventListener("astro:page-load",()=>{const t=document.querySelector(".nav__open"),n=document.querySelector(".nav__close"),e=document.querySelector(".nav__container"),o=document.querySelectorAll(".nav__item");t?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),n?.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")}),o.forEach(a=>{window.matchMedia("( max-width: 1024px)").matches&&a.addEventListener("click",()=>{e?.classList.toggle("nav__container--open"),e?.classList.toggle("fade-in-bottom")})})});</script> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="IJ3dh" component-url="/_astro/ThemeToggle.kpN4JrWQ.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-rq644orq&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}"></astro-island> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <div class="blocks__container container"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <ol class="breadcrumbs__list" role="list" data-astro-cid-vcbh62el> <li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el> <a class="breadcrumbs__link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="breadcrumbs__item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </nav>  </div> <div class="blocks__container container"> <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Интеграция стека Elastic Stack (ELK) в приложение Laravel </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/laravel" data-astro-cid-axzg2cw6> Laravel </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/elastic-stack" data-astro-cid-axzg2cw6> Elastic Stack </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 26 окт., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div>  <figure class="article__image" data-astro-cid-axzg2cw6> <picture> <source srcset="/_astro/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel-Oct-26-2023.B37qcR1D_117UDP.avif" type="image/avif"><source srcset="/_astro/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel-Oct-26-2023.B37qcR1D_Z2al7Y7.webp" type="image/webp"> <img src="/_astro/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel-Oct-26-2023.B37qcR1D_Z1niMSo.png" alt="Интеграция стека Elastic Stack (ELK) в приложение Laravel" class="aspect-auto h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-vgmtzcrq-1" width="1200" height="500" decoding="async"> </picture> </figure>  <div class="article__content prose prose-zinc max-w-full dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <div id="adfox_17062261612859555"></div> <script>(function(){const blockId = "adfox_17062261612859555";
+
+	window.yaContextCb = window.yaContextCb || [];
+	window.yaContextCb.push(() => {
+		Ya.adfoxCode.createAdaptive(
+			{
+				ownerId: 1493338,
+				containerId: blockId,
+				params: {
+					p1: 'dawgg',
+					p2: 'p',
+				},
+			},
+			['desktop', 'tablet', 'phone'],
+			{
+				tabletWidth: 830,
+				phoneWidth: 480,
+				isAutoReloads: true,
+			},
+		);
+	});
+})();</script> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Интеграция стека Elastic Stack (ELK) в приложение Laravel&#38;url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel&#38;title=Интеграция стека Elastic Stack (ELK) в приложение Laravel&#38;summary=&#34;Сколько новых пользователей у нас было вчера?&#34; &#34;Больше ли их, чем два дня назад?&#34; Если вы когда-либо сталкивались с такими вопросами, то повезло! Сегодня мы...
+&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel&#38;media=&#38;description=&#34;Сколько новых пользователей у нас было вчера?&#34; &#34;Больше ли их, чем два дня назад?&#34; Если вы когда-либо сталкивались с такими вопросами, то повезло! Сегодня мы...
+" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details class="toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer"><summary class="title">Оглавление</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#итак-что-такое-elastic-stack">Итак, что такое Elastic Stack?</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#настройка-приложений">Настройка приложений</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#скромное-предложение">Скромное предложение</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#здание-нового-приложения-laravel">здание нового приложения Laravel</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#настройка-elasticsearch">Настройка Elasticsearch</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#настройка-kibana">Настройка Kibana</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#логирование-при-регистрации-нового-пользователя">Логирование при регистрации нового пользователя</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="toc-link toc-link-h3" href="#одно-1-изменение-в-настройках-окружения">Одно (1) изменение в настройках окружения</a></li></ol></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#настройка-канала-логирования">Настройка канала логирования</a></li><li class="toc-item toc-item-h2"><a class="toc-link toc-link-h2" href="#настройка-kibana-1">Настройка Kibana</a></li></ol></details><p>”Сколько новых пользователей у нас было вчера?” “Больше ли их, чем два дня назад?” Если вы когда-либо сталкивались с такими вопросами, то повезло! Сегодня мы рассмотрим Elastic Stack и узнаем, как его можно запустить рядом с приложением Laravel. Затем я покажу вам, как вести журнал каждого нового пользователя, который регистрируется, чтобы вы могли отслеживать взлет вашего приложения к успеху!”</p>
+<p>Elastic Stack - это мощный инструмент, который полезен любому разработчику. Поскольку это введение, я держусь на поверхности, но пожалуйста, дайте знать, если вам интересно узнать больше! Вы можете найти меня в Twitter или в категории Laravel нашего сообщества Fly.io.</p>
+<h2 id="итак-что-такое-elastic-stack">Итак, что такое Elastic Stack?<a aria-hidden="true" tabindex="-1" href="#итак-что-такое-elastic-stack"><span class="icon icon-link"></span></a></h2>
+<p>Просто говоря, Elastic Stack (ранее известный как ELK Stack) - это набор приложений для обработки данных, их обработки и индексирования, а также представления этих данных. Он широко используется для журналирования, поиска, аналитики и многих других задач. Сегодня мы сосредоточимся на части, связанной с журналированием, что является распространенным случаем использования для разработчиков приложений, подобных вам.</p>
+<p>Если вам нужно больше информации о Elastic Stack, создатели объясняют всё гораздо яснее, чем я могу, прямо здесь: Что такое набор инструментов Elk?</p>
+<h2 id="настройка-приложений">Настройка приложений<a aria-hidden="true" tabindex="-1" href="#настройка-приложений"><span class="icon icon-link"></span></a></h2>
+<p>Давайте начнем с настройки наших приложений. Затем мы добавим логику Laravel для записи журналов, и я покажу вам, как настроить Kibana.</p>
+<p>Мы создадим четыре приложения на Fly.io: приложение Laravel с приложением базы данных MySQL, а также приложения Elasticsearch и Kibana. Мы не будем использовать Logstash или Beats, потому что мы можем вести журнал непосредственно из Laravel в Elasticsearch. Кроме того, это сократит объем этой статьи, чтобы вам не пришлось слишком много думать в конце.</p>
+<h3 id="скромное-предложение">Скромное предложение<a aria-hidden="true" tabindex="-1" href="#скромное-предложение"><span class="icon icon-link"></span></a></h3>
+<p>Вы свободны настраивать приложения так, как вам нравится, но вот как я их настроил: я создал каталог logging-app, а внутри него я создал каталог для каждого приложения, вот так:</p>
+<ul>
+<li>logging-app
+<ul>
+<li>laravel</li>
+<li>mysql</li>
+<li>elasticsearch</li>
+<li>kibana</li>
+</ul>
+</li>
+</ul>
+<h2 id="здание-нового-приложения-laravel">здание нового приложения Laravel<a aria-hidden="true" tabindex="-1" href="#здание-нового-приложения-laravel"><span class="icon icon-link"></span></a></h2>
+<p>Для этого примерного приложения мы будем использовать Breeze и Livewire, а также базу данных MySQL. Вы можете найти всю необходимую информацию здесь: <a href="https://fly.io/laravel-bytes/full-stack-laravel/" rel="noopener noreferrer nofollow" target="_blank">https://fly.io/laravel-bytes/full-stack-laravel/</a></p>
+<p>Вкратце, нам нужно создать новое приложение Laravel, установить Breeze и затем подключить его к недавно созданной базе данных MySQL. Не забудьте выполнить миграции после настройки! Подсказка: в статье о полнофункциональном Laravel рассказывается о автоматизации этого в разделе ”Миграция при развертывании”.</p>
+<p>Как только мы сможем выполнять вход и регистрировать пользователей, мы сможем начать журналирование!</p>
+<h2 id="настройка-elasticsearch">Настройка Elasticsearch<a aria-hidden="true" tabindex="-1" href="#настройка-elasticsearch"><span class="icon icon-link"></span></a></h2>
+<p>Как объяснено введении, мы будем настраивать Elasticsearch и Kibana. Для начала перейдите на официальный репозиторий Dockerfile Elastic по адресу <a href="https://github.com/elastic/dockerfiles" rel="noopener noreferrer nofollow" target="_blank">https://github.com/elastic/dockerfiles</a> и загрузите репозитории Elastic и Kibana. Нам понадобятся не только файлы Docker, но и всю директорию! Также нам придется внести некоторые изменения, чтобы всё заработало правильно. Не волнуйтесь, я проведу вас через это!</p>
+<p>Давайте сначала рассмотрим настроенный Dockerfile Elastic:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># This Dockerfile was generated from the template at distribution/src/docker/Dockerfile</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Beginning of multi stage Dockerfile</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Build stage 1 `builder`:</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Extract Elasticsearch artifact</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">FROM</span><span style="color:#A6ACCD"> ubuntu:20.04 </span><span style="color:#5DE4C7">AS</span><span style="color:#A6ACCD"> builder</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Install required packages to extract the Elasticsearch distribution</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> for iter in 1 2 3 4 5 6 7 8 9 10; do \</span></span>
+<span class="line"><span style="color:#A6ACCD">      apt-get update &#x26;&#x26; DEBIAN_FRONTEND=noninteractive apt-get install -y curl &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">      exit_code=0 &#x26;&#x26; break || \</span></span>
+<span class="line"><span style="color:#A6ACCD">        exit_code=$? &#x26;&#x26; echo </span><span style="color:#5DE4C7">"apt-get error: retry $iter in 10s"</span><span style="color:#A6ACCD"> &#x26;&#x26; sleep 10; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    done; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    exit $exit_code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># `tini` is a tiny but valid init for containers. This is used to cleanly</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># control how ES and any child processes are shut down.</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># The tini GitHub page gives instructions for verifying the binary using</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># gpg, but the keyservers are slow to return the key and this can fail the</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># build. Instead, we check the binary against the published checksum.</span></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> set -eux ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    tini_bin=</span><span style="color:#5DE4C7">""</span><span style="color:#A6ACCD"> ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    case </span><span style="color:#5DE4C7">"$(arch)"</span><span style="color:#A6ACCD"> in \</span></span>
+<span class="line"><span style="color:#A6ACCD">        aarch64) tini_bin=</span><span style="color:#5DE4C7">'tini-arm64'</span><span style="color:#A6ACCD"> ;; \</span></span>
+<span class="line"><span style="color:#A6ACCD">        x86_64)  tini_bin=</span><span style="color:#5DE4C7">'tini-amd64'</span><span style="color:#A6ACCD"> ;; \</span></span>
+<span class="line"><span style="color:#A6ACCD">        *) echo >&#x26;2 ; echo >&#x26;2 </span><span style="color:#5DE4C7">"Unsupported architecture $(arch)"</span><span style="color:#A6ACCD"> ; echo >&#x26;2 ; exit 1 ;; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    esac ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    curl --retry 10 -S -L -O https://github.com/krallin/tini/releases/download/v0.19.0/${tini_bin} ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    curl --retry 10 -S -L -O https://github.com/krallin/tini/releases/download/v0.19.0/${tini_bin}.sha256sum ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    sha256sum -c ${tini_bin}.sha256sum ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    rm ${tini_bin}.sha256sum ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    mv ${tini_bin} /bin/tini ; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chmod 0555 /bin/tini</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> mkdir /usr/share/elasticsearch</span></span>
+<span class="line"><span style="color:#5DE4C7">WORKDIR</span><span style="color:#A6ACCD"> /usr/share/elasticsearch</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> curl --retry 10 -S -L --output /tmp/elasticsearch.tar.gz https://artifacts-no-kpi.elastic.co/downloads/elasticsearch/elasticsearch-8.4.3-linux-$(arch).tar.gz</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> tar -zxf /tmp/elasticsearch.tar.gz --strip-components=1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># The distribution includes a `config` directory, no need to create it</span></span>
+<span class="line"><span style="color:#5DE4C7">COPY</span><span style="color:#A6ACCD"> config/elasticsearch.yml config/</span></span>
+<span class="line"><span style="color:#5DE4C7">COPY</span><span style="color:#A6ACCD"> config/log4j2.properties config/log4j2.docker.properties</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  1. Configure the distribution for Docker</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  2. Create required directory</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  3. Move the distribution's default logging config aside</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  4. Move the generated docker logging config so that it is the default</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  5. Reset permissions on all directories</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  6. Reset permissions on all files</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  7. Make CLI tools executable</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  8. Make some directories writable. `bin` must be writable because</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#     plugins can install their own CLI utilities.</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#  9. Make some files writable</span></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> sed -i -e </span><span style="color:#5DE4C7">'s/ES_DISTRIBUTION_TYPE=tar/ES_DISTRIBUTION_TYPE=docker/'</span><span style="color:#A6ACCD"> bin/elasticsearch-env &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    mkdir data &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    mv config/log4j2.properties config/log4j2.file.properties &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    mv config/log4j2.docker.properties config/log4j2.properties &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    find . -type d -exec chmod 0555 {} + &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    find . -type f -exec chmod 0444 {} + &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chmod 0555 bin/* jdk/bin/* jdk/lib/jspawnhelper modules/x-pack-ml/platform/linux-*/bin/* &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chmod 0775 bin config config/jvm.options.d data logs plugins &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    find config -type f -exec chmod 0664 {} +</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Build stage 2 (the actual Elasticsearch image):</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Copy elasticsearch from stage 1</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Add entrypoint</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">FROM</span><span style="color:#A6ACCD"> ubuntu:20.04</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Change default shell to bash, then install required packages with retries.</span></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> yes no | dpkg-reconfigure dash &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    for iter in 1 2 3 4 5 6 7 8 9 10; do \</span></span>
+<span class="line"><span style="color:#A6ACCD">      export DEBIAN_FRONTEND=noninteractive &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">      apt-get update &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">      apt-get upgrade -y &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">-     apt-get install -y --no-install-recommends \</span></span>
+<span class="line"><span style="color:#A6ACCD">-       ca-certificates curl netcat p11-kit unzip zip &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">+     # CUSTOM install gosu as well</span></span>
+<span class="line"><span style="color:#A6ACCD">+     apt-get install -y --no-install-recommends \</span></span>
+<span class="line"><span style="color:#A6ACCD">+       ca-certificates curl netcat p11-kit unzip zip gosu &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">      apt-get clean &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">      rm -rf /var/lib/apt/lists/* &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">      exit_code=0 &#x26;&#x26; break || \</span></span>
+<span class="line"><span style="color:#A6ACCD">        exit_code=$? &#x26;&#x26; echo </span><span style="color:#5DE4C7">"apt-get error: retry $iter in 10s"</span><span style="color:#A6ACCD"> &#x26;&#x26; sleep 10; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    done; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    exit $exit_code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> groupadd -g 1000 elasticsearch &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    adduser --uid 1000 --gid 1000 --home /usr/share/elasticsearch elasticsearch &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    adduser elasticsearch root &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chown -R 0:0 /usr/share/elasticsearch</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">ENV</span><span style="color:#A6ACCD"> ELASTIC_CONTAINER true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">WORKDIR</span><span style="color:#A6ACCD"> /usr/share/elasticsearch</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">COPY</span><span style="color:#A6ACCD"> --from=builder --chown=0:0 /usr/share/elasticsearch /usr/share/elasticsearch</span></span>
+<span class="line"><span style="color:#5DE4C7">COPY</span><span style="color:#A6ACCD"> --from=builder --chown=0:0 /bin/tini /bin/tini</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">ENV</span><span style="color:#A6ACCD"> PATH /usr/share/elasticsearch/bin:$PATH</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">COPY</span><span style="color:#A6ACCD"> bin/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">+ #CUSTOM copy over my own script</span></span>
+<span class="line"><span style="color:#A6ACCD">+COPY bin/setup.sh /usr/local/bin/setup.sh</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># 1. Sync the user and group permissions of /etc/passwd</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># 2. Set correct permissions of the entrypoint</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># 3. Ensure that there are no files with setuid or setgid, in order to mitigate "stackclash" attacks.</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#    We've already run this in previous layers so it ought to be a no-op.</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># 4. Replace OpenJDK's built-in CA certificate keystore with the one from the OS</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#    vendor. The latter is superior in several ways.</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#    REF: https://github.com/elastic/elasticsearch-docker/issues/171</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># 5. Tighten up permissions on the ES home dir (the permissions of the contents are handled earlier)</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># 6. You can't install plugins that include configuration when running as `elasticsearch` and the `config`</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#    dir is owned by `root`, because the installed tries to manipulate the permissions on the plugin's</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">#    config directory.</span></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> chmod g=u /etc/passwd &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chmod 0555 /usr/local/bin/docker-entrypoint.sh &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">+   #CUSTOM: set correct permissions for our own setup.sh script</span></span>
+<span class="line"><span style="color:#A6ACCD">+   chmod 0555 /usr/local/bin/setup.sh &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    find / -xdev -perm -4000 -exec chmod ug-s {} + &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chmod 0775 /usr/share/elasticsearch &#x26;&#x26; \</span></span>
+<span class="line"><span style="color:#A6ACCD">    chown elasticsearch bin config config/jvm.options.d data logs plugins</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Update "cacerts" bundle to use Ubuntu's CA certificates (and make sure it</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># stays up-to-date with changes to Ubuntu's store)</span></span>
+<span class="line"><span style="color:#5DE4C7">COPY</span><span style="color:#A6ACCD"> bin/docker-openjdk /etc/ca-certificates/update.d/docker-openjdk</span></span>
+<span class="line"><span style="color:#5DE4C7">RUN</span><span style="color:#A6ACCD"> /etc/ca-certificates/update.d/docker-openjdk</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">EXPOSE</span><span style="color:#A6ACCD"> 9200 9300</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">LABEL</span><span style="color:#A6ACCD"> org.label-schema.build-date=</span><span style="color:#5DE4C7">"2022-10-04T10:35:41.162162476Z"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.license=</span><span style="color:#5DE4C7">"Elastic-License-2.0"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.name=</span><span style="color:#5DE4C7">"Elasticsearch"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.schema-version=</span><span style="color:#5DE4C7">"1.0"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.url=</span><span style="color:#5DE4C7">"https://www.elastic.co/products/elasticsearch"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.usage=</span><span style="color:#5DE4C7">"https://www.elastic.co/guide/en/elasticsearch/reference/index.html"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.vcs-ref=</span><span style="color:#5DE4C7">"42f05b9372a9a4a470db3b52817899b99a76ee73"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.vcs-url=</span><span style="color:#5DE4C7">"https://github.com/elastic/elasticsearch"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.vendor=</span><span style="color:#5DE4C7">"Elastic"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.label-schema.version=</span><span style="color:#5DE4C7">"8.4.3"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.created=</span><span style="color:#5DE4C7">"2022-10-04T10:35:41.162162476Z"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.documentation=</span><span style="color:#5DE4C7">"https://www.elastic.co/guide/en/elasticsearch/reference/index.html"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.licenses=</span><span style="color:#5DE4C7">"Elastic-License-2.0"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.revision=</span><span style="color:#5DE4C7">"42f05b9372a9a4a470db3b52817899b99a76ee73"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.source=</span><span style="color:#5DE4C7">"https://github.com/elastic/elasticsearch"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.title=</span><span style="color:#5DE4C7">"Elasticsearch"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.url=</span><span style="color:#5DE4C7">"https://www.elastic.co/products/elasticsearch"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.vendor=</span><span style="color:#5DE4C7">"Elastic"</span><span style="color:#A6ACCD"> \</span></span>
+<span class="line"><span style="color:#A6ACCD">  org.opencontainers.image.version=</span><span style="color:#5DE4C7">"8.4.3"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">+ #CUSTOM entrypoint</span></span>
+<span class="line"><span style="color:#A6ACCD">+ENTRYPOINT [</span><span style="color:#5DE4C7">"/usr/local/bin/setup.sh"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Dummy overridable parameter parsed by entrypoint</span></span>
+<span class="line"><span style="color:#5DE4C7">CMD</span><span style="color:#A6ACCD"> [</span><span style="color:#5DE4C7">"eswrapper"</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">-USER elasticsearch:root</span></span>
+<span class="line"><span style="color:#A6ACCD">+#CUSTOM do not run as elasticsearch but as root</span></span>
+<span class="line"><span style="color:#A6ACCD">+#USER elasticsearch:root</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># End of multi-stage Dockerfile</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">################################################################################</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Основное изменение по сравнению с исходным Dockerfile заключается в том, что мы будем использовать наш собственный скрипт в качестве точки входа (entrypoint), который затем запустит ”официальный” скрипт. Таким образом, мы сможем выполнять наш собственный скрипт с правами суперпользователя (root), а “официальный” скрипт - с правами пользователя Elasticsearch. Запуск от имени суперпользователя позволяет настроить все необходимые параметры. Не волнуйтесь, я объясню дополнительно, когда дойдем до этого. Давайте сначала рассмотрим каждое изменение по сравнению с исходным файлом:</p>
+<ul>
+<li>Строки 89-91: На этапе сборки 2 мы также устанавливаем gosu, чтобы выполнять команды от имени другого пользователя.</li>
+<li>Строки 115-116: Мы копируем собственный скрипт setup.sh.</li>
+<li>Строки 131-132: Устанавливаем разрешения для нашего собственного скрипта, чтобы его можно было правильно выполнить.</li>
+<li>Строки 164-165: Здесь мы используем наш собственный скрипт setup.sh в качестве точки входа.</li>
+<li>Строки 169-170: Здесь мы комментируем команду USER, чтобы точка входа выполнялась не от имени пользователя Elasticsearch, а от имени суперпользователя (root).</li>
+</ul>
+<p>После этого нам нужно создать собственный скрипт setup.sh. Он выполняет настройку некоторых параметров на фактической виртуальной машине, где выполняется приложение, а затем запускает оригинальный скрипт точки входа от имени пользователя Elasticsearch. Убедитесь, что вы создаете этот скрипт в каталоге bin/, так как Dockerfile будет ожидать его скопирования оттуда! Вот как он выглядит:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#767C9DB0;font-style:italic">#!/bin/bash</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># set some parameters that will be checked when ElasticSearch bootstraps</span></span>
+<span class="line"><span style="color:#91B4D5">ulimit</span><span style="color:#ADD7FF"> -n</span><span style="color:#5DE4C7"> 65535</span></span>
+<span class="line"><span style="color:#91B4D5">ulimit</span><span style="color:#ADD7FF"> -u</span><span style="color:#5DE4C7"> 4096</span></span>
+<span class="line"><span style="color:#91B4D5">sysctl</span><span style="color:#ADD7FF"> -w</span><span style="color:#ADD7FF"> vm.max_map_count=</span><span style="color:#5DE4C7">262144</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#91B4D5">gosu</span><span style="color:#ADD7FF"> elasticsearch:root</span><span style="color:#ADD7FF"> /usr/local/bin/docker-entrypoint.sh</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Этот скрипт настраивает конфигурацию виртуальной машины (VM), где он будет запущен, а затем использует gosu для выполнения оригинальной точки входа от имени пользователя Elasticsearch. Мы делаем это в несколько необычном порядке из-за того, что Elasticsearch выполняет некоторые проверки при запуске, и без этого скрипта они завершатся неудачно. По умолчанию Fly.io настроит эти параметры более строго, и проверки завершатся неудачно. Если по какой-то причине вы не можете заснуть, вы можете прочитать об этих проверках здесь: Проверки при запуске Elasticsearch.</p>
+<p>Наконец, нам также нужно внести небольшие изменения в конфигурационный файл elasticsearch.yml. Вот как он должен выглядеть:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#5DE4C7">cluster.name</span><span style="color:#A6ACCD">: </span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">docker-cluster</span><span style="color:#A6ACCD">'</span></span>
+<span class="line"><span style="color:#5DE4C7">network.host</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7">0.0.0.0</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># add these:</span></span>
+<span class="line"><span style="color:#5DE4C7">xpack.security.enabled</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7">false</span></span>
+<span class="line"><span style="color:#5DE4C7">discovery.type</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">single-node</span></span>
+<span class="line"></span></code></pre>
+<p>Установка параметра xpack.security.enabled в значение false отключит большую часть безопасности и позволит использовать протокол HTTP вместо HTTPS. Это упростит настройку, так как нам не придется заниматься сертификатами и подобными вещами, но это всё равно остается вопросом безопасности. Поскольку приложение будет работать в частной сети, которая не доступна публично, я не слишком беспокоюсь об этом.</p>
+<p>Все настройки завершены, и мы готовы к запуску! Запустите приложение с помощью команды fly launch, но еще не разворачивайте его, так как у нас есть последнее изменение для внесения. При запуске приложения автоматически будет создан новый файл fly.toml. Откройте его и в разделе [[services]] измените параметр internal_port на 9200, как показано ниже:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#767C9DB0;font-style:italic"># ...</span></span>
+<span class="line"><span style="color:#A6ACCD">[[</span><span style="color:#ADD7FF">services</span><span style="color:#A6ACCD">]]</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">  # ...</span></span>
+<span class="line"><span style="color:#ADD7FF">  internal_port = 9200</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">  # ...</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Этот порт будет использоваться для проверки фактической работоспособности приложения. Оно считается здоровым, если приложение отвечает на запросы на этом порту, в противном случае оно считается нездоровым (вы можете найти больше информации здесь). А почему нам именно нужно, чтобы это был порт 9200? Ну, юный падаван, потому что это порт, используемый Elasticsearch по умолчанию.</p>
+<p>Единственное, что остается сделать, это предоставить приложению немного больше памяти с помощью команды fly scale memory 1024, иначе оно может ”подвиснуть” при развертывании. Теперь вы можете развернуть приложение и приготовить кофе или чай, пока оно настраивается. Как только вы окрепнете после напитка и ваше приложение будет работать, мы сможем настроить последний элемент головоломки: веб-интерфейс Kibana.</p>
+<h2 id="настройка-kibana">Настройка Kibana<a aria-hidden="true" tabindex="-1" href="#настройка-kibana"><span class="icon icon-link"></span></a></h2>
+<p>Теперь мы в самом разгаре! Осталось настроить всего одно приложение, и это, вероятно, самое простое. Вам нужно всего лишь открыть каталог Kibana (вы знаете, тот, который я сказал вам загрузить с GitHub) и найти файл kibana.yml. Внутри этого файла вы найдете переменную с именем elasticsearch.hosts. В настоящее время она установлена на <a href="http://elasticsearch:9200" rel="noopener noreferrer nofollow" target="_blank">http://elasticsearch:9200</a>, но это не сработает. Измените часть URL с elasticsearch на имя вашего приложения Elasticsearch и добавьте .internal после этого:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#767C9DB0;font-style:italic"># Default Kibana configuration for docker target</span></span>
+<span class="line"><span style="color:#5DE4C7">server.host</span><span style="color:#A6ACCD">: </span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">0.0.0.0</span><span style="color:#A6ACCD">'</span></span>
+<span class="line"><span style="color:#5DE4C7">server.shutdownTimeout</span><span style="color:#A6ACCD">: </span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">5s</span><span style="color:#A6ACCD">'</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># add your elasticsearch app's name here:</span></span>
+<span class="line"><span style="color:#5DE4C7">elasticsearch.hosts</span><span style="color:#A6ACCD">: [</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">http://*YOUR_ELASTICSEARCH_APP_NAME_HERE*.internal:9200</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">]</span></span>
+<span class="line"><span style="color:#5DE4C7">monitoring.ui.container.elasticsearch.enabled</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7">true</span></span>
+<span class="line"></span></code></pre>
+<p>Помните, я говорил, что использование HTTP не так уж и важно, так как наши приложения находятся в частной сети? Вот почему мы добавляем .internal. В моем случае, мое приложение Elasticsearch называется logging-elasticsearch, поэтому мой URL хостов выглядит как <a href="http://logging-elasticsearch.internal:9200" rel="noopener noreferrer nofollow" target="_blank">http://logging-elasticsearch.internal:9200</a>.</p>
+<p>После этого вы можете запустить приложение, но, как и с Elasticsearch, вы не можете развернуть его пока. В сгенерированном файле fly.toml измените параметры internal_port на 5601, это порт Kibana по умолчанию. Таким образом, Fly сможет сообщить, что приложение успешно работает!</p>
+<p>Также, как и с Elasticsearch, увеличьте объем памяти до 1024 МБ и разверните приложение!</p>
+<p>Давайте быстро проверим, как работает приложение, выполнив команду fly open, которая откроет общедоступный URL приложения, чтобы мы могли убедиться, что всё работает как надо.</p>
+<p>Уф, это было немало информации. А теперь перейдем к разделу, где мы действительно будем писать код, а не только настраивать приложения, связывать скрипты, настраивать конфигурации и выполнять команды в терминале. Поехали!</p>
+<h2 id="логирование-при-регистрации-нового-пользователя">Логирование при регистрации нового пользователя<a aria-hidden="true" tabindex="-1" href="#логирование-при-регистрации-нового-пользователя"><span class="icon icon-link"></span></a></h2>
+<p>Прошло некоторое время, так что вот напоминание о том, что мы на самом деле собрались сделать: мы хотим вести журнал каждого нового пользователя, который регистрируется в вашем приложении, в Elasticsearch, чтобы вы могли отслеживать, сколько новых пользователей зарегистрировалось.</p>
+<h3 id="одно-1-изменение-в-настройках-окружения">Одно (1) изменение в настройках окружения<a aria-hidden="true" tabindex="-1" href="#одно-1-изменение-в-настройках-окружения"><span class="icon icon-link"></span></a></h3>
+<p>Я предполагаю, что у вас уже есть настройки базы данных, но нам нужно внести еще одно изменение, чтобы наши логи работали должным образом. Если вы откроете fly.toml файл приложения Laravel, вы увидите некоторые переменные в разделе [env]. Закомментируйте LOG_CHANNEL и LOG_LEVEL:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span>    ...</span></span>
+<span class="line"><span>- LOG_CHANNEL = "stderr"</span></span>
+<span class="line"><span>- LOG_LEVEL = "info"</span></span>
+<span class="line"><span>+ #remove these from the env so they won't override the default .env file.</span></span>
+<span class="line"><span>+ #LOG_CHANNEL = "stack"</span></span>
+<span class="line"><span>+ #LOG_LEVEL = "info"</span></span>
+<span class="line"><span>    ...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вот почему: переменные окружения в файле fly.toml переопределят те, которые находятся в файле .env. Таким образом, переменная LOG_CHANNEL будет установлена по умолчанию в stderr, это способ, с помощью которого Fly может захватывать и отображать логи работающего приложения. Мы закомментируем ее и настроим канал stderr позже. Не волнуйтесь, я вас напомню. Закомментировав эти переменные, наше приложение будет брать их из файла .env, а не из fly.toml, что, на мой взгляд, имеет больше смысла.</p>
+<h2 id="настройка-канала-логирования">Настройка канала логирования<a aria-hidden="true" tabindex="-1" href="#настройка-канала-логирования"><span class="icon icon-link"></span></a></h2>
+<p>Теперь давайте подключим наше приложение Laravel к логированию ELK.</p>
+<p>Тут есть хорошие и плохие новости. Давайте начнем с хороших: Laravel предоставляет несколько каналов логирования ”из коробки”. Плохая новость заключается в том, что нет канала логирования по умолчанию, который работал бы с Elasticsearch. Но не переживайте, мы сами создадим такой!</p>
+<p>Для этого сначала установите SDK для работы с Elasticsearch в PHP:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#91B4D5">composer</span><span style="color:#ADD7FF"> require</span><span style="color:#ADD7FF"> elasticsearch/elasticsearch</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Чтобы создать канал логирования, нам понадобится некоторая информация о том, как работают эти каналы и как они настраиваются. Под капотом Laravel использует библиотеку Monolog для логирования, которая позволяет логировать данные в различные конечные точки. Для этого Monolog использует обработчики (handlers). К счастью для нас, доступен обработчик ElasticsearchHandler. Вы можете найти документацию по нему здесь, в разделе ”Логирование в базы данных”: документация.</p>
+<p>Все настроенные каналы логирования можно найти в файле config/logging.php. Все, что нам нужно сделать, чтобы добавить собственный канал логирования в массив каналов, и мы готовы к работе. Мы будем использовать “custom” в качестве драйвера, таким образом, мы сможем использовать фабрику для создания нашего канала логирования. Добавьте следующий код в массив каналов в файле config/logging.php:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">elasticsearch</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> [</span></span>
+<span class="line"><span style="color:#A6ACCD">            '</span><span style="color:#5DE4C7">driver</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">custom</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">            '</span><span style="color:#5DE4C7">via</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#E4F0FB"> \</span><span style="color:#91B4D5">App</span><span style="color:#E4F0FB">\</span><span style="color:#91B4D5">Logging</span><span style="color:#E4F0FB">\</span><span style="color:#ADD7FF">CreateElasticsearchLogger</span><span style="color:#91B4D5">::</span><span style="color:#5DE4C7">class</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">            ],</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Это создаст канал логирования с именем “elasticsearch”. Обработчик для этого канала будет создан с использованием класса CreateElasticsearchLogger. Давайте создадим этот класс:</p>
+<p>Создайте новый класс в каталоге app/Logging с именем CreateElasticsearchLogger. В этом классе нам нужен только один метод: __invoke(). Этот класс принимает массив и должен возвращать экземпляр Monolog. Вот как это должно выглядеть:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#5DE4C7">namespace</span><span style="color:#A6ACCDC0"> App</span><span style="color:#E4F0FB">\</span><span style="color:#A6ACCDC0">Logging</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">use</span><span style="color:#91B4D5"> Elastic</span><span style="color:#E4F0FB">\</span><span style="color:#91B4D5">Elasticsearch</span><span style="color:#E4F0FB">\</span><span style="color:#ADD7FF">ClientBuilder</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"><span style="color:#5DE4C7">use</span><span style="color:#91B4D5"> Monolog</span><span style="color:#E4F0FB">\</span><span style="color:#91B4D5">Handler</span><span style="color:#E4F0FB">\</span><span style="color:#ADD7FF">ElasticsearchHandler</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"><span style="color:#5DE4C7">use</span><span style="color:#91B4D5"> Monolog</span><span style="color:#E4F0FB">\</span><span style="color:#ADD7FF">Logger</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#91B4D5">class</span><span style="color:#ADD7FF"> CreateElasticsearchLogger</span></span>
+<span class="line"><span style="color:#A6ACCD">{</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">    /**</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">     * Create a custom Monolog instance.</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">     *</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">     * </span><span style="color:#5DE4C7;font-style:italic">@param</span><span style="color:#5DE4C7;font-style:italic">  array</span><span style="color:#767C9DB0;font-style:italic">  $config</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">     * </span><span style="color:#5DE4C7;font-style:italic">@return</span><span style="color:#E4F0FB;font-style:italic"> \</span><span style="color:#91B4D5;font-style:italic">Monolog</span><span style="color:#E4F0FB;font-style:italic">\</span><span style="color:#ADD7FF;font-style:italic">Logger</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">     */</span></span>
+<span class="line"><span style="color:#5DE4C7">    public</span><span style="color:#91B4D5"> function</span><span style="color:#A6ACCD"> __invoke(</span><span style="color:#5DE4C7">array</span><span style="color:#A6ACCD"> $</span><span style="color:#E4F0FB">config</span><span style="color:#A6ACCD">)</span></span>
+<span class="line"><span style="color:#A6ACCD">    {</span></span>
+<span class="line"><span style="color:#A6ACCD">        $</span><span style="color:#E4F0FB">logger</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> new</span><span style="color:#ADD7FF"> Logger</span><span style="color:#A6ACCD">(</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">elasticsearch</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">        //create the client</span></span>
+<span class="line"><span style="color:#A6ACCD">        $</span><span style="color:#E4F0FB">client</span><span style="color:#91B4D5"> =</span><span style="color:#ADD7FF"> ClientBuilder</span><span style="color:#91B4D5">::</span><span style="color:#E4F0FBD0">create</span><span style="color:#A6ACCD">()</span></span>
+<span class="line"><span style="color:#91B4D5">                    -></span><span style="color:#E4F0FBD0">setHosts</span><span style="color:#A6ACCD">([</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">http://logging-elasticsearch.internal:9200</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">])</span></span>
+<span class="line"><span style="color:#91B4D5">                    -></span><span style="color:#E4F0FBD0">build</span><span style="color:#A6ACCD">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">        //create the handler</span></span>
+<span class="line"><span style="color:#A6ACCD">        $</span><span style="color:#E4F0FB">options</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span></span>
+<span class="line"><span style="color:#A6ACCD">            '</span><span style="color:#5DE4C7">index</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">user_logs</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">            '</span><span style="color:#5DE4C7">type</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">_doc</span><span style="color:#A6ACCD">'</span></span>
+<span class="line"><span style="color:#A6ACCD">        ];</span></span>
+<span class="line"><span style="color:#A6ACCD">        $</span><span style="color:#E4F0FB">handler</span><span style="color:#91B4D5"> =</span><span style="color:#5DE4C7"> new</span><span style="color:#ADD7FF"> ElasticsearchHandler</span><span style="color:#A6ACCD">($</span><span style="color:#E4F0FB">client</span><span style="color:#A6ACCD">, $</span><span style="color:#E4F0FB">options</span><span style="color:#A6ACCD">, </span><span style="color:#ADD7FF">Logger</span><span style="color:#91B4D5">::</span><span style="color:#A6ACCD">INFO, </span><span style="color:#5DE4C7">true</span><span style="color:#A6ACCD">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">        $</span><span style="color:#E4F0FB">logger</span><span style="color:#91B4D5">-></span><span style="color:#E4F0FBD0">setHandlers</span><span style="color:#A6ACCD">(array($</span><span style="color:#E4F0FB">handler</span><span style="color:#A6ACCD">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">        return $</span><span style="color:#E4F0FB">logger</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"><span style="color:#A6ACCD">    }</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Одним из важных моментов стоит отметить индекс в массиве $options. В Elasticsearch индекс подобен базе данных в MySQL. При настройке наших представлений, мы сможем установить шаблон индекса, который указывает, какие индексы нам нужно сопоставить. Здесь есть ОЧЕНЬ много гибкости: вы можете создавать индекс на каждый день, чтобы фильтровать логирование по дням. Или, возможно, индекс на каждого пользователя, чтобы видеть, как каждый пользователь использует ваше приложение. В настоящее время мы оставим это простым и установим индекс в значение “user_logs”.</p>
+<p>Если вы хотите использовать несколько индексов, я бы порекомендовал изучить каналы по запросу (on-demand channels). Это каналы, которые создаются в тот момент, когда приложению это необходимо, и они были бы хорошим способом использования нескольких индексов.</p>
+<p>Логирование сообщения при регистрации нового пользователя
+Вы, наверное, помните, что мы настроили все это для того, чтобы следить за тем, сколько новых пользователей вы получаете каждый день, неделю или месяц. Поэтому мы добавим лог при каждой регистрации пользователя. События и слушатели отлично подходят для этого, и, к счастью для нас, Breeze уже имеет событие Registered! Вы можете найти его здесь: Laravel/vendor/laravel/framework/src/Illuminate/Auth/Events/Registered.php. Это событие срабатывает каждый раз, когда новый пользователь регистрируется и связано со слушателем, который отправляет электронное письмо для подтверждения адреса электронной почты пользователю. Мы просто добавим наш собственный слушатель к тому же событию, легко! Вот как:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#91B4D5">php</span><span style="color:#ADD7FF"> artisan</span><span style="color:#ADD7FF"> make:listener</span><span style="color:#ADD7FF"> LogRegisteredUser</span><span style="color:#ADD7FF"> --event=Registered</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Флаг —event настроит наш слушатель для использования с событием Registered. Убедитесь, что все ссылки на Registered указывают на Illuminate/Auth/Events/Registered.</p>
+<p>Чтобы увидеть, какие слушатели связаны с событием Registered, перейдите в EventServiceProvider. В массиве $listen слушатели связаны со своими событиями. Добавьте наш новый слушатель там:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#5DE4C7">protected</span><span style="color:#A6ACCD"> $</span><span style="color:#E4F0FB">listen</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> [</span></span>
+<span class="line"><span style="color:#ADD7FF">    Registered</span><span style="color:#91B4D5">::</span><span style="color:#5DE4C7">class</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> [</span></span>
+<span class="line"><span style="color:#ADD7FF">        SendEmailVerificationNotification</span><span style="color:#91B4D5">::</span><span style="color:#5DE4C7">class</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">        # Add this line</span></span>
+<span class="line"><span style="color:#91B4D5">+</span><span style="color:#ADD7FF">       LogRegisteredUser</span><span style="color:#91B4D5">::</span><span style="color:#5DE4C7">class</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">    ],</span></span>
+<span class="line"><span style="color:#A6ACCD">];</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Теперь нам просто нужно указать, что слушатель LogRegisteredUser должен фактически выполнять. Перейдите в LogRegisteredUser и добавьте следующий код в предварительно настроенный метод handle:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#5DE4C7">public</span><span style="color:#91B4D5"> function</span><span style="color:#ADD7FF"> handle</span><span style="color:#A6ACCD">(</span><span style="color:#ADD7FF">Registered</span><span style="color:#A6ACCD"> $</span><span style="color:#E4F0FB">event</span><span style="color:#A6ACCD">)</span></span>
+<span class="line"><span style="color:#A6ACCD">{</span></span>
+<span class="line"><span style="color:#91B4D5">+</span><span style="color:#767C9DB0;font-style:italic">   // add an 'info' log with our new user:</span></span>
+<span class="line"><span style="color:#91B4D5">+</span><span style="color:#ADD7FF">   Log</span><span style="color:#91B4D5">::</span><span style="color:#E4F0FBD0">info</span><span style="color:#A6ACCD">(</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">New user '</span><span style="color:#A6ACCD">{$</span><span style="color:#E4F0FB">event</span><span style="color:#91B4D5">-></span><span style="color:#E4F0FB">user</span><span style="color:#91B4D5">-></span><span style="color:#E4F0FB">name</span><span style="color:#A6ACCD">}</span><span style="color:#5DE4C7">' registered</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD">, $</span><span style="color:#E4F0FB">event</span><span style="color:#91B4D5">-></span><span style="color:#E4F0FB">user</span><span style="color:#91B4D5">-></span><span style="color:#E4F0FBD0">toArray</span><span style="color:#A6ACCD">());</span></span>
+<span class="line"><span style="color:#A6ACCD">}</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Log::info будет использовать канал регистрации по умолчанию, указанный в logging.php. Если мы проверим этот файл, мы увидим, что он использует переменную среды LOG_CHANNEL, а в качестве резервного варианта - stack. Давайте настроим это в нашем .env-файле: найдите переменную LOG_CHANNEL и установите ее значение на stack. По моему мнению, настройка этого рода должна быть в .env-файле.</p>
+<p>Еще одна важная деталь: методы Log::… могут принимать один или два параметра, второй из которых - контекст. Мы передаем наш объект User, который будет очень полезен в Kibana. Не волнуйтесь, это будет понятно, когда мы дойдем до этого.</p>
+<p>Наконец, перейдите в файл logging.php и найдите канал stack. Этот канал включает в себя несколько подканалов, так что журналы могут быть отправлены в разные места в зависимости от уровня журнала. В массиве channels добавьте stderr и elasticsearch. Вот как теперь должен выглядеть канал stack:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">stack</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> [</span></span>
+<span class="line"><span style="color:#A6ACCD">    '</span><span style="color:#5DE4C7">driver</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">stack</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#91B4D5">-</span><span style="color:#A6ACCD">   '</span><span style="color:#5DE4C7">channels</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">single</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">],</span></span>
+<span class="line"><span style="color:#91B4D5">+</span><span style="color:#A6ACCD">   '</span><span style="color:#5DE4C7">channels</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">single</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">elasticsearch</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">stderr</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">], </span><span style="color:#767C9DB0;font-style:italic"># also log to elasticsearch and fly logs</span></span>
+<span class="line"><span style="color:#A6ACCD">    '</span><span style="color:#5DE4C7">ignore_exceptions</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> =></span><span style="color:#5DE4C7"> false</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">],</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Если вы помните, канал stderr - это тот, который делает рабочими журналы Fly, и мы убрали его из раздела env в файле fly.toml, поэтому не забудьте добавить его здесь!</p>
+<p>Теперь перезагрузите изменения в Fly, чтобы обновить работающее приложение с помощью fly deploy. Затем зарегистрируйте нового пользователя, чтобы запустить наш слушатель. После этого перейдите в Kibana, чтобы посмотреть на наши журналы! Не забудьте, что вы можете сделать это, перейдя по URL вашего приложения, найденному в панели управления Fly, или с помощью команды fly open в каталоге, где находится файл fly.toml для Kibana. Увидимся на другой стороне!</p>
+<h2 id="настройка-kibana-1">Настройка Kibana<a aria-hidden="true" tabindex="-1" href="#настройка-kibana-1"><span class="icon icon-link"></span></a></h2>
+<p>Это то, чего вы ждали. Последняя глава. Это момент, когда мы… будем отображать журналы в Kibana! Хорошо, я, возможно, немного переборщил с драмой. В любом случае, давайте посмотрим, как мы можем отобразить наши журналы:</p>
+<p>В Kibana откройте меню слева, прокрутите вниз и перейдите во вкладку управления стеком. Затем выберите data views слева. Вы должны увидеть, что Kibana немного насмехается и говорит, что сначала нам нужны данные. Кто он такой, чтобы делать такие замечания? Но у него есть своя логика, нам действительно нужны данные, и мы их получим!</p>
+<p>Откройте свое приложение Laravel в новой вкладке и зарегистрируйте нового пользователя. Это должно вызвать событие Register, которое в свою очередь запустит наш слушатель LogRegisteredUser. После этого перейдите на вкладку Kibana и, если все настроено правильно, мы должны увидеть, что Kibana успокоился и говорит нам, что у нас есть данные в Elasticsearch. Все, что нам нужно сделать сейчас, это создать data view. Нажмите на голубую кнопку ”создать data view” посередине страницы. Здесь мы можем увидеть, как data view связан с индексами в Elasticsearch: шаблон соответствует одному или нескольким индексам. Используя правильный шаблон, вы можете получить все журналы за месяц, для конкретного пользователя или для конкретной функции в вашем приложении. Возможности в основном безграничны, вы просто настраиваете индексы и data view так, как вам нужно!</p>
+<p>На данный момент просто используйте шаблон, например, user* . В качестве поля с отметкой времени мы можем использовать context.created_at. Помните, когда я говорил о контексте и о том, что мы должны добавить его в наши журналы? Вот почему: поскольку мы добавили объект User как контекст, Elasticsearch видит все поля объекта User и отображает их в таблицах, графиках, диаграммах и, в общем, везде. Классно!</p>
+<p>После создания data view перейдите в Analytics - discover в боковой панели слева. Здесь вы можете увидеть все журналы в определенном временном диапазоне.</p>
+<figure class="igorlov-figure"><img src="https://fly.io/laravel-bytes/integrating-the-elastic-stack-elk-into-a-laravel-app-on-fly/../../assets/kibana_screenshot.webp" alt=""></figure>
+<p>Слева вы видите все поля, которые Elasticsearch обнаружил. Мы зарегистрировали полный объект пользователя в поле контекста, поэтому мы можем отображать здесь все, что нам нужно, даже если мы внесем изменения в модель пользователя позже!</p>
+<p>Здесь есть еще многое, что можно исследовать. Мы только окунули кончик ноги в глубокие воды стека Elastic. Этого было достаточно для простого случая использования, поэтому я завершу здесь. Возможно, вы могли бы настроить панель управления, которая показывает, сколько новых пользователей зарегистрировалось в каждый день за последнюю неделю? Я оставлю вам это для самостоятельного решения.</p>
+<p>Большое спасибо за чтение, и не стесняйтесь сообщать мне, если что-то не работает, если есть странные опечатки или если вы хотели бы, чтобы я продолжил писать о стеке Elastic!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Интеграция стека Elastic Stack (ELK) в приложение Laravel&#38;url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&#38;url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel&#38;title=Интеграция стека Elastic Stack (ELK) в приложение Laravel&#38;summary=&#34;Сколько новых пользователей у нас было вчера?&#34; &#34;Больше ли их, чем два дня назад?&#34; Если вы когда-либо сталкивались с такими вопросами, то повезло! Сегодня мы...
+&#38;source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/integraciya-steka-elastic-stack-elk-v-prilozhenie-laravel&#38;media=&#38;description=&#34;Сколько новых пользователей у нас было вчера?&#34; &#34;Больше ли их, чем два дня назад?&#34; Если вы когда-либо сталкивались с такими вопросами, то повезло! Сегодня мы...
+" target="_blank" rel="noreferrer noopener" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/proverka-torawsql" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Проверка toRawSql </a> <a href="/blog/vidzhet-chata-s-pomoshьyu-persist-v-livewire-3" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Виджет чата с помощью Persist в Livewire 3 </a> </nav>  </div> </article> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.svLg6TOn.js" component-export="default" renderer-url="/_astro/client.D9Vng9vH.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> <astro-island uid="Z2a8j9B" component-url="/_astro/CommentBlock.BwogX8bT.js" component-export="default" renderer-url="/_astro/client.DtEXyQF-.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  </div> <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-extrabold lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-dark  dark:text-gray" aria-label="logo" data-astro-cid-ijoll5s5>ФCВР</a>  <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>
