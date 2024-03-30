@@ -1,0 +1,216 @@
+## 0.2.0 (2024-02-27)
+
+### Feat
+
+- add search component
+- add search component
+- add articles
+- add articles
+- change ads
+- change ads
+- remove adfox under title
+- add articles
+- adfox context to cloudflare zaraz
+- add autoreload to  adfox block
+- add autoreload to  adfox block
+- add ads.txt & articles
+- remove adfox sticky
+- add adfox sticky
+- add adfox sticky
+- add adfox under title
+- add adfox
+- add adfox
+- add adfox
+- add adfox
+- add adfox
+- add articles
+- add articles
+
+### Fix
+
+- remove double article
+- change hero text
+- commit search
+
+## 0.1.0 (2024-01-20)
+
+### Feat
+
+- add articles
+- change code theme
+- change code theme
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- remove market verify page
+- add market verify page
+- add copy code
+- add circular navigation posts & projects
+- add circular navigation posts & projects
+- add circular navigation posts & projects
+- add circular navigation posts & projects
+- change comments
+- remove tags & categories robots
+- remove tags robots
+- add search
+- add share && nofollow links
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add few articles
+- add many articles
+- add translator & images updated script
+- update to astro 4.0
+- change hero text
+- change category title & description seo
+- add 9 article
+- add 1 article
+- add 1 article
+- add picture & figure to articles
+- add picture & figure to articles
+- add picture & figure to articles
+- add 1 article
+- add event to nav
+- add 404
+- add new design
+- add text ads
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add articles
+- add adsense metatag
+- add 3 articles
+- add 3 articles
+- add 3 articles
+- add 3 articles
+- add articles
+- add articles
+- add tags page grid
+- add article
+- change robots.txt
+- change hero images to picture
+- change floor ads to astro component
+- change floor ads to astro component
+- change floor ads to astro component
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change full ads to floor ads
+- change images to picture
+- add images view-tranransion-api
+- add articles
+- add project
+- add articles
+- add articles
+- add fulladsdesk category & single blog  page
+- add fullads category & single blog  page
+- add fullads blog page
+- local build
+- local build
+- local merge to main
+- local merge to main
+- build after swith
+- move or remove before swith
+- build after swith
+- revert to 26
+- add some articles
+- add some articles
+- add some articles
+- add some articles
+- add some articles
+- add some articles
+- add some articles
+- add some images to articles
+- add some articles
+- add some articles
+- add some articles
+- add some articles
+- add some articles
+- replace sass to postcss
+- add view transitions
+- add view transitions
+- update to version 3
+- update to version 3
+- add breadcrumbs
+- add breadcrumbs
+- add yandex rtb block
+- add yandex rtb block
+- add yandex rtb block
+- add yandex rtb block
+- add yandex rtb block
+- add yandex rtb block
+- add articles
+- add articles
+- fix titles
+- fix share buttons
+- add share buttons
+- add comments
+- add socials
+- add contact page
+- add contact page
+- add contact page
+- add contact page
+- add main page
+- add main page
+- add main page
+- add main page
+- add main page
+- add main page
+- add main page
+- add main page
+- add build
+- add build
+- add build
+- add build
+- add build
+- add build
+- add build
+- add build
+- add build
+- add build
+- add main page
+- add build
+- add project single page
+- add project page
+- add blog page
+- add blog content
+- add layout base
+- add astro
+- add posts
+- add blocks components
+- add slug post, page, category collection types
+- add post, page, category collection types
+
+### Fix
+
+- nav overflow
+- nav
+- nav
+- about section text
+- image post rounder
+- image post rounder
+- image post rounder
+- nav active item
+- nav active item
+- remove slugs
+- remove slugs
+- remove duplicate ui component
+- remove duplicate ui component
+- add ui components

@@ -1,0 +1,253 @@
+{
+	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
+	"frontMatter.framework.id": "astro",
+	"frontMatter.preview.host": "http://localhost:4321",
+	"frontMatter.content.publicFolder": "public",
+	"frontMatter.content.autoUpdateDate": true,
+	"frontMatter.content.pageFolders": [
+		{
+			"path": "[[workspace]]/src/content/blog",
+			"title": "blog",
+			"contentTypes": ["blog"]
+		},
+		{
+			"path": "[[workspace]]/src/content/pages",
+			"title": "pages"
+		},
+		{
+			"path": "[[workspace]]/src/content/sections",
+			"title": "sections"
+		},
+		{
+			"path": "[[workspace]]/src/content/projects",
+			"title": "projects",
+			"contentTypes": ["projects"]
+		},
+		{
+			"path": "[[workspace]]/src/content/authors",
+			"title": "authors"
+		}
+	],
+	"frontMatter.content.supportedFileTypes": ["md", "markdown", "mdx", "mdoc"],
+	"frontMatter.taxonomy.contentTypes": [
+		{
+			"name": "default",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "title",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"title": "meta_title",
+					"name": "meta_title",
+					"type": "string"
+				},
+				{
+					"title": "description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "date",
+					"name": "date",
+					"type": "datetime"
+				},
+				{
+					"title": "author",
+					"name": "author",
+					"type": "choice",
+					"choices": ["Woorg"]
+				},
+				{
+					"title": "image",
+					"name": "image",
+					"type": "image"
+				}
+			]
+		},
+		{
+			"name": "projects",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "draft",
+					"name": "draft",
+					"type": "boolean"
+				},
+				{
+					"title": "title",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"title": "meta_title",
+					"name": "meta_title",
+					"type": "string"
+				},
+				{
+					"title": "description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "date",
+					"name": "date",
+					"type": "datetime"
+				},
+				{
+					"title": "author",
+					"name": "author",
+					"type": "choice",
+					"choices": ["Woorg", "Igor Gorlov"]
+				},
+				{
+					"title": "Image",
+					"name": "image",
+					"type": "image"
+				},
+				{
+					"title": "assets/images",
+					"name": "assets/images",
+					"type": "image",
+					"multiple": true
+				},
+				{
+					"title": "categories",
+					"name": "categories",
+					"type": "categories"
+				},
+				{
+					"title": "tags",
+					"name": "tags",
+					"type": "tags"
+				},
+				{
+					"title": "industry",
+					"name": "industry",
+					"type": "string"
+				},
+				{
+					"title": "repository",
+					"name": "repository",
+					"type": "string"
+				},
+				{
+					"title": "link",
+					"name": "link",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"name": "blog",
+			"pageBundle": false,
+			"previewPath": null,
+			"fields": [
+				{
+					"title": "draft",
+					"name": "draft",
+					"type": "boolean"
+				},
+				{
+					"title": "title",
+					"name": "title",
+					"type": "string"
+				},
+				{
+					"title": "meta_title",
+					"name": "meta_title",
+					"type": "string"
+				},
+				{
+					"title": "description",
+					"name": "description",
+					"type": "string"
+				},
+				{
+					"title": "date",
+					"name": "date",
+					"type": "datetime"
+				},
+				{
+					"title": "Last updated",
+					"name": "lastmod",
+					"type": "datetime"
+				},
+				{
+					"title": "image",
+					"name": "image",
+					"type": "image"
+				},
+				{
+					"title": "categories",
+					"name": "categories",
+					"type": "categories"
+				},
+				{
+					"title": "author",
+					"name": "author",
+					"type": "choice",
+					"choices": ["Woorg", "Igor Gorlov", "Игорь Горлов"]
+				},
+				{
+					"title": "tags",
+					"name": "tags",
+					"type": "tags"
+				},
+
+				{
+					"title": "Translated position",
+					"name": "translatedPosition",
+					"type": "string"
+				}
+			]
+		}
+	],
+	"frontMatter.content.wysiwyg": true,
+	"frontMatter.custom.scripts": [
+		{
+			"title": "Fix seo slug",
+			"script": "./scripts/slug-fix.js",
+			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"contentTypes": ["blog", "projects"]
+		},
+		{
+			"title": "Translate",
+			"script": "./scripts/translateWithDeeplX.mjs",
+			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"contentTypes": ["blog"]
+		},
+		{
+			"title": "Populate seo fields",
+			"script": "./scripts/populateSeoFields.js",
+			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"contentTypes": ["blog"]
+		},
+		{
+			"title": "Replace Images Path",
+			"script": "./scripts/replaceImagesPath.js",
+			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"contentTypes": ["blog"]
+		},
+		{
+			"title": "Replace code block",
+			"script": "./scripts/replaceToCodeBlock.js",
+			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"contentTypes": ["blog"]
+		},
+		{
+			"title": "Generate social image",
+			"script": "./scripts/social-img.js",
+			"bulk": false,
+			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"contentTypes": ["blog"]
+		}
+	],
+	"frontMatter.file.preserveCasing": false,
+	"frontMatter.framework.startCommand": "npm run dev",
+	"frontMatter.dashboard.openOnStart": true
+}

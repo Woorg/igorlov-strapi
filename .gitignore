@@ -1,0 +1,40 @@
+# build output
+.output/
+.json/
+dist/
+
+
+# dependencies
+node_modules/
+.php
+.git
+.idea
+.vscode
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+yarn.lock
+package-lock.json
+
+
+# content
+
+src/
+# src/assets/
+# src/content/
+public
+#
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# ignore .astro directory
+.astro
+

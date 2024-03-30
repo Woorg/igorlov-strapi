@@ -1,0 +1,25 @@
+{
+	"extends": "astro/tsconfigs/base",
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"target": "es6",
+		"strict": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"jsx": "react",
+    "strictNullChecks": false,
+
+		"isolatedModules": true,
+		"incremental": true,
+		"allowSyntheticDefaultImports": true,
+		"paths": {
+			"@/components/*": ["layouts/components/*"],
+			"@/shortcodes/*": ["layouts/shortcodes/*"],
+			"@/helpers/*": ["layouts/helpers/*"],
+			"@/partials/*": ["layouts/partials/*"],
+			"@/*": ["*"]
+		}
+	},
+	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.astro"],
+	"exclude": ["node_modules"]
+}
