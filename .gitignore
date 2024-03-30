@@ -25,11 +25,11 @@ package-lock.json
 src/assets/images/a*
 src/assets/images/b*
 src/assets/images/c*
-src/assets/images/d*
-src/assets/images/e*
-src/assets/images/f*
-src/assets/images/g*
-src/assets/images/h*
+# src/assets/images/d*
+# src/assets/images/e*
+# src/assets/images/f*
+# src/assets/images/g*
+# src/assets/images/h*
 # src/assets/images/v*
 # src/assets/images/y*
 # src/assets/images/x*
