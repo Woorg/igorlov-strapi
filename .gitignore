@@ -23,7 +23,7 @@ package-lock.json
 
 # src
 src/assets
-src/content
+# src/content
 # public
 dist
 
