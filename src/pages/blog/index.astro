@@ -1,5 +1,5 @@
 ---
-export const prerender = true;
+// export const prerender = true;
 import Pagination from '@/components/Pagination.astro';
 import config from '@/config/config.json';
 import Base from '@/layouts/Base.astro';
@@ -48,24 +48,18 @@ const searchList = posts.map((item) => ({
 			<ArticlesBlock posts={currentPosts} class="" />
 		</div>
 
-		{}
 		<div class="blocks__container container">
-			<Pagination
-				section={blog_folder}
-				currentPage={1}
-				totalPages={totalPages}
-				class=""
-			/>
+			<Pagination section={blog_folder} currentPage={1} totalPages={totalPages} class="" />
 		</div>
 
 		<div class="blocks__container container">
-			<CtaBlock id="cta" class="" 
-			/>
+			<CtaBlock id="cta" class="" />
 		</div>
 	</div>
-</Base>
-<!-- <PageHeader title={postIndex.data.title} /> -->
-<!-- <PostSidebar categories={categories} tags={tags} allCategories={allCategories} /> -->
 
-<YandexFloorAds blockId="R-A-2592503-6" platform="touch" />
-<YandexFloorAds blockId="R-A-2592503-5" platform="desktop" />
+	<!-- <PageHeader title={postIndex.data.title} /> -->
+	<!-- <PostSidebar categories={categories} tags={tags} allCategories={allCategories} /> -->
+
+	<YandexFloorAds blockId="R-A-2592503-6" platform="touch" />
+	<YandexFloorAds blockId="R-A-2592503-5" platform="desktop" />
+</Base>

@@ -137,6 +137,9 @@ dependencies:
   shikiji-transformers:
     specifier: ^0.9.10
     version: 0.9.10
+  simple-stack-stream:
+    specifier: ^0.3.3
+    version: 0.3.3(astro@4.5.1)
   vue:
     specifier: ^3.4.21
     version: 3.4.21(typescript@5.3.3)
@@ -7988,6 +7991,12 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  /nanoid@5.0.6:
+    resolution: {integrity: sha512-rRq0eMHoGZxlvaFOUdK1Ev83Bd1IgzzR+WJ3IbDJ7QOSdAxYjlurSPqFs9s4lJg29RT6nPwizFtJhQS6V5xgiA==}
+    engines: {node: ^18 || >=20}
+    hasBin: true
+    dev: false
+
   /nanostores@0.10.0:
     resolution: {integrity: sha512-Poy5+9wFXOD0jAstn4kv9n686U2BFw48z/W8lms8cS8lcbRz7BU20JxZ3e/kkKQVfRrkm4yLWCUA6GQINdvJCQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -9906,6 +9915,15 @@ packages:
       simple-concat: 1.0.1
     dev: false
     optional: true
+
+  /simple-stack-stream@0.3.3(astro@4.5.1):
+    resolution: {integrity: sha512-CV3v1twt2P9HONReMz8gl/rhZSUK7qVvpge4hSnF9eNcrxaTO1bQRhqHHhOF2XJW7Yq5P5LQ9l6EBtoMKVKFFA==}
+    peerDependencies:
+      astro: ^3.6.0 || ^4.0.0
+    dependencies:
+      astro: 4.5.1(@types/node@20.10.4)(typescript@5.3.3)
+      nanoid: 5.0.6
+    dev: false
 
   /simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}

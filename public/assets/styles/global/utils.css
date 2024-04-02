@@ -48,6 +48,10 @@
 			}
 		}
 	}
+
+  .title {
+    @apply font-medium fluid:mb-5 fluid:text-4xl lg:fluid:mb-8 lg:fluid:text-5xl;
+  }
 }
 
 @layer utilities {

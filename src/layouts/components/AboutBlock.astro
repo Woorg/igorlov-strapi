@@ -9,6 +9,9 @@ const about = await getEntry('sections', 'about');
 interface AboutBlock {
 	aboutBlock: {
 		title: string;
+		list: string[];
+		subTitle: string;
+		secondList: string[];
 		content: string;
 	};
 }
@@ -20,29 +23,51 @@ const className = Astro.props.class;
 ---
 
 <section class:list={['about block', className]} style={style}>
-	{
-		aboutBlock.title && (
-			<p class="about__title">
-				{aboutBlock.title} <span class="about__text">{aboutBlock.content}</span>
-			</p>
-		)
-	}
+	<article class="about__service">
+		{aboutBlock.title && <h2 class="about__title title">{aboutBlock.title}</h2>}
+		{
+			aboutBlock.list && (
+				<ul class="about__list">
+					{aboutBlock.list.map((item: string) => (
+						<li class="about__item">{item}</li>
+					))}
+				</ul>
+			)
+		}
+	</article>
+
+	<article class="about__service">
+		{aboutBlock.subTitle && <h2 class="about__title title">{aboutBlock.subTitle}</h2>}
+		{
+			aboutBlock.secondList && (
+				<ul class="about__list">
+					{aboutBlock.secondList.map((item: string) => (
+						<li class="about__item">{item}</li>
+					))}
+				</ul>
+			)
+		}
+	</article>
 </section>
 
 <style>
 	.about {
 		@apply flex flex-col justify-center bg-box  fluid:gap-6 fluid:rounded-3xl fluid:p-8 lg:fluid:px-12 lg:fluid:py-8 dark:bg-box-dark;
 
-		&__title,
-		&__text {
-			@apply font-medium fluid:text-3xl lg:fluid:text-4xl;
-		}
-		&__title {
-			@apply text-black dark:text-white;
+		&__service {
+			@apply first:mt-0 lg:mt-10;
 		}
 
-		&__text {
-			@apply text-gray-dark dark:text-gray;
+		&__title {
+			/* @apply text-black fluid:text-3xl lg:fluid:text-4xl dark:text-white; */
+		}
+
+		&__list {
+			@apply font-medium text-gray-dark leading-loose fluid:text-3xl lg:fluid:text-4xl dark:text-gray;
+		}
+
+		&__item {
+			@apply border-t border-gray-light fluid:lg:py-5;
 		}
 	}
 </style>
