@@ -19,7 +19,7 @@ const customizeTOC = (toc) => {
 	} catch (e) {}
 	return {
 		type: 'element',
-		tagName: 'details',
+		tagName: 'details open',
 		properties: {
 			className: 'toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer',
 		},
@@ -28,7 +28,7 @@ const customizeTOC = (toc) => {
 				type: 'element',
 				tagName: 'summary',
 				properties: {
-					className: 'title',
+					className: 'toc__title text-xl font-medium',
 				},
 				children: [
 					{
