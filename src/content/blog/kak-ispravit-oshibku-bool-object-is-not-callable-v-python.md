@@ -1,9 +1,7 @@
 ---
 title: Как исправить ошибку bool object is not callable в Python
 meta_title: Как исправить ошибку bool object is not callable в Python - Igor Gorlov
-description: >-
-  Ошибка TypeError: bool object is not callable возникает, когда вы пытаетесь
-  вызвать булево значение (объект bool), как если бы это была функция!
+description: "Ошибка TypeError: bool object is not callable возникает, когда вы пытаетесь вызвать булево значение (объект bool), как если бы это была функция!"
 date: 2023-02-17T06:13:00.000Z
 image: ../../assets/images/undefined-Feb-17-2023.avif
 categories:
@@ -12,7 +10,7 @@ author: Igor Gorlov
 tags:
   - Python
 draft: false
-lastmod: 2024-03-20T21:26:44.267Z
+lastmod: 2024-04-23T14:26:14.125Z
 ---
 
 Ошибка “TypeError: ‘bool’ object is not callable” возникает, когда вы пытаетесь вызвать булево значение (объект bool), как если бы это была функция!

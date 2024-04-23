@@ -1,12 +1,11 @@
 ---
 aboutBlock:
-  title: Сделаю
+  title: Делаю
   list:
-    - Лендинг, сайт на React/Next.js
-    - Лендинг, сайт на Astro
-  subTitle: Не сделаю
+    - Сайт на Next.js, Astro, Headless WordPress, Strapi
+  subTitle: Не делаю
   secondList:
     - Верстка на Html, Css, JavaScript
-    - Лендинг, сайт на WordPress + Elementor или другой page builder
-lastmod: 2024-04-02T20:14:04.728Z
+    - Сайт на WordPress + Elementor или другой page builder
+lastmod: 2024-04-23T15:05:09.117Z
 ---
