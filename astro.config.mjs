@@ -46,8 +46,8 @@ const customizeTOC = (toc) => {
 export default defineConfig({
 	// prefetch: true,
 	site: config.site.base_url ? config.site.base_url : 'https://igorlov.ru',
-	base: config.site.base_path ? config.site.base_path : '/',
-	trailingSlash: config.site.trailing_slash ? 'always' : 'never',
+	base: config.site.base_path,
+	trailingSlash: 'never',
 	image: {
 		domains: [
 			'stackpathcdn.com',
