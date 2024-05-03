@@ -6,3 +6,8 @@ Disallow: /blog/page/*
 Disallow: /portfolio/page/*
 Disallow: /projects/page/*
 Disallow: /tag/*
+Disallow: /src/*
+Disallow: /node_modules/*
+Disallow: /@fs/*
+Disallow: /@vite/*
+Disallow: /_image*
