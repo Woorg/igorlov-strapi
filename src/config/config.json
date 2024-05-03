@@ -13,7 +13,7 @@
 		"favicon": "/public/favicon.ico",
 		"logo": "",
 		"logo_darkmode": "",
-		"logo_text": "ИГ ФCВР",
+		"logo_text": "Фул фронт дев",
 		"telegram": "https://t.me/gorlovfullstack",
 		"copyright": "все права защищены. ©"
 	},
@@ -37,7 +37,7 @@
 	"navigation_button": {
 		"enable": false,
 		"label": "Контакты",
-		"link": "/contact"
+		"link": "/#contact"
 	},
 
 	"disqus": {

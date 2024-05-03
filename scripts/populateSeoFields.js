@@ -16,7 +16,7 @@ if (args && args.length > 0 && args[3]) {
 
 	// Check if meta_title is empty or doesn't exist and update only if empty
 	if (!existingMetaTitle) {
-		existingMetaTitle = `${(parsed.data.title || 'Untitled').trim()} | Игорь Горлов - Fullstack Web Developer`;
+		existingMetaTitle = `${(parsed.data.title || 'Untitled').trim()} | Фул фронт дев`;
 		parsed.data.meta_title = existingMetaTitle;
 	}
 
