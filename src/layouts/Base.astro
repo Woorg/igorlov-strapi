@@ -31,6 +31,7 @@ const { title, meta_title, description, image, noindex, canonical } = Astro.prop
 			title={plainify(meta_title ? meta_title : title ? title : config.site.title)}
 			description={plainify(description ? description : config.metadata.meta_description)}
 			noindex={noindex}
+      canonical={canonical}
 		/>
 
 		<!-- favicon -->
