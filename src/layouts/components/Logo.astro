@@ -12,7 +12,7 @@ const pathname = Astro.url.pathname;
 <a
 	href={basePath}
 	class:list={[
-		'logo font-extrabold lowercase transition-colors fluid:text-lg',
+		'logo font-medium lowercase transition-colors fluid:text-lg',
 		className,
 		basePath === pathname ? 'logo--active' : 'dark:hover:text-light text-dark  dark:text-gray',
 	]}
