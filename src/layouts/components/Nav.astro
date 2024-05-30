@@ -40,9 +40,9 @@ const { style } = Astro.props;
 		}
 
 		&__close {
-			@apply ml-auto flex flex-col items-center justify-center rounded-lg border border-gray p-3 text-blue transition-colors fluid:text-3xl lg:hidden;
+			@apply ml-auto flex flex-col items-center justify-center rounded-lg p-3 text-blue transition-colors fluid:text-3xl lg:hidden;
 			&:hover {
-				@apply border-white transition-colors;
+				@apply text-dark transition-colors;
 			}
 		}
 
@@ -50,7 +50,7 @@ const { style } = Astro.props;
 			@apply absolute left-0 top-0 -translate-y-[200%] lg:static lg:flex lg:translate-y-[0%];
 		}
 		&__container--open {
-			@apply absolute z-10 h-screen w-full translate-x-[0%] translate-y-[0%] p-4;
+			@apply absolute z-10 h-screen w-full translate-x-[0%] translate-y-[0%] rounded-[50px] bg-box p-4;
 			.nav__list {
 				@apply flex flex-col gap-6;
 			}
@@ -58,7 +58,7 @@ const { style } = Astro.props;
 				@apply px-0 hover:text-gray-dark fluid:text-[150px] dark:hover:text-white;
 			}
 			.nav__link--active {
-				@apply text-dark hover:text-gray-dark dark:text-white;
+				@apply text-dark hover:text-dark dark:text-white;
 			}
 		}
 
