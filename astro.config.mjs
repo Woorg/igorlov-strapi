@@ -21,9 +21,10 @@ const customizeTOC = (toc) => {
 	} catch (e) {}
 	return {
 		type: 'element',
-		tagName: 'details open ',
+		tagName: 'details ',
 		properties: {
-			className: 'toc  border border-blue text-blue fluid:p-8 cursor-pointer rounded-[50px]',
+			className:
+				'toc border-b border-blue text-blue fluid:p-8 overflow-auto cursor-pointer bg-box ',
 		},
 		children: [
 			{
