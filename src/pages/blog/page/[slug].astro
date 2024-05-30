@@ -46,21 +46,15 @@ export async function getStaticPaths() {
 	description={`Посты из блога: страница ${currentPage} . ${postIndex.data.description}`}
 >
 	<div class="blocks">
-		<div class="blocks__container container">
-			<ArticlesBlock
-				sectionTitle={`Посты из блога: страница ${currentPage}`}
-				posts={currentPosts}
-				class=""
-			/>
-		</div>
+		<ArticlesBlock
+			sectionTitle={`Посты из блога: страница ${currentPage}`}
+			posts={currentPosts}
+			class=""
+		/>
 
-		<div class="blocks__container container">
-			<Pagination section={blog_folder} currentPage={currentPage} totalPages={totalPages} />
-		</div>
-		<div class="blocks__container container">
-			<CtaBlock id="cta" class=""
-      />
-		</div>
+		<Pagination section={blog_folder} currentPage={currentPage} totalPages={totalPages} />
+
+		<!-- <CtaBlock id="cta" class="" /> -->
 	</div>
 </Base>
 

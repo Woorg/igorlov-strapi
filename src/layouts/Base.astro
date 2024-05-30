@@ -31,7 +31,7 @@ const { title, meta_title, description, image, noindex, canonical } = Astro.prop
 			title={plainify(meta_title ? meta_title : title ? title : config.site.title)}
 			description={plainify(description ? description : config.metadata.meta_description)}
 			noindex={noindex}
-      canonical={canonical}
+			canonical={canonical}
 		/>
 
 		<!-- favicon -->
@@ -58,9 +58,9 @@ const { title, meta_title, description, image, noindex, canonical } = Astro.prop
 	</head>
 
 	<body
-		class="flex min-h-screen flex-col bg-gray-light pt-14 font-inter text-dark fluid:text-lg dark:bg-black dark:text-white"
+		class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"
 	>
-		<Header class="" style="" />
+		<Header class="" />
 		<main id="main-content" class="main flex-1">
 			<slot />
 		</main>

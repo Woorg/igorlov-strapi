@@ -11,11 +11,11 @@ const blogCollection = defineCollection({
 			description: z.string().optional(),
 			date: z.any().optional(),
 			image: image().optional(),
-			author: z.string().default('Admin'),
+			author: z.string().default('Igor Gorlov'),
 			categories: z.array(z.string()).default(['others']),
 			tags: z.array(z.string()).default(['others']),
 			draft: z.boolean().optional(),
-      lastmod: z.any().optional()
+			lastmod: z.any().optional(),
 		}),
 });
 
@@ -30,12 +30,12 @@ const projectsCollection = defineCollection({
 			date: z.any().optional(),
 			image: image().optional(),
 			images: z.array(image()).optional(),
-			author: z.string().default('Admin'),
+			author: z.string().default('Igor Gorlov'),
 			categories: z.array(z.string()).default(['others']),
 			tags: z.array(z.string()).default(['others']),
-			industry: z.string(),
-			repository: z.string(),
-			link: z.string(),
+			industry: z.string().optional(),
+			repository: z.string().optional(),
+			link: z.string().optional(),
 			draft: z.boolean().optional(),
 		}),
 });
@@ -77,7 +77,6 @@ const pagesCollection = defineCollection({
 			draft: z.boolean().optional(),
 		}),
 });
-
 
 // Export collections
 export const collections = {

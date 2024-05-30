@@ -11,7 +11,9 @@ import rehypeFigure from 'rehype-figure';
 import rehypeExternalLinks from 'rehype-external-links';
 import config from './src/config/config.json';
 import simpleStackStream from 'simple-stack-stream';
+import icon from 'astro-icon';
 const customizeTOC = (toc) => {
+	// console.log(toc);
 	try {
 		const { children } = toc;
 		const childrenOfChildren = children?.[0]?.children;
@@ -19,9 +21,9 @@ const customizeTOC = (toc) => {
 	} catch (e) {}
 	return {
 		type: 'element',
-		tagName: 'details open',
+		tagName: 'details open ',
 		properties: {
-			className: 'toc px-5 border border-gray-light lg:px-10 py-2 cursor-pointer',
+			className: 'toc  border border-blue text-blue fluid:p-8 cursor-pointer rounded-[50px]',
 		},
 		children: [
 			{
@@ -79,6 +81,7 @@ export default defineConfig({
 		}),
 		mdx(),
 		simpleStackStream(),
+		icon(),
 	],
 	markdown: {
 		extendDefaultPlugins: true,
@@ -111,6 +114,10 @@ export default defineConfig({
 			[
 				rehypeToc,
 				{
+					cssClasses: {
+						// toc: "page-outline",      // Change the CSS class for the TOC
+						link: 'text-blue', // Change the CSS class for links in the TOC
+					},
 					customizeTOC,
 				},
 			],

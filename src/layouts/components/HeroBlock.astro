@@ -27,46 +27,51 @@ const className = Astro.props.class;
 ---
 
 <section class:list={['hero block', className]}>
-	{
-		heroBlock.image && (
-			<div class="hero__avatar rounded-full bg-gray">
-				<Picture
-					class="h-full w-full rounded-full object-cover "
-					src={avatarPic}
-					width={112 * 3}
-					height={112 * 3}
-					alt={heroBlock.image.alt}
-					loading="eager"
-					formats={['avif', 'webp']}
-					quality={60}
-				/>
-			</div>
-		)
-	}
-	<div class="hero__content">
-		{heroBlock.title && <h1 class="hero__title">{heroBlock.title}</h1>}
-		{heroBlock.content && <p class="hero__text">{heroBlock.content}</p>}
+	<div class="container">
+		{
+			heroBlock.image && (
+				<figure class="figure rounded-full bg-gray">
+					<Picture
+						class="avatar h-full w-full rounded-full object-cover"
+						src={avatarPic}
+						width={112 * 3}
+						height={112 * 3}
+						alt={heroBlock.image.alt}
+						loading="eager"
+						formats={['avif', 'webp']}
+						quality={60}
+					/>
+				</figure>
+			)
+		}
+		<div class="content">
+			{heroBlock.title && <h1 class="title">{heroBlock.title}</h1>}
+			{heroBlock.content && <p class="text">{heroBlock.content}</p>}
+		</div>
 	</div>
 
 	<style>
 		.hero {
-			@apply grid items-center text-pretty bg-box fluid:gap-3 fluid:rounded-3xl fluid:p-8 lg:grid-cols-12 lg:fluid:px-12 lg:fluid:py-8 dark:bg-box-dark;
-			&__avatar {
-				@apply col-span-2 overflow-hidden rounded-full bg-box fluid:h-28 fluid:w-28;
-			}
+			@apply items-center text-pretty bg-box text-blue fluid:gap-3 fluid:rounded-3xl fluid:p-8 lg:fluid:px-12 lg:fluid:py-8 dark:bg-box-dark;
+		}
+		.container {
+			@apply flex flex-wrap items-center gap-5 lg:gap-10;
+		}
+		.figure {
+			@apply h-28 w-28 shrink-0 overflow-hidden rounded-full bg-box;
+		}
 
-			&__content {
-				@apply col-span-10;
-			}
+		.content {
+			/* @apply col-span-10; */
+		}
 
-			&__title,
-			&__text {
-				@apply m-0 text-black fluid:text-3xl lg:fluid:text-3xl dark:text-white;
-			}
+		.title,
+		.text {
+			@apply m-0 font-medium tracking-normal leading-relaxed fluid:text-3xl lg:fluid:text-5xl xl:fluid:text-6xl dark:text-blue;
+		}
 
-			&__text {
-				@apply text-gray-dark dark:text-gray;
-			}
+		.text {
+			@apply text-blue dark:text-gray;
 		}
 	</style>
 </section>

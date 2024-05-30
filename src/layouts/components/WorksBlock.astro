@@ -13,27 +13,29 @@ const { title } = worksSection.data;
 ---
 
 <section class:list={['works', className]} style={style}>
-	{
-		sectionTitle ? (
-			<h1 class="works__title title">{sectionTitle}</h1>
-		) : (
-			<h2 class="works__title title">{title}</h2>
-		)
-	}
-
-	<div class="works__list">
+	<div class="container">
 		{
-			works.map((project: object, key: number) => {
-				let i = 1;
-				return <ProjectCard data={project} class:list={`works__work`} />;
-			})
+			sectionTitle ? (
+				<h1 class="works__title title">{sectionTitle}</h1>
+			) : (
+				<h2 class="works__title title">{title}</h2>
+			)
 		}
+
+		<div class="works__list">
+			{
+				works.map((project: object, key: number) => {
+					let i = 1;
+					return <ProjectCard data={project} class:list={`works__work`} />;
+				})
+			}
+		</div>
 	</div>
 </section>
 
 <style>
 	.works {
-		@apply grid bg-box text-dark fluid:gap-y-2 fluid:rounded-3xl fluid:px-12 fluid:py-5 lg:fluid:py-10  dark:bg-box-dark dark:text-white;
+		@apply grid bg-box text-blue fluid:gap-y-2 fluid:rounded-3xl fluid:px-12 fluid:py-5 lg:fluid:py-10  dark:bg-box-dark dark:text-white;
 		&__title {
 			/* @apply font-medium fluid:mb-10  fluid:text-4xl lg:fluid:mb-20 lg:fluid:text-5xl; */
 		}

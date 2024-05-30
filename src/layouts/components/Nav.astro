@@ -11,17 +11,9 @@ const { style } = Astro.props;
 ---
 
 <div class:list={['nav', className]}>
-	<button class="nav__open" title="Открыть меню">
-		<span class="nav__open-line"></span>
-		<span class="nav__open-line"></span>
-		<span class="nav__open-line"></span>
-	</button>
+	<button class="nav__open" title="Открыть меню"> Меню</button>
 	<nav class="nav__container">
-		<button class="nav__close" title="Закрыть меню">
-			<span class="nav__close-line"></span>
-			<span class="nav__close-line"></span>
-			<span class="nav__close-line"></span>
-		</button>
+		<button class="nav__close" title="Закрыть меню"> Закрыть</button>
 
 		<ul class="nav__list">
 			{
@@ -44,33 +36,21 @@ const { style } = Astro.props;
 	.nav {
 		@apply ml-auto lg:ml-0;
 		&__open {
-			@apply ml-auto flex h-3.5 w-6 flex-col justify-between lg:hidden;
-		}
-
-		&__open-line {
-			@apply h-0.5 w-full rounded-sm bg-dark dark:bg-white;
+			@apply ml-auto flex flex-col justify-between tracking-wide text-blue fluid:text-3xl lg:hidden;
 		}
 
 		&__close {
-			@apply ml-auto flex h-10 w-10 flex-col items-center justify-center rounded-lg border border-gray p-3 transition-colors lg:hidden;
+			@apply ml-auto flex flex-col items-center justify-center rounded-lg border border-gray p-3 text-blue transition-colors fluid:text-3xl lg:hidden;
 			&:hover {
 				@apply border-white transition-colors;
-
-				.nav__close-line {
-					@apply bg-white transition-colors;
-				}
 			}
-		}
-
-		&__close-line {
-			@apply h-0.5 w-8 rotate-45 bg-dark transition-colors last-of-type:-rotate-45;
 		}
 
 		&__container {
 			@apply absolute left-0 top-0 -translate-y-[200%] lg:static lg:flex lg:translate-y-[0%];
 		}
 		&__container--open {
-			@apply bg-sky absolute z-10 h-screen w-full translate-x-[0%] translate-y-[0%] p-4 dark:bg-dark;
+			@apply absolute z-10 h-screen w-full translate-x-[0%] translate-y-[0%] p-4;
 			.nav__list {
 				@apply flex flex-col gap-6;
 			}
@@ -79,9 +59,6 @@ const { style } = Astro.props;
 			}
 			.nav__link--active {
 				@apply text-dark hover:text-gray-dark dark:text-white;
-			}
-			.nav__close-line {
-				@apply dark:bg-white;
 			}
 		}
 
@@ -93,11 +70,11 @@ const { style } = Astro.props;
 		}
 
 		&__link {
-			@apply px-6 font-medium lowercase text-dark transition-colors hover:text-gray-dark dark:text-gray lg:dark:hover:text-gray-light;
+			@apply px-6 font-normal capitalize text-blue transition-colors text-3xl hover:text-blue dark:text-gray lg:dark:hover:text-gray-light;
 		}
 
 		&__link--active {
-			@apply text-gray dark:text-gray-light;
+			@apply text-dark dark:text-dark;
 		}
 	}
 </style>

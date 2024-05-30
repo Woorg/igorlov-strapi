@@ -26,70 +26,82 @@ const className = Astro.props.class;
 
 <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> -->
 <article class:list={['article', className]}>
-	<div class="article__header">
-		<ul class="article__categories categories">
-			{
-				categories.map((category: string, index: number) => (
-					<li class="categories__item">
-						<a href={`/category/${slugify(category)}`} class="categories__link">
-							{humanize(category)}
-							{index !== categories.length - 1 && ','}
-						</a>
-					</li>
-				))
-			}
-		</ul>
+	<div class="container">
+		<div class="article__header">
+			<ul class="article__categories categories">
+				{
+					categories.map((category: string, index: number) => (
+						<li class="categories__item">
+							<a href={`/category/${slugify(category)}`} class="categories__link">
+								{humanize(category)}
+								{index !== categories.length - 1 && ','}
+							</a>
+						</li>
+					))
+				}
+			</ul>
 
-		<h1 class="article__title text-wrap">
-			{title}
-		</h1>
+			<h1 class="article__title text-wrap">
+				{title}
+			</h1>
 
-		<ul class="article__tags tags">
-			{
-				tags.map((tag: string) => (
-					<li class="tags__item">
-						<a class="tags__link" href={`/tag/${slugify(tag)}`}>
-							{humanize(tag)}
-						</a>
-					</li>
-				))
-			}
-		</ul>
+			<ul class="article__tags tags">
+				{
+					tags.map((tag: string) => (
+						<li class="tags__item">
+							<a class="tags__link" href={`/tag/${slugify(tag)}`}>
+								{humanize(tag)}
+							</a>
+						</li>
+					))
+				}
+			</ul>
 
-		<time class="article__date">
-			Опубликовано {dateFormat(date)} by {humanize(author)}
-		</time>
-		<time class="article__date">
-			{lastmod ? 'Последнее изменение: ' + dateFormat(lastmod) : null}
-		</time>
-	</div>
+			<time class="article__date">
+				Опубликовано {dateFormat(date)} by {humanize(author)}
+			</time>
+			<time class="article__date">
+				{lastmod ? 'Последнее изменение: ' + dateFormat(lastmod) : null}
+			</time>
+		</div>
 
-	{
-		image && (
-			<>
-				<figure class="article__image">
-					<Picture
-						src={image}
-						width={1200}
-						height={500}
-						alt={title}
-						class="aspect-auto h-full w-full object-cover object-center"
-						formats={['avif', 'webp']}
-						loading="eager"
-						transition:animate={'initial'}
-						transition:name={`blog-image-${post.slug}`}
-					/>
-				</figure>
-			</>
-		)
-	}
+		{
+			image && (
+				<article>
+					<figure class="article__image">
+						<Picture
+							src={image}
+							alt={title}
+							class="aspect-video h-full w-full object-cover object-center"
+							formats={['avif', 'webp']}
+							loading="eager"
+							transition:animate={'initial'}
+							transition:name={`blog-image-${post.slug}`}
+						/>
+					</figure>
+				</article>
+			)
+		}
 
-	<div
-		class="article__content prose prose-zinc max-w-full break-words dark:prose-invert prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:-mx-12 prose-figure:w-screen prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white"
-	>
-		<AdfoxTocAds blockId="adfox_17062261612859555" />
+		<div
+			class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white"
+		>
+			<AdfoxTocAds blockId="adfox_17062261612859555" />
 
-		<div class="article__meta">
+			<div class="article__meta">
+				<Share
+					class={'article__share'}
+					title={title}
+					description={description}
+					slug={post.slug}
+					image={image}
+				/>
+
+				<a class="article__meta-section" href="#comments"> Комментарии</a>
+			</div>
+
+			<Content />
+
 			<Share
 				class={'article__share'}
 				title={title}
@@ -98,25 +110,13 @@ const className = Astro.props.class;
 				image={image}
 			/>
 
-			<a class="article__meta-section" href="#comments"> Комментарии</a>
+			<CircularNavigation
+				class="article__navigation"
+				prevPost={prevPost}
+				nextPost={nextPost}
+				type={type}
+			/>
 		</div>
-
-		<Content />
-
-		<Share
-			class={'article__share'}
-			title={title}
-			description={description}
-			slug={post.slug}
-			image={image}
-		/>
-
-		<CircularNavigation
-			class="article__navigation"
-			prevPost={prevPost}
-			nextPost={nextPost}
-			type={type}
-		/>
 	</div>
 </article>
 
@@ -126,7 +126,7 @@ const className = Astro.props.class;
 
 <style>
 	.article {
-		@apply bg-box text-dark fluid:rounded-[32px] fluid:px-2 fluid:pb-2 fluid:pt-10 dark:bg-box-dark;
+		@apply bg-box text-blue fluid:rounded-[32px] fluid:px-2 fluid:pb-2 fluid:pt-10 dark:bg-box-dark;
 
 		&__header {
 			@apply flex flex-col items-center justify-center fluid:gap-y-3 fluid:pb-5;
@@ -136,14 +136,14 @@ const className = Astro.props.class;
 		}
 
 		&__title {
-			@apply m-0 text-center font-medium text-dark fluid:px-4 fluid:text-5xl lg:fluid:text-6xl dark:text-white;
+			@apply m-0 text-center font-medium text-blue fluid:px-4 fluid:text-5xl lg:fluid:text-6xl dark:text-white;
 		}
 
 		&__tags {
 		}
 
 		&__date {
-			@apply font-medium text-gray text-lg;
+			@apply font-medium text-blue text-lg;
 		}
 
 		&__image {
@@ -161,7 +161,7 @@ const className = Astro.props.class;
 			@apply justify-start fluid:mt-2.5;
 		}
 		&__meta-section {
-			@apply text-dark underline hover:no-underline fluid:text-2xl dark:text-white;
+			@apply text-blue underline hover:no-underline fluid:text-2xl dark:text-white;
 		}
 
 		&__content {
@@ -183,13 +183,13 @@ const className = Astro.props.class;
 		}
 
 		&__link {
-			@apply rounded-full bg-blue-light font-medium text-dark transition-colors hover:bg-blue hover:text-white fluid:px-3  fluid:py-0.5 dark:bg-white dark:text-dark dark:hover:bg-gray dark:hover:text-white;
+			@apply rounded-full font-medium text-blue transition-colors fluid:px-3 fluid:py-0.5;
 		}
 	}
 
 	.tags {
 		&__link {
-			@apply bg-red-light text-dark hover:bg-red hover:text-dark dark:bg-gray-dark dark:text-white dark:hover:bg-gray dark:hover:text-box;
+			/* @apply ; */
 		}
 	}
 

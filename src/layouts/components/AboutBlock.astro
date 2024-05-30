@@ -23,36 +23,38 @@ const className = Astro.props.class;
 ---
 
 <section class:list={['about block', className]} style={style}>
-	<article class="about__service">
-		{aboutBlock.title && <h2 class="about__title title">{aboutBlock.title}</h2>}
-		{
-			aboutBlock.list && (
-				<ul class="about__list">
-					{aboutBlock.list.map((item: string) => (
-						<li class="about__item">{item}</li>
-					))}
-				</ul>
-			)
-		}
-	</article>
+	<div class="container">
+		<article class="about__service">
+			{aboutBlock.title && <h2 class="about__title title">{aboutBlock.title}</h2>}
+			{
+				aboutBlock.list && (
+					<ul class="about__list">
+						{aboutBlock.list.map((item: string) => (
+							<li class="about__item">{item}</li>
+						))}
+					</ul>
+				)
+			}
+		</article>
 
-	<article class="about__service">
-		{aboutBlock.subTitle && <h2 class="about__title title">{aboutBlock.subTitle}</h2>}
-		{
-			aboutBlock.secondList && (
-				<ul class="about__list">
-					{aboutBlock.secondList.map((item: string) => (
-						<li class="about__item">{item}</li>
-					))}
-				</ul>
-			)
-		}
-	</article>
+		<article class="about__service">
+			{aboutBlock.subTitle && <h2 class="about__title title">{aboutBlock.subTitle}</h2>}
+			{
+				aboutBlock.secondList && (
+					<ul class="about__list">
+						{aboutBlock.secondList.map((item: string) => (
+							<li class="about__item">{item}</li>
+						))}
+					</ul>
+				)
+			}
+		</article>
+	</div>
 </section>
 
 <style>
 	.about {
-		@apply flex flex-col justify-center bg-box  fluid:gap-6 fluid:rounded-3xl fluid:p-8 lg:fluid:px-12 lg:fluid:py-8 dark:bg-box-dark;
+		@apply flex flex-col justify-center bg-box fluid:gap-6 fluid:rounded-3xl fluid:p-8 lg:fluid:px-12 lg:fluid:py-8 dark:bg-box-dark;
 
 		&__service {
 			@apply first:mt-0 lg:mt-10;

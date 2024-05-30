@@ -12,14 +12,16 @@ images:
   - ../../assets/images/babywalks-thumb-4.png
 categories:
   - Landing
+  - Front-end
 tags:
   - Next.js
 industry: Образовательные курсы
-repository: 'https://github.com/Woorg/baby-walks'
-link: 'https://verdant-seahorse-6c7885.netlify.app/#top'
+repository: https://github.com/Woorg/baby-walks
+link: https://verdant-seahorse-6c7885.netlify.app/#top
 draft: false
 type: projects
 slug: babywalks
+lastmod: 2024-05-30T14:48:29.481Z
 ---
 
 **Заказчик:** Babywalks

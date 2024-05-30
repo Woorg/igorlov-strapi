@@ -40,21 +40,13 @@ const searchList = posts.map((item) => ({
 	description={`${postIndex.data.description}`}
 >
 	<div class="blocks">
-		<div class="blocks__container container">
-			<Search client:load searchList={searchList} />
-		</div>
+		<!-- <Search client:load searchList={searchList} /> -->
 
-		<div class="blocks__container container">
-			<ArticlesBlock posts={currentPosts} class="" />
-		</div>
+		<ArticlesBlock posts={currentPosts} class="" />
 
-		<div class="blocks__container container">
-			<Pagination section={blog_folder} currentPage={1} totalPages={totalPages} class="" />
-		</div>
+		<Pagination section={blog_folder} currentPage={1} totalPages={totalPages} class="" />
 
-		<div class="blocks__container container">
-			<CtaBlock id="cta" class="" />
-		</div>
+		<!-- <CtaBlock id="cta" class="" /> -->
 	</div>
 
 	<!-- <PageHeader title={postIndex.data.title} /> -->

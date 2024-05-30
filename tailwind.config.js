@@ -25,30 +25,22 @@ module.exports = {
 				fontFamily: 'inter, sans-serif',
 			},
 			colors: {
-				dark: '#020202',
+				dark: '#27292d',
 				'gray-light': '#e0e0e1',
 				gray: '#8a8a93',
 				'gray-dark': '#6a6a6a',
 				'gray-light': '#e1e3e5',
 				orange: '#ff5e1a',
-				'orange-light': '#ff6e31',
+				'orange-light': '#f39669',
 				'box-light': '#1a1a1c',
 				box: '#fff',
 				// box: '#e5e5e5', // good i like it
 				// box: '#fbf8f4',
-				// box: '#d2f0fe', // not
 				// box: '#fce4e1', // maybe
 				'box-dark': '#131315',
+				blue: '#0d52a1',
+				blueLight: '#d2f0fe',
 				main: '#fafafa',
-				violet: '#bc63ff', // violet
-				'violet-light': '#ddb0ff', // violet
-				'violet-dark': '#b14aff', // violet-dark
-				sky: '#d2f0fe',
-				blue: '#0B5DD7', // light blue
-				'blue-light': '#ebf8ff',
-				'blue-dark': '#073e8e',
-				red: '#fce4e1 ',
-				'red-light': '#fef9f8',
 			},
 			backgroundColor: {
 				input: 'rgba(255, 255, 255, 0.11)',

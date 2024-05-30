@@ -1,6 +1,6 @@
 @layer components {
 	.blocks {
-		@apply flex flex-col fluid:gap-y-2;
+		@apply flex flex-col;
 	}
 
 	.block {
@@ -8,9 +8,9 @@
 	}
 
 	.btn {
-		@apply rounded-full bg-blue-dark font-medium text-white transition-colors;
+		@apply rounded-full bg-white font-medium text-blue transition-colors;
 		&:hover {
-			@apply bg-blue-light text-dark;
+			@apply text-dark;
 		}
 	}
 	.btn--big {
@@ -49,9 +49,9 @@
 		}
 	}
 
-  .title {
-    @apply font-medium fluid:mb-5 fluid:text-4xl lg:fluid:mb-8 lg:fluid:text-5xl;
-  }
+	.title {
+		@apply font-medium fluid:mb-5 fluid:text-4xl lg:fluid:mb-8 lg:fluid:text-5xl;
+	}
 }
 
 @layer utilities {

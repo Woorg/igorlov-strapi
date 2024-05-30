@@ -99,6 +99,11 @@
 					"type": "datetime"
 				},
 				{
+					"title": "Last updated",
+					"name": "lastmod",
+					"type": "datetime"
+				},
+				{
 					"title": "author",
 					"name": "author",
 					"type": "choice",
@@ -110,8 +115,8 @@
 					"type": "image"
 				},
 				{
-					"title": "assets/images",
-					"name": "assets/images",
+					"title": "images",
+					"name": "images",
 					"type": "image",
 					"multiple": true
 				},
@@ -198,7 +203,6 @@
 					"name": "tags",
 					"type": "tags"
 				},
-
 				{
 					"title": "Translated position",
 					"name": "translatedPosition",
@@ -212,42 +216,43 @@
 		{
 			"title": "Fix seo slug",
 			"script": "./scripts/slug-fix.js",
-			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
 			"contentTypes": ["blog", "projects"]
 		},
 		{
 			"title": "Translate",
 			"script": "./scripts/translateWithDeeplX.mjs",
-			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
 			"contentTypes": ["blog"]
 		},
 		{
 			"title": "Populate seo fields",
 			"script": "./scripts/populateSeoFields.js",
-			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
-			"contentTypes": ["blog"]
+			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"contentTypes": ["blog", "projects"]
 		},
 		{
 			"title": "Replace Images Path",
 			"script": "./scripts/replaceImagesPath.js",
-			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
 			"contentTypes": ["blog"]
 		},
 		{
 			"title": "Replace code block",
 			"script": "./scripts/replaceToCodeBlock.js",
-			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
 			"contentTypes": ["blog"]
 		},
 		{
 			"title": "Generate social image",
 			"script": "./scripts/social-img.js",
 			"bulk": false,
-			"command": "/home/i/.nvm/versions/node/v20.11.1/bin/node",
-			"contentTypes": ["blog"]
+			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"contentTypes": ["blog", "projects"]
 		}
 	],
 	"frontMatter.file.preserveCasing": false,
-	"frontMatter.framework.startCommand": "npm run dev",
-	"frontMatter.dashboard.openOnStart": true
+	"frontMatter.framework.startCommand": "pnpm  dev",
+	"frontMatter.dashboard.openOnStart": true,
+	"frontMatter.website.host": "https://igorlov.ru"
 }

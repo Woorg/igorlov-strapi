@@ -48,12 +48,12 @@ const className = Astro.props.class;
 
 <style>
 	.blog-card {
-		@apply border-t border-gray-light bg-box text-dark dark:bg-box-light dark:text-white;
+		@apply border-t border-blueLight bg-box text-blue dark:bg-box-light dark:text-white;
 
 		&:hover {
 		}
 		&__link {
-			@apply flex h-full flex-col justify-between fluid:gap-y-2 fluid:p-2;
+			@apply flex h-full flex-col justify-between fluid:gap-y-10 fluid:py-10;
 		}
 
 		&__header {
@@ -61,15 +61,15 @@ const className = Astro.props.class;
 		}
 
 		&__title {
-			@apply font-medium text-dark first-letter:uppercase fluid:text-2xl dark:text-white;
+			@apply font-medium text-blue first-letter:uppercase fluid:text-2xl dark:text-white;
 		}
 
 		&__date {
-			@apply font-normal text-gray fluid:text-lg;
+			@apply font-normal text-blue fluid:text-lg;
 		}
 
 		&__extra {
-			@apply font-medium text-dark fluid:text-xl dark:text-white;
+			@apply font-medium text-blue fluid:text-xl dark:text-white;
 		}
 
 		&__button {

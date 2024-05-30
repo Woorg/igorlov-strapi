@@ -3,29 +3,49 @@ import { Picture } from 'astro:assets';
 import config from '@/config/config.json';
 import { humanize, plainify, slugify } from '@/lib/utils/textConverter';
 import dateFormat from '@/lib/utils/dateFormat';
+import { log } from 'console';
 
 const { summary_length, projects_folder }: { summary_length: number; projects_folder: string } =
 	config.settings;
 const { data, style } = Astro.props;
-const { title, image, date, author, categories, industry } = data.data;
+const { title, image, date, author, categories, industry, tags, repository, link } = data.data;
 const className = Astro.props.class;
+
+// console.log(repository, link);
 ---
 
 <article class:list={['work block', className]}>
-	<a class="work__link" href={`/${projects_folder}/${data.slug}`}>
-		<div class="work__header">
-			<span class="work__title">{title}</span>
-
+	<div class="main">
+		<span class="title">{title}</span>
+		<div class="info">
 			{
 				categories.map((category: string, index: number) => (
-					<span class="work__category">
-						{humanize(category)}
-						{index !== categories.length - 1 && ','}
-					</span>
+					<span class="tag">{humanize(category)}, </span>
 				))
 			}
-			{industry && <span class="work__industry">{industry}</span>}
-			<!--
+
+			{tags.map((tag: string, index: number) => <span class="tag">{humanize(tag)}, </span>)}
+		</div>
+	</div>
+	<div class="links">
+		{
+			link && (
+				<a class="link" href={link}>
+					Ссылка на проект
+				</a>
+			)
+		}
+
+		{
+			repository && (
+				<a class="link" href={repository}>
+					Github
+				</a>
+			)
+		}
+	</div>
+	<!-- {industry && <span class="work__industry">{industry}</span>} -->
+	<!--
 			<span class="work__button btn btn--circle">
 				<svg
 					class="btn__arrow-up"
@@ -48,9 +68,8 @@ const className = Astro.props.class;
 						fill="currentColor"></path>
 				</svg>
 			</span> -->
-		</div>
 
-		<!-- {
+	<!-- {
 			image && (
 				<div class="work__image">
 					<Picture
@@ -68,35 +87,40 @@ const className = Astro.props.class;
 				</div>
 			)
 		} -->
-	</a>
 </article>
 
 <style>
 	.work {
-		@apply relative border-t border-gray-light text-dark  transition-colors dark:bg-box-dark dark:text-white hover:dark:text-dark;
-
-		&__link {
-			@apply flex h-full flex-col fluid:gap-y-2 fluid:rounded-[32px] fluid:py-10;
+		@apply flex flex-col border-t border-blueLight py-10 text-blue transition-colors fluid:gap-2 dark:bg-box-dark dark:text-white hover:dark:text-dark;
+	}
+	.main {
+		@apply flex flex-wrap items-center;
+	}
+	.links {
+		@apply flex flex-wrap gap-5;
+	}
+	.link {
+		@apply transition;
+		box-shadow: inset 0 -1px #0d52a1;
+		&:hover {
+			box-shadow: inset 0 -1px transparent;
 		}
+		/* @apply flex items-center py-10 fluid:gap-2; */
+	}
 
-		&__header {
-			@apply items-start gap-x-2 lowercase leading-normal lg:px-12;
-		}
+	.title {
+		@apply mb-6 w-full font-medium  text-blue fluid:text-3xl md:mb-0 md:w-auto md:pr-10  dark:text-white;
+	}
 
-		&__title {
-			@apply mb-6 font-medium text-dark fluid:text-3xl lg:mb-0 lg:pr-10 dark:text-white;
-		}
+	.category {
+		@apply hidden font-normal text-gray fluid:text-2xl lg:block dark:bg-transparent;
+	}
 
-		&__category {
-			@apply hidden font-normal text-gray fluid:text-2xl lg:block dark:bg-transparent;
-		}
+	.industry {
+		@apply font-medium text-dark fluid:text-2xl dark:text-gray  dark:lg:text-white;
+	}
 
-		&__industry {
-			@apply font-medium text-dark fluid:text-2xl dark:text-gray  dark:lg:text-white;
-		}
-
-		&__image {
-			@apply overflow-hidden rounded-3xl;
-		}
+	.image {
+		@apply overflow-hidden rounded-3xl;
 	}
 </style>

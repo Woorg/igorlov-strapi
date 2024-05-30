@@ -1,5 +1,5 @@
 <template>
-	<div class="comments" id="comments">
+	<div class="comments container" id="comments">
 		<Giscus
 			repo="Woorg/igorlov-comments"
 			repo-id="R_kgDOK7XIpw"
@@ -22,7 +22,7 @@ import Giscus from '@giscus/vue';
 
 <style scoped>
 .comments {
-	@apply m-auto mt-5 max-w-2xl text-dark dark:text-dark;
+	@apply m-auto mt-5 w-full  text-dark dark:text-dark;
 }
 .giscus-frame {
 	@apply w-full bg-box text-dark dark:bg-box-dark;

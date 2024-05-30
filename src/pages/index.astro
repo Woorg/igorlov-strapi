@@ -46,28 +46,17 @@ import ArticlesBlock from '@/components/ArticlesBlock.astro';
 	description="Игорь Горлов - full-stack веб-разработчик с опытом работы с Next.js, Astro и React на фронтенде, а также с NestJs, MongoDB, PostgreSQL и MySQL на бэкенде. Профессионально воплощаю ваши идеи в качественные веб-приложения."
 >
 	<div class="blocks">
-		<div class="blocks__container container">
-			<HeroBlock class="" />
-		</div>
-		<div class="blocks__container container">
-			<AboutBlock class="" />
-		</div>
-		<div class="blocks__container container">
-			<WorksBlock class="" works={currentProjects} />
-		</div>
+		<HeroBlock class="" />
+		<!-- <AboutBlock class="" /> -->
+		<WorksBlock class="" works={currentProjects} />
 
-		<div class="blocks__container container">
-			<CtaBlock class="" />
-			<!-- <BasedInBlock class=" " /> -->
-		</div>
+		<!-- <CtaBlock class="" /> -->
 
 		<!-- <div class="blocks__container container">
 			<TestimonialsBlock class="" />
 		</div> -->
 
-		<div class="blocks__container container">
-			<ArticlesBlock class="" posts={currentPosts} />
-		</div>
+		<ArticlesBlock class="" posts={currentPosts} />
 
 		<!-- <div class="blocks__container container lg:grid-cols-1">
 <CtaBlock id="cta" class=" "
@@ -79,11 +68,4 @@ import ArticlesBlock from '@/components/ArticlesBlock.astro';
 	<!-- {currentPosts.map((post) => <BlogCard data={post} />)} -->
 </Base>
 
-<style>
-	.blocks {
-		@apply flex flex-col fluid:gap-y-2;
-		&__container {
-			@apply grid fluid:gap-2;
-		}
-	}
-</style>
+<!-- <style></style> -->

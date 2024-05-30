@@ -25,33 +25,38 @@ paths.forEach((label: string, i: number) => {
 ---
 
 <nav aria-label="Breadcrumbs" class:list={['breadcrumbs', className]} style={style}>
-	<ol class="breadcrumbs__list" role="list">
-		{
-			parts.map(({ label, ...attrs }, index) => (
-				<li class="breadcrumbs__item" role="listitem">
-					{index !== parts.length - 1 ? (
-						<a class="breadcrumbs__link" {...attrs}>
-							{label}
-						</a>
-					) : null}
-				</li>
-			))
-		}
-	</ol>
+	<div class="container">
+		<ol class="list" role="list">
+			{
+				parts.map(({ label, ...attrs }, index) => (
+					<li class="item" role="listitem">
+						{index !== parts.length - 1 ? (
+							<a class="link" {...attrs}>
+								{label}
+							</a>
+						) : null}
+					</li>
+				))
+			}
+		</ol>
+	</div>
 </nav>
 
 <style>
 	.breadcrumbs {
-		@apply bg-box text-dark fluid:rounded-3xl fluid:px-8 fluid:py-4 dark:bg-box-dark dark:text-white;
-		&__list {
-			@apply flex items-center fluid:gap-0.5;
-		}
+		@apply bg-box text-blue fluid:rounded-3xl fluid:p-8  dark:bg-box-dark dark:text-white;
+	}
+	.container {
+		@apply fluid:p-8;
+	}
+	.list {
+		@apply flex items-center fluid:gap-0.5;
+	}
 
-		&__item {
-		}
+	.item {
+	}
 
-		&__link {
-			@apply rounded-full bg-red-light font-medium transition-colors hover:bg-red fluid:px-3 fluid:py-0.5 dark:bg-gray-dark dark:text-white dark:hover:bg-gray dark:hover:text-box;
-		}
+	.link {
+		@apply font-medium transition-colors fluid:px-3 fluid:py-0.5 fluid:text-2xl;
 	}
 </style>

@@ -41,13 +41,9 @@ const { title, meta_title, description, image } = post.data;
 
 <Base title={title} meta_title={meta_title} description={description} image={image.src}>
 	<div class="blocks">
-		<div class="blocks__container container">
-			<Breadcrumbs class="" />
-		</div>
+		<Breadcrumbs class="" />
 
-		<div class="blocks__container container">
-			<PostSingle class="" post={post} prevPost={prevPost} nextPost={nextPost} type={blog_folder} />
-		</div>
+		<PostSingle class="" post={post} prevPost={prevPost} nextPost={nextPost} type={blog_folder} />
 
 		<!-- <div class="blocks__container container">
 			<CtaBlock id="cta" class=""

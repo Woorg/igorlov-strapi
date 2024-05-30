@@ -1,4 +1,4 @@
 ---
-title: Frontend, Full-stack работы
-lastmod: 2024-03-20T23:58:32.913Z
+title: Сделал
+lastmod: 2024-05-30T12:13:19.610Z
 ---

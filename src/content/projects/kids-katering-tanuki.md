@@ -12,15 +12,17 @@ images:
   - ../../assets/images/projects/kids-thumb-4.png
 categories:
   - Landing
+  - Frontend
 tags:
   - Next.js
   - React
 industry: организации развлекательных и праздничных мероприятий для детей
-repository: 'https://github.com/Woorg/kids-catering-tanuki'
-link: 'https://charming-pie-658934.netlify.app/'
+repository: https://github.com/Woorg/kids-catering-tanuki
+link: https://charming-pie-658934.netlify.app/
 draft: false
 type: projects
 slug: detskye-prazdnyky-s-tanuky
+lastmod: 2024-05-30T14:48:39.915Z
 ---
 
 **Заказчик:** Tanuki Tech

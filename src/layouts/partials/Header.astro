@@ -16,23 +16,23 @@ const { style } = Astro.props;
 	<div class="header__container container">
 		<Logo class="header__logo" />
 		<Nav class="header__nav" />
-		<ThemeToggle client:only />
+		<!-- <ThemeToggle client:only /> -->
 	</div>
 </header>
 
 <style>
 	.header {
-		@apply fixed left-0 top-0 z-20 mb-3 w-full bg-sky text-dark dark:bg-box-dark dark:text-white;
-		&__container {
-			@apply flex items-center justify-between gap-6 fluid:rounded-3xl fluid:p-8 fluid:py-2 lg:fluid:px-12 lg:fluid:py-3;
-		}
+		@apply fixed left-0 top-0 z-20 w-full  rounded-[50px] bg-box text-dark dark:bg-box-dark dark:text-white;
+	}
+	.container {
+		@apply flex items-center justify-start gap-6 fluid:rounded-3xl  fluid:p-8;
+	}
 
-		&__logo {
-			@apply text-base;
-		}
+	.logo {
+		@apply text-base;
+	}
 
-		&__nav {
-			@apply w-full;
-		}
+	.nav {
+		@apply w-full;
 	}
 </style>
