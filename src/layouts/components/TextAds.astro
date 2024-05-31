@@ -5,24 +5,36 @@ import { Image, Picture } from 'astro:assets';
 
 const offersData = await getEntry('sections', 'textads');
 
-const offers = offersData?.data.offers;
-const telegram = site.telegram;
+const { offers, title } = offersData?.data;
+// const telegram = site.telegram;
 // console.log(telegram);
 
-const randomIndex = Math.floor(Math.random() * offers.length);
-const randomOffer = offers[randomIndex];
+console.log(title, offers);
 
-const { style } = Astro.props;
+// const randomIndex = Math.floor(Math.random() * offers.length);
+// const randomOffer = offers[randomIndex];
+
 const className = Astro.props.class;
 ---
 
-<a
-	href={telegram}
+<div
 	class:list={[
-		'flex rounded-3xl border border-green-700 bg-green-950 px-5 py-2 font-bold text-green-300 transition-colors text-xs hover:border-green-800 lg:text-lg',
+		'flex flex-col border-b border-blue bg-box font-bold transition-colors text-xs fluid:py-5 lg:text-lg',
 
 		className,
 	]}
-	style={style}
-	><span class="some-special__text" set:html={randomOffer}>""</span>
-</a>
+>
+	<span class="title">{title}</span>
+	<ul class="list">
+		{offers.map((offer: string) => <li class="item">{offer}</li>)}
+	</ul>
+</div>
+
+<style>
+	.title {
+		@apply mb-0 text-dark;
+	}
+	.list {
+		@apply m-0 p-0 text-blue;
+	}
+</style>

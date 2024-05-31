@@ -26,9 +26,26 @@ const className = Astro.props.class;
 
 <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> -->
 <article class:list={['article', className]}>
+	{
+		image && (
+			<article>
+				<figure class="article__image">
+					<Picture
+						src={image}
+						alt={title}
+						class="aspect-video h-full w-full object-cover object-center"
+						formats={['avif', 'webp']}
+						loading="eager"
+						transition:animate={'initial'}
+						transition:name={`blog-image-${post.slug}`}
+					/>
+				</figure>
+			</article>
+		)
+	}
 	<div class="container">
 		<div class="article__header">
-			<ul class="article__categories categories">
+			<!-- <ul class="article__categories categories">
 				{
 					categories.map((category: string, index: number) => (
 						<li class="categories__item">
@@ -39,13 +56,13 @@ const className = Astro.props.class;
 						</li>
 					))
 				}
-			</ul>
+			</ul> -->
 
 			<h1 class="article__title text-wrap">
 				{title}
 			</h1>
 
-			<ul class="article__tags tags">
+			<!-- <ul class="article__tags tags">
 				{
 					tags.map((tag: string) => (
 						<li class="tags__item">
@@ -55,7 +72,7 @@ const className = Astro.props.class;
 						</li>
 					))
 				}
-			</ul>
+			</ul> -->
 
 			<time class="article__date">
 				Опубликовано {dateFormat(date)} by {humanize(author)}
@@ -65,28 +82,12 @@ const className = Astro.props.class;
 			</time>
 		</div>
 
-		{
-			image && (
-				<article>
-					<figure class="article__image">
-						<Picture
-							src={image}
-							alt={title}
-							class="aspect-video h-full w-full object-cover object-center"
-							formats={['avif', 'webp']}
-							loading="eager"
-							transition:animate={'initial'}
-							transition:name={`blog-image-${post.slug}`}
-						/>
-					</figure>
-				</article>
-			)
-		}
-
 		<div
 			class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white"
 		>
-			<AdfoxTocAds blockId="adfox_17062261612859555" />
+			<TextAds />
+
+			<!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> -->
 
 			<div class="article__meta">
 				<Share
@@ -149,7 +150,7 @@ const className = Astro.props.class;
 		}
 
 		&__image {
-			@apply m-auto max-w-2xl overflow-hidden fluid:rounded-[36px];
+			@apply m-auto max-w-2xl overflow-hidden fluid:mb-5 fluid:rounded-[36px];
 		}
 
 		&__meta {

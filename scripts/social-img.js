@@ -41,8 +41,8 @@ const html = `
         </div>
 
         <div class="text-black mt-5 mb-3 text-xl flex justify-center gap-6">
-          <h4 class="text-black text-xl flex gap-2 items-center"><img class="max-h-[16px]" src="https://cdn-0.emojis.wiki/emoji-pics/google/man-google.png" alt="Man on Google" decoding="async" loading="lazy" /> Igor Gorlov</h4>
-          <span class="text-black gap-2 text-xl flex items-center "><img class="max-h-[16px]" src="https://cdn-0.emojis.wiki/emoji-pics/apple/speech-balloon-apple.png" alt="Speech Balloon on Apple" decoding="async" loading="lazy"/> telegram: @gorlovfrontend</span>
+          <h4 class="text-black text-xl flex gap-2 items-center"><img class="max-h-[16px]" src="https://cdn-0.emojis.wiki/emoji-pics/google/man-google.png" alt="Man on Google" decoding="async" loading="lazy" />Igor Gorlov</h4>
+          <span class="text-black gap-2 text-xl flex items-center "><img class="max-h-[16px]" src="https://cdn-0.emojis.wiki/emoji-pics/apple/speech-balloon-apple.png" alt="Speech Balloon on Apple" decoding="async" loading="lazy"/> telegram: @gorlovfullstack</span>
         </div>
       </div>
     </div>
