@@ -45,7 +45,7 @@ const className = Astro.props.class;
 	}
 	<div class="container">
 		<div class="article__header">
-			<!-- <ul class="article__categories categories">
+			<ul class="article__categories categories">
 				{
 					categories.map((category: string, index: number) => (
 						<li class="categories__item">
@@ -56,13 +56,13 @@ const className = Astro.props.class;
 						</li>
 					))
 				}
-			</ul> -->
+			</ul>
 
 			<h1 class="article__title text-wrap">
 				{title}
 			</h1>
 
-			<!-- <ul class="article__tags tags">
+			<ul class="article__tags tags">
 				{
 					tags.map((tag: string) => (
 						<li class="tags__item">
@@ -72,7 +72,7 @@ const className = Astro.props.class;
 						</li>
 					))
 				}
-			</ul> -->
+			</ul>
 
 			<time class="article__date">
 				Опубликовано {dateFormat(date)} by {humanize(author)}
@@ -85,7 +85,7 @@ const className = Astro.props.class;
 		<div
 			class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white"
 		>
-			<TextAds />
+			<!-- <TextAds /> -->
 
 			<!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> -->
 
