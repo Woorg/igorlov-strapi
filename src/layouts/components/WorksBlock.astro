@@ -6,25 +6,24 @@ const worksSection = await getEntry('sections', 'works');
 import { Picture } from 'astro:assets';
 import ProjectCard from './ProjectCard.astro';
 
-const { style, works, sectionTitle } = Astro.props;
+const { style } = Astro.props;
 const className = Astro.props.class;
-const { title } = worksSection.data;
-// console.log(title);
+const { title, frontend } = worksSection.data;
+// console.log(title, frontend);
+
+const { works } = frontend;
+// console.log(works);
 ---
 
 <section class:list={['works', className]} style={style}>
 	<div class="container">
-		{
-			sectionTitle ? (
-				<h1 class="works__title title">{sectionTitle}</h1>
-			) : (
-				<h2 class="works__title title">{title}</h2>
-			)
-		}
+		<h2 class="works__title title">{title}</h2>
 
 		<div class="works__list">
 			{
 				works.map((project: object, key: number) => {
+					// console.log(project);
+
 					let i = 1;
 					return <ProjectCard data={project} class:list={`works__work`} />;
 				})

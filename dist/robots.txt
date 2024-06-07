@@ -5,6 +5,7 @@ Disallow: /api/*
 Disallow: /blog/page/*
 Disallow: /portfolio/page/*
 Disallow: /projects/page/*
+Disallow: /projects/*
 Disallow: /tag/*
 Disallow: /src/*
 Disallow: /node_modules/*

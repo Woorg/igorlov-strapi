@@ -8,10 +8,10 @@ import { log } from 'console';
 const { summary_length, projects_folder }: { summary_length: number; projects_folder: string } =
 	config.settings;
 const { data, style } = Astro.props;
-const { title, image, date, author, categories, industry, tags, repository, link } = data.data;
+const { title, image, date, author, categories, industry, tags, repository } = data;
 const className = Astro.props.class;
 
-// console.log(repository, link);
+// console.log(data);
 ---
 
 <article class:list={['work block', className]}>
@@ -24,69 +24,26 @@ const className = Astro.props.class;
 				))
 			}
 
-			{tags.map((tag: string, index: number) => <span class="tag">{humanize(tag)}, </span>)}
+			{tags && tags.map((tag: string, index: number) => <span class="tag">{humanize(tag)}, </span>)}
 		</div>
 	</div>
 	<div class="links">
 		{
-			link && (
-				<a class="link" href={link}>
+			repository && (
+				<a class="link" href={repository} target="_blank" rel="noreferrer nofollow noopener">
 					Ссылка на проект
 				</a>
 			)
 		}
 
-		{
+		<!-- {
 			repository && (
 				<a class="link" href={repository}>
 					Github
 				</a>
 			)
-		}
-	</div>
-	<!-- {industry && <span class="work__industry">{industry}</span>} -->
-	<!--
-			<span class="work__button btn btn--circle">
-				<svg
-					class="btn__arrow-up"
-					viewBox="0 0 48 48"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M15.6406 34.9922L13.0234 32.375L28.7852 16.6133H16.7148L16.7539 13H34.9766V31.2617H31.3633L31.3828 19.2305L15.6406 34.9922Z"
-						fill="currentColor"></path>
-				</svg>
-				<svg
-					class="btn__arrow-down"
-					viewBox="0 0 48 48"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M15.6406 34.9922L13.0234 32.375L28.7852 16.6133H16.7148L16.7539 13H34.9766V31.2617H31.3633L31.3828 19.2305L15.6406 34.9922Z"
-						fill="currentColor"></path>
-				</svg>
-			</span> -->
-
-	<!-- {
-			image && (
-				<div class="work__image">
-					<Picture
-						class="aspect-auto h-full w-full object-cover object-center"
-						src={image}
-						width={1920}
-						height={626}
-						alt={title}
-						formats={['avif', 'webp']}
-						quality={60}
-						loading="eager"
-						transition:animate={'initial'}
-						transition:name={`project-image-${data.slug}`}
-					/>
-				</div>
-			)
 		} -->
+	</div>
 </article>
 
 <style>
