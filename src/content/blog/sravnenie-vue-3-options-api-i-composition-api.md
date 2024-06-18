@@ -1,7 +1,7 @@
 ---
 title: Сравнение Vue 3 Options API и Composition API
-meta_title: Сравнение Vue 3 Options API и Composition API - Igor Gorlov
-description: Учебник
+meta_title: "Vue 3 Подробное Сравнение: Options API vs Composition API"
+description: Разбираемся в преимуществах и недостатках Vue 3 Options API и Composition API. Обширный анализ с практическими примерами поможет вам определиться с более подходящим методом создания компонентов для вашего проекта на Vue.js.
 date: 2023-08-13T20:53:00.000Z
 image: ../../assets/images/undefined-Aug-13-2023.avif
 categories:
@@ -10,7 +10,7 @@ author: Igor Gorlov
 tags:
   - Vue 3
 draft: false
-lastmod: 2024-04-23T14:26:59.851Z
+lastmod: 2024-06-11T17:04:53.776Z
 ---
 
 Одним из важнейших аспектов любого фронтенд-фреймворка является способ создания компонентов. Интересно, что Vue.js предлагает не один, а два метода для этого процесса - Options API и Composition API. Но полезно ли это для разработчиков или нет? Давайте выясним.

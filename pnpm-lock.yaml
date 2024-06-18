@@ -30,8 +30,8 @@ importers:
         specifier: ^5.0.16
         version: 5.0.16
       '@fontsource-variable/jetbrains-mono':
-        specifier: ^5.0.20
-        version: 5.0.20
+        specifier: ^5.0.21
+        version: 5.0.21
       '@fontsource-variable/nunito-sans':
         specifier: ^5.0.9
         version: 5.0.9
@@ -1796,8 +1796,8 @@ packages:
   '@fontsource-variable/inter@5.0.16':
     resolution: {integrity: sha512-k+BUNqksTL+AN+o+OV7ILeiE9B5M5X+/jA7LWvCwjbV9ovXTqZyKRhA/x7uYv/ml8WQ0XNLBM7cRFIx4jW0/hg==}
 
-  '@fontsource-variable/jetbrains-mono@5.0.20':
-    resolution: {integrity: sha512-IWJnmY9vT5Olcac1vzA7FMdnojCrZWMq+g7SqC2jsFpY0LQTjIgp9gBjjw9kUOkNbLw37/evZO4w6rdPeMA68A==}
+  '@fontsource-variable/jetbrains-mono@5.0.21':
+    resolution: {integrity: sha512-LL/57KBbM3r0UMuN6tSeYExiBObt0QuGq49m1FyoDFIv1GAcuKU0EQ/GAKJ/yt3R8onOCD3f5X9Dln//G6uzRQ==}
 
   '@fontsource-variable/nunito-sans@5.0.9':
     resolution: {integrity: sha512-mZzT9D6qQ2hwHSj8a2oexSh0a66YWQH40J7dP4BVljf6tqksVCGcErdVBllSSYs4c/SKh/n9J87kueX/Z9uLEA==}
@@ -8319,7 +8319,7 @@ snapshots:
 
   '@fontsource-variable/inter@5.0.16': {}
 
-  '@fontsource-variable/jetbrains-mono@5.0.20': {}
+  '@fontsource-variable/jetbrains-mono@5.0.21': {}
 
   '@fontsource-variable/nunito-sans@5.0.9': {}
 

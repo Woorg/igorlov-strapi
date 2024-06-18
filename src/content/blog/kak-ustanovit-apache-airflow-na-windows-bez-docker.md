@@ -1,20 +1,17 @@
 ---
 title: Как установить Apache Airflow на Windows без Docker
-meta_title: Как установить Apache Airflow на Windows без Docker - Igor Gorlov
-description: >-
-  Apache Airflow – это инструмент, который помогает управлять и планировать
-  конвейеры данных. Согласно документации, он позволяет программно создавать,
-  планировать и контролировать рабочие процессы.
+meta_title: Руководство по Установке Apache Airflow на Windows без Docker
+description: Научитесь устанавливать Apache Airflow на Windows без использования Docker с нашим подробным пошаговым руководством. От настройки WSL2 до запуска первой группы DAG, мы покрываем все, что вам нужно для успешной установки и использования Airflow в вашей среде Windows.
 date: 2023-02-26T09:36:35.000Z
 author: Igor Gorlov
-image: ../../assets/images/undefined-Feb-26-2023.avif
 categories:
   - Учебник
 tags:
   - Data Science
   - Python
 draft: false
-lastmod: 2024-03-20T21:26:44.071Z
+lastmod: 2024-06-14T16:44:13.370Z
+image: ../../assets/images/undefined-Feb-26-2023.avif
 ---
 
 Apache Airflow - это инструмент, который помогает управлять и планировать конвейеры данных. Согласно документации, он позволяет ”программно создавать, планировать и контролировать рабочие процессы”.

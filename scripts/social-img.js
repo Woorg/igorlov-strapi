@@ -1,9 +1,9 @@
 //@ts-check
-import nodeHtmlToImage from 'node-html-to-image';
-import { v4 as uuid } from 'uuid';
 import { format, parseJSON } from 'date-fns';
 import fs from 'fs';
 import matter from 'gray-matter';
+import nodeHtmlToImage from 'node-html-to-image';
+import { v4 as uuid } from 'uuid';
 
 const html = `
 <html>
@@ -69,10 +69,10 @@ if (data.title && data.date) {
 		.replace(`{tags}`, data.tags)
 		.replace(`{categories}`, data.categories)
 		.replace(`{date}`, format(parseJSON(data.date), 'MMM dd, yyyy'));
-	const fileName = `${data.slug}-${format(parseJSON(data.date), 'MMM-dd-yyyy')}.avif`;
+	const fileName = `${data.slug}.avif`;
 	// @ts-ignore
 
-	console.log(fileName);
+	// console.log(fileName);
 
 	nodeHtmlToImage({
 		output: `${workspace}/src/assets/images/${fileName}`,

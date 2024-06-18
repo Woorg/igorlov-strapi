@@ -2,7 +2,10 @@
 	"$schema": "https://frontmatter.codes/frontmatter.schema.json",
 	"frontMatter.framework.id": "astro",
 	"frontMatter.preview.host": "http://localhost:4321",
-	"frontMatter.content.publicFolder": "public",
+	"frontMatter.content.publicFolder": {
+		"path": "src/assets",
+		"relative": true
+	},
 	"frontMatter.content.autoUpdateDate": true,
 	"frontMatter.content.pageFolders": [
 		{
@@ -216,38 +219,38 @@
 		{
 			"title": "Fix seo slug",
 			"script": "./scripts/slug-fix.js",
-			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.14.0/bin/node",
 			"contentTypes": ["blog", "projects"]
 		},
 		{
 			"title": "Translate",
 			"script": "./scripts/translateWithDeeplX.mjs",
-			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.14.0/bin/node",
 			"contentTypes": ["blog"]
 		},
 		{
 			"title": "Populate seo fields",
 			"script": "./scripts/populateSeoFields.js",
-			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.14.0/bin/node",
 			"contentTypes": ["blog", "projects"]
 		},
 		{
 			"title": "Replace Images Path",
 			"script": "./scripts/replaceImagesPath.js",
-			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.14.0/bin/node",
 			"contentTypes": ["blog"]
 		},
 		{
 			"title": "Replace code block",
 			"script": "./scripts/replaceToCodeBlock.js",
-			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.14.0/bin/node",
 			"contentTypes": ["blog"]
 		},
 		{
 			"title": "Generate social image",
 			"script": "./scripts/social-img.js",
 			"bulk": false,
-			"command": "/home/i/.local/share/nvm/v20.12.1/bin/node",
+			"command": "/home/i/.local/share/nvm/v20.14.0/bin/node",
 			"contentTypes": ["blog", "projects"]
 		}
 	],

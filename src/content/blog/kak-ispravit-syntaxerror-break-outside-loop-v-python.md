@@ -1,20 +1,16 @@
 ---
-title: 'Как исправить SyntaxError: break outside loop в Python'
-meta_title: 'Как исправить SyntaxError: break outside loop в Python - Igor Gorlov'
-description: >-
-  Python выдает сообщение “SyntaxError: ‘break’ outside loop” всякий раз, когда
-  встречает оператор break вне цикла. Наиболее распространенные случаи –
-  использование break внутри блока if (который не является частью цикла) или
-  когда вы случайно используете его вместо return для возврата из функции.
+title: "Как исправить SyntaxError: break outside loop в Python"
+meta_title: "Как исправить SyntaxError: break outside loop в Python - Igor Gorlov"
+description: "Python выдает сообщение “SyntaxError: ‘break’ outside loop” всякий раз, когда встречает оператор break вне цикла. Наиболее распространенные случаи – использование break внутри блока if (который не является частью цикла) или когда вы случайно используете его вместо return для возврата из функции."
 date: 2023-02-17T06:19:47.000Z
 author: Igor Gorlov
-image: ../../assets/images/undefined-Feb-17-2023.avif
 categories:
   - Как закодить
 tags:
   - Python
 draft: false
-lastmod: 2024-03-20T21:26:47.518Z
+lastmod: 2024-06-14T16:49:03.008Z
+image: ../../assets/images/undefined-Feb-17-2023.avif
 ---
 
 Python выдает сообщение “SyntaxError: ‘break’ outside loop” всякий раз, когда встречает оператор break вне цикла. Наиболее распространенные случаи - использование break внутри блока if (который не является частью цикла) или когда вы случайно используете его вместо return для возврата из функции.

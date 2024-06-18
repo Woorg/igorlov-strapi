@@ -1,21 +1,17 @@
 ---
-title: 'Как исправить SyntaxError: cannot assign to function call here в Python'
-meta_title: >-
-  Как исправить SyntaxError: cannot assign to function call here в Python - Igor
-  Gorlov
-description: >-
-  Python выдает сообщение SyntaxError: cannot assign to function call here.
-  Возможно, вы имели в виду == вместо =?, когда вызов функции является операндом
-  левой стороны в присваивании значения:
+title: "Как исправить SyntaxError: cannot assign to function call here в Python"
+meta_title: "Исправление SyntaxError в Python: Руководство по 'cannot assign to function call"
+description: "Научитесь исправлять SyntaxError: cannot assign to function call here в Python с примерами кода и решениями, предложенными Игорем Горловым, чтобы с легкостью находить и устранять эту распространенную ошибку."
 date: 2023-02-25T19:45:02.000Z
 author: Igor Gorlov
-image: ../../assets/images/undefined-Feb-25-2023.avif
 categories:
   - Как закодить
 tags:
   - Python
 draft: false
-lastmod: 2024-03-20T21:26:46.317Z
+lastmod: 2024-06-14T19:04:09.133Z
+slug: kak-yspravyt-syntaxerror-cannot-assign-to-function-call-here-v-python
+image: ../../assets/images/kak-yspravyt-syntaxerror-cannot-assign-to-function-call-here-v-python.avif
 ---
 
 Python выдает сообщение “SyntaxError: cannot assign to function call here. Возможно, вы имели в виду ’==’ вместо '='?”, когда вызов функции является операндом левой стороны в присваивании значения:
