@@ -101,6 +101,9 @@ importers:
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
+      postcss-import:
+        specifier: ^16.1.0
+        version: 16.1.0(postcss@8.4.35)
       postcss-nesting:
         specifier: ^12.0.4
         version: 12.0.4(postcss@8.4.35)
@@ -135,7 +138,7 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0
       shikiji:
-        specifier: ^0.9.0
+        specifier: ^0.9.10
         version: 0.9.10
       shikiji-transformers:
         specifier: ^0.9.10
@@ -2982,11 +2985,8 @@ packages:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
     engines: {node: '>=14.16'}
 
-  caniuse-lite@1.0.30001566:
-    resolution: {integrity: sha512-ggIhCsTxmITBAMmK8yZjEhCO5/47jKXPu6Dha/wuCS4JePVL+3uiDEBuhu2aIoT+bqTOR8L76Ip1ARL9xYsEJA==}
-
-  caniuse-lite@1.0.30001583:
-    resolution: {integrity: sha512-acWTYaha8xfhA/Du/z4sNZjHUWjkiuoAi2LM+T/aL+kemKQgPT1xBb/YKjlQ0Qo8gvbHsGNplrEJ+9G3gL7i4Q==}
+  caniuse-lite@1.0.30001641:
+    resolution: {integrity: sha512-Phv5thgl67bHYo1TtMY/MurjkHhV4EDaCosezRXgZ8jzA/Ub+wjxAvbGvjoFENStinwi5kCyOYV3mi5tOGykwA==}
 
   ccount@1.1.0:
     resolution: {integrity: sha512-vlNK021QdI7PNeiUh/lKkC/mNHHfV0m/Ad5JoI0TYtlBnJAslM/JIkm/tGC88bkLIwO6OQ5uV6ztS6kVAtCDlg==}
@@ -5205,6 +5205,12 @@ packages:
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+
+  postcss-import@16.1.0:
+    resolution: {integrity: sha512-7hsAZ4xGXl4MW+OKEWCnF6T5jqBw80/EE9aXg1r2yyn1RsVEU8EtKXbijEODa+rg7iih4bKf7vlvTGYR4CnPNg==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
       postcss: ^8.0.0
 
@@ -9620,7 +9626,7 @@ snapshots:
   autoprefixer@10.4.16(postcss@8.4.35):
     dependencies:
       browserslist: 4.22.2
-      caniuse-lite: 1.0.30001566
+      caniuse-lite: 1.0.30001641
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -9723,14 +9729,14 @@ snapshots:
 
   browserslist@4.22.2:
     dependencies:
-      caniuse-lite: 1.0.30001566
+      caniuse-lite: 1.0.30001641
       electron-to-chromium: 1.4.601
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
 
   browserslist@4.22.3:
     dependencies:
-      caniuse-lite: 1.0.30001583
+      caniuse-lite: 1.0.30001641
       electron-to-chromium: 1.4.655
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
@@ -9772,9 +9778,7 @@ snapshots:
 
   camelcase@7.0.1: {}
 
-  caniuse-lite@1.0.30001566: {}
-
-  caniuse-lite@1.0.30001583: {}
+  caniuse-lite@1.0.30001641: {}
 
   ccount@1.1.0: {}
 
@@ -12482,6 +12486,13 @@ snapshots:
       postcss-value-parser: 4.2.0
 
   postcss-import@15.1.0(postcss@8.4.35):
+    dependencies:
+      postcss: 8.4.35
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.8
+
+  postcss-import@16.1.0(postcss@8.4.35):
     dependencies:
       postcss: 8.4.35
       postcss-value-parser: 4.2.0
