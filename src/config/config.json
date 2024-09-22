@@ -1,12 +1,12 @@
 {
 	"metadata": {
-		"title": "Игорь Горлов - Fullstack Web Developer: Сайты на Next.js и др.",
+		"title": "Игорь Горлов - Frontend: Сайты, приложения на Next.js, React и др.",
 		"meta_author": "Игорь Горлов",
 		"meta_image": "assets/images/og-image.png",
-		"meta_description": "Игорь Горлов - ваш эксперт по созданию высокопроизводительных сайтов на Next.js, Astro и Headless CMS. Получите профессиональную разработку сайта по индивидуальному заказу!"
+		"meta_description": "Игорь Горлов - Получите качественную frontend разработку для бизнеса с Next.js, React"
 	},
 	"site": {
-		"title": "Игорь Горлов - Fullstack Web Developer: Сайты на Next.js и др.",
+		"title": "Игорь Горлов - Frontend: Сайты, приложения на Next.js, React и др.",
 		"base_url": "https://igorlov.ru/",
 		"base_path": "/",
 		"trailing_slash": false,
