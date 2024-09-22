@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Совместное использование данных Google Maps между отдельными компонентами Livewire - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire"><meta name="description" content="Допустим, у нас есть отдельные компоненты Livewire для"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z27hm9L.avif" type="image/avif"><source srcset="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z2weVoN.webp" type="image/webp"> <img src="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z24P0kk.png" alt="Совместное использование данных Google Maps между отдельными компонентами Livewire" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Совместное использование данных Google Maps между отдельными компонентами Livewire </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/laravel" data-astro-cid-axzg2cw6> Laravel </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/livewire" data-astro-cid-axzg2cw6> Livewire </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 20 апр., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Совместное использование данных Google Maps между отдельными компонентами Livewire&url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire&title=Совместное использование данных Google Maps между отдельными компонентами Livewire&summary=Допустим, у нас есть отдельные компоненты Livewire для&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire&media=&description=Допустим, у нас есть отдельные компоненты Livewire для" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <!-- wp:image -->
+<figure class="wp-block-image"><img src="https://fly.io/laravel-bytes/2023-04-20/pin-in-hand-cover.webp" alt="Sharing a glowing Google Maps Marker between two green hands."></figure>
+<!-- /wp:image -->
+<p>Изображение Анни Руйгт</p>
+<p>Допустим, у нас есть отдельные компоненты Livewire для:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Элемент карты Google - интерактивная карта для добавления и удаления маркеров местоположения</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Элемент поисковой строки - для перефокусировки элемента карты Google на заданное пользователем местоположение </li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Элемент выпадающего списка - для фильтрации маркеров, показанных в элементе карты Google </li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Наконец, форма — для отправки данных, предоставленных пользователем, из всех вышеперечисленных компонентов.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Как именно мы можем обмениваться данными между этими отдельными компонентами Livewire?</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"e47addb7-323b-492c-8e2a-fd5ad78a55de","content":"Возможности совместного использования","level":2,"link":"#возможности-совместного-использования","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"a0945000-7fce-45f3-9bb5-1038e4444d99","content":"Создание компонента карты Google","level":2,"link":"#создание-компонента-карты-google","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"bf33d941-7094-4a60-a453-af0c2b712eb5","content":"Создание компонента поисковой строки","level":2,"link":"#создание-компонента-поисковой-строки","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"dcc8234e-316a-4433-88a1-2338e5d92811","content":"Обмен данными с помощью событий браузера","level":2,"link":"#обмен-данными-с-помощью-событий-браузера","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"d53c089c-6e48-492f-99d8-cb0e78d3e9c8","content":"Пересмотр компонента Maps для маркировки булавками","level":2,"link":"#пересмотр-компонента-maps-для-маркировки-булавками","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"3275e7d5-f9ef-490a-9dd4-027fe01726fa","content":"Создание компонента фильтра","level":2,"link":"#создание-компонента-фильтра","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"4102991d-2f76-48da-880c-c1ac62152187","content":"Обмен данными через переменные JavaScript","level":2,"link":"#обмен-данными-через-переменные-java-script","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"d85b8f2a-aef0-4510-a3c5-9aa4070c4dd1","content":"Финал формы","level":2,"link":"#финал-формы","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"09fde70e-551d-4b21-873d-da22ce3d6440","content":"Совместное использование данных через селектор запросов HTML-элемента","level":2,"link":"#совместное-использование-данных-через-селектор-запросов-html-элемента","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"cc4a0193-b643-4eea-b7a2-da64b9c9ecc6","content":"Возможности обучения","level":2,"link":"#возможности-обучения","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#возможности-совместного-использования">Возможности совместного использования</a></li><li class=""><a href="#создание-компонента-карты-google">Создание компонента карты Google</a></li><li class=""><a href="#создание-компонента-поисковой-строки">Создание компонента поисковой строки</a></li><li class=""><a href="#обмен-данными-с-помощью-событий-браузера">Обмен данными с помощью событий браузера</a></li><li class=""><a href="#пересмотр-компонента-maps-для-маркировки-булавками">Пересмотр компонента Maps для маркировки булавками</a></li><li class=""><a href="#создание-компонента-фильтра">Создание компонента фильтра</a></li><li class=""><a href="#обмен-данными-через-переменные-java-script">Обмен данными через переменные JavaScript</a></li><li class=""><a href="#финал-формы">Финал формы</a></li><li class=""><a href="#совместное-использование-данных-через-селектор-запросов-html-элемента">Совместное использование данных через селектор запросов HTML-элемента</a></li><li class=""><a href="#возможности-обучения">Возможности обучения</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="возможности-совместного-использования">Возможности совместного использования</h2>
+<p>В этой статье мы рассмотрим различные возможности обмена данными между компонентами Livewire:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Обмен данными через событие dispatchBrowserEvent в Livewire: полезно, когда данные из компонента A на сервере необходимы для внесения изменений в пользовательский интерфейс компонента B. </li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Обмен данными через переменные JavaScript: полезно, когда данные, собранные из пользовательского интерфейса компонента A, необходимы для внесения изменений в пользовательский интерфейс компонента B. </li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Обмен данными через события emit в Livewire: полезно, когда обработанные данные из компонента A на сервере необходимы компоненту B на сервере </li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Обмен данными через Html Query Selectors: полезно, когда нам нужно передать данные из пользовательского ввода, предоставленного в элементах отдельных компонентов, в родительский компонент.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Мы рассмотрим все эти возможности, объединив вместе следующие компоненты Livewire: элемент Google Maps, поисковую строку, выпадающий фильтр и форму.</p>
+<h2 class="wp-block-heading" id="создание-компонента-карты-google">Создание компонента карты Google</h2>
+<p>Давайте начнем с центрального элемента нашей сегодняшней статьи: Компонент карты Google. Мы будем использовать его для того, чтобы наши пользователи могли добавлять маркеры в различные точки мира.</p>
+<p>Для начала создайте компонент с помощью php artisan make:livewire map. Не забудьте добавить в его вид элемент div с заданными шириной и высотой для отображения карты:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">&#x3C;!--app\resources\views\livewire\map.blade.php-->
+&#x3C;div>
+    &#x3C;div 
+    wire:ignore id="map" 
+    style="width:500px;height:400px;">
+    &#x3C;/div>
+</code></pre>
+<!-- /wp:code -->
+<p>Затем добавьте скрипт для инициализации элемента Google Maps в этот div. Обязательно авторизуйте доступ к Google Maps api, используя либо встроенный загрузчик bootstrap, либо унаследованный тег загрузки скрипта.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">    &#x3C;script>
+        /* Add Inline Google Auth Boostrapper here */
+
+        /* How to initialize the map */
+        let map;
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            map = new Map(document.getElementById("map"), {
+                    zoom: 4,
+                    center: { lat: @js( $lat ), lng: @js( $lng ) },
+                    mapId: "DEMO_MAP_ID",
+            });
+        }
+
+        /* Initialize map when Livewire has loaded */
+        document.addEventListener('livewire:load', function () { 
+            initMap();
+        });
+    &#x3C;/script>
+&#x3C;/div>
+</code></pre>
+<!-- /wp:code -->
+<p>Заметили @js( $lat ) и @js( $lng ) в приведенном выше фрагменте кода? Это помощник Livewire, который позволяет нам использовать PHP-атрибуты $lat и $lng в JavaScript нашего представления. Нам придется объявить их в компоненте Map:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* App\Http\Livewire\Map.php */
+
+class Map extends Component{
+
+      public $lat = -25.344;
+      public $lng = 131.031;
+</code></pre>
+<!-- /wp:code -->
+<p>Выше мы объявили координаты местоположения по умолчанию. Это покажет местоположение по умолчанию в нашем компоненте карт. В следующем разделе ниже мы добавим компонент поисковой строки, чтобы пользователи могли легко переместить фокус в нужное им место. А затем мы реализуем первый способ обмена данными между компонентами.</p>
+<h2 class="wp-block-heading" id="создание-компонента-поисковой-строки">Создание компонента поисковой строки</h2>
+<p>Создайте отдельный компонент с помощью команды: php artisan make:livewire map-search-box. Его вид будет состоять из двух элементов, текстового поля ввода и кнопки:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">&#x3C;!--app\resources\views\livewire\map-saerch-box.blade.php-->
+&#x3C;div>
+    &#x3C;input type="text" wire:model.defer="address" />
+    &#x3C;button wire:click="search">Search&#x3C;/button>
+&#x3C;/div>
+</code></pre>
+<!-- /wp:code -->
+<p>Элемент text подключен к атрибуту $address компонента и использует model.defer, чтобы убедиться, что Livewire не отправляет свои запросы по умолчанию при каждом изменении элемента. С другой стороны, элемент кнопки подключен к методу поиска в компоненте Livewire через слушатель клика.</p>
+<p>Этот метод search() преобразует строковое значение элемента ввода (подключенного к $address) в координаты местоположения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* App\Http\Livewire\MapSearchBox.php */
+
+class MapSearchBox extends Component{
+
+      public $address;
+
+      public function search()
+      {
+          // Use a custom service to get address' lat-long coordinates
+          // Either through Google GeoCoder or some other translator
+          $coordinates = new \App\Http\Services\GoogleLocationEncoder( 
+            $this->address 
+          );
+      }
+</code></pre>
+<!-- /wp:code -->
+<p>После получения наших координат из компонента MapSearchBox, нам нужно будет повторно отцентрировать местоположение, видимое из представления компонента Map.</p>
+<p>Хм-м-м. Но. Компонент MapSearchBox является отдельным компонентом от компонента Map, так как же именно мы можем обмениваться данными между двумя отдельными компонентами?</p>
+<h2 class="wp-block-heading" id="обмен-данными-с-помощью-событий-браузера">Обмен данными с помощью событий браузера</h2>
+<p>Обычный способ обмена данными о событиях между компонентами - это использование функции emit в Livewire. Однако этот подход фактически делает два немедленных запроса для каждого emit: первый запрос - вызов компонента, от которого исходило событие, а второй - вызов компонента, слушающего испускаемое событие.</p>
+<p>В нашем случае (перестановка карты на основе координат из окна поиска) второй запрос нам не нужен. Нам нужно только передать полученные координаты в пользовательский интерфейс нашей карты, чтобы изменить местоположение, на котором центрируется карта.</p>
+<p>Поэтому вместо emit давайте воспользуемся функцией dispatchBrowserEvent в Livewire:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* \App\Http\Livewire\MapSearchBox */
+public function search()
+{
+    /* Get coordinates */
+
+    // Dispatch event to the page
++  $this->dispatchBrowserEvent( 'updatedMapLocation',[
++    'lat' => $coordinates->getLatitude(),
++    'lng' => $coordinates->getLongitude()
++  ]);
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Событие окна браузера, updatedMapLocation от MapSearchBox, передается на текущую страницу, где все доступные компоненты могут прослушать его. Поскольку представление нашего компонента Map также находится на этой странице, он может легко прослушать отправленное событие и перецентрировать местоположение на основе полученных координат:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* \app\resources\views\livewire\ */
+&#x3C;script>
+// Listen to location update from search box
+window.addEventListener('updatedMapLocation',function(e){
+    // Defer set lat long values of component
+    @this.set( 'lat', e.detail.lat, true);
+    @this.set( 'lng', e.detail.lng, true);
+
+    // Translate to Google coord
+    let coord = new google.maps.LatLng(e.detail.lat, e.detail.lng);
+
+    // Re-center map
+    map.setCenter( coord );
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Это занимает всего один запрос к компоненту MapSearchBox для обработки координат из заданной пользователем строки и обновления представления компонента карты для повторного центрирования местоположения - замечательно!</p>
+<h2 class="wp-block-heading" id="пересмотр-компонента-maps-для-маркировки-булавками">Пересмотр компонента Maps для маркировки булавками</h2>
+<p>Важной функциональностью элементов карты является их функция “Pin Dropping”, позволяющая пользователям отмечать места на карте. Для этого нам понадобится слушатель события click в нашем элементе карты:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">let map;
+
+// Dictionary of markers, each marker identified by its lat lng string
++  let markers = {}; 
+
+async function initMap() {
+  /* Map initialization logic here... */
+
+  // Add marker listener
++  map.addListener("click", (mapsMouseEvent) => {
+      // Get coordinates 
+      let coord = mapsMouseEvent.latLng.toJSON();
+
+      // Generate id based on lat lng to record marker
+      let id = coord.lat.toString()+coord.lng.toString();
+
+      // Add Marker to coordinate clicked on, identified by id
+      markershttps://fly.io/laravel-bytes/map-livewire/ = new google.maps.Marker({
+          position: mapsMouseEvent.latLng,
+          map,
+          title: "Re-Click to Delete",
+      });
+
+      // Delete marker on re-click
+      markershttps://fly.io/laravel-bytes/map-livewire/.addListener("click", () => {
+          markershttps://fly.io/laravel-bytes/map-livewire/.setMap(null);
+          delete markers.id;
+      });
+  });
+});  
+</code></pre>
+<!-- /wp:code -->
+<p>Шаг за шагом, что происходит выше? Во-первых, мы добавляем словарь JavaScript под названием markers для хранения ссылок на уникально идентифицированные маркеры местоположения в представлении компонента Map. Затем мы перерабатываем функцию initMap(), чтобы перехватывать события щелчка на карте.</p>
+<p>Для каждого места, на котором был сделан щелчок, мы получаем координаты, генерируем уникальный идентификатор на основе этих координат и присваиваем этот уникальный идентификатор в качестве ключа в словаре markers, устанавливая его значение как ссылку на новый маркер Google Map. Мы также добавляем слушателя при нажатии на каждый новый маркер, чтобы по желанию удалять его при повторном нажатии.</p>
+<p>В следующем разделе мы перейдем ко второму способу обмена данными, фильтруя вышеуказанные маркеры с помощью отдельного компонента фильтра.</p>
+<h2 class="wp-block-heading" id="создание-компонента-фильтра">Создание компонента фильтра</h2>
+<p>Допустим, нам нужен способ массового удаления маркеров карты в компоненте Map на основе условий фильтрации с сервера. Для этого мы можем добавить компонент: php artisan make:livewire map-marker-filter.</p>
+<p>В этом примере мы будем удалять маркеры, которые не находятся в пределах ”области”. Мы будем использовать эти опции “области” для фильтрации маркеров карты. Чтобы получить эти параметры, мы можем объявить их в компоненте MapMarkerFilter:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* \App\Http\Livewire\MapMarkerFilter */
+
+class MapMarkerFilter extends Component
+{
+    public $options = [
+        ['id'=>1, 'label'=>'Area1'],
+        ['id'=>2, 'label'=>'Area2'],
+    ];
+</code></pre>
+<!-- /wp:code -->
+<p>Мы можем предоставить эти ”фильтры области” в качестве $options в элементе select в представлении:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* app\resources\views\livewire\map-marker-filter.blade.php */
+&#x3C;div>
+  &#x3C;select id="area" onchange="filterChange( this )">
+    &#x3C;option>Select an Area&#x3C;/option>
+    @foreach( $options as $opt )
+        &#x3C;option value="{{ $opt['id'] }}">
+        {{ $opt['label'] }}
+        &#x3C;/option>
+    @endforeach
+  &#x3C;/select>
+&#x3C;/div>
+</code></pre>
+<!-- /wp:code -->
+<p>Когда новый фильтр выбран, мы отправим две вещи компоненту MapMarkerFilter на сервере: 1️⃣the значение выбранного параметра, и, 2️⃣the список координат из словаря маркеров JavaScript.</p>
+<h2 class="wp-block-heading" id="обмен-данными-через-переменные-java-script">Обмен данными через переменные JavaScript</h2>
+<p>Мы можем легко получить опцию 1️⃣selected при изменении, поскольку она находится в нашем текущем компоненте MapMarkerFilter. Но как насчет JS-переменной 2️⃣markers, хранящей наши булавки, которые находятся в представлении карты? Она объявлена в другом компоненте, так как же нам передать ее текущему представлению MapMarkerFilter?</p>
+<p>Чтобы передать список маркеров из Map в MapMarkerFilter, давайте попробуем использовать прямой подход: посмотрим, в какой области видимости доступна переменная markers. Будучи объявленной в JavaScript представления компонента Map, посмотрим, можем ли мы получить это значение из JavaScript MapMarkerFilter.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* app\resources\views\livewire\map-marker-filter.blade.php */
+&#x3C;script>
+  function filterChange( objVal ){
+      let filterId = objVal.value;
+  +   let coords = Object.keys(markers);
+  +   console.log( coords );
+  +   @this.filterMarkers( filterId, coords );
+  }
+&#x3C;/script>
+</code></pre>
+<!-- /wp:code -->
+<p>Сохраните изменения и выберите вариант из фильтра…и. И - работает! Мы действительно имеем доступ к маркеру JS переменной Map из MapMarkerFilter! Здесь нет ничего удивительного. Это переменные JavaScript, доступные для других скриптов на той же странице:<img src="https://fly.io/laravel-bytes/2023-04-20/img_1.png" alt=""></p>
+<p>Обратите внимание на утверждение @this.filterMarkers(). Это встроенный способ вызова метода компонента из JavaScript представления. В приведенном выше случае две переменные, filterId и coords, из JavaScript представления отправляются в метод filterMarkers() в компоненте:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">public function filterMarkers( $filterId, $coords )
+{
+    // Using filterId, get marker ids that should be removed from the map
+    $toRemove = (new \App\Http\Services\MapMarkerFilter)
+    ->getCoordsToRemove( $filterId, $coords );
+
+    // Send this back to the view
+    $this->dispatchBrowserEvent( 'removeMarkers', [
+        'coords' => $toRemove
+    ]);
+}   
+</code></pre>
+<!-- /wp:code -->
+<p>Из этого метода мы можем использовать выбранный $filterId, чтобы определить, какие маркеры в списке $coordinates должны быть удалены из представления карты.</p>
+<p>Как только мы определили координаты маркеров для удаления, мы можем использовать еще один вызов dispatchBrowserEvent для передачи события removeMarkers обратно на страницу клиента. Наши маркеры находятся в компоненте Map, поэтому из JavaScript его представления добавим слушателя этого события и удалим указанный идентификатор маркеров, отправленный из события:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* app\resources\views\livewire\map.blade.php */
+
+/* Listen to location update from search box */
+window.addEventListener('removeMarkers',function(e){
+    // Delete each cooordinate by id
+    for( i in e.detail.coords ){
+        let id = e.detail.coords[i];
+        markershttps://fly.io/laravel-bytes/map-livewire/.setMap(null);
+        delete markershttps://fly.io/laravel-bytes/map-livewire/;
+    }
+});
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="финал-формы">Финал формы</h2>
+<p>В финале формы мы передадим все введенные пользователем данные из каждого компонента, которые мы объявили выше: ключевое слово поиска из компонента Search, выбранный вариант фильтра из компонента Filter и, наконец, маркеры карты, выбранные в компоненте Map.</p>
+<p>Давайте создадим компонент формы с помощью php artisan make:livewire map-form. Для его вида мы просто включим все остальные компоненты, которые мы создали, с дополнительной кнопкой:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">&#x3C;!--app\resources\views\livewire\map-form.blade.php-->
+&#x3C;div> 
+  &#x3C;h1>Form&#x3C;/form>
+  &#x3C;form wire:submit.prevent="submit">
+      &#x3C;div class="flex flex-row justify-between">
+          &#x3C;livewire:map-search-box />
+          &#x3C;livewire:map-territory-filter />
+      &#x3C;/div>
+
+      &#x3C;livewire:map />
+      &#x3C;button type="submit" class="btn btn-primary">Submit&#x3C;/button>
+  &#x3C;/form>
+&#x3C;/div>
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь мы можем определенно сделать сигнал emit submit от родителя, который будут слушать все дочерние компоненты и выдавать свои значения в ответ на него:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* App\Http\Livewire\MapForm.php */
+public function submit(): void
+{
+    $this->emit('submit');
+}
+
+/* App\Http\Livewire\&#x3C;somechildcomponenthere> */
+// Listen to submit from parent
+public $listeners = [
+    'submit' 
+];
+
+public function submit(): void
+{
+    $this->emitUp('map-form', $this->valueNeedToPass);
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Но. Это будет тонна запросов, один запрос от формы, и два запроса к каждому слушающему компоненту (1. для получения родительского события emit, и 2. для отправки значения родительскому компоненту). Ай-яй-яй.</p>
+<p>Ладно, поскольку вышеописанное не так уж и экономно, давайте попробуем другой подход к обмену данными, не так ли?</p>
+<h2 class="wp-block-heading" id="совместное-использование-данных-через-селектор-запросов-html-элемента">Совместное использование данных через селектор запросов HTML-элемента</h2>
+<p>Подобно тому, как js-переменные доступны от одного компонента к другому компоненту на той же странице, так и html-элементы! Итак, мы просто получаем значения элементов ввода из компонентов MapSearch и MapMarkerFilter в JavaScript нашей формы MapForm.</p>
+<p>Сначала измените элемент формы, чтобы вызвать JS-функцию:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">&#x3C;!--app\resources\views\livewire\map-form.blade.php-->
+
+- &#x3C;form wire:submit.prevent="submit">
++ &#x3C;form onsubmit="return process()">
+</code></pre>
+<!-- /wp:code -->
+<p>Затем обязательно добавьте идентификатор к их элементам ввода:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">&#x3C;!--app\resources\views\livewire\map-search-box.blade.php-->
+&#x3C;input id="searchString" type="text" placeholder="Location" wire:model.defer="address" />
+
+&#x3C;!--app\resources\views\livewire\map-marker-filter.blade.php-->
+&#x3C;select id="filterId" onchange="filterChange( this )">
+</code></pre>
+<!-- /wp:code -->
+<p>Поскольку маркеры доступны как переменная на текущей странице, мы можем просто вызвать ее и из JavaScript MapForm:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">function process()
+{
+  // Get Search keyword
+  @this.set( 'searchKey', document.getElementById('searchId').value, true );
+
+  // Get Selected Filter option
+  @this.set( 'filterId', document.getElementById('filterId').value, true );
+
+  // Get markers keys list, as the key themselves are the coordinates
+  @this.set( 'coords', Object.keys(markerList), true );
+
+  // Trigger Submit
+  @this.submit();
+
+  return false;
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Затем просто определите метод submit в нашем компоненте MapForm:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">/* \App\Http\Livewire\MapForm.php*/
+
+public $searchKey;
+public $filterId;
+public $coords;
+
+public function submit()
+{
+    // Validate entries
+    $this->validate([
+      'searchKey' => 'string',
+      'filterId'  => 'numeric',
+      'coords'    => 'required',
+    ]);
+
+    // Do processing
+
+    // Redirect 
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Прежде чем вызвать метод submit() на сервере, мы сначала установили значения $searchKey, $filterId и $coords из разных компонентов через выборку запроса и переменные JavaScript. И теперь эти значения из отдельных компонентов находятся в нашем родительском компоненте MapForm!</p>
+<h2 class="wp-block-heading" id="возможности-обучения">Возможности обучения</h2>
+<p>Итак, что мы узнали сегодня?</p>
+<p>-Возможности!</p>
+<p>Мы узнали о четырех различных, полезных для пользователя возможностях обмена данными между компонентами Livewire.</p>
+<p>И хотя не все они являются чисто специфическими для Livewire подходами, они довольно хорошо справляются со своей задачей в конкретных областях применения. Попробуйте их как-нибудь!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Совместное использование данных Google Maps между отдельными компонентами Livewire&url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire&title=Совместное использование данных Google Maps между отдельными компонентами Livewire&summary=Допустим, у нас есть отдельные компоненты Livewire для&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/sovmestnoe-ispolzovanie-dannyh-google-maps-mezhdu-otdelnymi-komponentami-livewire&media=&description=Допустим, у нас есть отдельные компоненты Livewire для" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/sozdanie-axios-interceptors-v-react-i-nextjs" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Создание Axios interceptors в React и NextJs </a> <a href="/blog/shpargalka-po-komandam-git" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Шпаргалка по командам Git </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

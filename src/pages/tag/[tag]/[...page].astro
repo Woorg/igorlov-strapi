@@ -1,0 +1,62 @@
+---
+export const prerender = true;
+import ArticlesBlock from '@/components/ArticlesBlock.astro';
+// import BlogCard from '@/components/BlogCard.astro';
+import config from '@/config/config.json';
+import Base from '@/layouts/Base.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import { getTaxonomy } from '@/lib/taxonomyParser.astro';
+import taxonomyFilter from '@/lib/utils/taxonomyFilter';
+import { getCollection } from 'astro:content';
+import PaginationTaxonomy from '@/components/PaginationTaxonomy.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+
+export async function getStaticPaths({ paginate }) {
+	const tags = await getTaxonomy(config.settings.blog_folder, 'tags');
+	const allPosts = await getSinglePage(config.settings.blog_folder);
+
+	return tags.flatMap((tag) => {
+		const filterByCategories = taxonomyFilter(allPosts, 'tags', tag);
+		return paginate(filterByCategories, {
+			params: { tag },
+			props: { tag },
+			pageSize: 9,
+		});
+	});
+}
+
+const params = Astro.params;
+const { tag, page } = Astro.props;
+
+// console.log(page);
+const data = page.data;
+---
+
+<Base
+	title={page.currentPage < 2 ? `${tag}` : `${tag}. Страница ${page.currentPage}`}
+	description={page.currentPage < 2
+		? `Пoсты про: ${tag}`
+		: `Пoсты про: ${tag}. Страница ${page.currentPage}`}
+>
+	<div class="blocks">
+		<div class="blocks__container container">
+			<ArticlesBlock
+				sectionTitle={page.currentPage < 2 ? `${tag}` : `${tag}. Страница ${page.currentPage}`}
+				class="fade-in-bottom"
+				style="--delay: 0.1s;"
+				posts={data}
+			/>
+		</div>
+
+		<div class="blocks__container container">
+			<PaginationTaxonomy
+				section={`tag/${tag}`}
+				currentPage={page.currentPage}
+				totalPages={page.lastPage}
+			/>
+		</div>
+		<div class="blocks__container container">
+			<CtaBlock id="cta" class="" />
+		</div>
+	</div>
+</Base>

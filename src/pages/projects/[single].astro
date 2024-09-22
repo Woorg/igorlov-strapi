@@ -1,0 +1,54 @@
+---
+export const prerender = true;
+import config from '@/config/config.json';
+import Base from '@/layouts/Base.astro';
+import ProjectSingle from '@/layouts/ProjectSingle.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { getSinglePage } from '@/lib/contentParser.astro';
+import CtaBlock from '@/components/CtaBlock.astro';
+const { projects_folder } = config.settings;
+export async function getStaticPaths() {
+	const posts = await getSinglePage(config.settings.projects_folder);
+	const numberOfPosts = Math.ceil(posts.length);
+	const paths = posts
+		.filter((post) => !post.data.draft)
+		.map((post, i) => ({
+			params: {
+				single: post.slug,
+			},
+			props: {
+				post,
+				prevPost: i + 1 === numberOfPosts ? { data: '' } : posts[i + 1],
+				nextPost: i === 0 ? { data: '' } : posts[i - 1],
+			},
+		}));
+	return paths;
+}
+
+const { post, prevPost, nextPost } = Astro.props;
+const { title, meta_title, description, image } = post.data;
+
+console.log(prevPost, nextPost);
+---
+
+<Base title={title} meta_title={meta_title} description={description} image={image}>
+	<div class="blocks">
+		<div class="blocks__container container">
+			<Breadcrumbs class=""  />
+		</div>
+
+		<div class="blocks__container container">
+			<ProjectSingle
+				class=""
+				post={post}
+				type={projects_folder}
+				prevPost={prevPost}
+				nextPost={nextPost}
+			/>
+		</div>
+
+		<div class="blocks__container container">
+			<CtaBlock id="cta" class=""  />
+		</div>
+	</div>
+</Base>

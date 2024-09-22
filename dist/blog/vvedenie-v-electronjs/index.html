@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Введение в ElectronJS - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/vvedenie-v-electronjs"><meta name="description" content="ElectronJS – это фреймворк с открытым исходным кодом, который позволяет разработчикам создавать кроссплатформенные настольные приложения с использованием веб-технологий, таких как HTML, CSS и Javascript."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-vvedenie-v-electronjs; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z27hm9L.avif" type="image/avif"><source srcset="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z2weVoN.webp" type="image/webp"> <img src="/_astro/undefined-Apr-20-2023.DHTiNZ16_Z24P0kk.png" alt="Введение в ElectronJS" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Введение в ElectronJS </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/electronjs" data-astro-cid-axzg2cw6> ElectronJS </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 20 апр., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/vvedenie-v-electronjs" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/vvedenie-v-electronjs" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Введение в ElectronJS&url=https://igorlov.ru/blog/vvedenie-v-electronjs" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/vvedenie-v-electronjs&title=Введение в ElectronJS&summary=ElectronJS – это фреймворк с открытым исходным кодом, который позволяет разработчикам создавать кроссплатформенные настольные приложения с использованием веб-технологий, таких как HTML, CSS и Javascript.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/vvedenie-v-electronjs&media=&description=ElectronJS – это фреймворк с открытым исходным кодом, который позволяет разработчикам создавать кроссплатформенные настольные приложения с использованием веб-технологий, таких как HTML, CSS и Javascript." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <h2 class="wp-block-heading">Что такое ElectronJS?</h2>
+<p>ElectronJS - это фреймворк с открытым исходным кодом, который позволяет разработчикам создавать кроссплатформенные настольные приложения с использованием веб-технологий, таких как HTML, CSS и Javascript. Он был разработан и выпущен на GitHub в 2013 году и с тех пор завоевал огромную популярность среди разработчиков благодаря простоте использования и возможности создавать высокопроизводительные приложения, работающие на Windows, macOS и Linux.</p>
+<h2 class="wp-block-heading">Чем известен ElectronJS?</h2>
+<p>Одним из наиболее значимых преимуществ ElectronJS является то, что он позволяет разработчикам создавать настольные приложения с веб-основой. Это означает, что разработчики могут использовать те же навыки веб-разработки, которыми они уже обладают, для создания мощных настольных приложений, которые легко работают в различных операционных системах.</p>
+<p>Еще одним ключевым преимуществом ElectronJS является то, что он предоставляет доступ к мощным нативным API, которые позволяют разработчикам создавать многофункциональные приложения. Разработчики могут использовать эти API для доступа к файловой системе, манипулирования окнами, создания иконок в системном трее и многого другого.</p>
+<h2 class="wp-block-heading">Когда был выпущен ElectronJS?</h2>
+<p>ElectronJS был первоначально выпущен под названием “Atom Shell” в 2013 году на GitHub. Целью было создание фреймворка для настольных приложений, который можно было бы использовать для создания редактора кода Atom. В 2016 году Atom Shell был переименован в ElectronJS и выпущен как проект с открытым исходным кодом.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Некоторые приложения, созданные с помощью ElectronJS</h3>
+<p>ElectronJS использовался для создания многих популярных настольных приложений. Некоторые из наиболее известных приложений, созданных с использованием ElectronJS, включают:</p>
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li>Visual Studio Code - популярный редактор кода</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Slack - инструмент для совместной работы на экзамене</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Discord - приложение для голосового и текстового чата для геймеров</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Atom - настраиваемый текстовый редактор</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Skype - приложение для голосовых и видеозвонков</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Postman - популярный инструмент для разработки API</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>GitHub Desktop - графический пользовательский интерфейс для Git</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Trello - инструмент продуктивности для организации задач и проектов</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Microsoft Teams - платформа для общения и совместной работы</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Figma - инструмент совместного проектирования для создания пользовательских интерфейсов и прототипов.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+<h2 class="wp-block-heading">Использование ElectronJS</h2>
+<p>ElectronJS относительно прост в использовании, особенно для разработчиков, знакомых с веб-разработкой. Поскольку ElectronJS использует веб-технологии, разработчики могут использовать те же инструменты и библиотеки, которые они уже знают для создания настольных приложений! Кроме того, ElectronJS предоставляет массу встроенных функций и API, которые позволяют быстро создавать мощные приложения.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Давайте создадим быстрое настольное приложение</h3>
+<p>Здесь мы рассмотрим быструю настройку настольного приложения, которое является хорошим началом знакомства с ElectronJS.</p>
+<p><strong>Во-первых, нам нужно создать новый каталог и инициализировать его файлом package.json:</strong></p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">mkdir hello-world
+cd hello-world
+npm init -y</code></pre>
+<!-- /wp:code -->
+<p>Далее нам нужно установить ElectronJS в качестве зависимости:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npm install electron</code></pre>
+<!-- /wp:code -->
+<p>Теперь мы можем создать наш файл main.js, который будет содержать код для нашего окна:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">First: touch main.js
+Insert into main.js: 
+const { app, BrowserWindow } = require('electron')
+
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  win.loadFile('index.html')
+}
+
+app.whenReady().then(() => {
+  createWindow()
+
+  app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
+})
+
+app.on('window-all-closed', function () {
+  if (process.platform !== 'darwin') app.quit()
+}) 
+</code></pre>
+<!-- /wp:code -->
+<p>Этот код устанавливает новое приложение ElectronJS с главным окном шириной 800 пикселей и высотой 600 пикселей.</p>
+<p>Он также загружает в окно HTML-файл под названием “index.html”.<br>Мы можем создать этот файл в том же каталоге и добавить следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">Create index.html: touch index.html
+
+&#x3C;!DOCTYPE html>
+&#x3C;html>
+  &#x3C;head>
+    &#x3C;meta charset="UTF-8">
+    &#x3C;title>Hello World!&#x3C;/title>
+  &#x3C;/head>
+  &#x3C;body>
+    &#x3C;h1>Hello World!&#x3C;/h1>
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<!-- /wp:code -->
+<p>В файле package.json вы хотите добавить скрипт для запуска вашего приложения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">"start": "electron ."
+</code></pre>
+<!-- /wp:code -->
+<p>После выполнения этой команды должно появиться новое окно с текстом “Hello World!” в центре.</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--rVv_VeNz--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f6n79uur0vv0sw0v2d1c.png" alt="Приложение для рабочего стола"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading">Заключение</h2>
+<p>ElectronJS - это мощный и универсальный фреймворк, который позволяет разработчикам создавать высокопроизводительные настольные приложения, используя веб-технологии. Он позволяет разработчикам легко перейти к созданию настольных приложений, а тот факт, что ElectronJS был большой частью некоторых повседневных приложений, которые мы, разработчики, используем, показывает нам, что мы тоже способны создавать удивительные приложения.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/vvedenie-v-electronjs" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/vvedenie-v-electronjs" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Введение в ElectronJS&url=https://igorlov.ru/blog/vvedenie-v-electronjs" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/vvedenie-v-electronjs&title=Введение в ElectronJS&summary=ElectronJS – это фреймворк с открытым исходным кодом, который позволяет разработчикам создавать кроссплатформенные настольные приложения с использованием веб-технологий, таких как HTML, CSS и Javascript.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/vvedenie-v-electronjs&media=&description=ElectronJS – это фреймворк с открытым исходным кодом, который позволяет разработчикам создавать кроссплатформенные настольные приложения с использованием веб-технологий, таких как HTML, CSS и Javascript." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kohda-yspolzovat-sql-protyv-nosql-rukovodstvo-ksperta-po-bazam-dann-kh" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Когда использовать SQL против NoSQL: Руководство эксперта по базам данных </a> <a href="/blog/vrashhayushhayasya-vitaya-3d-tipografika-s-pomoshhyu-three-js-i-shejderov" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Вращающаяся витая 3D-типографика с помощью Three.js и шейдеров </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

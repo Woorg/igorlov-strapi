@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Руководство по использованию act с GitHub Actions - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions"><meta name="description" content="Проект act – это мощный инструмент, который можно использовать вместе с GitHub Actions для быстрого тестирования и доработки конвейера непрерывной интеграции и непрерывной доставки (CI/CD)."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-rukovodstvo-po-ispolzovaniyu-act-s-github-actions; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Mar-19-2023.DxuzpXX3_1rpPdn.avif" type="image/avif"><source srcset="/_astro/undefined-Mar-19-2023.DxuzpXX3_12sfXl.webp" type="image/webp"> <img src="/_astro/undefined-Mar-19-2023.DxuzpXX3_1tRc2O.png" alt="Руководство по использованию act с GitHub Actions" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Руководство по использованию act с GitHub Actions </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/javascript" data-astro-cid-axzg2cw6> JavaScript </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 19 мар., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Руководство по использованию act с GitHub Actions&url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions&title=Руководство по использованию act с GitHub Actions&summary=Проект act – это мощный инструмент, который можно использовать вместе с GitHub Actions для быстрого тестирования и доработки конвейера непрерывной интеграции и непрерывной доставки (CI/CD).&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions&media=&description=Проект act – это мощный инструмент, который можно использовать вместе с GitHub Actions для быстрого тестирования и доработки конвейера непрерывной интеграции и непрерывной доставки (CI/CD)." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Проект act - это мощный инструмент, который можно использовать вместе с GitHub Actions для быстрого тестирования и доработки конвейера непрерывной интеграции и непрерывной доставки (CI/CD). С помощью act вы можете локально использовать контейнеры Docker для прямого запуска этапов в GitHub Actions. act помогает разработчикам запускать независимые этапы конвейера и в целом улучшает цикл обратной связи при построении конвейеров с помощью GitHub Actions.</p>
+<p>В этой статье мы представим act на примере проекта, установим его, а затем рассмотрим различные способы, которыми act может улучшить ваш опыт создания и тестирования GitHub Actions. Чтобы проследить за ходом работы, посмотрите мой пример проекта на GitHub. Давайте начнем!</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"53bf7fee-22bc-436a-9bf3-739ee6707ff1","content":"Что такое GitHub Actions?","level":2,"link":"#что-такое-git-hub-actions","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"8cf7873a-462c-42bf-92e9-beacd097727b","content":"Как использовать act?","level":2,"link":"#как-использовать-act","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"4f6d5a56-d3e0-4372-9795-4c04bcf77db0","content":"Смотрим на Act в действии","level":2,"link":"#смотрим-на-act-в-действии","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f3fd93a8-039b-4a00-8891-782fc7fb80b4","content":"Заключение","level":2,"link":"#заключение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#что-такое-git-hub-actions">Что такое GitHub Actions?</a></li><li class=""><a href="#как-использовать-act">Как использовать act?</a></li><li class=""><a href="#смотрим-на-act-в-действии">Смотрим на Act в действии</a></li><li class=""><a href="#заключение">Заключение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="что-такое-git-hub-actions">Что такое GitHub Actions?</h2>
+<p>Прежде чем приступить к работе с act, мы должны получить базовое представление о том, как работают GitHub Actions. Подобно CI/CD инструментам, таким как CircleCI, Jenkins и другим, GitHub Actions позволяют вам определить конвейер в YAML-файле. Затем GitHub будет запускать ваш конвейер при определенных событиях, которые могут включать открытие запроса на притяжение или слияние с основной веткой.</p>
+<p>Синтаксис GitHub Actions выглядит следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="yaml" class="language-yaml">name: Node.js CI
+'on':
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
+      - run: npm install
+      - run: npm run build</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше примере действие GitHub Action определено с заданием сборки, которое проверяет ваш код, выполняет установку npm и собирает проект. У вас могут быть дополнительные задания, которые зависят от этого, но шаги могут быть и собственными действиями. Например, если вы хотите кэшировать модули node, вы можете просто добавить следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="yaml" class="language-yaml">     - run: npm install
+      - run: npm run build
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: >-
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{
+            hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-</code></pre>
+<!-- /wp:code -->
+<p>actions/cache@v3 - это собственное действие, которое выполняется как шаг в этом конвейере. Вы также можете создать эти действия. Например, включив их в своем репозитории GitHub, вы можете запускать CI/CD на pushes to master и другие события. В GitHub это выглядит следующим образом:</p>
+<!-- wp:image {"align":"center","id":163206} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/03/1-github-actions-build-syntax.jpeg?is-pending-load=1" alt="Синтаксис сборки GitHub Actions Build" class="wp-image-163206"></figure>
+<!-- /wp:image -->
+<p>Вы можете подробно рассмотреть различные этапы и даже просмотреть историю действий по мере их выполнения. В документации GitHub Actions есть подробное определение этого синтаксиса; я рекомендую ознакомиться с ним.</p>
+<p>В следующих разделах мы научимся делать все это локально, а не полагаться на консоль GitHub и события для тестирования нашего конвейера.</p>
+<h2 class="wp-block-heading" id="как-использовать-act">Как использовать act?</h2>
+<p>act работает как CLI на вашей локальной машине, поддерживая Linux, Mac и Windows. Я работаю на Mac, поэтому я использовал brew для установки act следующей командой:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">brew install act</code></pre>
+<!-- /wp:code -->
+<p>Чтобы узнать больше об установке, ознакомьтесь с инструкциями в репозитории GitHub.</p>
+<p>После установки act использовать его очень просто. Внутри папки .github в вашем репозитории вызовите CLI непосредственно с помощью act из терминала внутри проекта, в котором настроен YAML-файл действия GitHub. Если у вас еще не настроены действия GitHub, нажмите на опцию actions в верхней части вашего проекта GitHub, и GitHub проведет вас через создание начального YAML-файла:</p>
+<!-- wp:image {"align":"center","id":163208} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/03/2-github-actions-set-up-yaml-file.jpeg?is-pending-load=1" alt="Github Actions Настройка Yaml-файла" class="wp-image-163208"></figure>
+<!-- /wp:image -->
+<!-- wp:image {"align":"center","id":163210} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/03/3-github-actions-edit-yaml-file.jpeg?is-pending-load=1" alt="GitHub Actions Редактирование файла YAML" class="wp-image-163210"></figure>
+<!-- /wp:image -->
+<p>Существует множество различных вариантов, но наиболее полезными мне показались следующие:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash"># List all the actions in your YAML file
+act -l
+
+# List actions for a specific event (here the event is push)
+act push -l
+
+# Get Act to run the workflow as if a specific push to master event occured
+act push
+
+# Get Act to run a specific job
+act -j test
+
+# pass secrets into a job so that the GitHub action can consume them
+act -s MY_TOKEN_SECRET=&#x3C;token> -s MY_NETLIFY_SITE_ID=&#x3C;site_id> 
+
+# run a GitHub action that uses artifacts between jobs
+act --artifact-server-path /tmp/artifacts push
+</code></pre>
+<!-- /wp:code -->
+<p>При выполнении этих команд act создает контейнер Docker для запуска ваших действий на GitHub. Образы, перечисленные в проекте act на GitHub, включают следующие:</p>
+<!-- wp:image {"align":"center","id":163212} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/03/4-github-actions-builds-docker-container.jpeg?is-pending-load=1" alt="Github Actions Создание Docker-контейнера" class="wp-image-163212"></figure>
+<!-- /wp:image -->
+<p>Если в задании GitHub Action указан образ для использования, оно извлекает этот образ и запускает его в контейнере act для выполнения работы.</p>
+<h2 class="wp-block-heading" id="смотрим-на-act-в-действии">Смотрим на Act в действии</h2>
+<p>Как я уже говорил во вступлении, я использовал пример проекта с Act для проверки некоторых функций. Проект представляет собой очень простое, базовое приложение для составления списка дел на React. Я включил один тест, для которого я мог создать этап в конвейере, а также включил этап для развертывания в Netlify.</p>
+<p>Код ниже представляет собой фактический YAML-файл, который я создал для GitHub Actions в этом проекте:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="yaml" class="language-yaml">name: Node.js CI
+'on':
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/[email protected]
+      - name: Use Node.js 16.x
+        uses: actions/[email protected]
+        with:
+          node-version: 16.x
+          cache: npm
+      - run: npm install
+      - run: npm run build
+      - name: Cache node modules
+        uses: actions/[email protected]
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: >-
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{
+            hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+      - name: Archive production artifacts
+        uses: actions/[email protected]
+        with:
+          name: built-project
+          path: build
+          retention-days: 1
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/[email protected]
+      - name: Use Node.js 16.x
+        uses: actions/[email protected]
+        with:
+          node-version: 16.x
+          cache: npm
+      - name: Download build for testing
+        uses: actions/[email protected]
+        with:
+          name: built-project
+      - run: npm install
+      - run: npm run pipeline-test
+  deploy:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    name: 'Deploy to Netlify'
+    steps:
+      - uses: actions/[email protected]
+      - name: Download build for deployment
+        uses: actions/[email protected]
+        with:
+          name: built-project
+      - uses: jsmrcaga/[email protected]
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.MY_TOKEN_SECRET }}
+          NETLIFY_SITE_ID: ${{ secrets.MY_NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          build_command: "echo build command not required since we are using artifacts"
+</code></pre>
+<!-- /wp:code -->
+<p>Как видите, у меня три разных работы:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>build: Собирает проект, кэширует модули узла и кэширует собранные активы.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>test: Запускает связанные с проектом тесты. В данном случае это только один файл App.test.tsx.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>deploy: Берет активы, которые были собраны в первом задании, и затем развертывает их в Netlify с помощью Netlify Deploy GitHub Action.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Задание тестирования зависит от задания сборки, а задание развертывания зависит от заданий тестирования и сборки. Я также использовал кэширование и хранение артефактов между этапами. Эти темы выходят за рамки данной статьи, но для справки я рекомендую ознакомиться с документацией по Actions на GitHub.</p>
+<p>Используя Act в этом конвейере, я смог сделать несколько вещей, включая независимый запуск заданий, а также прямой просмотр данных о заданиях. Мне это показалось очень полезным, поскольку я мог строить конвейер без необходимости напрямую взаимодействовать с консолью GitHub. Это сэкономило значительное время, которое в противном случае я бы потратил на развертывание и обновление YAML-файла, а затем на ожидание завершения работы консоли.</p>
+<p>В примере проекта я перечислил связанные задания следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">➜  getting-started-with-act git:(master) act -l
+WARN  ⚠ You are using Apple M1 chip and you have not specified container architecture, you might encounter issues while running act. If so, try running it with '--container-architecture linux/amd64'. ⚠  
+Stage  Job ID  Job name           Workflow name  Workflow file  Events
+0      build   build              Node.js CI     node.js.yml    push  
+1      test    test               Node.js CI     node.js.yml    push  
+2      deploy  Deploy to Netlify  Node.js CI     node.js.yml    push  
+</code></pre>
+<!-- /wp:code -->
+<p>Предупреждающее сообщение указывает на то, что Act заметил тип машины, которую я использую. Если бы я захотел, я мог бы указать архитектуру и избежать появления этого сообщения. Далее я рассмотрю зависимости заданий от события push:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">➜  getting-started-with-act git:(master) act push -l
+WARN  ⚠ You are using Apple M1 chip and you have not specified container architecture, you might encounter issues while running act. If so, try running it with '--container-architecture linux/amd64'. ⚠  
+Stage  Job ID  Job name           Workflow name  Workflow file  Events
+0      build   build              Node.js CI     node.js.yml    push  
+1      test    test               Node.js CI     node.js.yml    push  
+2      deploy  Deploy to Netlify  Node.js CI     node.js.yml    push  
+</code></pre>
+<!-- /wp:code -->
+<p>Если я просто хочу запустить задание сборки независимо, я использую приведенный ниже код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">➜  getting-started-with-act git:(master) act -j build
+WARN  ⚠ You are using Apple M1 chip and you have not specified container architecture, you might encounter issues while running act. If so, try running it with '--container-architecture linux/amd64'. ⚠  
+[Node.js CI/build] 🚀  Start image=node:16-buster-slim
+[Node.js CI/build]   🐳  docker pull image=node:16-buster-slim platform= username= forcePull=false
+[Node.js CI/build]   🐳  docker create image=node:16-buster-slim platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[]
+[Node.js CI/build]   🐳  docker run image=node:16-buster-slim platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[]
+[Node.js CI/build]   ☁  git clone 'https://github.com/actions/setup-node' # ref=v3
+[Node.js CI/build]   ☁  git clone 'https://github.com/actions/cache' # ref=v3
+[Node.js CI/build]   ☁  git clone 'https://github.com/actions/upload-artifact' # ref=v3
+[Node.js CI/build] ⭐ Run Main actions/[email protected]
+[Node.js CI/build]   🐳  docker cp src=/Users/andrewevans/Documents/projects/getting-started-with-act/. dst=/Users/andrewevans/Documents/projects/getting-started-with-act
+[Node.js CI/build]   ✅  Success - Main actions/[email protected]
+[Node.js CI/build] ⭐ Run Main Use Node.js 16.x
+[Node.js CI/build]   🐳  docker cp src=/Users/andrewevans/.cache/act/[email protected]/ dst=/var/run/act/actions/[email protected]/
+[Node.js CI/build]   🐳  docker exec cmd=[node /var/run/act/actions/[email protected]/dist/setup/index.js] user= workdir=
+[Node.js CI/build]   💬  ::debug::isExplicit: 
+[Node.js CI/build]   💬  ::debug::explicit? false
+</code></pre>
+<!-- /wp:code -->
+<p>Если я хочу запустить задания сборки и тестирования вместе, мне нужно указать местоположение для артефактов. Действие GitHub Action, передающее артефакты между заданиями, использует местоположение по умолчанию на серверах GitHub.</p>
+<p>Поскольку я запускаю его локально в контейнере Docker, мне нужно указать местоположение, которое он будет использовать в контейнере. На изображениях ниже вы можете видеть, как задание запускается, а затем успешно создается и сохраняется артефакт:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">[Node.js CI/build]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/3] user= workdir=
+| 
+| > [email protected] build
+| > react-scripts build
+| 
+| Creating an optimized production build...
+| Compiled successfully.
+| 
+| File sizes after gzip:
+| 
+|   47.11 kB  build/static/js/main.172f414d.js
+|   1.79 kB   build/static/js/787.de4328d8.chunk.js
+|   313 B     build/static/css/main.51a848c0.css
+| 
+| The project was built assuming it is hosted at /.
+| You can control this with the homepage field in your package.json.
+| 
+| The build folder is ready to be deployed.
+| You may serve it with a static server:
+| 
+|   npm install -g serve
+|   serve -s build
+| 
+| Find out more about deployment here:
+| 
+|   https://cra.link/deployment
+| 
+[Node.js CI/build]   ✅  Success - Main npm run build
+[Node.js CI/build] ⭐ Run Main Cache node modules
+</code></pre>
+<!-- /wp:code -->
+<p>Часто у вас есть секреты, которые нужно передать определенным заданиям. При работе с act это можно сделать непосредственно в командной строке с помощью следующего кода:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">act -s MY_SECRET=&#x3C;first_secret> push 
+</code></pre>
+<!-- /wp:code -->
+<p>Есть много других вещей, которые можно делать с помощью act в процессе разработки. Мне показалось очень полезным иметь возможность запускать задания независимо для отладки возникающих проблем.</p>
+<p>Как я уже говорил ранее, я также включил этап развертывания для загрузки артефактов в Netlify. У меня были некоторые проблемы с передачей маркеров, и в конечном итоге я понял, что это была проблема со способом генерации маркера в Netlify. Тем не менее, вы можете видеть, как можно использовать этап развертывания. Вы можете протестировать это с другими провайдерами, такими как AWS, Azure и т.д.</p>
+<h2 class="wp-block-heading" id="заключение">Заключение</h2>
+<p>Эта статья - лишь вершина айсберга того, что вы можете сделать с помощью act. Запустив Docker вместе с act, я смог увидеть запущенные контейнеры и образы, которые были стянуты. Я также прошел через множество итераций, выполняя части заданий, а затем обращаясь к документации, чтобы очистить код. Это очень помогло в разработке конвейера, даже если он был очень простым.</p>
+<p>Я настоятельно рекомендую ознакомиться с проектом act и прочитать о нем больше в README репозитория. Я обнаружил, что у act довольно сильное сообщество, поэтому все проблемы, которые я видел, обычно имели связанную с ними проблему на GitHub, к которой я мог обратиться за помощью.</p>
+<p>Спасибо за чтение!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Руководство по использованию act с GitHub Actions&url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions&title=Руководство по использованию act с GitHub Actions&summary=Проект act – это мощный инструмент, который можно использовать вместе с GitHub Actions для быстрого тестирования и доработки конвейера непрерывной интеграции и непрерывной доставки (CI/CD).&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/rukovodstvo-po-ispolzovaniyu-act-s-github-actions&media=&description=Проект act – это мощный инструмент, который можно использовать вместе с GitHub Actions для быстрого тестирования и доработки конвейера непрерывной интеграции и непрерывной доставки (CI/CD)." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/rukovodstvo-po-oczenke-dlya-razrabotchikov" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Руководство по оценке для разработчиков </a> <a href="/blog/rukovodstvo-po-css-object-view-box" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Руководство по CSS object-view-box </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

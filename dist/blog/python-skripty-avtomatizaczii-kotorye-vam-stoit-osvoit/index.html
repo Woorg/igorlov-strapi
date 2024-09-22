@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Python скрипты автоматизации, которые вам стоит освоить - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit"><meta name="description" content="У каждого из нас есть те самые старые скучные задачи, которые мы выполняем снова и снова. К счастью, мы можем автоматизировать некоторые из этих процессов,..."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Feb-06-2023.Bn4aQ3CD_Z2cggT1.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-06-2023.Bn4aQ3CD_2sXhES.webp" type="image/webp"> <img src="/_astro/undefined-Feb-06-2023.Bn4aQ3CD_Z29NU4z.png" alt="Python скрипты автоматизации, которые вам стоит освоить" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Python скрипты автоматизации, которые вам стоит освоить </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/python" data-astro-cid-axzg2cw6> Python </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 06 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Python скрипты автоматизации, которые вам стоит освоить&url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit&title=Python скрипты автоматизации, которые вам стоит освоить&summary=У каждого из нас есть те самые старые скучные задачи, которые мы выполняем снова и снова. К счастью, мы можем автоматизировать некоторые из этих процессов,...&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit&media=&description=У каждого из нас есть те самые старые скучные задачи, которые мы выполняем снова и снова. К счастью, мы можем автоматизировать некоторые из этих процессов,..." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"f38145ee-e5d7-4c2e-9889-d339798a9e2d","content":"Как автоматизировать вычитку в Python","level":2,"link":"#как-автоматизировать-вычитку-в-python","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"5d6669ba-00e2-4598-9d36-244b431793f3","content":"Как автоматизировать воспроизведение случайной музыки","level":2,"link":"#как-автоматизировать-воспроизведение-случайной-музыки","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"087bd649-f400-4cc5-a7d9-5a8a7333bd64","content":"Автоматический конвертер PDF в CSV","level":2,"link":"#автоматический-конвертер-pdf-в-csv","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"bd821d6b-40a8-4b7f-b3b0-d6540060d0d4","content":"Автоматический фотокомпрессор","level":2,"link":"#автоматический-фотокомпрессор","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"b692dce8-56ed-41c9-b107-db02d3a24bc4","content":"Автоматический загрузчик видео с YouTube","level":2,"link":"#автоматический-загрузчик-видео-с-you-tube","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"1543cdd2-5c72-4f13-ad1e-9c3b97137d1f","content":"Автоматический перевод текста в речь","level":2,"link":"#автоматический-перевод-текста-в-речь","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"ecf30567-7e08-46ae-87b7-4d50a79dc07f","content":"Как автоматически конвертировать изображения в PDF","level":2,"link":"#как-автоматически-конвертировать-изображения-в-pdf","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"f94daf19-d867-4f74-a332-67ad04cc2a1e","content":"Как преобразовать одно изображение в PDF:","level":3,"link":"#как-преобразовать-одно-изображение-в-pdf","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"1cf05187-b7cd-48d7-a915-17d3916ffd89","content":"Как преобразовать несколько изображений в PDF:","level":3,"link":"#как-преобразовать-несколько-изображений-в-pdf","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"c8f5e756-2589-48ee-9718-cf3f4170f68c","content":"Автоматическая проверка на плагиат","level":2,"link":"#автоматическая-проверка-на-плагиат","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"01983ca0-0b99-414f-be73-93dff247a60f","content":"Как сделать URL-адреса короче","level":2,"link":"#как-сделать-url-адреса-короче","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"697b5b78-5c4e-4f4f-8689-a43e24970841","content":"Тестер скорости интернета","level":2,"link":"#тестер-скорости-интернета","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"3d00e7a6-dff3-4eff-bc2f-5776e81f3278","content":"Заключение","level":2,"link":"#заключение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#как-автоматизировать-вычитку-в-python">Как автоматизировать вычитку в Python</a></li><li class=""><a href="#как-автоматизировать-воспроизведение-случайной-музыки">Как автоматизировать воспроизведение случайной музыки</a></li><li class=""><a href="#автоматический-конвертер-pdf-в-csv">Автоматический конвертер PDF в CSV</a></li><li class=""><a href="#автоматический-фотокомпрессор">Автоматический фотокомпрессор</a></li><li class=""><a href="#автоматический-загрузчик-видео-с-you-tube">Автоматический загрузчик видео с YouTube</a></li><li class=""><a href="#автоматический-перевод-текста-в-речь">Автоматический перевод текста в речь</a></li><li class=""><a href="#как-автоматически-конвертировать-изображения-в-pdf">Как автоматически конвертировать изображения в PDF</a><ul><li class=""><a href="#как-преобразовать-одно-изображение-в-pdf">Как преобразовать одно изображение в PDF:</a></li><li class=""><a href="#как-преобразовать-несколько-изображений-в-pdf">Как преобразовать несколько изображений в PDF:</a></li></ul></li><li class=""><a href="#автоматическая-проверка-на-плагиат">Автоматическая проверка на плагиат</a></li><li class=""><a href="#как-сделать-url-адреса-короче">Как сделать URL-адреса короче</a></li><li class=""><a href="#тестер-скорости-интернета">Тестер скорости интернета</a></li><li class=""><a href="#заключение">Заключение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<p>У каждого из нас есть те самые старые скучные задачи, которые мы выполняем снова и снова. К счастью, мы можем автоматизировать некоторые из этих процессов, чтобы сосредоточиться на других вещах, которые действительно требуют нашей энергии и внимания.</p>
+<p>В этой статье мы поговорим о некоторых скриптах автоматизации Python, которые вы можете легко использовать для выполнения задач автоматизации. Важно понимать, что все они представляют собой готовые коды, которые могут помочь нам справиться со многими ежедневными повторяющимися задачами.</p>
+<p>Я настоятельно рекомендую вам иметь некоторый предварительный опыт работы с языком программирования Python, прежде чем продолжить чтение этой статьи.</p>
+<p>Ну что, начнем?</p>
+<h2 class="wp-block-heading" id="как-автоматизировать-вычитку-в-python">Как автоматизировать вычитку в Python</h2>
+<p>Первое в списке - это корректура. Если вы хотите устранить грамматические и орфографические ошибки в своем тексте, вы можете попробовать этот проект, в котором используется модуль Lmproof.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python"># Python Proofreading
+# pip install lmproof
+import lmproof
+def proofread(text):
+    proofread = lmproof.load("en")
+    correction = proofread.proofread(text)
+    print("Original: {}".format(text))
+    print("Correction: {}".format(correction))
+    
+proofread("Your Text")</code></pre>
+<!-- /wp:code -->
+<p>Во-первых, вам нужно установить библиотеку lmproof для этой автоматизации. Затем вы можете использовать функцию proofread(), которая принимает текст в качестве параметра. Функция запускается и печатает исходный текст, который был передан в функцию, а также исправленный текст. Ее можно использовать для быстрой вычитки эссе или короткой статьи.</p>
+<h2 class="wp-block-heading" id="как-автоматизировать-воспроизведение-случайной-музыки">Как автоматизировать воспроизведение случайной музыки</h2>
+<p>Во время работы многие разработчики любят слушать музыку. Поэтому для любителей музыки (вроде меня) этот скрипт случайным образом выбирает песню из папки с песнями и проигрывает ее с помощью модулей OS и random в Python.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">import random, os
+music_dir="E:\\music diretory"
+songs = os.listdir(music_dir)
+
+song = random.randint(0,len(songs))
+
+# Prints The Song Name
+print(songs[song])  
+
+os.startfile(os.path.join(music_dir, songs[0])) </code></pre>
+<!-- /wp:code -->
+<p>Код обращается к музыкальному каталогу, содержащему все песни, которые вы хотите воспроизвести, и помещает их все в список. Затем он случайным образом проигрывает каждую песню одну за другой. Файл os.startfile воспроизводит песню.</p>
+<h2 class="wp-block-heading" id="автоматический-конвертер-pdf-в-csv">Автоматический конвертер PDF в CSV</h2>
+<p>Иногда вам нужно преобразовать данные pdf в данные CSV (значения, разделенные запятыми), чтобы использовать их для дальнейшего анализа. В таких случаях может пригодиться этот скрипт.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">import tabula
+
+filename = input("Enter File Path: ")
+df = tabula.read_pdf(filename, encoding='utf-8', spreadsheet=True, pages="1")
+
+df.to_csv('output.csv')</code></pre>
+<!-- /wp:code -->
+<p>Для запуска этого кода вам потребуется установить библиотеку tabula с помощью pip. После установки вы можете передать файл в свой проект.</p>
+<p>Библиотека поставляется с функцией read_pdf(), которая принимает файл и считывает его. Вы завершаете автоматизацию, используя функцию to_csv() для преобразования вывода в CSV.</p>
+<h2 class="wp-block-heading" id="автоматический-фотокомпрессор">Автоматический фотокомпрессор</h2>
+<p>Вы также можете уменьшить размер фотографии путем ее сжатия, сохранив при этом ее качество.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">import PIL
+from PIL import Image
+from tkinter.filedialog import *
+
+fl=askopenfilenames()
+img = Image.open(fl[0])
+img.save("output.jpg", "JPEG", optimize = True, quality = 10)</code></pre>
+<!-- /wp:code -->
+<p>Вы можете использовать PIL (Python Imaging Library) для работы с изображениями, добавления фильтров, размытия, повышения резкости, сглаживания, определения краев, сжатия изображений и других действий с изображениями.</p>
+<h2 class="wp-block-heading" id="автоматический-загрузчик-видео-с-you-tube">Автоматический загрузчик видео с YouTube</h2>
+<p>Перед вами простой автоматический скрипт для загрузки видео с YouTube. Просто используйте приведенный ниже код для загрузки любого видео без необходимости использования каких-либо сайтов или приложений.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">import pytube
+
+link = input('Youtube Video URL')
+video_download = pytube.Youtube(link)
+video_download.streams.first().download()
+print('Video Downloaded', link)</code></pre>
+<!-- /wp:code -->
+<p>Библиотека pytube - это очень простая и легкая библиотека, которую можно использовать для загрузки видео с YouTube на локальный компьютер. Все, что вам нужно сделать, это ввести ссылку на видео, а затем метод download() загрузит его на ваш компьютер.</p>
+<h2 class="wp-block-heading" id="автоматический-перевод-текста-в-речь">Автоматический перевод текста в речь</h2>
+<p>Для этого сценария мы будем использовать API Google Text to Speech. API является актуальным и работает со многими языками, тонами и голосами, которые вы можете выбрать.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">from pygame import mixer
+from gtts import gTTS
+
+def main():
+   tts = gTTS('Like This Article')
+   tts.save('output.mp3')
+   mixer.init()
+   mixer.music.load('output.mp3')
+   mixer.music.play()
+   
+if __name__ == "__main__":
+   main()</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="как-автоматически-конвертировать-изображения-в-pdf">Как автоматически конвертировать изображения в PDF</h2>
+<p>Это очень распространенная задача, которую вы можете выполнять часто. Вы можете захотеть преобразовать одно изображение или несколько изображений в PDF.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="как-преобразовать-одно-изображение-в-pdf">Как преобразовать одно изображение в PDF:</h3>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">import os
+import img2pdf
+with open("output.pdf", "wb") as file:
+   file.write(img2pdf.convert([i for i in os.listdir('path to image') if i.endswith(".jpg")]))</code></pre>
+<!-- /wp:code -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="как-преобразовать-несколько-изображений-в-pdf">Как преобразовать несколько изображений в PDF:</h3>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">from fpdf import FPDF
+Pdf = FPDF()
+
+list_of_images = ["wall.jpg", "nature.jpg","cat.jpg"]
+for i in list_of_images:
+   Pdf.add_page()
+   Pdf.image(i,x,y,w,h)
+   Pdf.output("result.pdf", "F")</code></pre>
+<!-- /wp:code -->
+<p>Здесь мы используем библиотеку image2pdf в Python для преобразования нашего изображения в PDF. Мы также можем конвертировать несколько изображений в PDF с помощью всего нескольких строк кода.</p>
+<h2 class="wp-block-heading" id="автоматическая-проверка-на-плагиат">Автоматическая проверка на плагиат</h2>
+<p>Плагиат - это представление слов или идей другого человека как своих собственных, с разрешения или без разрешения этого человека, путем включения их в свою работу без должной благодарности оригинальному автору.</p>
+<p>Этот скрипт может быть весьма полезен, когда вы хотите проверить на плагиат два файла.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">from difflib import SequenceMatcher
+def plagiarism_checker(f1,f2):
+    with open(f1,errors="ignore") as file1,open(f2,errors="ignore") as file2:
+        f1_data=file1.read()
+        f2_data=file2.read()
+        res=SequenceMatcher(None, f1_data, f2_data).ratio()
+        
+print(f"These files are {res*100} % similar")
+f1=input("Enter file_1 path: ")
+f2=input("Enter file_2 path: ")
+plagiarism_checker(f1, f2)</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="как-сделать-url-адреса-короче">Как сделать URL-адреса короче</h2>
+<p>Большие URL-адреса могут быть довольно раздражающими для чтения и обмена. Чтобы сократить URL-адреса, этот скрипт использует API стороннего производителя.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python">from __future__ import with_statement
+import contextlib
+try:
+	from urllib.parse import urlencode
+except ImportError:
+	from urllib import urlencode
+try:
+	from urllib.request import urlopen
+except ImportError:
+	from urllib2 import urlopen
+import sys
+
+def make_tiny(url):
+	request_url = ('http://tinyurl.com/app-index.php?' + 
+	urlencode({'url':url}))
+	with contextlib.closing(urlopen(request_url)) as response:
+		return response.read().decode('utf-8')
+
+def main():
+	for tinyurl in map(make_tiny, sys.argv[1:]):
+		print(tinyurl)
+
+if __name__ == '__main__':
+	main()
+    
+
+'''
+
+-----------------------------OUTPUT------------------------ 
+
+python url_shortener.py https://www.wikipedia.org/
+https://tinyurl.com/bif4t9
+
+'''
+    </code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="тестер-скорости-интернета">Тестер скорости интернета</h2>
+<p>OOKLA speed test API позволяет проверить пинг и скорость интернета. Помимо измерения пинга, этот небольшой автоматизированный проект будет измерять скорость загрузки и выгрузки.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="python" class="language-python"># Internet Speed tester
+# pip install speedtest-cli
+import speedtest as st
+
+# Set Best Server
+server = st.Speedtest()
+server.get_best_server()
+
+# Test Download Speed
+down = server.download()
+down = down / 1000000
+print(f"Download Speed: {down} Mb/s")
+
+# Test Upload Speed
+up = server.upload()
+up = up / 1000000
+print(f"Upload Speed: {up} Mb/s")
+
+# Test Ping
+ping = server.results.ping
+print(f"Ping Speed: {ping}")
+
+</code></pre>
+<!-- /wp:code -->
+<p>Хотя существуют альтернативы, такие как fast.com, с помощью этого скрипта вы можете быстро проверить скорость интернета с помощью скрипта Python.</p>
+<h2 class="wp-block-heading" id="заключение">Заключение</h2>
+<p>В этой статье мы рассказали о десяти скриптах автоматизации на Python, и я надеюсь, что вы нашли их полезными. Вы также можете пройти дополнительную милю, чтобы проверить используемые библиотеки и расширить свои знания.</p>
+<p>Счастливого кодинга!</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Python скрипты автоматизации, которые вам стоит освоить&url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit&title=Python скрипты автоматизации, которые вам стоит освоить&summary=У каждого из нас есть те самые старые скучные задачи, которые мы выполняем снова и снова. К счастью, мы можем автоматизировать некоторые из этих процессов,...&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/python-skripty-avtomatizaczii-kotorye-vam-stoit-osvoit&media=&description=У каждого из нас есть те самые старые скучные задачи, которые мы выполняем снова и снова. К счастью, мы можем автоматизировать некоторые из этих процессов,..." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/raskrojte-novye-vozmozhnosti-s-pomoshhyu-gibridnogo-renderinga" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Раскройте новые возможности с помощью гибридного рендеринга </a> <a href="/blog/python-range-primer-funkczii" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Python range() Пример функции </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

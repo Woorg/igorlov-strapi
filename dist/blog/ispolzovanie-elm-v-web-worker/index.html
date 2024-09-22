@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Использование Elm в Web Worker - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker"><meta name="description" content="Язык программирования Elm – это отличный способ моделирования и написания современных веб-приложений. Используя функциональное программирование и сильную систему типов, Elm побуждает разработчиков создавать более надежные и легко поддерживаемые приложения."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-ispolzovanie-elm-v-web-worker; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Feb-26-2023.CKLamJTM_265EnL.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-26-2023.CKLamJTM_1G858J.webp" type="image/webp"> <img src="/_astro/undefined-Feb-26-2023.CKLamJTM_28x1dd.png" alt="Использование Elm в Web Worker" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Использование Elm в Web Worker </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/elm" data-astro-cid-axzg2cw6> Elm </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 26 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Использование Elm в Web Worker&url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker&title=Использование Elm в Web Worker&summary=Язык программирования Elm – это отличный способ моделирования и написания современных веб-приложений. Используя функциональное программирование и сильную систему типов, Elm побуждает разработчиков создавать более надежные и легко поддерживаемые приложения.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker&media=&description=Язык программирования Elm – это отличный способ моделирования и написания современных веб-приложений. Используя функциональное программирование и сильную систему типов, Elm побуждает разработчиков создавать более надежные и легко поддерживаемые приложения." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Язык программирования Elm - это отличный способ моделирования и написания современных веб-приложений. Используя функциональное программирование и сильную систему типов, Elm побуждает разработчиков создавать более надежные и легко поддерживаемые приложения. Однако, будучи языком, компилируемым в Javascript, Elm может предложить не так много по умолчанию. Любые задачи, требующие больших вычислений в Javascript, к сожалению, потребуют таких же вычислений и в Elm. Такие большие задачи могут блокировать основной поток в браузерах, вызывая визуальные проблемы и неотзывчивый пользовательский интерфейс. Очевидно, что это не то, чего мы хотим для наших пользователей, так что же мы можем сделать?</p>
+<p>Вводим Web Workers. Из MDN:</p>
+<p>Web Workers позволяет выполнять операции сценария в фоновом потоке, отдельном от основного потока выполнения веб-приложения. Преимуществом этого является то, что трудоемкая обработка может быть выполнена в отдельном потоке, позволяя основному потоку (обычно UI) работать без блокировки/замедления.</p>
+<p>Web Workers - это способ, с помощью которого браузерные приложения могут перенести определенные задачи из основного потока в свою собственную среду. Web Workers имеют ряд ограничений, например, они не могут получить доступ к DOM, но у них есть возможность делать HTTP-запросы через fetch, а также выполнять стандартный код Javascript. Поскольку Elm является компилируемым в JS языком, это означает, что мы можем смонтировать Elm приложение в Web Worker!</p>
+<p>Давайте рассмотрим, как будет выглядеть использование Elm внутри Web Worker. Мы рассмотрим два способа сделать это:</p>
+<p>Используя ванильный JS, без каких-либо бандлеров или фреймворков, помимо тех, что предоставляет Elm.Использование этих методов в Vite, который предоставляет полезную обертку вокруг Web Worker API.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"18a90d96-3d72-44c8-ae1f-fec3e972c1ff","content":"Написание модулей Elm","level":2,"link":"#написание-модулей-elm","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"ca49c1cd-028a-47a9-acbd-6647c145826d","content":"Scaffold index.html","level":2,"link":"#scaffold-index-html","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"98934510-e73a-4582-ac0e-e9746798420e","content":"Добавление Web Worker","level":2,"link":"#добавление-web-worker","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"e982571f-325d-42c2-b0a5-59dc43a15a03","content":"Отправка сообщения","level":3,"link":"#отправка-сообщения","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"84202846-b273-4235-b87f-67a8941adce5","content":"Веб-рабочие в Vite","level":2,"link":"#веб-рабочие-в-vite","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"80db4078-6e0d-430e-89cc-1541e7eab24e","content":"Заключение","level":2,"link":"#заключение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#написание-модулей-elm">Написание модулей Elm</a></li><li class=""><a href="#scaffold-index-html">Scaffold index.html</a></li><li class=""><a href="#добавление-web-worker">Добавление Web Worker</a><ul><li class=""><a href="#отправка-сообщения">Отправка сообщения</a></li></ul></li><li class=""><a href="#веб-рабочие-в-vite">Веб-рабочие в Vite</a></li><li class=""><a href="#заключение">Заключение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="написание-модулей-elm">Написание модулей Elm</h2>
+<p>Для начала давайте создадим базовую установку для работы. В новой папке запустите elm init, который создаст наш базовый файл elm.json и папку src. Внутри src создайте два файла: Main.elm и Worker.elm. Мы заполним их в ближайшее время. Также создадим index.html в корне нашего рабочего направления (мы вернемся к нему позже).</p>
+<p>Сначала создадим очень простой файл Main.elm. Хотя Web Workers в первую очередь полезны для больших задач, в данном примере мы будем придерживаться простоты. В нашем главном файле мы реализуем базовый пример счетчика:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">port module Main exposing (main)
+
+import Browser
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
+
+
+init : (Int, Cmd msg)
+init =
+    ( 0, Cmd.none )
+
+
+type Msg
+    = Increment
+    | Decrement
+    | Set Int
+
+
+update : Msg -> Int -> ( Int, Cmd Msg )
+update msg model =
+    case msg of
+        Increment ->
+            ( model, increment model )
+
+        Decrement ->
+            ( model, decrement model )
+
+        Set value ->
+            ( value, Cmd.none )
+
+
+view : Int -> Html Msg
+view model =
+    div []
+        [ button [ onClick Decrement ] [ text "-" ]
+        , div [] [ text (String.fromInt model) ]
+        , button [ onClick Increment ] [ text "+" ]
+        ]
+
+
+subscriptions : Int -> Sub Msg
+subscriptions _ =
+    receiveCount Set
+
+
+main : Program () Int Msg
+main =
+    Browser.element { init = \_ -> init, update = update, view = view, subscriptions = subscriptions }
+
+
+port increment : Int -> Cmd msg
+
+
+port decrement : Int -> Cmd msg
+
+
+port receiveCount : (Int -> msg) -> Sub msg
+
+</code></pre>
+<!-- /wp:code -->
+<p>Это довольно простое приложение Elm, но с одним ключевым отличием: вместо обновления состояния здесь, мы возвращаем команду для передачи текущего состояния в порт. У нас также есть порт для получения числа, которое затем обновляет наше локальное состояние.</p>
+<p>Поскольку мы собираемся обрабатывать эти очень сложные вычисления в Web Worker, давайте напишем базовый модуль Elm для запуска из Worker.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">port module Worker exposing (main)
+
+import Platform
+
+
+type Msg
+    = Increment Int
+    | Decrement Int
+
+
+init : () -> ( (), Cmd msg )
+init _ =
+    ( (), Cmd.none )
+
+
+update : Msg -> () -> ( (), Cmd msg )
+update msg _ =
+    case msg of
+        Increment int ->
+            ( (), sendCount (int + 1) )
+
+        Decrement int ->
+            ( (), sendCount (int - 1) )
+
+
+subscriptions : () -> Sub Msg
+subscriptions _ =
+    Sub.batch
+        [ increment Increment
+        , decrement Decrement
+        ]
+
+
+main : Program () () Msg
+main =
+    Platform.worker { init = init, update = update, subscriptions = subscriptions }
+
+
+port increment : (Int -> msg) -> Sub msg
+
+
+port decrement : (Int -> msg) -> Sub msg
+
+
+port sendCount : Int -> Cmd msg
+</code></pre>
+<!-- /wp:code -->
+<p>Что здесь происходит? Во-первых, мы импортируем Platform, которая предоставляет нам функцию Platform.worker. В большинстве случаев, когда мы пишем приложения на Elm, мы опираемся на elm/Browser для создания приложений, которые привязываются к DOM. Но в данном случае у нас нет DOM для привязки, поэтому мы используем Platform для создания базового приложения, которое этого не делает. worker принимает три входа: init, update и подписки (это практически то же самое, что и Browser.element из нашего примера Main.elm).</p>
+<p>Мы также создаем два порта для увеличения и уменьшения входных данных (невероятно трудоемкое вычисление даже для современного Javascript) и соединяем их с эквивалентными значениями Msg. В функции update мы отправляем результаты в sendCount, которая выводит нас из Elm на дикий запад Javascript.</p>
+<p>Концептуально это выглядит следующим образом:</p>
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Main получает сообщение (Increment)</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>В функции обновления Main мы отправляем текущий счетчик в соответствующий порт (инкремент 0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Это значение отправляется (через Javascript) из Main в Worker и подключается к соответствующему порту (также инкремент 0).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Worker посылает результат своего интенсивного подсчета (sendCount 1).</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Main получает обновленное значение и соответствующим образом обновляет свою модель (receiveCount 1).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+<p>Если вы знакомы с архитектурой The Elm, то это практически то же самое, но с большим количеством шагов. Также важно отметить, что поскольку мы полагаемся на порты для связи между приложениями Main и Worker, эти вычисления по своей сути асинхронны. Это действительно идеально подходит только для определенных рабочих нагрузок и, вероятно, не должно использоваться 100% времени (особенно для небольших задач, таких как сложение/вычитание).</p>
+<h2 class="wp-block-heading" id="scaffold-index-html">Scaffold index.html</h2>
+<p>Теперь, когда мы рассмотрели код Elm, давайте посмотрим на Javascript. Поскольку мы используем ванильный JS, а не бандлер, нам сначала нужно собрать наш код Elm. Выполните следующую команду:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">elm make src/Main.elm --output main.js
+elm make src/Worker.elm --output elm-worker.js</code></pre>
+<!-- /wp:code -->
+<p>Это выведет наши файлы main.js и worker.js, которые мы можем импортировать в наш HTML. Кстати говоря, давайте сделаем это! Вот базовый HTML-файл для начала. Все, что он делает, это монтирует наше главное приложение, а к рабочему мы перейдем через некоторое время.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markup" class="language-markup">&#x3C;!DOCTYPE html>
+&#x3C;html lang="en">
+  &#x3C;head>
+    &#x3C;title>Elm Web Workers&#x3C;/title>
+  &#x3C;/head>
+  &#x3C;body>
+    &#x3C;div id="app">
+      &#x3C;div>&#x3C;/div>
+    &#x3C;/div>
+    &#x3C;script src="main.js">&#x3C;/script>
+    &#x3C;script>
+      const app = Elm.Main.init({
+        node: document.getElementById('app')
+      });
+    &#x3C;/script>
+  &#x3C;/body>
+&#x3C;/html>
+</code></pre>
+<!-- /wp:code -->
+<p>Если вы откроете HTML-файл в браузере прямо сейчас, он должен правильно отобразить приложение Main, но кнопки, похоже, ничего не делают. Это происходит потому, что вместо обновления нашей модели они отправляют ее в порты. В настоящее время мы ничего не делаем с нашими портами, но прежде чем мы их подключим, давайте добавим нашего Web Worker.</p>
+<h2 class="wp-block-heading" id="добавление-web-worker">Добавление Web Worker</h2>
+<p>В этом разделе я буду ссылаться на отличное руководство MDN по использованию Web Worker.</p>
+<p>Чтобы создать веб-рабочего, нам нужно иметь внешний JS-файл, который может быть импортирован и выполнен как веб-рабочий. Самой простой реализацией рабочего может быть простой console.log. Давайте сначала сделаем это.</p>
+<p>Создайте файл worker.js и поместите в него console.log(“Hello, worker!”). Затем в нашем HTML-файле добавьте этот код в верхнюю часть блока сценария:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const worker = new Worker('worker.js')
+
+const app = Elm.Main.init({
+    node: document.getElementById('app')
+});</code></pre>
+<!-- /wp:code -->
+<p>Это указывает браузеру создать рабочего, используя файл Javascript, который находится в указанном месте (в нашем случае worker.js). Если вы откроете свой devtools, то увидите там “Hello, worker!”, сгенерированный из worker.js:1. Отлично!</p>
+<p>Теперь давайте добавим некоторое взаимодействие между рабочим и основным JS файлами.</p>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading" id="отправка-сообщения">Отправка сообщения</h3>
+<p>В вашем HTML-файле добавим еще одну строку кода, которая позволит отправить сообщение рабочему. Чтобы отправить сообщение из main в worker, мы используем worker.postMessage().</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const worker = new Worker('worker.js')
+
+const app = Elm.Main.init({
+    node: document.getElementById('app')
+});
+
+worker.postMessage(1)
+</code></pre>
+<!-- /wp:code -->
+<p>Чтобы получить сообщение в рабочем, мы задаем onmessage (не переменную) как функцию, которая получает функцию. Удалите содержимое вашего файла worker.js и добавьте следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">onmessage = function ({ data }) {
+  console.log(data);
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Как и во всех событиях Javascript, существует ряд других значений, передаваемых в функцию onmessage. В рамках данной статьи мы рассмотрим только ключ data. Если вы запустите этот скрипт, то в консоли вы должны увидеть 1. Поздравляем, теперь мы можем передавать данные рабочему! Но как насчет передачи данных в Elm?</p>
+<p>Web Workers предоставляют специальный API для импорта скриптов в них:</p>
+<p>Рабочие потоки имеют доступ к глобальной функции importScripts(), которая позволяет импортировать скрипты. Она принимает ноль или более URI в качестве параметров ресурсов для импорта.</p>
+<p>Используя importScripts(), мы можем импортировать наш рабочий модуль Elm, инициализировать его и начать использовать его порты. Давайте обновим наш worker.js следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">importScripts("elm-worker.js")
+
+const app = Elm.Worker.init();
+
+onmessage = function ({ data }) {
+  app.ports.increment.send(data);
+};
+
+app.ports.sendCount.subscribe(function(int) {
+  console.log(int);
+})</code></pre>
+<!-- /wp:code -->
+<p>Для тех, кто менее знаком с Elm, мы инициализируем наш рабочий Elm без узла DOM (потому что в рабочем нет узлов DOM). Затем, используя его порты, когда мы получаем сообщение от главного потока, мы отправляем его в порт increment. Затем Elm выполняет свои невероятно сложные вычисления и возвращает (через порт sendCount) обновленное целое число (которое мы пока записываем в журнал). Отлично!</p>
+<p>Прежде чем мы пойдем дальше, давайте обновим main и worker, чтобы они правильно использовали порты инкремента или декремента. В файле index.html обновите блок сценария следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const worker = new Worker('worker.js');
+const app = Elm.Main.init({
+    node: document.getElementById('app')
+});
+
+app.ports.increment.subscribe(int => worker.postMessage({
+    type: 'increment',
+    value: int
+}))
+
+app.ports.decrement.subscribe(int => worker.postMessage({
+    type: 'decrement',
+    value: int
+}))</code></pre>
+<!-- /wp:code -->
+<p>Затем в нашем рабочем обновите его до следующего:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">importScripts("elm-worker.js");
+
+const app = Elm.Worker.init();
+
+onmessage = function ({ data }) {
+  const { type, value } = data;
+
+  if (type === "increment") {
+    app.ports.increment.send(value);
+  }
+
+  if (type === "decrement") {
+    app.ports.decrement.send(value);
+  }
+};
+
+app.ports.sendCount.subscribe(function (int) {
+  console.log(int);
+});</code></pre>
+<!-- /wp:code -->
+<p>Если вы обновите страницу, то теперь можете начать нажимать на кнопки и видеть журнал результатов в консоли. Конечно, он покажет только 1 или -1, поэтому давайте передадим данные обратно в основной поток.</p>
+<p>У Web Workers есть глобальная функция postMessage, которая позволяет нам передавать данные обратно. Давайте завершим этот код и отправим вычисленный результат в главный поток (и наше приложение Main Elm):</p>
+<p>В файле worker.js сделайте следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">importScripts("elm-worker.js");
+
+const app = Elm.Worker.init();
+
+onmessage = function ({ data }) {
+  const { type, value } = data;
+
+  if (type === "increment") {
+    app.ports.increment.send(value);
+  }
+
+  if (type === "decrement") {
+    app.ports.decrement.send(value);
+  }
+};
+
+app.ports.sendCount.subscribe(function (int) {
+  console.log(int);
+  postMessage(int);
+});</code></pre>
+<!-- /wp:code -->
+<p>В файле index.html обновите блок скриптов:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const worker = new Worker('worker.js');
+const app = Elm.Main.init({
+    node: document.getElementById('app')
+});
+
+app.ports.increment.subscribe(int => worker.postMessage({
+    type: 'increment',
+    value: int
+}))
+
+app.ports.decrement.subscribe(int => worker.postMessage({
+    type: 'decrement',
+    value: int
+}))
+
+worker.onmessage = function( { data }) {
+    app.ports.receiveCount.send(data);
+}</code></pre>
+<!-- /wp:code -->
+<p>И с этим мы передаем данные! Поздравляем! Если вам нужно передавать какие-либо сложные данные между основным и рабочим потоками, вам, вероятно, придется обратиться к кодированию/декодированию JSON. При необходимости вы также можете передавать объект с пользовательским сообщением, а не использовать несколько портов и полагаться на Javascript в качестве контроллера.</p>
+<p>Вот репозиторий с кодом, который мы рассматривали.</p>
+<h2 class="wp-block-heading" id="веб-рабочие-в-vite">Веб-рабочие в Vite</h2>
+<p>Использование ванильного HTML и JS - это хорошо, но чаще всего на работе или в больших проектах мы используем какие-то инструменты для сборки, чтобы получить более оптимизированный опыт. Лично я являюсь большим поклонником Vite, инструментального решения для фронтенда от создателя Vue. Я поддерживаю шаблон Vite для создания приложений Elm, в котором используется отличный плагин Elm для Vite для достижения горячей перезагрузки модулей и прямого импорта наших файлов .elm в наш Javascript.</p>
+<p>В качестве дополнительного преимущества для нашего случая использования, Vite обеспечивает некоторую абстракцию над Web Worker API, который мы рассмотрели выше. В Vite, когда мы импортируем скрипт, который хотим использовать в качестве веб-рабочего, мы можем добавить параметр запроса, который сигнализирует Vite, что это такое, а затем Vite обернет его в функцию, которая сгенерирует правильную команду рабочего.</p>
+<p>Давайте перенесем наш вышеприведенный код в Vite и посмотрим, как это работает. Я буду использовать свой шаблон для создания базового приложения. Чтобы сделать это самостоятельно, выполните следующую команду:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npx degit lindsaykwardell/vite-elm-template vite-elm-web-worker
+cd vite-elm-web-worker
+npm install</code></pre>
+<!-- /wp:code -->
+<p>Это позволит клонировать шаблон локально (без истории Git) в папку vite-elm-web-worker, ввести его и установить необходимые зависимости. Не стесняйтесь переименовать его в то, что вам больше нравится. Затем удалите содержимое папки src и замените его файлами Main.elm и Worker.elm. На этом этапе у вас должна быть установка, которая выглядит следующим образом:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://lindsaykwardell.com/blog/elm-web-worker-vite-1.png" alt="Дерево файлов в VS Code, показывающее, что папка src содержит два файла: Main.elm и Worker.elm"></figure>
+<!-- /wp:image -->
+<p>Далее, давайте перенесем наш worker.js и другие Javascript. Начнем с создания файла worker.js (мы вернемся к нему через некоторое время), а затем обновим наш файл main.js, чтобы включить в него логику рабочего и порта:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import "./style.css";
+import { Elm } from "./src/Main.elm";
+import ElmWorker from "./worker?worker";
+
+const root = document.querySelector("#app div");
+
+const worker = new ElmWorker();
+const app = Elm.Main.init({ node: root });
+
+app.ports.increment.subscribe((int) =>
+  worker.postMessage({
+    type: "increment",
+    value: int,
+  })
+);
+
+app.ports.decrement.subscribe((int) =>
+  worker.postMessage({
+    type: "decrement",
+    value: int,
+  })
+);
+
+worker.onmessage = function ({ data }) {
+  app.ports.receiveCount.send(data);
+};
+</code></pre>
+<!-- /wp:code -->
+<p>Это должно выглядеть очень похоже на то, что мы делали, но с некоторым дополнительным синтаксисом импорта в верхней части. Это потому, что мы используем Vite, а Vite поддерживает ES-модули по умолчанию во время разработки. Вместо того чтобы включать несколько тегов скриптов (что все еще возможно), мы можем импортировать один ES-модуль (main.js) и импортировать в него другие файлы.</p>
+<p>Для рабочего скрипта будет работать большая часть кода, который мы написали ранее, но Vite предоставляет некоторый дополнительный сахар поверх API:</p>
+<p>Рабочий скрипт также может использовать операторы импорта вместо importScripts() - обратите внимание, что во время разработки это зависит от нативной поддержки браузера и в настоящее время работает только в Chrome, но в производственной сборке это скомпилировано.</p>
+<p>Таким образом, вместо использования importScripts() Vite требует, чтобы мы использовали стандартный синтаксис импорта ES-модуля. Однако здесь возникает проблема: Elm не компилирует по умолчанию в формат, который хорошо работает с ES-модулями. Кроме того, плагин Vite для Elm предполагает, что вы создаете приложение на основе браузера (разумное предположение), и внедряет некоторые помощники по устранению неполадок на основе DOM, которые не работают в рабочем, поскольку рабочий не имеет доступа к DOM.</p>
+<p>Например, предположим, что мы обновили наш worker, чтобы использовать синтаксис импорта ES, как показано ниже:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { Elm } from './src/Worker.elm'
+
+const app = Elm.Worker.init();
+
+onmessage = function ({ data }) {
+  const { type, value } = data;
+
+  if (type === "increment") {
+    app.ports.increment.send(value);
+  }
+
+  if (type === "decrement") {
+    app.ports.decrement.send(value);
+  }
+};
+
+app.ports.sendCount.subscribe(function (int) {
+  console.log(int);
+  postMessage(int);
+});</code></pre>
+<!-- /wp:code -->
+<p>Если вы запустите среду разработки сейчас (с помощью npm run dev), вы сразу же увидите ошибку в консоли браузера:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">Uncaught ReferenceError: HTMLElement is not defined</code></pre>
+<!-- /wp:code -->
+<p>Эту ошибку выдает файл overlay.ts. Этот файл добавляет наложение ошибки, когда Elm не может правильно скомпилироваться. Поэтому если вы работаете в файле Main.elm и вносите изменения, которые не компилируются, вы увидите нечто подобное:</p>
+<!-- wp:image -->
+<figure class="wp-block-image"><img src="https://lindsaykwardell.com/blog/elm-web-worker-vite-2.png" alt="Ошибка в браузере, предупреждающая о том, что тип &#x22;In&#x22; не может быть найден."></figure>
+<!-- /wp:image -->
+<p>Довольно полезно при разработке приложения, но очень раздражает при попытке загрузить Elm в веб-рабочем. Существует параметр, который можно установить в конфигурации Vite (server.hmr.overlay: false), чтобы отключить наложение, но, к сожалению, он не предотвращает ссылки на HTMLElement в Worker.</p>
+<p>Второй подход может заключаться в предварительной компиляции нашего файла Worker.elm и импорте его непосредственно в файл worker.js (как мы делали в нашем примере с ванильным JS). Однако это приводит к тихой ошибке; приложение загрузится без каких-либо очевидных сбоев, но рабочий не будет инициализирован. Попробуйте! Запустите elm make src/Worker.elm —output elm-worker.js, затем обновите файл worker.js до следующего вида:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { Elm } from './elm-worker.js'
+
+console.log("I'm here!")
+
+const app = Elm.Worker.init();
+
+onmessage = function ({ data }) {
+  const { type, value } = data;
+
+  if (type === "increment") {
+    app.ports.increment.send(value);
+  }
+
+  if (type === "decrement") {
+    app.ports.decrement.send(value);
+  }
+};
+
+app.ports.sendCount.subscribe(function (int) {
+  console.log(int);
+  postMessage(int);
+});</code></pre>
+<!-- /wp:code -->
+<p>Если вы снова запустите приложение, вы заметите, что наш console.log даже не запускается. Это потому, что веб-рабочий так и не был инициализирован, что очень нежелательно для наших сложных вычислений.</p>
+<p>Каково же решение? На данный момент лучшее решение, которое я нашел, это создать отдельную точку входа для Vite, импортировать туда Worker.elm и скомпилировать его с Vite. Это выполнит преобразование, необходимое нам в Elm, чтобы позволить импорт в Worker.</p>
+<p>В папке src создайте файл elm-worker.js и поместите в него следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { Elm } from "./Worker.elm";
+
+const app = Elm.Worker.init();
+
+export default app;</code></pre>
+<!-- /wp:code -->
+<p>Это очень простой файл, все, что он делает, это импортирует наш файл Worker.elm, инициализирует приложение и экспортирует его. Теперь нам нужно скомпилировать этот файл с помощью Vite. На корневом уровне нашего приложения создайте файл worker.config.js. Это будет специальный конфигурационный файл Vite, который мы будем использовать только для компиляции elm-worker.js. Вот хорошая конфигурация для начала:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { defineConfig } from "vite";
+import elmPlugin from "vite-plugin-elm";
+const path = require("path");
+
+export default defineConfig({
+  publicDir: false,
+  plugins: [elmPlugin()],
+  build: {
+    outDir: "./elm-worker",
+    sourcemap: false,
+    lib: {
+      entry: path.resolve(__dirname, "./src/elm-worker.js"),
+      name: "elm-worker",
+      fileName: (format) => `elm-worker.${format}.js`,
+    },
+  },
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Эта конфигурация указывает, что нас интересует только elm-worker.js, не импортируя никаких других файлов (таких как общая папка), и чтобы эти файлы собирались в папке elm-worker. По умолчанию Vite компилирует как ESM, так и UMD форматы; это, вероятно, не очень полезно для нашего случая, но это не является большой проблемой.</p>
+<p>Установив наш конфиг, выполните следующую команду:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npx vite build --config worker.config.js</code></pre>
+<!-- /wp:code -->
+<p>Это даст команду Vite выполнить команду сборки, используя наш новый файл конфигурации вместо файла по умолчанию. После завершения сборки вы должны увидеть новую папку elm-worker с двумя файлами внутри: elm-worker.es.js и elm-worker.umd.js.</p>
+<p>С нашим новым скомпилированным ES-совместимым файлом в руках мы можем теперь, наконец, импортировать наш Elm worker в наш файл web worker, и все будет работать, как ожидалось. Обновите наш файл worker.js (в корне нашего приложения) до следующего:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import app from './elm-worker/elm-worker.es.js'
+
+onmessage = function ({ data }) {
+  const { type, value } = data;
+
+  if (type === "increment") {
+    app.ports.increment.send(value);
+  }
+
+  if (type === "decrement") {
+    app.ports.decrement.send(value);
+  }
+};
+
+app.ports.sendCount.subscribe(function (int) {
+  console.log(int);
+  postMessage(int);
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Если теперь вы запустите npm run dev и начнете нажимать на кнопки плюс и минус, вы должны увидеть, как меняется значение, отображаемое на экране. Поздравляем! Теперь у нас есть веб-рабочий, выполняющий Elm внутри Vite!</p>
+<p>Это ни в коем случае не простое решение, но оно, по крайней мере, работает, и позволяет нам использовать другие преимущества использования такого инструмента разработки фронтенда, как Vite. Чтобы упростить дальнейшую работу, вы можете добавить в package.json пользовательский скрипт (что-то вроде build:worker) для запуска команды сборки нашего рабочего, и вы даже можете добавить его в наш dev-скрипт, чтобы он запускался каждый раз, поддерживая синхронизацию нашего веб-рабочего с остальным приложением.</p>
+<p>Вот репозиторий с нашим рабочим кодом Vite.</p>
+<h2 class="wp-block-heading" id="заключение">Заключение</h2>
+<p>Очевидно, что базовое сложение и вычитание не стоит дополнительных накладных расходов на использование веб-рабочих. Задачи, требующие больших вычислений (либо сложные вычисления, либо просто разбор большого количества данных), идеально подходят для этой ситуации. В одном из проектов, где я использовал веб-работника, требовалось потенциально обработать более 2 мегабайт данных, что при выполнении в основном потоке приводило к зависанию всего приложения. Перемещение того же вычисления в веб-рабочего не ускорило его, но позволило пользовательскому интерфейсу (и CSS) продолжать работать на полной скорости. Вот веб-работник из побочного проекта, если вам интересно!</p>
+<p>Также, если вы беспокоитесь, Web Workers поддерживаются во всех современных браузерах, начиная с IE10, так что не стесняйтесь использовать их в своих новых проектах!</p>
+<p>Мне не терпится увидеть, что вы создадите с помощью веб-компонентов!</p>
+<!-- wp:acf/acf-donate {"id":"block_64678dc93985f","name":"acf/acf-donate","data":{"title":"Задонатить на поддержку!","_title":"field_646b621e8617c","list_0_name":"Donatepay","_list_0_name":"field_646b623e8617e","list_0_url":"https://new.donatepay.ru/@1117856","_list_0_url":"field_646b62528617f","list_0_address":"","_list_0_address":"field_646b625d86180","list_1_name":"Donationalerts","_list_1_name":"field_646b623e8617e","list_1_url":"https://www.donationalerts.com/c/woorg_","_list_1_url":"field_646b62528617f","list_1_address":"","_list_1_address":"field_646b625d86180","list_2_name":"USDT (TRC20)","_list_2_name":"field_646b623e8617e","list_2_url":"","_list_2_url":"field_646b62528617f","list_2_address":"TR121HxpTDF71TMm9idZkBaZxnjSMcCPWj","_list_2_address":"field_646b625d86180","list_3_name":"ETH","_list_3_name":"field_646b623e8617e","list_3_url":"","_list_3_url":"field_646b62528617f","list_3_address":"0x442721192987047eDeEC69Ca1D4c706f9Adb16B3","_list_3_address":"field_646b625d86180","list_4_name":"BTC","_list_4_name":"field_646b623e8617e","list_4_url":"","_list_4_url":"field_646b62528617f","list_4_address":"36dLKv5uRozphSQa55w2XgsF42AugPu2QT","_list_4_address":"field_646b625d86180","list":5,"_list":"field_646b62308617d"},"align":"","mode":"edit"} /--> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Использование Elm в Web Worker&url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker&title=Использование Elm в Web Worker&summary=Язык программирования Elm – это отличный способ моделирования и написания современных веб-приложений. Используя функциональное программирование и сильную систему типов, Elm побуждает разработчиков создавать более надежные и легко поддерживаемые приложения.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/ispolzovanie-elm-v-web-worker&media=&description=Язык программирования Elm – это отличный способ моделирования и написания современных веб-приложений. Используя функциональное программирование и сильную систему типов, Elm побуждает разработчиков создавать более надежные и легко поддерживаемые приложения." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/izuchajte-django-sozdavaya-torgovuyu-ploshhadku" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Изучайте Django, создавая торговую площадку </a> <a href="/blog/internaczionalizacziya-url-adresov-nextjs-s-pomoshhyu-next-translate-chast-1" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Интернационализация URL-адресов NextJs с помощью next-translate (часть 1) </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

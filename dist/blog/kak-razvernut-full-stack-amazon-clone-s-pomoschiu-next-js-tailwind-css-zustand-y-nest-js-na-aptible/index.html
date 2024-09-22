@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible - Фул Фронт Дев</title><link rel="canonical" href="https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible"><meta name="description" content="В этом блоге мы расскажем вам о развертывании приложения Amazon Clone на [Aptible](https://www.aptible.com/) и покажем, как эта платформа может упростить и обе"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible-Dec-13-2023.DLjDPVYL_17yFbx.avif" type="image/avif"><source srcset="/_astro/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible-Dec-13-2023.DLjDPVYL_2skRT3.webp" type="image/webp"> <img src="/_astro/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible-Dec-13-2023.DLjDPVYL_ZQ4pwd.png" alt="Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/nestjs" data-astro-cid-axzg2cw6> NestJS </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/nextjs" data-astro-cid-axzg2cw6> Next.js </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/tailwind" data-astro-cid-axzg2cw6> Tailwind </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/zustand" data-astro-cid-axzg2cw6> Zustand </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 13 дек., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible&url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible&title=Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible&summary=В этом блоге мы расскажем вам о развертывании приложения Amazon Clone на [Aptible](https://www.aptible.com/) и покажем, как эта платформа может упростить и обе&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible&media=&description=В этом блоге мы расскажем вам о развертывании приложения Amazon Clone на [Aptible](https://www.aptible.com/) и покажем, как эта платформа может упростить и обе" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details open class="toc border-b border-blue text-blue fluid:p-8 overflow-auto cursor-pointer bg-box"><summary class="toc__title text-xl font-medium">Содержание</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#особенности-клона-amazon">Особенности клона Amazon</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#функциональные-возможности-клона-amazon">Функциональные возможности клона Amazon</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#представляем-aptible-упрощение-и-безопасность-развертывания-приложений">Представляем Aptible: Упрощение и безопасность развертывания приложений</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#шаг-1-создайте-новую-учетную-запись-aptible">Шаг 1: Создайте новую учетную запись Aptible.</a></li><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#шаг-2-выберите-среду">Шаг 2: Выберите среду</a><ol class="toc-level toc-level-3"><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#что-такое-окружения">Что такое окружения?</a></li></ol></li><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#шаг-3-создание-новой-базы-данных-postgresql">Шаг 3: Создание новой базы данных PostgreSQL</a></li><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#шаг-4-настройка-бэкенда-amazon-clone-на-aptible">Шаг 4: Настройка бэкенда Amazon Clone на Aptible</a><ol class="toc-level toc-level-3"><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#шаг-1-создайте-git-репо">Шаг 1: Создайте git-репо</a></li><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#шаг-2-поставьте-все-файлы">Шаг 2: Поставьте все файлы</a></li><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#шаг-3-зафиксируйте-изменения">Шаг 3: Зафиксируйте изменения</a></li></ol></li><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#шаг-5-развертывание-amazon-clone-frontend-на-aptible">Шаг 5: Развертывание Amazon Clone Frontend на Aptible</a><ol class="toc-level toc-level-3"><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#шаг-1-создайте-git-репо-1">Шаг 1: Создайте git-репо</a></li><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#шаг-2-поставьте-все-файлы-1">Шаг 2: Поставьте все файлы</a></li><li class="toc-item toc-item-h4"><a class="text-blue text-blue-h4" href="#шаг-3-зафиксируйте-изменения-1">Шаг 3: Зафиксируйте изменения</a></li></ol></li></ol></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#заключение">Заключение</a></li></ol></details open><p>В этом блоге мы расскажем вам о развертывании приложения Amazon Clone на <a href="https://www.aptible.com/" rel="noopener noreferrer nofollow" target="_blank">Aptible</a> и покажем, как эта платформа может упростить и обезопасить этот процесс. Мы рассмотрим основные шаги, начиная с создания учетной записи Aptible, инициализации базы данных PostgreSQL, настройки бэкенда и фронтенда приложений, конфигурирования переменных окружения и заканчивая развертыванием приложений.</p>
+<p>Следуя этому исчерпывающему руководству, разработчики смогут приобрести ценный опыт развертывания веб-приложений на Aptible, безопасной и масштабируемой платформе облачной инфраструктуры. Приведенные инструкции и фрагменты кода упростят процесс развертывания и помогут понять, как эффективно использовать облачную инфраструктуру.</p>
+<h2 id="особенности-клона-amazon"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#features-of-the-amazon-clone" rel="noopener noreferrer nofollow" target="_blank"></a>Особенности клона Amazon<a aria-hidden="true" tabindex="-1" href="#особенности-клона-amazon"><span class="icon icon-link"></span></a></h2>
+<ul>
+<li>Создан с использованием Next.js</li>
+<li>Стилизован с помощью Tailwind CSS</li>
+<li>Бэкенд сгенерирован с помощью Amplication</li>
+<li>Управление состояниями с помощью Zustand</li>
+<li>Typescript для безопасности типов</li>
+<li>Регистрация входа с использованием JWT-токенов</li>
+<li>Вызовы API с использованием Axios</li>
+<li>Recharts для диаграмм</li>
+<li>Next UI для удивительных готовых компонентов</li>
+<li>React Pro Sidebar для создания удивительной боковой панели.</li>
+<li>Панель администратора</li>
+<li>Пагинация таблиц</li>
+</ul>
+<h2 id="функциональные-возможности-клона-amazon"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#functionalities-of-the-amazon-clone" rel="noopener noreferrer nofollow" target="_blank"></a>Функциональные возможности клона Amazon<a aria-hidden="true" tabindex="-1" href="#функциональные-возможности-клона-amazon"><span class="icon icon-link"></span></a></h2>
+<ul>
+<li>Категории CRUD (создание/чтение/обновление/удаление)</li>
+<li>Продукты CRUD (создание/чтение/обновление/удаление)</li>
+<li>Управление заказами</li>
+<li>Панель управления для администратора</li>
+<li>Вход администратора</li>
+<li>Вход и регистрация пользователей</li>
+<li>Просмотр товаров пользователем</li>
+<li>Пользователь ищет товары</li>
+<li>Пользователь добавляет товары в корзину</li>
+<li>Пользователь оформляет заказ</li>
+<li>И многие другие функции, которые вы можете посмотреть в видео ниже</li>
+</ul>
+<p>Эта запись в блоге является частью моего видео на YouTube. Посмотрите удивительное видео.</p>
+<h2 id="представляем-aptible-упрощение-и-безопасность-развертывания-приложений"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#introducing-aptible-simplify-and-secure-your-application-deployment" rel="noopener noreferrer nofollow" target="_blank"></a>Представляем Aptible: Упрощение и безопасность развертывания приложений<a aria-hidden="true" tabindex="-1" href="#представляем-aptible-упрощение-и-безопасность-развертывания-приложений"><span class="icon icon-link"></span></a></h2>
+<p>Прежде чем перейти к деталям развертывания приложения Amazon Clone на <a href="https://www.aptible.com/" rel="noopener noreferrer nofollow" target="_blank">Aptible</a>, давайте немного познакомимся с Aptible и поймем, почему это отличный выбор для хостинга веб-приложений.</p>
+<p>Aptible - это облачная платформа, созданная для упрощения и оптимизации развертывания и управления веб-приложениями, особенно для разработчиков и команд, которые уделяют первостепенное внимание безопасности и соблюдению нормативных требований. С Aptible вы можете сосредоточиться на создании и масштабировании приложений, оставив все сложности, связанные с инфраструктурой, безопасностью и соблюдением нормативных требований, платформе.</p>
+<p>Одной из отличительных особенностей Aptible является ее приверженность безопасности. Она обеспечивает надежный контроль безопасности и сертификацию соответствия, что делает ее идеальным выбором для приложений, работающих с конфиденциальными данными или требующих соблюдения нормативных требований. Aptible берет на себя заботу об обновлениях безопасности, шифровании данных и контроле доступа, позволяя вам сосредоточиться на коде приложения.</p>
+<p>Теперь давайте приступим.</p>
+<h3 id="шаг-1-создайте-новую-учетную-запись-aptible"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-1-create-a-new-aptible-account" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 1: Создайте новую учетную запись Aptible.<a aria-hidden="true" tabindex="-1" href="#шаг-1-создайте-новую-учетную-запись-aptible"><span class="icon icon-link"></span></a></h3>
+<p>Перейдите на сайт Aptible и нажмите на кнопку входа, чтобы создать новый аккаунт и зарегистрироваться.</p>
+<p><a href="../../assets/images/mny73ihrdiowqqyk595s.png"><img  src="/_astro/mny73ihrdiowqqyk595s.Bp8i0F1s_3D7Qg.webp" alt="Главная страница Aptible" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>После процесса регистрации вы будете перенаправлены на страницу Aptible Environments.</p>
+<p><a href="../../assets/images/ws95widf0d911dlhbtpw.png"><img  src="/_astro/ws95widf0d911dlhbtpw.D02D0w05_oDS12.webp" alt="Aptible Environments" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<h3 id="шаг-2-выберите-среду"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-2-choose-environment" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 2: Выберите среду<a aria-hidden="true" tabindex="-1" href="#шаг-2-выберите-среду"><span class="icon icon-link"></span></a></h3>
+<p>Теперь вы увидите созданные вами окружения на этой странице.</p>
+<h4 id="что-такое-окружения"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#what-are-environments" rel="noopener noreferrer nofollow" target="_blank"></a>Что такое окружения?<a aria-hidden="true" tabindex="-1" href="#что-такое-окружения"><span class="icon icon-link"></span></a></h4>
+<p>Среды живут в стеках и обеспечивают логическую изоляцию ресурсов. Среды в одном стеке имеют общие сети и базовые хосты.</p>
+<p>Теперь выберите окружение и щелкните на нем.</p>
+<p><a href="../../assets/images/otocv4ri0gr7ccswigso.png"><img  src="/_astro/otocv4ri0gr7ccswigso.Dgm-k8Vg_ZJ4VgJ.webp" alt="Выберите подходящую среду" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Это экран вашего окружения. Здесь вы можете управлять приложениями и базами данных, просматривать активность, создавать резервные копии и выполнять множество других настроек.</p>
+<p><a href="../../assets/images/qfelwjsn7ka9s7mea2y2.png"><img  src="/_astro/qfelwjsn7ka9s7mea2y2.Yx37uOFt_Z2puJA3.webp" alt="Экран среды" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<h3 id="шаг-3-создание-новой-базы-данных-postgresql"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-3-provision-a-new-postgresql-database" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 3: Создание новой базы данных PostgreSQL<a aria-hidden="true" tabindex="-1" href="#шаг-3-создание-новой-базы-данных-postgresql"><span class="icon icon-link"></span></a></h3>
+<p>Теперь мы используем базу данных PostgreSQL для нашего клона Amazon, поэтому давайте создадим новую базу данных на Aptible.</p>
+<p>Перейдите на вкладку ”База данных”.</p>
+<p><a href="../../assets/images/sf0t6lxckmv5kc9l5kh1.png"><img  src="/_astro/sf0t6lxckmv5kc9l5kh1.DFlkc605_8iAuE.webp" alt="Вкладка базы данных Aptible" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Теперь перед вами откроется экран базы данных. Отсюда вы можете управлять и создавать новые базы данных в вашей среде Aptible.</p>
+<p><a href="../../assets/images/9a2sheghn4qua8ihoqnw.png"><img  src="/_astro/9a2sheghn4qua8ihoqnw.DFJtBhuV_ZeY9TN.webp" alt="Экран базы данных Aptible" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Теперь нажмите на кнопку New Database, чтобы начать создание новой базы данных.</p>
+<p><a href="../../assets/images/3eylij0uzfw5ipqgy9u9.png"><img  src="/_astro/3eylij0uzfw5ipqgy9u9.DmcHCt9G_h3SlY.webp" alt="Новая база данных" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Вы можете видеть, как при нажатии кнопки пользовательский интерфейс меняется на ”Выбор базы данных”.</p>
+<p><a href="../../assets/images/q8tx57wgn8qyhcnf0gqb.png"><img  src="/_astro/q8tx57wgn8qyhcnf0gqb.8PKqw5de_1TNhty.webp" alt="NEW DB Selction" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь нам нужно выбрать базу данных. Нажмите на выпадающий список выбора базы данных. Он покажет вам все поддерживаемые Aptible базы данных.</p>
+<p>В настоящее время Aptible поддерживает следующие типы баз данных:</p>
+<ul>
+<li>CouchDB</li>
+<li>PostgreSQL</li>
+<li>MongoDB</li>
+<li>Redis</li>
+<li>Elasticsearch</li>
+<li>InfluxDB</li>
+<li>MySQL</li>
+<li>SFTP</li>
+<li>RabbitMQ</li>
+</ul>
+<p>Вы можете проверить их [страницу поддерживаемых баз данных] (<a href="https://www.aptible.com/docs/supported-databases" rel="noopener noreferrer nofollow" target="_blank">https://www.aptible.com/docs/supported-databases</a>), чтобы узнать, добавили ли они новые базы данных.</p>
+<p><a href="../../assets/images/xuptoonk2giqky2kdye3.png"><img  src="/_astro/xuptoonk2giqky2kdye3.Ch4iqzvO_ZsIRfK.webp" alt="Поддерживаемые базы данных" width="800" height="461" loading="lazy" decoding="async"></a></p>
+<p>Теперь из списка баз данных выберите PostgreSQL 14.</p>
+<p>Как только вы выберете ее, вы увидите поле в виде хэндла базы данных.</p>
+<p><a href="../../assets/images/a8s1yumjv7yvvfnjzedy.png"><img  src="/_astro/a8s1yumjv7yvvfnjzedy.C-5DsBLH_1Uirok.webp" alt="Database handle" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>С помощью этого поля вы можете назвать базу данных по своему усмотрению.</p>
+<p>Мы назовем ее <code>amazon-db</code>.</p>
+<p>Теперь нажмите на кнопку <code>Сохранить изменения</code>.</p>
+<p><a href="../../assets/images/7f0jsb8cu115ypz49uxo.png"><img  src="/_astro/7f0jsb8cu115ypz49uxo.CZZsvb6Z_1715kJ.webp" alt="DB Save changes" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь Aptible начнет инициализацию вашей базы данных. Дождитесь ее завершения.</p>
+<p><a href="../../assets/images/v95m6tj1dvr45kr6m4yt.png"><img  src="/_astro/v95m6tj1dvr45kr6m4yt.CjGwbzOi_Z2lfd4Y.webp" alt="Database Provision" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Пока база данных создается, давайте перейдем к следующему шагу, который будет выполняться в фоновом режиме и завершится через несколько минут.</p>
+<h3 id="шаг-4-настройка-бэкенда-amazon-clone-на-aptible"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-4-setup-amazon-clone-backend-on-aptible" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 4: Настройка бэкенда Amazon Clone на Aptible<a aria-hidden="true" tabindex="-1" href="#шаг-4-настройка-бэкенда-amazon-clone-на-aptible"><span class="icon icon-link"></span></a></h3>
+<p>Теперь давайте развернем наше бэкэнд-приложение на Aptible.</p>
+<p>Перейдите на вкладку <code>Apps</code> и нажмите на <code>New App</code>.</p>
+<p><a href="../../assets/images/lctl87hozb1702of4hm3.png"><img  src="/_astro/lctl87hozb1702of4hm3.DAf1aFxG_M4dWV.webp" alt="Новое приложение" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Теперь вы увидите окно создания нового приложения.</p>
+<p>В этом окне вам нужно указать имя вашего приложения.</p>
+<p>Мы назовем его <code>amazon-backend</code>.</p>
+<p><a href="../../assets/images/incravwinq6ug13ekv2w.png"><img  src="/_astro/incravwinq6ug13ekv2w.BQ--cmEL_ZpjO2r.webp" alt="Имя приложения" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь нажмите на кнопку <code>Создать приложение</code>.</p>
+<p>Теперь Aptible начнет создавать ваше приложение в выбранном окружении.</p>
+<p>На этом шаге вам нужно будет вставить свой SSH-ключ.</p>
+<p><a href="../../assets/images/2n88v5a3vlxhflsjfys8.png"><img  src="/_astro/2n88v5a3vlxhflsjfys8.CzPpaYKC_A5fe9.webp" alt="Aptible SSH Key" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Если вы хотите сгенерировать новый SSH-ключ или узнать, как Aptible использует ваш ключ, посетите <a href="https://www.aptible.com/docs/public-key-authentication" rel="noopener noreferrer nofollow" target="_blank">Aptible SSH Docs</a></p>
+<p>После вставки SSH-ключа нажмите на <code>Сохранить ключ</code>. Это сохранит ваш SSH-ключ в Aptible, так что в следующий раз, когда вы будете создавать приложение в Aptible, вам не придется повторять этот процесс.</p>
+<p><a href="../../assets/images/47vjfxbrnfdpbzg16bh7.png"><img  src="/_astro/47vjfxbrnfdpbzg16bh7.KlQJAhv6_Z1LIwj0.webp" alt="Сохранить ключ" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь нам нужно отправить наш код в git-репо Aptible.</p>
+<p><a href="../../assets/images/b6zhgx3x70ajgpoyfexc.png"><img  src="/_astro/b6zhgx3x70ajgpoyfexc.CxIcr9lG_2fXzOz.webp" alt="Aptible Git Repo" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p>Для этого шага нам потребуется создать <code>Dockerfile</code> в корне кода нашего сервера.</p>
+<p><a href="../../assets/images/tcdazn4geaqaoaczrj0y.png"><img  src="/_astro/tcdazn4geaqaoaczrj0y.CEBcjKQ__ZF7q9U.webp" alt="Dockerfile" width="800" height="521" loading="lazy" decoding="async"></a></p>
+<p>Внутрь <code>Dockerfile</code> нужно скопировать следующий фрагмент</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#767C9DB0;font-style:italic"># Development Dockerfile</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Этот Dockerfile предназначен для разработки и включает в себя зависимости и инструменты для разработки.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Использование базового образа Node.js с инструментами разработки</span></span>
+<span class="line"><span style="color:#ADD7FF">FROM node:16.0.0 AS development</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Создайте каталог, в котором будет собираться приложение</span></span>
+<span class="line"><span style="color:#ADD7FF">WORKDIR /app</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Скопируйте манифесты зависимостей, как package.json</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># и package-lock.json копируются</span></span>
+<span class="line"><span style="color:#ADD7FF">COPY package*.json ./</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Установите пакеты и их зависимости</span></span>
+<span class="line"><span style="color:#ADD7FF">RUN npm install</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Скопируйте схему Prisma</span></span>
+<span class="line"><span style="color:#ADD7FF">COPY prisma/schema.prisma ./prisma/</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Сгенерируйте клиент Prisma на основе схемы</span></span>
+<span class="line"><span style="color:#ADD7FF">RUN npm run prisma:generate</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Скопируйте кодовую базу</span></span>
+<span class="line"><span style="color:#ADD7FF">COPY . .</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADD7FF">RUN npx prisma db push</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Создайте пакет приложения</span></span>
+<span class="line"><span style="color:#ADD7FF">RUN npm run build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Выставьте определенный порт на Docker-контейнере для целей разработки</span></span>
+<span class="line"><span style="color:#ADD7FF">ENV PORT=3000</span></span>
+<span class="line"><span style="color:#ADD7FF">EXPOSE ${PORT}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Запустите сервер разработки, используя ранее собранное приложение</span></span>
+<span class="line"><span style="color:#ADD7FF">CMD ["npm", "start"]</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Теперь откройте терминал и выполните следующие действия:</p>
+<h4 id="шаг-1-создайте-git-репо"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-1-create-a-git-repo" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 1: Создайте git-репо<a aria-hidden="true" tabindex="-1" href="#шаг-1-создайте-git-репо"><span class="icon icon-link"></span></a></h4>
+<p><code>git init</code></p>
+<h4 id="шаг-2-поставьте-все-файлы"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-2-stage-all-files" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 2: Поставьте все файлы<a aria-hidden="true" tabindex="-1" href="#шаг-2-поставьте-все-файлы"><span class="icon icon-link"></span></a></h4>
+<p><code>git add .</code></p>
+<h4 id="шаг-3-зафиксируйте-изменения"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-3-commit-the-changes" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 3: Зафиксируйте изменения<a aria-hidden="true" tabindex="-1" href="#шаг-3-зафиксируйте-изменения"><span class="icon icon-link"></span></a></h4>
+<p><code>git commit -m "Initial Commit for backend code.</code></p>
+<p>После фиксации изменений вам нужно скопировать удаленный url Aptible и добавить его в ваше репо.</p>
+<p><a href="../../assets/images/h5l4sqxwezyiqjx7iw5d.png"><img  src="/_astro/h5l4sqxwezyiqjx7iw5d.C643wVQP_1BEoc8.webp" alt="Aptible Git Remote" width="800" height="459" loading="lazy" decoding="async"></a></p>
+<p><code>git remote add aptible git@beta.aptible.com:youtube-a32/amazon-backend.git</code></p>
+<p>После этого шага нам нужно будет выложить код в ветку сканирования Aptible.</p>
+<p>Скопируйте команду scan из Aptible и вставьте ее в терминал.</p>
+<p><a href="../../assets/images/fn99u4enwi429bpdwv1l.png"><img  src="/_astro/fn99u4enwi429bpdwv1l.TQ15hGld_1EfNhp.webp" alt="Команда сканирования Aptible" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p><code>git push aptible main:aptible-scan</code>.</p>
+<p>Теперь мы добавим наш код в git-репозиторий Aptible.</p>
+<p><a href="../../assets/images/eqobsynsf6j1k5bufyr2.png"><img  src="/_astro/eqobsynsf6j1k5bufyr2.C5VqDVa9_Z2kCKBB.webp" alt="git push output" width="800" height="246" loading="lazy" decoding="async"></a></p>
+<p>Теперь в Aptible появится вот такое окно.</p>
+<p><a href="../../assets/images/epkxwvwza32yibi0ckzl.png"><img  src="/_astro/epkxwvwza32yibi0ckzl.JKtd6cAO_ZK7FLO.webp" alt="Aptible DB Setup" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Здесь мы можем настроить переменные окружения и БД для приложения.</p>
+<p>Давайте выберем БД.</p>
+<p>Нажмите на кнопку <code>Подключить существующую базу данных</code>.</p>
+<p><a href="../../assets/images/t9u38hqq6etjtkite3dl.png"><img  src="/_astro/t9u38hqq6etjtkite3dl.CBKwKWTj_Z6RRSr.webp" alt="Подключить существующую БД" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь выберите <code>amazon-db</code>, которую мы создали в предыдущем шаге, и назовите переменную окружения <code>db_url</code>.</p>
+<p><a href="../../assets/images/spi9t2b87k11ctn9hv0q.png"><img  src="/_astro/spi9t2b87k11ctn9hv0q.CQHUhaUp_2cFy9D.webp" alt="Выбор БД" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь нажмите на кнопку <code>Save and Deploy</code>, чтобы начать процесс развертывания.</p>
+<p>Это запустит процесс развертывания.</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--gPvGxUlA--/c" rel="noopener noreferrer nofollow" target="_blank"><img  src="/_astro/kr3xcla8x8ljnfv3n3yi.ATHdsh2U_Z1wl5bV.webp" alt="Aptible deployment process" width="800" height="460" loading="lazy" decoding="async"></a>_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/<a href="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kr3xcla8x8ljnfv3n3yi.png" rel="noopener noreferrer nofollow" target="_blank">https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kr3xcla8x8ljnfv3n3yi.png</a>)</p>
+<p>Этот процесс может занять определенное время. Подождите, пока он завершится.</p>
+<p>Теперь наше приложение успешно развернуто.</p>
+<p><a href="../../assets/images/yg8xumdarc8jyw0dsuhz.png"><img  src="/_astro/yg8xumdarc8jyw0dsuhz.WejxDYw8_1PCphS.webp" alt="App deployement successfull" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь нам нужно запустить команду docker.</p>
+<p>Выберите команду cmd и нажмите кнопку <code>Создать конечную точку</code>.</p>
+<p><a href="../../assets/images/k2r71dpqa048q3pwt09h.png"><img  src="/_astro/k2r71dpqa048q3pwt09h.DBlgNqt7_2vcUmd.webp" alt="Создать конечную точку" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь Aptible начнет инициализацию конечной точки.</p>
+<p>Наша конечная точка была успешно инициализирована.</p>
+<p><a href="../../assets/images/5c9v4vext9s6p9di7sw7.png"><img  src="/_astro/5c9v4vext9s6p9di7sw7.kgS2iSkF_ZvopoS.webp" alt="Успешное обеспечение конечной точки" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь давайте перейдем к конечной точке.</p>
+<p><a href="../../assets/images/3srvtcju5zv3ppa0ndt1.png"><img  src="/_astro/3srvtcju5zv3ppa0ndt1.CqzXWUY-_18nidB.webp" alt="Aptible Node.js" width="800" height="497" loading="lazy" decoding="async"></a></p>
+<p>И вы увидите, что мы успешно развернули наш Node-сервер на Aptible.</p>
+<p>Теперь давайте сделаем то же самое для нашего приложения Next.</p>
+<h3 id="шаг-5-развертывание-amazon-clone-frontend-на-aptible"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-5-deploy-amazon-clone-frontend-to-aptible" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 5: Развертывание Amazon Clone Frontend на Aptible<a aria-hidden="true" tabindex="-1" href="#шаг-5-развертывание-amazon-clone-frontend-на-aptible"><span class="icon icon-link"></span></a></h3>
+<p>Развертывание фронтенда довольно простое. Мы выполним все предыдущие шаги и развернем наше приложение на Aptible.</p>
+<p>Теперь вам нужно заменить файл <code>next.config.js</code> в вашем следующем приложении на код, приведенный ниже.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#767C9DB0;font-style:italic">/** </span><span style="color:#A6ACCD;font-style:italic">@</span><span style="color:#91B4D5;font-style:italic">type</span><span style="color:#A6ACCD;font-style:italic"> {</span><span style="color:#A6ACCDC0;font-style:italic">import('next').NextConfig</span><span style="color:#A6ACCD;font-style:italic">}</span><span style="color:#767C9DB0;font-style:italic"> */</span></span>
+<span class="line"><span style="color:#91B4D5">const</span><span style="color:#E4F0FB"> nextConfig</span><span style="color:#91B4D5"> =</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#ADD7FF">	reactStrictMode</span><span style="color:#A6ACCD">:</span><span style="color:#D0679D"> false</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#ADD7FF">	окружение</span><span style="color:#A6ACCD">:</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#ADD7FF">		NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</span><span style="color:#A6ACCD">:</span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">dctahvizk</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#ADD7FF">		NEXT_PUBLIC_API</span><span style="color:#A6ACCD">:</span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">app-61711.on-aptible.com</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">,</span></span>
+<span class="line"><span style="color:#A6ACCD">	},</span></span>
+<span class="line"><span style="color:#ADD7FF">	images</span><span style="color:#A6ACCD">:</span><span style="color:#A6ACCD"> {</span></span>
+<span class="line"><span style="color:#ADD7FF">		домены</span><span style="color:#A6ACCD">:</span><span style="color:#A6ACCD"> [</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">res.cloudinary.com</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">],</span></span>
+<span class="line"><span style="color:#A6ACCD">	},</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">	// typescript: {</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">	// ignoreBuildErrors: true,</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">	// },</span></span>
+<span class="line"><span style="color:#A6ACCD">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">module</span><span style="color:#A6ACCD">.</span><span style="color:#E4F0FB">exports</span><span style="color:#91B4D5"> =</span><span style="color:#E4F0FB"> nextConfig</span><span style="color:#A6ACCD">;</span></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Здесь мы добавили переменную окружения <code>NEXT_PUBLIC_API</code>.</p>
+<p>Убедитесь, что вы заменили ее на свою конечную точку.</p>
+<p>Теперь создайте новое приложение Aptible и назовите его <code>amazon-next-app</code>.</p>
+<p><a href="../../assets/images/amcqak5410xzhdhpza8k.png"><img  src="/_astro/amcqak5410xzhdhpza8k.CKUGUrDk_ZJRJF4.webp" alt="Описание изображения" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Прежде чем двигаться дальше, давайте добавим <code>Dockerfile</code> для вашего следующего приложения.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#767C9DB0;font-style:italic"># Используем официальную среду исполнения Node.js в качестве базового образа</span></span>
+<span class="line"><span style="color:#ADD7FF">FROM node:18</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Установите рабочий каталог внутри контейнера</span></span>
+<span class="line"><span style="color:#ADD7FF">WORKDIR /app</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Скопируйте package.json и package-lock.json (если есть)</span></span>
+<span class="line"><span style="color:#ADD7FF">COPY package*.json ./</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Установить зависимости</span></span>
+<span class="line"><span style="color:#ADD7FF">запустить npm install</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Скопируйте остальной исходный код вашего приложения</span></span>
+<span class="line"><span style="color:#ADD7FF">COPY . .</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Соберите производственную версию приложения</span></span>
+<span class="line"><span style="color:#ADD7FF">RUN npm run build</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Укажите порт, на котором будет работать ваше приложение Next.js</span></span>
+<span class="line"><span style="color:#ADD7FF">EXPOSE 3000</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Запустите ваше приложение Next.js</span></span>
+<span class="line"><span style="color:#ADD7FF">CMD ["npm", "start"]</span></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Создайте <code>Dockerfile</code> на корневом уровне вашего приложения и вставьте этот код.</p>
+<p>Теперь откройте терминал и выполните следующие действия:</p>
+<h4 id="шаг-1-создайте-git-репо-1"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-1-create-a-git-repo" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 1: Создайте git-репо<a aria-hidden="true" tabindex="-1" href="#шаг-1-создайте-git-репо-1"><span class="icon icon-link"></span></a></h4>
+<p><code>git init</code></p>
+<h4 id="шаг-2-поставьте-все-файлы-1"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-2-stage-all-files" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 2: Поставьте все файлы<a aria-hidden="true" tabindex="-1" href="#шаг-2-поставьте-все-файлы-1"><span class="icon icon-link"></span></a></h4>
+<p><code>git add .</code></p>
+<h4 id="шаг-3-зафиксируйте-изменения-1"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#step-3-commit-the-changes" rel="noopener noreferrer nofollow" target="_blank"></a>Шаг 3: Зафиксируйте изменения<a aria-hidden="true" tabindex="-1" href="#шаг-3-зафиксируйте-изменения-1"><span class="icon icon-link"></span></a></h4>
+<p><code>git commit -m "Initial Commit for frontend code.</code></p>
+<p>После фиксации изменений вам нужно скопировать удаленный url Aptible и добавить его в ваше репо.</p>
+<p><a href="../../assets/images/or3gdi5wv44t37cj81xl.png"><img  src="/_astro/or3gdi5wv44t37cj81xl.DDlXHFTr_Z2md5Jt.webp" alt="Aptible Git Remote" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p><code>git remote add aptible git@beta.aptible.com:youtube-a32/amazon-next-app.git</code></p>
+<p>После этого шага нам нужно будет выложить код в ветку сканирования Aptible.</p>
+<p>Скопируйте команду scan из Aptible и вставьте ее в терминал.</p>
+<p><a href="../../assets/images/f1gdbxod6bjrz1ivz6ea.png"><img  src="/_astro/f1gdbxod6bjrz1ivz6ea.BIawh13E_AtmiC.webp" alt="Aptible Scan" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p><code>git push aptible main:aptible-scan</code>.</p>
+<p>Наш код был выложен в Aptible.</p>
+<p>Теперь давайте развернем его. Нажмите на кнопку <code>Save &#x26; Deploy</code>.</p>
+<p><a href="../../assets/images/px6nmpskorj42kxduwwq.png"><img  src="/_astro/px6nmpskorj42kxduwwq.BwgBrcNc_GfL69.webp" alt="Save &#38;#x26; Deploy" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Наше развертывание прошло успешно.</p>
+<p><a href="../../assets/images/9osfqq2kzlw6gfp513wc.png"><img  src="/_astro/9osfqq2kzlw6gfp513wc.P5MxmnGY_1qSgtI.webp" alt="deployment successfull" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь давайте запустим команду docker cmd и создадим конечную точку.</p>
+<p><a href="../../assets/images/5xibegfdnh8fehb9x10a.png"><img  src="/_astro/5xibegfdnh8fehb9x10a.8pP-KM2B_Z1Nlunv.webp" alt="Docker cmd" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Теперь наша конечная точка была успешно инициализирована.</p>
+<p><a href="../../assets/images/sslvaotleukpsfdril8h.png"><img  src="/_astro/sslvaotleukpsfdril8h.BEDqfCHL_1nAAW2.webp" alt="Описание изображения" width="800" height="460" loading="lazy" decoding="async"></a></p>
+<p>Откройте конечную точку в браузере.</p>
+<p>И вы увидите, что наше приложение Next было успешно развернуто на Aptible.</p>
+<p><a href="../../assets/images/kzojd8cyxnkhb5k9ea9e.png"><img  src="/_astro/kzojd8cyxnkhb5k9ea9e.ZmIGUdOd_K2qaT.webp" alt="Следующее приложение" width="800" height="325" loading="lazy" decoding="async"></a></p>
+<h2 id="заключение"><a href="https://dev.to/kishansheth/how-to-deploy-full-stack-amazon-clone-with-nextjs-tailwind-css-zustand-and-nestjs-on-aptible-4i2j#conclusion" rel="noopener noreferrer nofollow" target="_blank"></a>Заключение<a aria-hidden="true" tabindex="-1" href="#заключение"><span class="icon icon-link"></span></a></h2>
+<p>В заключение хочу сказать, что в этой статье мы представили исчерпывающее руководство по развертыванию приложения Amazon Clone на платформе Aptible. Мы рассмотрели такие основные шаги, как создание учетной записи Aptible, инициализация базы данных PostgreSQL, настройка бэкенда и фронтенда приложений, конфигурирование переменных окружения и развертывание приложений.</p>
+<p>Следуя этому руководству, разработчики смогут приобрести ценный опыт развертывания веб-приложений на Aptible, безопасной и масштабируемой платформе облачной инфраструктуры. Приведенные инструкции и фрагменты кода упрощают процесс развертывания и помогают разработчикам понять, как эффективно использовать облачную инфраструктуру.</p>
+<p><a href="https://www.aptible.com/" rel="noopener noreferrer nofollow" target="_blank">Aptible</a> предлагает надежную среду для размещения веб-приложений, что делает ее отличным выбором для разработчиков, желающих безопасно развертывать и управлять своими проектами. Этот учебник дает разработчикам знания и практические навыки, необходимые для использования возможностей Aptible для развертывания веб-приложений.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible&url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible&title=Как развернуть Full Stack Amazon Clone с помощью Next.js, Tailwind CSS, Zustand и Nest.js на Aptible&summary=В этом блоге мы расскажем вам о развертывании приложения Amazon Clone на [Aptible](https://www.aptible.com/) и покажем, как эта платформа может упростить и обе&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-razvernut-full-stack-amazon-clone-s-pomoschiu-next-js-tailwind-css-zustand-y-nest-js-na-aptible&media=&description=В этом блоге мы расскажем вам о развертывании приложения Amazon Clone на [Aptible](https://www.aptible.com/) и покажем, как эта платформа может упростить и обе" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kak-sozdat-funktsyiu-rekomendatsyy-kontenta-s-pomoschiu-flutter-open-ai-y-supabase" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Как создать функцию рекомендации контента с помощью Flutter, Open AI и Supabase </a> <a href="/blog/kak-napysat-konfyhuratsyonn-i-fail-yaml-poshahovoe-rukovodstvo-dlia-nachynaiuschykh" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Как написать конфигурационный файл YAML? </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

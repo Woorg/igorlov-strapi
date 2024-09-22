@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Как реализовать функцию поиска с автозаполнением в Laravel - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel"><meta name="description" content="Laravel – это популярный PHP-фреймворк с открытым исходным кодом, который широко используется для создания веб-приложений. Он предоставляет множество возможностей и функций, которые делают веб-разработку проще и быстрее. Одной из таких функций является поиск Typeahead, также известный как автозаполнение."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_Z26K2SH.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_Z2vHC8J.webp" type="image/webp"> <img src="/_astro/undefined-Feb-25-2023.BscJLvqp_Z24iG4g.png" alt="Как реализовать функцию поиска с автозаполнением в Laravel" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Как реализовать функцию поиска с автозаполнением в Laravel </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/laravel" data-astro-cid-axzg2cw6> Laravel </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/php" data-astro-cid-axzg2cw6> Php </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 25 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как реализовать функцию поиска с автозаполнением в Laravel&url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel&title=Как реализовать функцию поиска с автозаполнением в Laravel&summary=Laravel – это популярный PHP-фреймворк с открытым исходным кодом, который широко используется для создания веб-приложений. Он предоставляет множество возможностей и функций, которые делают веб-разработку проще и быстрее. Одной из таких функций является поиск Typeahead, также известный как автозаполнение.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel&media=&description=Laravel – это популярный PHP-фреймворк с открытым исходным кодом, который широко используется для создания веб-приложений. Он предоставляет множество возможностей и функций, которые делают веб-разработку проще и быстрее. Одной из таких функций является поиск Typeahead, также известный как автозаполнение." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Laravel - это популярный PHP-фреймворк с открытым исходным кодом, который широко используется для создания веб-приложений. Он предоставляет множество возможностей и функций, которые делают веб-разработку проще и быстрее. Одной из таких функций является поиск Typeahead, также известный как автозаполнение.</p>
+<p>Авто заполняемый поиск — это функция, которая помогает пользователям найти нужный контент, предлагая возможные варианты по мере ввода текста. Это полезный инструмент, который может сделать процесс поиска более интуитивным и удобным для пользователей. В этой статье мы рассмотрим, как реализовать поиск Typeahead в Laravel.</p>
+<h2 class="wp-block-heading">Требования:</h2>
+<p>Прежде чем мы начнем, убедитесь, что у вас установлен проект Laravel. Если у вас его нет, вы можете следовать руководству по установке Laravel. Вам также необходимо иметь базовые знания HTML, CSS, JavaScript и PHP.</p>
+<h2 class="wp-block-heading">Реализация поиска Typeahead в Laravel</h2>
+<p>Чтобы реализовать поиск Typeahead в Laravel, нам нужно создать форму поиска и контроллер для обработки поисковых запросов. Мы также будем использовать библиотеку Typeahead для отображения поисковых предложений.</p>
+<h2 class="wp-block-heading">Шаг 1: Установка библиотеки Typeahead</h2>
+<p>Чтобы установить библиотеку Typeahead, мы можем воспользоваться менеджером пакетов, например npm. Откройте терминал и перейдите в каталог проекта Laravel. Выполните следующую команду для установки плагина jQuery Typeahead:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npm install jquery-typeahead
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading">Шаг 2: Создание формы поиска</h2>
+<p>Для создания формы поиска мы будем использовать элемент формы HTML. Откройте файл resources/views/welcome.blade.php и добавьте следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markup" class="language-markup">&#x3C;head>
+    //......
+
+    &#x3C;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.2/jquery.typeahead.css"
+        integrity="sha512-zPDjm5fHC6JUi5jEnhJetvp1zLvc1Dd5TuMFQQtqRH0KpOzrng4vHiFu2Eva+Xgu7umz0lqGHkmGjUYdeSW54w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    &#x3C;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.2/jquery.typeahead.js"
+        integrity="sha512-8+3AF+qMeZ3HSeKKru1YD5pFbXnIxUvMH1UsK8sKbHwbj5ZixBtDP+8oMMkBeaZc8TIIOjHnxN++zCPhHWCrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">&#x3C;/script>
+&#x3C;/head>
+&#x3C;body>
+  // .....
+
+  &#x3C;form action="{{ url('search') }}" method="GET">
+     &#x3C;div class="typeahead__container">
+          &#x3C;div class="typeahead__field">
+               &#x3C;div class="typeahead__query">
+                    &#x3C;input class="typeahead"
+                                 name="query"
+                                 autocomplete="off">
+                &#x3C;/div>
+                &#x3C;div class="typeahead__button">
+                     &#x3C;button type="submit">
+                             &#x3C;span class="typeahead__search-icon">&#x3C;/span>
+                     &#x3C;/button>
+                &#x3C;/div>
+           &#x3C;/div>
+     &#x3C;/div>
+  &#x3C;/form>
+
+  //....
+
+  @vite(['resources/js/app.js'])
+
+&#x3C;/body>
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде мы создали форму с полем ввода текста и кнопкой отправки. Поле ввода имеет класс typeahead, который мы будем использовать в следующем шаге для инициализации библиотеки Typeahead.</p>
+<h2 class="wp-block-heading">Шаг 3: Инициализация библиотеки Typeahead</h2>
+<p>Для инициализации библиотеки Typeahead мы будем использовать код JavaScript. Откройте файл public/js/app.js и добавьте следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import $ from "jquery";
+import "jquery-typeahead";
+
+$(function () {
+    $.typeahead({
+        input: ".typeahead",
+        hint:true,
+        minLength:2,// default
+        source: {
+            groupName: {
+                // Ajax Request
+                ajax:  function (query) {
+                    return {
+                        type: "GET",
+                        url: "/search/suggestions",
+                        data: {
+                            query: "{{query}}"
+                        },
+                        callback: {
+                            done: function (data) {
+                                return data;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде мы использовали функцию jQuery $(function () {}), чтобы убедиться, что библиотека Typeahead инициализируется после загрузки страницы. Мы также использовали функцию $.typeahead() для инициализации библиотеки Typeahead на поле ввода текста с классом typeahead.В функцию typeahead мы также передали объект с некоторыми опциями конфигурации. Опции следующие:</p>
+<p>hint: Этот параметр имеет значение true, поэтому если в списке результатов есть элемент, начинающийся с запроса пользователя, появится текст с предложением, а нажатие стрелки вправо в конце текста ввода поиска приведет к автозаполнению запроса с предложенной подсказкой.</p>
+<p>Выделение: Этот параметр устанавливается в true, чтобы выделить совпадающую часть предложения.</p>
+<p>minLength: Этот параметр задает минимальное количество символов, которое необходимо набрать, прежде чем начнут появляться предложения.</p>
+<p>source : Опция source соответствует набору(ам) данных, которые Typeahead будет просматривать для поиска совпадений со строкой запроса пользователя. Внутри source вы можете иметь несколько списков данных (групп). Вы можете настроить source.group:</p>
+<p>ajax : Эта функция выполняет AJAX-запрос к конечной точке /search/suggestions с запросом для получения предложений.</p>
+<h2 class="wp-block-heading">Шаг 4: Создание контроллера</h2>
+<p>Для обработки поисковых запросов нам необходимо создать контроллер. Выполните следующую команду для создания контроллера:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">php artisan make:controller SearchController
+</code></pre>
+<!-- /wp:code -->
+<p>Эта команда создаст класс SearchController в каталоге app/Http/Controllers. Откройте файл app/Http/Controllers/SearchController.php и добавьте следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">&#x3C;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Product;
+
+class SearchController extends Controller
+{
+    public function index(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'like', "%$query%")->get();
+
+        return view('search', compact('products'));
+    }
+
+    public function suggestions(Request $request)
+    {
+        $query = $request->input('query');
+        $suggestions = Product::where('name', 'like', "%$query%")->pluck('name');
+
+        return response()->json($suggestions);
+    }
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Мы рассматриваем модель Product (использованную в предыдущем блоге). Вы можете использовать любую другую модель по своему усмотрению.</p>
+<p>В приведенном выше коде мы создали два метода в классе SearchController. Метод index обрабатывает поисковые запросы и извлекает продукты с названиями, которые соответствуют запросу. Метод suggestions возвращает предложения для поиска Typeahead.</p>
+<h2 class="wp-block-heading">Шаг 5: Создание маршрутов</h2>
+<p>Чтобы связать форму поиска с классом SearchController, нам нужно создать маршруты. Откройте файл routes/web.php и добавьте следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="php" class="language-php">Route::get("https://dev.to/", function () {
+    return view('welcome');
+});
+Route::get('search', [SearchController::class,'index']);
+Route::get('search/suggestions', [SearchController::class,'suggestions']);
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде мы создали два маршрута. Первый маршрут привязывает конечную точку / к главному представлению. Второй маршрут связывает конечную точку поиска с методом index класса SearchController. Третий маршрут связывает конечную точку поиска/предложений с методом suggestions класса SearchController.</p>
+<h2 class="wp-block-heading">Шаг 6: Создание представления</h2>
+<p>Для отображения результатов поиска нам необходимо создать представление. Создайте новый файл resources/views/search.blade.php и добавьте в него следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markup" class="language-markup">&#x3C;table class="table">
+    &#x3C;thead>
+        &#x3C;tr>
+            &#x3C;th>ID&#x3C;/th>
+            &#x3C;th>Name&#x3C;/th>
+            &#x3C;th>Price&#x3C;/th>
+        &#x3C;/tr>
+    &#x3C;/thead>
+    &#x3C;tbody>
+        @foreach ($products as $product)
+            &#x3C;tr>
+                &#x3C;td>{{ $product->id }}&#x3C;/td>
+                &#x3C;td>{{ $product->name }}&#x3C;/td>
+                &#x3C;td>{{ $product->price }}&#x3C;/td>
+            &#x3C;/tr>
+        @endforeach
+    &#x3C;/tbody>
+&#x3C;/table>
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде мы создали таблицу для отображения результатов поиска. Переменная $products содержит результаты поиска, которые передаются из класса SearchController. Цикл @foreach итерирует массив $products и отображает информацию о продукте в таблице.</p>
+<h2 class="wp-block-heading">Шаг 7: Тестирование приложения</h2>
+<p>Наконец, мы готовы протестировать приложение. Запустите сервер разработки, выполнив следующую команду:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">php artisan serve</code></pre>
+<!-- /wp:code -->
+<p>Откройте веб-браузер и перейдите на сайт <a href="http://localhost:8000" rel="noopener noreferrer nofollow" target="_blank">http://localhost:8000</a>. Вы увидите форму поиска Typeahead. Начните вводить текст в форму поиска, и вы увидите предложения, которые появятся под полем ввода. Выберите предложение, и вы будете перенаправлены на страницу результатов поиска, где будут показаны подходящие товары.</p>
+<h2 class="wp-block-heading">Заключение</h2>
+<p>В этом руководстве мы узнали, как реализовать функцию поиска Typeahead в Laravel. Мы использовали плагин jQuery Typeahead и создали форму поиска, контроллер, маршруты и представление для обработки поисковых запросов и отображения результатов. Следуя шагам этого руководства, вы сможете реализовать функцию поиска Typeahead в своих приложениях Laravel.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как реализовать функцию поиска с автозаполнением в Laravel&url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel&title=Как реализовать функцию поиска с автозаполнением в Laravel&summary=Laravel – это популярный PHP-фреймворк с открытым исходным кодом, который широко используется для создания веб-приложений. Он предоставляет множество возможностей и функций, которые делают веб-разработку проще и быстрее. Одной из таких функций является поиск Typeahead, также известный как автозаполнение.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-realizovat-funkcziyu-poiska-s-avtozapolneniem-v-laravel&media=&description=Laravel – это популярный PHP-фреймворк с открытым исходным кодом, который широко используется для создания веб-приложений. Он предоставляет множество возможностей и функций, которые делают веб-разработку проще и быстрее. Одной из таких функций является поиск Typeahead, также известный как автозаполнение." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kak-reshit-problemu-ozhidaniya-drugoj-komandy-flutter-dlya-snyatiya-blokirovki-zapuska" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Как решить проблему ожидания другой команды flutter для снятия блокировки запуска </a> <a href="/blog/kak-razmestit-sajt-wordpress-na-amazon-lightsail" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Как разместить сайт WordPress на Amazon Lightsail </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

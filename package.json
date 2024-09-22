@@ -43,7 +43,6 @@
 		"matter": "^0.2.0",
 		"nanostores": "^0.10.0",
 		"node-fetch": "^3.3.2",
-		"postcss-import": "^16.1.0",
 		"postcss-nesting": "^12.0.4",
 		"prop-types": "^15.8.1",
 		"react": "^18.2.0",
@@ -55,7 +54,7 @@
 		"remark-directive": "^3.0.0",
 		"remark-oembed": "^1.2.2",
 		"remark-rehype": "^11.1.0",
-		"shikiji": "^0.9.10",
+		"shikiji": "^0.9.0",
 		"shikiji-transformers": "^0.9.10",
 		"simple-stack-stream": "^0.3.3",
 		"vue": "^3.4.21"

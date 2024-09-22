@@ -1,9 +1,14 @@
 {
 	"main": [
 		{
+			"id": 1,
+			"name": "Блог",
+			"url": "/blog"
+		},
+		{
 			"id": 2,
 			"name": "Контакты",
-			"url": "https://t.me/w00rg"
+			"url": "#cta"
 		}
 	]
 }

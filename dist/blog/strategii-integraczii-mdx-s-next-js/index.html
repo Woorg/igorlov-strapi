@@ -1,0 +1,514 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Стратегии интеграции MDX с Next.js - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js"><meta name="description" content="MDX – это формат на основе Markdown, широко используемый в издательском деле благодаря своей легкости и простоте. Markdown – это легкий язык разметки с синтаксисом форматирования обычного текста."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-strategii-integraczii-mdx-s-next-js; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Feb-26-2023.CKLamJTM_265EnL.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-26-2023.CKLamJTM_1G858J.webp" type="image/webp"> <img src="/_astro/undefined-Feb-26-2023.CKLamJTM_28x1dd.png" alt="Стратегии интеграции MDX с Next.js" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/учебник" class="categories__link" data-astro-cid-axzg2cw6> Учебник  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Стратегии интеграции MDX с Next.js </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/mdx" data-astro-cid-axzg2cw6> MDX </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/nextjs" data-astro-cid-axzg2cw6> Next.js </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 26 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Стратегии интеграции MDX с Next.js&url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js&title=Стратегии интеграции MDX с Next.js&summary=MDX – это формат на основе Markdown, широко используемый в издательском деле благодаря своей легкости и простоте. Markdown – это легкий язык разметки с синтаксисом форматирования обычного текста.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js&media=&description=MDX – это формат на основе Markdown, широко используемый в издательском деле благодаря своей легкости и простоте. Markdown – это легкий язык разметки с синтаксисом форматирования обычного текста." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>MDX - это формат на основе Markdown, широко используемый в издательском деле благодаря своей легкости и простоте. Markdown - это легкий язык разметки с синтаксисом форматирования обычного текста. Он разработан так, чтобы его было легко писать и читать для пользователей, которые необязательно знакомы с синтаксисом HTML, хотя он широко используется для написания веб-страниц. В этой статье мы рассмотрим, как MDX может быть интегрирован в приложения Next.js.</p>
+<h2 class="wp-block-heading">Что такое Markdown?</h2>
+<p>Markdown - это простой и мощный инструмент для форматирования текстовых документов. Всего несколькими нажатиями клавиш вы можете создавать заголовки, подчеркивать слова, создавать списки и многое другое. Markdown легко читается и пишется, позволяя создавать богатые форматированные документы без использования сложного текстового процессора.</p>
+<p>Если вы пишете в Интернете, в электронном письме или в файле программной документации, Markdown - ценный инструмент, который необходимо иметь в своем арсенале. В этой статье мы подробно рассмотрим, как легко интегрировать Markdown в Next.js.</p>
+<h2 class="wp-block-heading">Next.js и Markdown</h2>
+<p>Next.js - это JavaScript-фреймворк для создания серверных рендеринговых и статически генерируемых приложений. Одной из интересных особенностей Next.js является его интеграция с Markdown. С помощью Next.js вы можете легко импортировать и отображать файлы Markdown в своем приложении. Это может быть полезно при создании постов в блогах, документации или другого контента, требующего форматирования.</p>
+<p>Чтобы использовать Markdown в Next.js, вам нужно установить необходимые зависимости, такие как remark и rehype-react. Затем вы будете использовать компонент remark-react для рендеринга контента в формате Markdown. Это позволит вам писать контент в простом и легко читаемом синтаксисе, а Next.js позаботится о рендеринге и форматировании.</p>
+<p>В этом учебнике мы будем использовать next/mdx, next-mdx-remote и next-mdx-enhanced для реализации Markdown.</p>
+<h2 class="wp-block-heading">Реализация Markdown с помощью next/mdx</h2>
+<p>Чтобы начать работу, установите следующие зависимости:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npm install @next/mdx @mdx-js/loader @mdx-js/react
+</code></pre>
+<!-- /wp:code -->
+<p>Чтобы настроить страницу, добавьте следующий код в файл next.config.js:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+};
+
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    providerImportSource: '@mdx-js/react',
+  },
+});
+
+module.exports = nextConfig;
+
+module.exports = withMDX({
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+});
+</code></pre>
+<!-- /wp:code -->
+<p>После добавления приведенного выше кода в ваш проект Next.js каждый файл с расширением .mdx будет преобразован в страницу.</p>
+<p>Далее создайте файл внутри каталога ./pages, например ./pages/blog/hello-world.mdx. Затем вы можете написать в этом файле Markdown, хотя он может показаться простым. Вот как это будет выглядеть:</p>
+<!-- wp:image {"align":"center","id":158183} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/next-js-mdx-blog.png?is-pending-load=1" alt="Пример блога, демонстрирующий интеграцию MDX в Next.js" class="wp-image-158183"></figure>
+<!-- /wp:image -->
+<p>Теперь мы создадим макет для страницы нашего блога, чтобы персонализировать наши HTML-компоненты. Создайте файл в месте ./layouts/Layout.tsx и введите в него следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { MDXProvider } from '@mdx-js/react';
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+function Layout ({children, ...props}: LayoutProps) {
+   return (
+    &#x3C;MDXProvider components={components}>
+      {children}
+    &#x3C;/MDXProvider>
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Затем добавьте этот компонент Layout на страницу Markdown:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import Layout from '../../components/layout';
+
+# Hello World!
+
+{/* Markdown content */}
+
+export default ({ children }) => &#x3C;Layout>{children}&#x3C;/Layout>;
+</code></pre>
+<!-- /wp:code -->
+<p>Хотя сейчас ничего особенного не происходит, мы создали основу для настройки нашей страницы Markdown. Теперь давайте создадим несколько основных пользовательских компонентов, начиная с тегов заголовков.</p>
+<h2 class="wp-block-heading">Создание пользовательских компонентов</h2>
+<p>В ./components/mdx/Heading.tsx добавьте следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const Heading = {
+  H1: ({ children }) => &#x3C;h1 className="text-2xl font-bold">{children}&#x3C;/h1>,
+  H2: ({ children }) => &#x3C;h2 className="text-xl font-bold">{children}&#x3C;/h2>,
+};
+</code></pre>
+<!-- /wp:code -->
+<p>Аналогично, добавьте один для тега абзаца в ./components/mdx/Para.tsx:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">function Para({ children }) {
+  return &#x3C;p className="text-gray-700 my-4 text-base">{children}&#x3C;/p>;
+}
+export default Para;
+</code></pre>
+<!-- /wp:code -->
+<p>Вы можете создавать более уникальные компоненты на основе спецификаций. Вы можете получить доступ к инструментам разработчика, нажав Ctrl + Shift + C. Вы можете навести курсор на элемент, который хотите изучить, чтобы увидеть, какие элементы обернуты вокруг него на сайте:</p>
+<!-- wp:image {"align":"center","id":158185} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/next-js-mdx-custom.png?is-pending-load=1" alt="Добавление пользовательских компонентов MDX Next.js" class="wp-image-158185"></figure>
+<!-- /wp:image -->
+<p>Далее перейдите к компоненту Layout и добавьте следующие изменения:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">const components = {
+  h1: Heading.H1,
+  h2: Heading.H2,
+  p: Para,
+  ul: UnorderedList,
+};
+
+function Layout ({children, ...props}: LayoutProps) {
+  return (
+    &#x3C;MDXProvider components={components}>
+      &#x3C;div className="w-[80%] mx-auto p-6">
+        {children}
+      &#x3C;/div>
+    &#x3C;/MDXProvider>
+  )
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Выглядит лучше!</p>
+<!-- wp:image {"align":"center","id":158188} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/mdx-next-js-integration.png?is-pending-load=1" alt="Компоненты в MDX и Next.js Blog" class="wp-image-158188"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading">Добавление метаданных</h2>
+<p>Еще один прием, который можно использовать с next/mdx, - добавление метаданных к содержимому Markdown. Это может быть полезно при добавлении SEO к вашей странице Markdown.</p>
+<p>Теперь добавьте следующий код к странице Markdown, которую вы только что создали:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const meta = {
+  author: 'Georgey',
+  title: 'Introduction to Technical Writing',
+  slug: 'introduction-to-technical-writing',
+  topics: [
+    'technical writing',
+    'software engineering',
+    'technical writing basics',
+  ],
+};
+
+{/* Makrdown content */}
+
+export default ({ children }) => &#x3C;Layout meta={meta}>{children}&#x3C;/Layout>;
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь к этому объекту можно получить доступ с помощью компонента Layout.tsx, который мы создали ранее. В файле ./layouts/Layout.tsx добавьте содержимое метаданных в компонент Head, предоставленный Next.js:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// ...imports
+import Head from "next/head"
+
+interface LayoutProps {
+  children: React.ReactNode;
+  meta: { author: string; title: string; slug: string; topics: string[] };
+}
+
+function Layout ({children, ...props}: LayoutProps) {
+  return (
+    &#x3C;MDXProvider components={components}>
+      &#x3C;Head>
+        &#x3C;title>{props.meta.title}&#x3C;/title>
+        &#x3C;meta name="description" content={props.meta.title} />
+      &#x3C;/Head>
+    &#x3C;/MDXProvider>
+  )
+}
+</code></pre>
+<!-- /wp:code -->
+<p>После этого наша страница может быть проиндексирована веб-краулерами без проблем и заработать балл в рейтинге Lighthouse. Теперь, когда у нас есть метаданные, мы также можем включить их в раздел TL;DR страницы, чтобы предоставить читателям краткий обзор.</p>
+<p>В компонент ./layouts/Layout.tsx добавьте следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">function Layout ({children, ...props}: LayoutProps) {
+  return (
+    &#x3C;MDXProvider>
+      &#x3C;div className="w-[80%] mx-auto p-6">
+        {/* Head */}
+
+
+
+        &#x3C;div className="flex flex-col mt-6 mb-10 items-center justify-center text-center">
+          &#x3C;h1 className="text-3xl font-bold">{props.meta.title}&#x3C;/h1>
+          &#x3C;p className="text-md text-gray-500">By {props.meta.author}&#x3C;/p>
+          {/* topics */}
+          &#x3C;div className="flex flex-wrap gap-2 mt-4">
+            {props.meta.topics.map((topic) => (
+              &#x3C;span
+                key={topic}
+                className="text-sm text-gray-500 bg-gray-200 rounded-full px-2 py-1"
+              >
+                {topic.slice(0, 1).toUpperCase() + topic.slice(1)}
+              &#x3C;/span>
+            ))}
+          &#x3C;/div>
+        &#x3C;/div>
+
+
+        {children}
+      &#x3C;/div>
+    &#x3C;/MDXProvider>
+  )
+} 
+</code></pre>
+<!-- /wp:code -->
+<p>Чтобы помочь пользователю понять релевантность страницы, мы отобразили ключевые теги, к которым относится статья, в разделе выше. Вот как это будет выглядеть:</p>
+<!-- wp:image {"align":"center","id":158193} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/mdx-next-js-integration-metadata.png?is-pending-load=1" alt="MDX and Next.js Integration Adding Metadata" class="wp-image-158193"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading">Интеграция MDX с next-mdx-remote</h2>
+<p>Чтобы увидеть код для этого метода в репозитории, измените ветку на using-next-mdx-remote, чтобы ссылаться на код для next-mdx-remote.</p>
+<p>Чтобы начать работу с next-mdx-remote, установите указанную ниже зависимость:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">npm install next-mdx-remote
+</code></pre>
+<!-- /wp:code -->
+<p>Вы можете закомментировать конфигурации, которые мы добавили в файл next.config.js ранее для next/mdx. Для next-mdx-remote они нам не понадобятся.</p>
+<p>Далее очистите файлы Markdown внутри каталога ./pages/blog и переместите их в отдельный каталог за пределами ./pages в каталог под названием ./database. Внутри каталога ./database создайте все файлы Markdown в отдельном каталоге для каждой страницы статьи.</p>
+<p>Ваша файловая структура должна выглядеть следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markdown" class="language-markdown">- pages
+  |- blog
+    |- [slug].tsx
+- database
+  |- intro-to-technical-writing
+    |- intro-to-technical-writing.mdx
+</code></pre>
+<!-- /wp:code -->
+<p>Этот формат файла будет полезен, когда мы будем добавлять в статьи элементы, например, изображения. После этого из файла Markdown и объекта метаданных нужно удалить строку экспорта. Теперь вы можете включить в свой Markdown-файл функцию под названием frontmatter.</p>
+<p>Это будет служить метаданными нашей страницы и автоматически обрабатываться при получении содержимого Markdown:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markdown" class="language-markdown"><code>--- 
+
+title: Intro to technical writing
+author: Georgey
+topics: technical writing, writing, documentation
+description: A short introduction to technical writing
+--- 
+
+# Intro to technical writing
+Technical writing is the process of writing and sharing information in a professional setting. A technical writer, or tech writer, is a person who produces technical...
+{/* ...content below */}</code>
+</code></pre>
+<!-- /wp:code -->
+<p>Осталось только настроить next-mdx-remote внутри файла [slug].tsx. Мы будем использовать функцию динамических маршрутов Next.js для создания страницы для каждого файла в каталоге ./database.</p>
+<p>Мне больше нравится этот подход, поскольку он отделяет содержимое Markdown от кода извлечения данных, который имеет большее значение. Внутри [slug].tsx добавьте следующие строки:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import fs from "fs"
+
+export async function getStaticPaths() {
+  const files = fs.readdirSync('database');
+  return {
+    paths: files.map((file) => ({
+      params: {
+        slug: file,
+      },
+    })),
+    fallback: false,
+  };
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Динамические маршруты внутри ./pages должны быть указаны с количеством маршрутов, сгенерированных статически во время сборки. Для этого используется getStaticPaths. Мы можем использовать модуль файловой системы Node.js для получения имен файлов, которые будут использоваться в качестве имен маршрутов для каждой страницы статьи.</p>
+<p>Как только это будет сделано, останется только получить конкретное содержимое Markdown. Для этого создайте функцию getStaticProps и включите в нее следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { GetStaticPropsContext } from 'next';
+import { serialize } from "next-mdx-remote/serialize"
+import path from "path"
+
+export async function getStaticProps(ctx: GetStaticPropsContext) {
+  const { slug } = ctx.params;
+
+  const source = fs.readFileSync(
+    path.join('database', slug as string, (slug + '.mdx') as string),
+    'utf8'
+  );
+
+  const mdxSource = await serialize(source, { parseFrontmatter: true });
+  return {
+    props: {
+      source: mdxSource,
+    },
+  };
+}
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше коде запрашиваемый slug используется в качестве параметра для получения содержимого Markdown из каталога ./database. Опять же, используя модуль fs, содержимое Markdown извлекается и сериализуется в JSX для использования парсером, предоставляемым next-mdx-remote.</p>
+<p>Мы будем использовать его на стороне клиента в ближайшее время. Обратите внимание, что мы передаем дополнительный объект в функцию serialize со свойством parseFrontmatter, чтобы разобрать frontmatter из содержимого Markdown. Без этого вы могли бы получить пустой объект после сериализации.</p>
+<h2 class="wp-block-heading">Настройка клиентской части</h2>
+<p>Теперь перейдем к клиентской части. Добавьте следующий код, чтобы сразу увидеть Markdown:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { MDXRemote } from 'next-mdx-remote';
+import Head from 'next/head';
+
+function ArticlePage({
+  source,
+}: InferGetStaticPropsType&#x3C;typeof getStaticProps>) {
+  return (
+    &#x3C;div>
+      &#x3C;Head>
+        &#x3C;title>{source.frontmatter.title}&#x3C;/title>
+      &#x3C;/Head>
+      &#x3C;MDXRemote {...source} />
+    &#x3C;/div>
+  );
+}
+
+// getStaticPaths + getStaticProps
+
+export default ArticlePage;</code></pre>
+<!-- /wp:code -->
+<!-- wp:image {"align":"center","id":158197} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/mdx-remote-next-js.png?is-pending-load=1" alt="Интеграция MDX и Next.js с MDX-Remote" class="wp-image-158197"></figure>
+<!-- /wp:image -->
+<p>Как и раньше, давайте добавим несколько пользовательских компонентов к парсеру MDX. Это довольно просто сделать в next-mdx-remote:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+ &#x3C;MDXRemote
+  {...source}
+  components={{
+   h1: Heading.H1,
+   h2: Heading.H2,
+   p: Para,
+   ul: UnorderedList,
+  }}
+ />
+&#x3C;/div>
+</code></pre>
+<!-- /wp:code -->
+<p>Затем импортируйте пользовательские компоненты, которые мы использовали ранее для @next/mdx:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import { Heading } from '../../components/mdx/Heading';
+import Para from '../../components/mdx/Para';
+import UnorderedList from '../../components/mdx/UnorderedList';
+</code></pre>
+<!-- /wp:code -->
+<p>И, вуаля!</p>
+<!-- wp:image {"align":"center","id":158199} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/mdx-integration.png?is-pending-load=1" alt="Улучшенный результат интеграции MDX в Next.js" class="wp-image-158199"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading">Использование react-markdown для интеграции MDX</h2>
+<p>Теперь мы рассмотрим использование react-markdown в качестве стратегии для интеграции MDX. Сначала установите следующие зависимости:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npm install react-markdown gray-matter
+</code></pre>
+<!-- /wp:code -->
+<p>gray-matter - это пакет для разбора frontmatter, имеющегося на нашей странице, в отличие от встроенной функции serialize в next-mdx-remote.</p>
+<p>Давайте перейдем к нашему файлу [slug].tsx. Функция getStaticPaths останется прежней, поскольку мы получаем имена файлов. В функции getStaticProps изменится только одна вещь, а именно замена функции serialize на gray-matter. gray-matter помогает разобрать содержимое метаданных, имеющихся на странице Markdown, и сериализовать его соответствующим образом.</p>
+<p>Импортируйте gray-matter likewise и добавьте следующий код:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import matter from 'gray-matter';
+
+export async function getStaticProps(ctx: GetStaticPropsContext) {
+  const { slug } = ctx.params;
+  const source = fs.readFileSync(
+    path.join('database', slug as string, (slug + '.md') as string),
+    'utf8'
+  );
+  const { data, content } = matter(source);
+  return {
+    props: {
+      data,
+      content,
+    },
+  };
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Возвращаемое значение функции matter может быть деструктурировано для получения данных и содержимого. Обратите внимание, что мы будем использовать расширение файла .md для react-markdown вместо .mdx, поэтому обязательно внесите это изменение в метод path.join() выше. Далее перейдите к функции client и добавьте следующие строки:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import ReactMarkdown from "react-markdown"
+
+function ArticlePage({
+  data,
+  content,
+}: InferGetStaticPropsType&#x3C;typeof getStaticProps>) {
+  return (
+    {/* header and layout */}
+    &#x3C;Layout meta={data}>
+      &#x3C;ReactMarkdown children={content} />
+    &#x3C;/Layout>
+  )
+}   
+</code></pre>
+<!-- /wp:code -->
+<p>После этого ваша страница сможет отображать содержимое в формате Markdown. Далее, как обычно, добавим наши пользовательские компоненты. Опять же, это довольно просто в react-markdown:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;ReactMarkdown
+  children={content}
+  components={{
+    h1: Heading.H1,
+    h2: Heading.H2,
+    p: Para,
+    ul: UnorderedList,
+  }}
+/>
+</code></pre>
+<!-- /wp:code -->
+<p>Чтобы просмотреть полный список настраиваемых компонентов, посетите официальную страницу MDX.js.</p>
+<h2 class="wp-block-heading">Ленивая загрузка и оптимизация изображений</h2>
+<p>Наша статья также может содержать изображения, поэтому давайте настроим тег img на использование компонента Next.js Image, который позволяет ленивую загрузку и оптимизацию изображений.</p>
+<p>Сначала создайте новый файл ./components/mdx/Image.tsx:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">import Image from 'next/legacy/image';
+
+function CustomImage({ src, alt, ...props }) {
+  return (
+    &#x3C;div className="w-[10rem] p-10 mx-auto">
+      &#x3C;Image
+        src={src}
+        width={300}
+        height={100}
+        layout="responsive"
+        alt={alt}
+        {...props}
+      />
+    &#x3C;/div>
+  );
+}
+export default CustomImage;
+</code></pre>
+<!-- /wp:code -->
+<p>Затем добавьте его в конфигурацию внутри компонента ReactMarkdown:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;ReactMarkdown
+  children={content}
+  components={{
+    h1: Heading.H1,
+    h2: Heading.H2,
+    p: Para,
+    ul: UnorderedList,
+    image: ({ src, alt, ...props }) => {
+      return &#x3C;CustomImage src={src} alt={alt} {...props} />;
+    },
+  }}
+/>
+</code></pre>
+<!-- /wp:code -->
+<p>После этого вы сможете просмотреть изображение:</p>
+<!-- wp:image {"align":"center","id":158202} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/next-js-image-mdx.png?is-pending-load=1" alt="Добавление изображений в блог с помощью MDX и Next.js" class="wp-image-158202"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading">Добавление подсветки синтаксиса</h2>
+<p>Еще одна интересная функция, которую вы можете добавить в свои блоги, - подсветка синтаксиса для блоков кода. Для этого мы будем использовать react-syntax-highlighter. Чтобы установить его, используйте npm следующим образом:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">npm install react-syntax-highlighter
+</code></pre>
+<!-- /wp:code -->
+<p>Затем импортируйте Provider и тему, которую мы будем использовать для блоков кода:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// syntax-highlighter
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+</code></pre>
+<!-- /wp:code -->
+<p>Внутри компонента ReactMarkdown добавьте еще один пользовательский компонент:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">&#x3C;ReactMarkdown
+  children={content}
+  components={{
+    ...components,
+    code({ node, inline, className, children, ...props }) {
+     const match = /language-(\w+)/.exec(className || '');
+     return !inline &#x26;&#x26; match ? (
+      &#x3C;SyntaxHighlighter
+       children={String(children).replace(/\n$/, '')}
+       style={atomDark}
+       language={match[1]}
+       PreTag="div"
+       {...props}
+      />
+     ) : (
+      &#x3C;span className={className} {...props}>
+       {children}
+      &#x3C;/span>
+     );
+    },
+  }}
+/>
+</code></pre>
+<!-- /wp:code -->
+<p>Эта строка кода проверяет содержимое Markdown на наличие одного тега кода ”<code>” или блока кода, который обычно обернут в “</code>---content---“”. Если это блок кода, он извлекает язык и присваивает его компоненту SyntaxHighlighter, добавляя соответствующую подсветку синтаксиса. После добавления этой функции вы должны увидеть следующую тему на ваших фрагментах кода:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="markdown" class="language-markdown">```js
+let name = "Georgey";
+
+console.log("Hello " + name );
+```
+</code></pre>
+<!-- /wp:code -->
+<!-- wp:image {"align":"center","id":158208} -->
+<figure class="wp-block-image aligncenter"><img src="https://blog.logrocket.com/wp-content/uploads/2023/02/mdx-next-js-image-optimization.png?is-pending-load=1" alt="Next.js Image Optimization" class="wp-image-158208"></figure>
+<!-- /wp:image -->
+<h2 class="wp-block-heading">Заключение</h2>
+<p>В заключение следует отметить, что три различные стратегии интеграции MDX, описанные в этой статье, имеют уникальные преимущества и компромиссы. Добавив @next/mdx в свой проект Next.js, вы сможете легко писать JSX в своих Markdown-файлах и использовать преимущества автоматического разделения кода, предоставляемого Next.js.</p>
+<p>next-mdx-remote позволяет отделить содержимое Markdown от кодовой базы и упростить управление. В то же время react-markdown предоставляет вам легкое решение для преобразования Markdown в JSX с минимальной настройкой. В конечном итоге наилучшая стратегия интеграции MDX для вашего проекта Next.js будет зависеть от ваших конкретных потребностей и требований.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Стратегии интеграции MDX с Next.js&url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js&title=Стратегии интеграции MDX с Next.js&summary=MDX – это формат на основе Markdown, широко используемый в издательском деле благодаря своей легкости и простоте. Markdown – это легкий язык разметки с синтаксисом форматирования обычного текста.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/strategii-integraczii-mdx-s-next-js&media=&description=MDX – это формат на основе Markdown, широко используемый в издательском деле благодаря своей легкости и простоте. Markdown – это легкий язык разметки с синтаксисом форматирования обычного текста." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/svelte-protiv-react-osobennosti-proizvoditelnost-i-mnogoe-drugoe" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Svelte против React: Особенности, производительность и многое другое </a> <a href="/blog/stylyzatsyia-soobschenyi-tostov-s-pomoschiu-react-toastify" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Стилизация сообщений тостов с помощью React-Toastify </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>
