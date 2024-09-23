@@ -1,0 +1,1057 @@
+<!DOCTYPE html><html lang="ru"> <head><title>DevOps С Fast API И PostgreSQL: Как Контейнеризировать...
+</title><link rel="canonical" href="https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovat%D1%8C-prilozhenie-fast-api-s-pomosh%D1%8Cyu-docker"><meta name="description" content="(https://fastapi.tiangolo.com/) - это современный фреймворк с открытым исходным кодом, который используется для построения API на языке Python.
+"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-devops-s-fast-api-i-postgresql-kak-kontejnerizirovat\44C-prilozhenie-fast-api-s-pomosh\44Cyu-docker; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/devops-s-fast-api-i-postgresql-kak-kontejnerizirovat%D1%8C-prilozhenie-fast-api-s-pomosh%D1%8Cyu-docker-Nov-18-2023.CQ_n79fl_Z2p2txA.avif" type="image/avif"><source srcset="/_astro/devops-s-fast-api-i-postgresql-kak-kontejnerizirovat%D1%8C-prilozhenie-fast-api-s-pomosh%D1%8Cyu-docker-Nov-18-2023.CQ_n79fl_Vc7gf.webp" type="image/webp"> <img src="/_astro/devops-s-fast-api-i-postgresql-kak-kontejnerizirovat%D1%8C-prilozhenie-fast-api-s-pomosh%D1%8Cyu-docker-Nov-18-2023.CQ_n79fl_Z1Mc2fG.png" alt="DevOps с Fast API и PostgreSQL: Как контейнеризировать приложение Fast API с помощью Docker" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> DevOps с Fast API и PostgreSQL: Как контейнеризировать приложение Fast API с помощью Docker </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/devops" data-astro-cid-axzg2cw6> DevOps </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/postgresql" data-astro-cid-axzg2cw6> PostgreSQL </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/docker" data-astro-cid-axzg2cw6> Docker </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 18 нояб., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=DevOps с Fast API и PostgreSQL: Как контейнеризировать приложение Fast API с помощью Docker&url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker&title=DevOps с Fast API и PostgreSQL: Как контейнеризировать приложение Fast API с помощью Docker&summary=(https://fastapi.tiangolo.com/) - это современный фреймворк с открытым исходным кодом, который используется для построения API на языке Python.
+&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker&media=&description=(https://fastapi.tiangolo.com/) - это современный фреймворк с открытым исходным кодом, который используется для построения API на языке Python.
+" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details open class="toc border-b border-blue text-blue fluid:p-8 overflow-auto cursor-pointer bg-box"><summary class="toc__title text-xl font-medium">Содержание</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#необходимые-условия-и-инструменты">Необходимые условия и инструменты.</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#начало-работы-с-fastapi">Начало работы с FastAPI</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#настройка-нашего-окружения-docker">Настройка нашего окружения docker</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#переменные-окружения-с-fastapi">Переменные окружения с FastAPI.</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#генерация-уникальных-идентификаторов">Генерация уникальных идентификаторов.</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#настройка-параметров-в-fastapi">Настройка параметров в FastAPI</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#создание-наших-моделей-в-fast-api">Создание наших моделей в Fast API</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#создание-схем-в-fast-api">Создание схем в Fast API.</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#создание-crud-операций-в-fast-api">Создание CRUD-операций в Fast API</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#создание-сеанса-работы-с-базой-данных">Создание сеанса работы с базой данных</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#создание-зависимостей-fast-api">Создание зависимостей Fast API</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#создание-конечных-точек-списков-товаров">Создание конечных точек списков товаров</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#запуск-api-списков-товаров">Запуск API списков товаров</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#быстрая-миграция-базы-данных-api">Быстрая миграция базы данных API</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#тестирование-нашего-api">Тестирование нашего API</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#post-запрос-fast-api">POST-запрос Fast API</a></li><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#get-запрос-постраничные-данные">GET-запрос (постраничные данные)</a></li></ol></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#бонусные-баллы">Бонусные баллы</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#заключение">Заключение</a></li></ol></details open><p><a href="https://fastapi.tiangolo.com/" rel="noopener noreferrer nofollow" target="_blank">FastAPI</a> - это современный фреймворк с открытым исходным кодом, который используется для построения API на языке Python.</p>
+<p><a href="https://www.postgresql.org/" rel="noopener noreferrer nofollow" target="_blank">PostgreSQL</a> - объектно-реляционная система управления базами данных с открытым исходным кодом.</p>
+<p>В этом уроке мы создадим пример RESTful API с помощью Fast API и используем возможности хранения данных с помощью PostgreSQL. Затем мы контейнеризируем наш API и базу данных с помощью файлов <a href="https://docs.docker.com/engine/reference/builder/" rel="noopener noreferrer nofollow" target="_blank">Dockerfile</a> и <a href="https://docs.docker.com/get-started/08_using_compose/" rel="noopener noreferrer nofollow" target="_blank">Docker Compose</a>. Dockerfile - это текстовый файл, содержащий последовательность инструкций, которые будут выполнены в файле Docker Compose для создания контейнера. Docker compose - это инструмент для определения и совместного использования многоконтейнерных контейнеров Docker. Наше приложение будет состоять из двух контейнеров. Контейнер Fast API и контейнер PostgreSQL.</p>
+<h2 id="необходимые-условия-и-инструменты"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#prerequisites-and-tools" rel="noopener noreferrer nofollow" target="_blank"></a>Необходимые условия и инструменты.<a aria-hidden="true" tabindex="-1" href="#необходимые-условия-и-инструменты"><span class="icon icon-link"></span></a></h2>
+<ol>
+<li>Docker - Вам необходимо иметь базовое представление о том, как работает docker. Чтобы понять, как работает docker, вы можете обратиться к моей предыдущей статье <a href="https://dev.to/mbuthi/docker-2oge" rel="noopener noreferrer nofollow" target="_blank">Getting started with docker</a>. Вы узнаете, как установить docker, как работает docker и команды docker.</li>
+<li><a href="https://www.python.org/" rel="noopener noreferrer nofollow" target="_blank">Python</a> - На вашей машине должен быть установлен Python. Предпочтительно python 3.10.</li>
+<li><a href="https://code.visualstudio.com/download" rel="noopener noreferrer nofollow" target="_blank">VsCode</a></li>
+</ol>
+<h2 id="начало-работы-с-fastapi"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#getting-started-with-fastapi" rel="noopener noreferrer nofollow" target="_blank"></a>Начало работы с FastAPI<a aria-hidden="true" tabindex="-1" href="#начало-работы-с-fastapi"><span class="icon icon-link"></span></a></h2>
+<p>Мы создадим на Python пример приложения для работы с листингом товаров, в котором наши пользователи смогут выполнять CRUD-операции через API. Для хранения данных о товарах мы будем использовать PostgreSQL. Однако нам необходимо понять, как будет выглядеть структура каталогов нашего проекта. Ниже приведен снимок структуры каталогов проекта в FastAPI:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>.</span></span>
+<span class="line"><span>└── FastAPI_APP/</span></span>
+<span class="line"><span>    ├──── app/</span></span>
+<span class="line"><span>    │ ├──── api/</span></span>
+<span class="line"><span>    │ │ ├── v1/</span></span>
+<span class="line"><span>    │ │ │ │ ├──── endpoints/</span></span>
+<span class="line"><span>    │ │ │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ │ │ │ └──── products.py</span></span>
+<span class="line"><span>    │ │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ │ │ └──── api.py</span></span>
+<span class="line"><span>    │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ │ └──── deps.py</span></span>
+<span class="line"><span>    │ ├──── core/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ └──── settings.py</span></span>
+<span class="line"><span>    │ ├──── crud/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ ├──── base.py</span></span>
+<span class="line"><span>    │ │ └──── product.py</span></span>
+<span class="line"><span>    │ ├──── db/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ └──── session.py</span></span>
+<span class="line"><span>    │ ├──── models/</span></span>
+<span class="line"><span>    │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ ├──── basemodel.py</span></span>
+<span class="line"><span>    │ │ └──── products.py</span></span>
+<span class="line"><span>    │ ├──── schemas/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ └──── product.py</span></span>
+<span class="line"><span>    │ └──── utils/</span></span>
+<span class="line"><span>    │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ └──── idgen.py</span></span>
+<span class="line"><span>    └──── main.py</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>В общих чертах:</p>
+<ul>
+<li>FastAPI_APP - Это корневой каталог нашего приложения.</li>
+<li>app - Хранит сервисы нашего API.</li>
+<li>main.py - Это точка входа в API.</li>
+<li>api - Содержит конечные точки API.</li>
+<li>core - Содержит основные функции, такие как настройки и логирование.</li>
+<li>crud - Содержит CRUD-операции (Create, Read, Update, Delete).</li>
+<li>db - Содержит код, связанный с базой данных.</li>
+<li>models - Содержит модели баз данных.</li>
+<li>utils - Содержит служебные функции и классы.</li>
+</ul>
+<p>Для начала создания API необходимо установить Vscode или другую IDE. Затем создайте новый проект со структурой каталогов, показанной выше.</p>
+<h2 id="настройка-нашего-окружения-docker"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#setting-up-our-docker-environment" rel="noopener noreferrer nofollow" target="_blank"></a>Настройка нашего окружения docker<a aria-hidden="true" tabindex="-1" href="#настройка-нашего-окружения-docker"><span class="icon icon-link"></span></a></h2>
+<p>Для начала мы создадим файл docker compose и файл docker для нашего приложения.<br>
+Для этого перейдите в vscode code, откройте файл с именем <strong>Dockerfile</strong> и вставьте в него приведенные ниже инструкции.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Использовать официальный образ python из хаба docker</span></span>
+<span class="line"><span>FROM python:3.10.13-bullseye</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># предотвращает копирование файлов pyc в контейнер</span></span>
+<span class="line"><span>ENV PYTHONDONTWRITEBYTECODE 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Обеспечивает протоколирование вывода python в терминале контейнера</span></span>
+<span class="line"><span>ENV PYTHONUNBUFFERED 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RUN apt-get update \</span></span>
+<span class="line"><span>  # зависимости для сборки пакетов Python</span></span>
+<span class="line"><span>  &#x26;&#x26; apt-get install -y build-essential \</span></span>
+<span class="line"><span>  # зависимости psycopg2</span></span>
+<span class="line"><span>  &#x26;&#x26; apt-get install -y libpq-dev \</span></span>
+<span class="line"><span>  # Зависимости перевода</span></span>
+<span class="line"><span>  &#x26;&#x26; apt-get install -y gettext \</span></span>
+<span class="line"><span>  # очистка неиспользуемых файлов</span></span>
+<span class="line"><span>  &#x26;&#x26; apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \</span></span>
+<span class="line"><span>  &#x26;&#x26; rm -rf /var/lib/apt/lists/*</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Скопировать файл 'requirements.txt' из локального контекста сборки в файловую систему контейнера.</span></span>
+<span class="line"><span>COPY ./requirements.txt /requirements.txt</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Установить зависимости python</span></span>
+<span class="line"><span>RUN pip install -r /requirements.txt --no-cache-dir</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Установить рабочий каталог</span></span>
+<span class="line"><span>WORKDIR /app</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Запустите программу Uvicorn для запуска веб-приложения на языке Python</span></span>
+<span class="line"><span>CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Далее мы создадим наш файл docker compose. Внутри vscode откройте файл <strong>docker-compose.yml</strong> и вставьте в него следующие инструкции.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># указать версию композита</span></span>
+<span class="line"><span>version: '3.7'</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Указываем сервисы для нашей установки docker compose</span></span>
+<span class="line"><span>services:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  api:</span></span>
+<span class="line"><span>    build:</span></span>
+<span class="line"><span>      # путь к директории, содержащей Dockerfile</span></span>
+<span class="line"><span>      контекст: .</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      # Укажите имя образа</span></span>
+<span class="line"><span>    image: products_api</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # этот том используется для отображения файлов и папок на хосте на контейнер</span></span>
+<span class="line"><span>    # таким образом, если мы изменим код на хосте, код в докер-контейнере также будет изменен</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      - .:/app</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Сопоставление порта 8000 на хосте с портом 8000 в контейнере</span></span>
+<span class="line"><span>    ports:</span></span>
+<span class="line"><span>      - 8000:8000</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Указать путь к файлу .env</span></span>
+<span class="line"><span>    env_file:</span></span>
+<span class="line"><span>      - ./.env</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Определите зависимость от сервиса "products_db", чтобы он запускался первым</span></span>
+<span class="line"><span>    depends_on:</span></span>
+<span class="line"><span>      - products_db</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  products_db:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # указать имя образа нашей базы данных</span></span>
+<span class="line"><span>    # Если образ не найден в нашем локальном репозитории</span></span>
+<span class="line"><span>    # Он будет взят из реестра докеров, которым является Docker Hub</span></span>
+<span class="line"><span>    image: postgres:16rc1-alpine3.18</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Монтируем том для хранения данных postgreSQL</span></span>
+<span class="line"><span>    volumes:</span></span>
+<span class="line"><span>      - postgres_data:/var/lib/postgresql/data/</span></span>
+<span class="line"><span>    окружение:  # Использовать переменные окружения для настройки db</span></span>
+<span class="line"><span>      - POSTGRES_USER=${POSTGRES_USER}</span></span>
+<span class="line"><span>      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}</span></span>
+<span class="line"><span>      - POSTGRES_DATABASE=${POSTGRES_DATABASE}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определите том для сохранения данных postgreSQL</span></span>
+<span class="line"><span>volumes:</span></span>
+<span class="line"><span>  postgres_data:</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<h2 id="переменные-окружения-с-fastapi"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#environment-variables-with-fastapi" rel="noopener noreferrer nofollow" target="_blank"></a>Переменные окружения с FastAPI.<a aria-hidden="true" tabindex="-1" href="#переменные-окружения-с-fastapi"><span class="icon icon-link"></span></a></h2>
+<p>Далее мы создадим файл <code>.env</code> и инстанцируем наши переменные окружения. Внутри вашего vscode откройте файл .env и включите в него следующие переменные</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Хост базы данных PostgreSQL</span></span>
+<span class="line"><span>POSTGRES_HOST=products_db</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Пользователь базы данных PostgreSQL</span></span>
+<span class="line"><span>POSTGRES_USER=имя пользователя</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Пароль базы данных PostgreSQL</span></span>
+<span class="line"><span>POSTGRES_PASSWORD=пароль</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Имя базы данных PostgreSQL</span></span>
+<span class="line"><span>POSTGRES_DATABASE=database</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Порт базы данных PostgreSQL</span></span>
+<span class="line"><span>POSTGRES_PORT=5432</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># URI асинхронной базы данных для подключения к PostgreSQL</span></span>
+<span class="line"><span>ASYNC_DATABASE_URI=postgresql+asyncpg://username:password@products_db:5432/database</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Название проекта или приложения</span></span>
+<span class="line"><span>PROJECT_NAME=Product Listings</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Файл .env содержит чувствительные переменные. Включение этих
+чувствительных переменных в файл .env всегда является хорошей практикой.</p>
+<h2 id="генерация-уникальных-идентификаторов"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#generating-unique-ids" rel="noopener noreferrer nofollow" target="_blank"></a>Генерация уникальных идентификаторов.<a aria-hidden="true" tabindex="-1" href="#генерация-уникальных-идентификаторов"><span class="icon icon-link"></span></a></h2>
+<p>В нашем приложении FastAPI мы определим надежную служебную функцию для генерации уникальных идентификаторов. Эта функция будет использовать модуль UUID. Перейдите в папку utils module/, откройте файл idgen.py и вставьте в него фрагмент кода, приведенный ниже.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>import uuid</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def idgen() -> str:</span></span>
+<span class="line"><span>    # Генерируем случайную строку uuid</span></span>
+<span class="line"><span>    return str(uuid.uuid4().hex)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<h2 id="настройка-параметров-в-fastapi"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#settings-configuration-in-fastapi" rel="noopener noreferrer nofollow" target="_blank"></a>Настройка параметров в FastAPI<a aria-hidden="true" tabindex="-1" href="#настройка-параметров-в-fastapi"><span class="icon icon-link"></span></a></h2>
+<p>Далее мы создадим класс настроек. Этот класс будет наследоваться от базового класса настроек pydantic. Класс будет отвечать за загрузку переменных окружения в контекст приложения и определение других настроек приложения. Откройте файл с именем settings.py в своем vscode и вставьте следующий фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># import packages</span></span>
+<span class="line"><span>from pydantic_settings import BaseSettings</span></span>
+<span class="line"><span>импортировать os</span></span>
+<span class="line"><span>from dotenv import load_dotenv</span></span>
+<span class="line"><span>импортировать секреты</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>load_dotenv()</span></span>
+<span class="line"><span>class Settings(BaseSettings):</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    Параметры настроек и конфигураций приложения</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Этот класс определяет настройки приложения, используя библиотеку проверки данных pydantic</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    PROJECT_NAME: str = os.getenv("PROJECT_NAME")</span></span>
+<span class="line"><span>    API_V1_STR: str = "/api/v1"</span></span>
+<span class="line"><span>    ASYNC_DATABASE_URI: str = os.getenv("ASYNC_DATABASE_URI")</span></span>
+<span class="line"><span>    SECRET_KEY: str = secrets.token_urlsafe(32)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>settings = Settings()</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<h2 id="создание-наших-моделей-в-fast-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#creating-our-models-in-fast-api" rel="noopener noreferrer nofollow" target="_blank"></a>Создание наших моделей в Fast API<a aria-hidden="true" tabindex="-1" href="#создание-наших-моделей-в-fast-api"><span class="icon icon-link"></span></a></h2>
+<p>Начнем с создания базового класса. Базовый класс будет содержать общие атрибуты для всех моделей. Это поможет сохранить чистоту кода. Откройте файл base.py, который находится в папке models. Внутри файла вставьте следующий фрагмент кода</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from sqlalchemy import DateTime, func</span></span>
+<span class="line"><span>from sqlalchemy.orm import Mapped, declared_attr, DeclarativeBase, mapped_column</span></span>
+<span class="line"><span>from app.utils.idgen import idgen</span></span>
+<span class="line"><span>from datetime import datetime</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Base_(DeclarativeBase):</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    Базовый класс для моделей SQLAlchemy с общими атрибутами для сохранения DRY (Don't Repeat Yourself).</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Этот класс предназначен для использования в качестве базового класса для моделей SQLAlchemy.</span></span>
+<span class="line"><span>    Он определяет общие атрибуты, такие как имя таблицы, временная метка создания,</span></span>
+<span class="line"><span>    и метка обновления, которые могут быть унаследованы другими моделями, что поможет вам</span></span>
+<span class="line"><span>    придерживаться принципа DRY (Don't Repeat Yourself).</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Атрибуты:</span></span>
+<span class="line"><span>        __tablename__ (str): Имя таблицы, полученное из имени класса и набранное в нижнем регистре.</span></span>
+<span class="line"><span>        id (str): Уникальный идентификатор каждой записи.</span></span>
+<span class="line"><span>        created_on (datetime): Временная метка, когда была создана запись.</span></span>
+<span class="line"><span>        updated_on (datetime, необязательно): Временная метка последнего обновления записи.</span></span>
+<span class="line"><span>            По умолчанию принимается значение None, пока не произойдет обновление.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Пример:</span></span>
+<span class="line"><span>        Создание модели SQLAlchemy с использованием этого базового класса:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        class YourModel(Base_):</span></span>
+<span class="line"><span>            # Определите здесь дополнительные атрибуты для вашей модели.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    @declared_attr</span></span>
+<span class="line"><span>    def __tablename__(cls):</span></span>
+<span class="line"><span>        # Имя таблицы получается из имени класса в нижнем регистре</span></span>
+<span class="line"><span>        return cls.__name__.lower()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Уникальный UUID-идентификатор для каждой записи</span></span>
+<span class="line"><span>    id: Mapped[str] = mapped_column(primary_key=True, default=idgen,index=True)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Временная метка создания записи</span></span>
+<span class="line"><span>    created_on: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Временная метка обновления записи, первоначально None, пока не произойдет обновление</span></span>
+<span class="line"><span>    updated_on: Mapped[datetime] = mapped_column(DateTime(timezone=True), onupdate=func.now(), nullable=True)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Базовый класс содержит атрибут id, который является уникальным UUID для каждой записи, а также атрибут created_on, который является временной меткой для создания записи, и updated_on, который является временной меткой для обновления записи.</p>
+<p>Далее мы определим модель нашего продукта. Модель будет наследоваться от базового класса <code>Base_</code>. Откройте файл product.py, который находится в папке models. Внутри файла вставьте следующий фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from sqlalchemy.orm import Mapped, mapped_column</span></span>
+<span class="line"><span>from sqlalchemy import String</span></span>
+<span class="line"><span>from .base import Base_</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Product(Base_):</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    Это класс SQLAlchemy для определения модели продукта.</span></span>
+<span class="line"><span>    Он наследует все атрибуты и методы класса Base_.</span></span>
+<span class="line"><span>    Этот класс определяет общие атрибуты, такие как название, изображение цены,</span></span>
+<span class="line"><span>    и вес.</span></span>
+<span class="line"><span>    Атрибуты:</span></span>
+<span class="line"><span>        name (str): Название товара</span></span>
+<span class="line"><span>        price (str): Цена товара</span></span>
+<span class="line"><span>        image (str): url изображения товара</span></span>
+<span class="line"><span>        вес (str): Цена товара</span></span>
+<span class="line"><span>    'nullable=False' означает, что эти столбцы не могут иметь в базе данных значения NULL.</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    name: Mapped[str] = mapped_column(String(30), index=True, nullable=False)</span></span>
+<span class="line"><span>    цена: Mapped[str] = mapped_column(String(30), nullable=False)</span></span>
+<span class="line"><span>    изображение: Mapped[str] = mapped_column(String, nullable=False)</span></span>
+<span class="line"><span>    вес: Mapped[str] = mapped_column(String, nullable=False)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Атрибут <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" rel="noopener noreferrer nofollow" target="_blank"><code>Mapped[str]</code></a> является всего лишь подсказкой в стиле Python. Она подчеркивает, что атрибут будет содержать значения типа string. <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" rel="noopener noreferrer nofollow" target="_blank"><code>mapped_column</code></a> заменяет прежний sqlalchemy <code>Column</code>.</p>
+<h2 id="создание-схем-в-fast-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#creating-schemas-in-fast-api" rel="noopener noreferrer nofollow" target="_blank"></a>Создание схем в Fast API.<a aria-hidden="true" tabindex="-1" href="#создание-схем-в-fast-api"><span class="icon icon-link"></span></a></h2>
+<p>Теперь мы определим наши <a href="https://docs.pydantic.dev/latest/" rel="noopener noreferrer nofollow" target="_blank">pydantic</a>схемы. Эти <a href="https://docs.pydantic.dev/latest/concepts/json_schema/" rel="noopener noreferrer nofollow" target="_blank">схемы</a> выступают в качестве классов данных, которые определяют, какие данные должны быть получены конечной точкой API, чтобы запрос считался корректным. Они также могут быть использованы в Fast API для определения <a href="https://fastapi.tiangolo.com/tutorial/response-model/" rel="noopener noreferrer nofollow" target="_blank">модели ответа</a>, которая представляет собой ответ, возвращаемый конечной точкой. Откройте файл product.py, находящийся в папке `schemas, и вставьте в него следующий фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from typing import Optional</span></span>
+<span class="line"><span>from pydantic import BaseModel</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class ProductBase(BaseModel):</span></span>
+<span class="line"><span>    name: str # Название товара (обязательно)</span></span>
+<span class="line"><span>    price: str # Цена товара (обязательно)</span></span>
+<span class="line"><span>    image: str # URL или путь к изображению товара (обязательно)</span></span>
+<span class="line"><span>    weight: str # Вес товара (обязательно)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class ProductCreate(ProductBase):</span></span>
+<span class="line"><span>    ...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class ProductUpdate(ProductBase):</span></span>
+<span class="line"><span>    ...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class ProductPatch(ProductBase):</span></span>
+<span class="line"><span>    name: Optional[str] # Имя необязательно для патча</span></span>
+<span class="line"><span>    price: Optional[str] # Цена необязательна для патча</span></span>
+<span class="line"><span>    image: Optional[str] # Изображение необязательно для патча</span></span>
+<span class="line"><span>    weight: Optional[str] # Вес необязателен для исправления</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Product(ProductBase):</span></span>
+<span class="line"><span>    id: str</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    class Config:</span></span>
+<span class="line"><span>        orm_mode = True</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p><code>Optional</code> импортируется из модуля типизации Python, который определяет, что поле не является обязательным и поэтому может быть None.</p>
+<h2 id="создание-crud-операций-в-fast-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#creating-crud-operations-in-fast-api" rel="noopener noreferrer nofollow" target="_blank"></a>Создание CRUD-операций в Fast API<a aria-hidden="true" tabindex="-1" href="#создание-crud-операций-в-fast-api"><span class="icon icon-link"></span></a></h2>
+<p>Теперь мы определим методы Create, Read, Update и Delete. Для начала мы создадим базовый класс для этих операций. Базовый класс поможет в поддержании DRY-проектирования кода в Python. Различные модели SQLAlchemy также будут наследоваться от этого класса для выполнения операций с базой данных. Поэтому откройте файл base.py в папке с именем crud. Вставьте приведенный ниже фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from typing import Any, Dict, Generic, Optional, Type, TypeVar</span></span>
+<span class="line"><span>из pydantic import BaseModel</span></span>
+<span class="line"><span>из sqlalchemy.ext.declarative import DeclarativeMeta</span></span>
+<span class="line"><span>from sqlalchemy.ext.asyncio import AsyncSession</span></span>
+<span class="line"><span>from sqlalchemy.future import select</span></span>
+<span class="line"><span>from sqlalchemy import func, update</span></span>
+<span class="line"><span>from fastapi.encoders import jsonable_encoder</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>ModelType = TypeVar("ModelType", bound=DeclarativeMeta)</span></span>
+<span class="line"><span>CreateSchemaType = TypeVar("CreateSchemaType", bound=BaseModel)</span></span>
+<span class="line"><span>UpdateSchemaType = TypeVar("UpdateSchemaType", bound=BaseModel)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>       Общие CRUD-операции (Create, Read, Update, Delete) для моделей SQLAlchemy.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Этот класс предоставляет набор общих CRUD-операций, которые могут быть использованы с моделями SQLAlchemy.</span></span>
+<span class="line"><span>    Он включает методы для создания, получения, обновления и удаления записей в базе данных.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Args:</span></span>
+<span class="line"><span>        model (Type[ModelType]): Класс модели SQLAlchemy для выполнения CRUD-операций.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Пример:</span></span>
+<span class="line"><span>        Создание экземпляра CRUD для конкретной модели (например, модели User):</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        ```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>python</span></span>
+<span class="line"><span>        crud_user = CRUDBase[Prodcut, ProductCreateSchema, ProductUpdateSchema]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        ```</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    def __init__(self, model: Type[ModelType]):</span></span>
+<span class="line"><span>        self.model = model</span></span>
+<span class="line"><span>    # получить отдельный экземпляр</span></span>
+<span class="line"><span>    async def get(self, db: AsyncSession, obj_id: str) -> Optional[ModelType]:</span></span>
+<span class="line"><span>        query = await db.execute(select(self.model).where(self.model.id == obj_id))</span></span>
+<span class="line"><span>        return query.scalar_one_or_none()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # получить все множественные сущности</span></span>
+<span class="line"><span>    async def get_multi(self, db: AsyncSession, *, skip: int = 0, limit: int = 100) -> ModelType:</span></span>
+<span class="line"><span>        query = await db.execute(select(self.model))</span></span>
+<span class="line"><span>        return query.scalars().all()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # поиск конкретной сущности</span></span>
+<span class="line"><span>    async def get_by_params(self, db: AsyncSession, **params: Any) -> Optional[ModelType]:</span></span>
+<span class="line"><span>        query = select(self.model)</span></span>
+<span class="line"><span>        for key, value in params.items():</span></span>
+<span class="line"><span>            if isinstance(value, str):</span></span>
+<span class="line"><span>                query = query.where(func.lower(getattr(self.model, key)) == func.lower(value))</span></span>
+<span class="line"><span>            else:</span></span>
+<span class="line"><span>                query = query.where(getattr(self.model, key) == value)</span></span>
+<span class="line"><span>        result = await db.execute(query)</span></span>
+<span class="line"><span>        return result.scalar_one_or_none()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # добавить сущность</span></span>
+<span class="line"><span>    async def get_or_create(self, db: AsyncSession,</span></span>
+<span class="line"><span>                            defaults: Optional[Dict[str, Any]], **kwargs: Any) -> ModelType:</span></span>
+<span class="line"><span>        instance = await self.get_by_params(db, **kwargs)</span></span>
+<span class="line"><span>        if instance:</span></span>
+<span class="line"><span>            return instance, False</span></span>
+<span class="line"><span>        params = defaults или {}</span></span>
+<span class="line"><span>        params.update(kwargs)</span></span>
+<span class="line"><span>        instance = self.model(**params)</span></span>
+<span class="line"><span>        db.add(instance)</span></span>
+<span class="line"><span>        await db.commit()</span></span>
+<span class="line"><span>        await db.refresh(instance)</span></span>
+<span class="line"><span>        return instance, True</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Частичное обновление сущности</span></span>
+<span class="line"><span>    async def patch(self, db: AsyncSession,</span></span>
+<span class="line"><span>                    *, obj_id: str,</span></span>
+<span class="line"><span>                    obj_in: UpdateSchemaType | Dict[str, Any]</span></span>
+<span class="line"><span>                    ) -> Optional[ModelType]:</span></span>
+<span class="line"><span>        db_obj = await self.get(db=db, obj_id=obj_id)</span></span>
+<span class="line"><span>        if not db_obj:</span></span>
+<span class="line"><span>            return None</span></span>
+<span class="line"><span>        update_data = obj_in if isinstance(obj_in, dict) else obj_in.model_dump(exclude_unset=True)</span></span>
+<span class="line"><span>        запрос = (</span></span>
+<span class="line"><span>            update(self.model)</span></span>
+<span class="line"><span>            .where(self.model.id == obj_id)</span></span>
+<span class="line"><span>            .values(**update_data)</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span>        await db.execute(query)</span></span>
+<span class="line"><span>        return await self.get(db, obj_id)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Полное обновление сущности</span></span>
+<span class="line"><span>    async def update(</span></span>
+<span class="line"><span>        self,</span></span>
+<span class="line"><span>        db: AsyncSession,</span></span>
+<span class="line"><span>        *,</span></span>
+<span class="line"><span>        obj_current: ModelType,</span></span>
+<span class="line"><span>        obj_new: UpdateSchemaType | Dict[str, Any] | ModelType</span></span>
+<span class="line"><span>    ):</span></span>
+<span class="line"><span>        obj_data = jsonable_encoder(obj_current)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if isinstance(obj_new, dict):</span></span>
+<span class="line"><span>            update_data = obj_new</span></span>
+<span class="line"><span>        else:</span></span>
+<span class="line"><span>            update_data = obj_new.model_dump(exclude_unset=True)</span></span>
+<span class="line"><span>        for field in obj_data:</span></span>
+<span class="line"><span>            if field in update_data:</span></span>
+<span class="line"><span>                setattr(obj_current, field, update_data[field])</span></span>
+<span class="line"><span>        db.add(obj_current)</span></span>
+<span class="line"><span>        await db.commit()</span></span>
+<span class="line"><span>        await db.refresh(obj_current)</span></span>
+<span class="line"><span>        return obj_current</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # полное удаление сущности из базы данных</span></span>
+<span class="line"><span>    async def remove(self, db: AsyncSession, *, obj_id: str) -> Optional[ModelType]:</span></span>
+<span class="line"><span>        db_obj = await self.get(db, obj_id)</span></span>
+<span class="line"><span>        if not db_obj:</span></span>
+<span class="line"><span>            return None</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        await db.delete(db_obj)</span></span>
+<span class="line"><span>        await db.commit()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        return db_obj</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Мы определили различные методы. Метод get получает из базы данных одну запись, соответствующую идентификатору объекта. Метод get_multi получает из базы данных пагинальные документы. Метод get_by_params осуществляет поиск совпадающих записей по заданным параметрам. Метод get_or_create сначала смотрит, существует ли сущность, если не существует, то сущность создается в БД. Метод patch обновляет поля записи. Метод update полностью обновляет поля записи. Метод remove удаляет запись из БД.</p>
+<p>Определив наш базовый класс для CRUD-операций, мы теперь определим CRUD-операции продукта. CRUD-операции Product будут наследоваться от базового класса <code>CRUDBase</code>. Откройте файл product.py в папке crud. Вставьте приведенный ниже фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from typing import Any, Coroutine, Dict, Optional</span></span>
+<span class="line"><span>from fastapi_pagination import Page</span></span>
+<span class="line"><span>from sqlalchemy.ext.asyncio import AsyncSession</span></span>
+<span class="line"><span>from .base import CRUDBase</span></span>
+<span class="line"><span>from app.schemas.product import ProductUpdate, ProductCreate</span></span>
+<span class="line"><span>from app.models.product import Product</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class CRUDProduct(CRUDBase[Product, ProductCreate, ProductUpdate]):</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    async def get(self, db: AsyncSession, obj_id: str) -> Product:</span></span>
+<span class="line"><span>        return await super().get(db, obj_id)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    async def get_or_create(self, db: AsyncSession, defaults: Dict[str, Any] | None, **kwargs: Any) -> Product:</span></span>
+<span class="line"><span>        return await super().get_or_create(db, defaults, **kwargs)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    async def get_multi(self, db: AsyncSession, *, skip: int = 0, limit: int = 20) -> Страница[Продукт]:</span></span>
+<span class="line"><span>        return await super().get_multi(db, skip=skip, limit=limit)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    async def update(self, db: AsyncSession, *, obj_current: Product, obj_new: ProductUpdate | Dict[str, Any] | Product):</span></span>
+<span class="line"><span>        return await super().update(db, obj_current=obj_current, obj_new=obj_new)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    async def remove(self, db: AsyncSession, *, obj_id: str) -> Product | None:</span></span>
+<span class="line"><span>        return await super().remove(db, obj_id=obj_id)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>product = CRUDProduct(Product)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<h2 id="создание-сеанса-работы-с-базой-данных"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#creating-the-database-session" rel="noopener noreferrer nofollow" target="_blank"></a>Создание сеанса работы с базой данных<a aria-hidden="true" tabindex="-1" href="#создание-сеанса-работы-с-базой-данных"><span class="icon icon-link"></span></a></h2>
+<p>Здесь мы определим асинхронный движок базы данных для выполнения асинхронных операций с базой данных. Затем мы свяжем этот движок с создателем сессии, которая будет асинхронно взаимодействовать с базой данных. Откройте файл session.py, который находится в папке с именем db. Вставьте приведенный ниже фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession</span></span>
+<span class="line"><span>from sqlalchemy.orm import sessionmaker</span></span>
+<span class="line"><span>из app.core.settings import settings</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Создаем асинхронный движок SQLAlchemy, используя ASYNC_DATABASE_URI из настроек приложения.</span></span>
+<span class="line"><span>engine = create_async_engine(</span></span>
+<span class="line"><span>    settings.ASYNC_DATABASE_URI,</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Создаем класс AsyncSession с помощью sessionmaker, привязанный к движку SQLAlchemy.</span></span>
+<span class="line"><span># Этот класс сессии будет использоваться для асинхронного взаимодействия с базой данных.</span></span>
+<span class="line"><span>SessionLocal = sessionmaker(</span></span>
+<span class="line"><span>    engine, expire_on_commit=False, class_=AsyncSession</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p><code>create_async_engine</code> - Создает асинхронный движок SQLAlchemy, используя ASYNC_DATABASE_URI из настроек приложения.<br>
+<code>sessionmaker</code> - Создается класс AsyncSession с использованием sessionmaker, привязанный к движку SQLAlchemy.</p>
+<h2 id="создание-зависимостей-fast-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#creating-fast-api-dependencies" rel="noopener noreferrer nofollow" target="_blank"></a>Создание зависимостей Fast API<a aria-hidden="true" tabindex="-1" href="#создание-зависимостей-fast-api"><span class="icon icon-link"></span></a></h2>
+<p>Здесь мы определим все зависимости, которые будут использоваться в нашем приложении. В их число может входить и сессия базы данных. Откройте файл с именем deps.py, находящийся в папке API, и вставьте в него фрагмент кода, приведенный ниже.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>from typing import AsyncGenerator</span></span>
+<span class="line"><span>from sqlalchemy.ext.asyncio import AsyncSession</span></span>
+<span class="line"><span>из app.db.session import SessionLocal</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>async def get_db() -> AsyncGenerator[AsyncSession, None]:</span></span>
+<span class="line"><span>    async with SessionLocal() as db:</span></span>
+<span class="line"><span>        yield db</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Функция <code>get_db</code> - это асинхронная функция генерации, которая выдает сеанс работы с базой данных.</p>
+<h2 id="создание-конечных-точек-списков-товаров"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#creating-the-product-listings-endpoints" rel="noopener noreferrer nofollow" target="_blank"></a>Создание конечных точек списков товаров<a aria-hidden="true" tabindex="-1" href="#создание-конечных-точек-списков-товаров"><span class="icon icon-link"></span></a></h2>
+<p>Здесь мы определим методы POST, GET, PUT, PATCH и DELETE.</p>
+<ul>
+<li>POST будет создавать новый продукт.</li>
+<li>GET - получение продукта или продуктов.</li>
+<li>PUT полностью обновляет продукт.</li>
+<li>PATCH обновляет поля, указанные для продукта.</li>
+<li>DELETE удаляет продукт из базы данных.</li>
+</ul>
+<p>Перейдите в редактор кода и откройте файл products.py, который находится в папке с именем endpoints. Внутри файла вставьте приведенный ниже фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Импорт необходимых модулей и компонентов</span></span>
+<span class="line"><span>from typing import Annotated</span></span>
+<span class="line"><span>from fastapi import APIRouter, status, Depends, HTTPException</span></span>
+<span class="line"><span>from sqlalchemy.ext.asyncio import AsyncSession</span></span>
+<span class="line"><span>from fastapi_pagination import Page, paginate</span></span>
+<span class="line"><span>from app.schemas.product import Product, ProductCreate, ProductPatch, ProductUpdate</span></span>
+<span class="line"><span>from app.api.deps import get_db</span></span>
+<span class="line"><span>from app import crud</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Создание экземпляра APIRouter</span></span>
+<span class="line"><span>router = APIRouter()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определяем маршрут для создания нового продукта</span></span>
+<span class="line"><span>@router.post("/", response_model=Product, status_code=status.HTTP_201_CREATED)</span></span>
+<span class="line"><span>async def create_product(</span></span>
+<span class="line"><span>    db: Annotated[AsyncSession, Depends(get_db)],</span></span>
+<span class="line"><span>    product_in: ProductCreate</span></span>
+<span class="line"><span>):</span></span>
+<span class="line"><span>    # Используем CRUD-операции (Create, Read, Update, Delete) из модуля 'crud'</span></span>
+<span class="line"><span>    # для создания нового продукта или возврата существующего, если он уже существует</span></span>
+<span class="line"><span>    product, created = await crud.product.get_or_create(</span></span>
+<span class="line"><span>        db=db, defaults=product_in.dict()</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Если продукт уже существует, поднимаем HTTPException с кодом состояния 400</span></span>
+<span class="line"><span>    если не создан:</span></span>
+<span class="line"><span>        raise HTTPException(</span></span>
+<span class="line"><span>            status_code=status.HTTP_400_BAD_REQUEST,</span></span>
+<span class="line"><span>            detail="Продукт существует"</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Вернуть созданный или существующий продукт</span></span>
+<span class="line"><span>    вернуть продукт</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определение маршрута для получения продукта по его идентификатору</span></span>
+<span class="line"><span>@router.get("/{productId}", response_model=Product, status_code=status.HTTP_200_OK)</span></span>
+<span class="line"><span>async def get_product(</span></span>
+<span class="line"><span>    db: Annotated[AsyncSession, Depends(get_db)],</span></span>
+<span class="line"><span>    productId: str</span></span>
+<span class="line"><span>):</span></span>
+<span class="line"><span>    # Используем операцию CRUD для получения продукта по его ID</span></span>
+<span class="line"><span>    product = await crud.product.get(db=db, obj_id=productId)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Если продукт не существует, то выдается HTTPException с кодом состояния 404</span></span>
+<span class="line"><span>    if not product:</span></span>
+<span class="line"><span>        raise HTTPException(</span></span>
+<span class="line"><span>            status_code=status.HTTP_404_NOT_FOUND,</span></span>
+<span class="line"><span>            detail="Product not found"</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Вернуть найденный продукт</span></span>
+<span class="line"><span>    вернуть продукт</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определяем маршрут для получения постраничного списка товаров</span></span>
+<span class="line"><span>@router.get("/", response_model=Page[Product], status_code=status.HTTP_200_OK)</span></span>
+<span class="line"><span>async def get_products(</span></span>
+<span class="line"><span>    db: Annotated[AsyncSession, Depends(get_db)],</span></span>
+<span class="line"><span>    skip: int = 0,</span></span>
+<span class="line"><span>    limit: int = 20</span></span>
+<span class="line"><span>):</span></span>
+<span class="line"><span>    # Используем операцию CRUD для получения нескольких продуктов с пагинацией</span></span>
+<span class="line"><span>    products = await crud.product.get_multi(db=db, skip=skip, limit=limit)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Если продукты не найдены, выдать HTTPException с кодом состояния 404</span></span>
+<span class="line"><span>    if not products:</span></span>
+<span class="line"><span>        raise HTTPException(</span></span>
+<span class="line"><span>            status_code=status.HTTP_404_NOT_FOUND,</span></span>
+<span class="line"><span>            detail="Продукты не найдены"</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Возвращаем постраничный список продуктов</span></span>
+<span class="line"><span>    return paginate(products)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определяем маршрут для частичного обновления товара</span></span>
+<span class="line"><span>@router.patch("/{productId}", status_code=status.HTTP_200_OK)</span></span>
+<span class="line"><span>async def patch_product(</span></span>
+<span class="line"><span>    db: Annotated[AsyncSession, Depends(get_db)],</span></span>
+<span class="line"><span>    product_Id: str,</span></span>
+<span class="line"><span>    product_in: ProductPatch</span></span>
+<span class="line"><span>):</span></span>
+<span class="line"><span>    # Используем операцию CRUD для получения продукта по его идентификатору</span></span>
+<span class="line"><span>    product = await crud.product.get(db=db, obj_id=product_Id)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Если продукт не существует, то выдается HTTPException с кодом состояния 404</span></span>
+<span class="line"><span>    if not product:</span></span>
+<span class="line"><span>        raise HTTPException(</span></span>
+<span class="line"><span>            status_code=status.HTTP_404_NOT_FOUND,</span></span>
+<span class="line"><span>            detail="Product not found"</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Используем операцию CRUD для исправления (частичного обновления) продукта</span></span>
+<span class="line"><span>    product_patched = await crud.product.patch(db=db, obj_id=product_Id, obj_in=product_in.dict())</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Возврат исправленного продукта</span></span>
+<span class="line"><span>    return product_patched</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определить маршрут для полного обновления продукта</span></span>
+<span class="line"><span>@router.put("/{productId}", response_model=Product, status_code=status.HTTP_200_OK)</span></span>
+<span class="line"><span>async def update_product(</span></span>
+<span class="line"><span>    db: Annotated[AsyncSession, Depends(get_db)],</span></span>
+<span class="line"><span>    productId: str,</span></span>
+<span class="line"><span>    product_in: ProductUpdate</span></span>
+<span class="line"><span>):</span></span>
+<span class="line"><span>    # Используем операцию CRUD для получения продукта по его идентификатору</span></span>
+<span class="line"><span>    product = await crud.product.get(db=db, obj_id=productId)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Если продукт не существует, то выдается HTTPException с кодом состояния 404</span></span>
+<span class="line"><span>    if not product:</span></span>
+<span class="line"><span>        raise HTTPException(</span></span>
+<span class="line"><span>            status_code=status.HTTP_404_NOT_FOUND,</span></span>
+<span class="line"><span>            detail="Product not found"</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Используем операцию CRUD для полного обновления продукта</span></span>
+<span class="line"><span>    product_updated = await crud.product.update(</span></span>
+<span class="line"><span>        db=db, obj_current=product, obj_new=product_in</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Возврат обновленного продукта</span></span>
+<span class="line"><span>    return product_updated</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определение маршрута для удаления продукта</span></span>
+<span class="line"><span>@router.delete("/{productId}", status_code=status.HTTP_204_NO_CONTENT)</span></span>
+<span class="line"><span>async def delete_product(</span></span>
+<span class="line"><span>    db: Annotated[AsyncSession, Depends(get_db)],</span></span>
+<span class="line"><span>    productId: str</span></span>
+<span class="line"><span>):</span></span>
+<span class="line"><span>    # Используем операцию CRUD для получения продукта по его ID</span></span>
+<span class="line"><span>    product = await crud.product.get(db=db, obj_id=productId)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Если продукт не существует, то выдается HTTPException с кодом состояния 404</span></span>
+<span class="line"><span>    if not product:</span></span>
+<span class="line"><span>        raise HTTPException(</span></span>
+<span class="line"><span>            status_code=status.HTTP_404_NOT_FOUND,</span></span>
+<span class="line"><span>            detail="Product not found"</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Используем операцию CRUD для удаления (delete) продукта</span></span>
+<span class="line"><span>    await crud.product.remove(db=db, obj_id=productId)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Возвращаем ответ 204 No Content, свидетельствующий об успешном удалении</span></span>
+<span class="line"><span>    return</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Конечные точки состоят из комментариев, поясняющих, что происходит в каждой из них.</p>
+<p>Теперь нам необходимо отобразить конечные точки на точку входа API, для чего мы отредактируем два файла. Для первого файла откроем файл api.py, который находится в папке с именем v1. Затем вставим в него фрагмент кода, приведенный ниже.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Импортируем класс APIRouter из FastAPI</span></span>
+<span class="line"><span>from fastapi import APIRouter</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импорт маршрутизатора 'products' из модуля 'app.api.v1.endpoints'</span></span>
+<span class="line"><span>from app.api.v1.endpoints import products</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Создаем экземпляр APIRouter</span></span>
+<span class="line"><span>router = APIRouter()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Включить маршрутизатор 'products' в качестве подмаршрутизатора с префиксом '/products'</span></span>
+<span class="line"><span># и присваиваем тег "Products" для группировки связанных с ним конечных точек API</span></span>
+<span class="line"><span>router.include_router(products.router, prefix="/products", tags=["Products"])</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Затем откройте файл main.py и вставьте в него приведенный ниже фрагмент кода.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Импортируем класс FastAPI из фреймворка FastAPI</span></span>
+<span class="line"><span>from fastapi import FastAPI</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импорт add_pagination</span></span>
+<span class="line"><span>from fastapi_pagination import add_pagination</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импорт 'router' из модуля 'app.api.v1.api'</span></span>
+<span class="line"><span>from app.api.v1.api import router</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импорт объекта 'settings' из модуля 'app.core.settings'</span></span>
+<span class="line"><span>from app.core.settings import settings</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Создаем экземпляр приложения FastAPI</span></span>
+<span class="line"><span># - 'title' устанавливается в название проекта из 'settings'</span></span>
+<span class="line"><span># - 'openapi_url' задает URL для документации по OpenAPI</span></span>
+<span class="line"><span>app = FastAPI(</span></span>
+<span class="line"><span>    title=settings.PROJECT_NAME,</span></span>
+<span class="line"><span>    openapi_url=f"{settings.API_V1_STR}/openapi.json"</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Добавить необходимые параметры пагинации во все маршруты, использующие paginate</span></span>
+<span class="line"><span>add_pagination(app)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Включите "маршрутизатор" (содержащий маршруты API) в приложение FastAPI</span></span>
+<span class="line"><span>app.include_router(router)</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>До этого момента мы можем попробовать раскрутить наш сервер. Для этого мы должны собрать наше приложение с помощью докер-контейнеров и докер-образов.</p>
+<h2 id="запуск-api-списков-товаров"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#running-the-product-listings-api" rel="noopener noreferrer nofollow" target="_blank"></a>Запуск API списков товаров<a aria-hidden="true" tabindex="-1" href="#запуск-api-списков-товаров"><span class="icon icon-link"></span></a></h2>
+<p>Здесь мы попробуем запустить наш API.</p>
+<p>Предполагая, что на вашей локальной машине установлен <a href="https://docs.docker.com/engine/install/" rel="noopener noreferrer nofollow" target="_blank">docker</a>, откройте терминал vscode.</p>
+<p>Чтобы включить терминал:</p>
+<ul>
+<li>Windows используйте сочетание клавиш <strong>ctrl + `</strong>.</li>
+<li>В Mac OS используйте сочетание клавиш <strong>⌘ +`</strong>.</li>
+<li>В Linux используется сочетание клавиш <strong>Ctrl+Shift+`</strong>.</li>
+</ul>
+<p>В` терминале напишите следующую команду:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docker-compose -f docker-compose.yml up -d</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<ul>
+<li><code>docker-compose</code> - Эта команда используется для управления контейнерами Docker с помощью Docker compose.</li>
+<li>-f - Здесь указывается путь к файлу compose.</li>
+<li>docker-compose.yml - Это путь к файлу compose, в котором определяются контейнеры. В нашем случае это docker-compose.yml.</li>
+<li>up - Используется для инициализации и запуска сервисов, указанных в файле compose. В нашем случае запускаются сервисы <code>products_db</code> и <code>api</code>.</li>
+<li>-d - Указывает, что контейнеры должны запускаться в режиме отсоединения, т.е. контейнеры запускаются как фоновые сервисы.</li>
+</ul>
+<p>После успешного выполнения команды можно убедиться, что контейнеры действительно запущены, выполнив следующую команду в терминале vscode:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docker ps</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Вы должны увидеть следующий вывод:</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--3iduM_6x--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8wr6qtwbscldbk26jzb7.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--3iduM_6x--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/8wr6qtwbscldbk26jzb7.png" alt="Описание изображения"></a></p>
+<p>Чтобы просмотреть документацию API через Swagger, можно открыть удобный браузер и вставить URL, приведенный ниже:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>http://localhost:8000/docs</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>По умолчанию мы будем обращаться к нашему API через порт 8000, поскольку именно этот порт мы привязали к хосту, как мы ранее указали в файле docker compose.</p>
+<p>В браузере вы увидите примерно следующее:</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--QnUiM7H6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ia3qw45rr4jc6kexttyn.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--QnUiM7H6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ia3qw45rr4jc6kexttyn.png" alt="Описание изображения"></a></p>
+<p>Теперь мы успешно настроили наш API для работы с листингами товаров. Однако если мы попытаемся выполнить POST-запрос в Swagger, то получим ошибку 500 Internal server error.</p>
+<p>Чтобы понять, в чем причина ошибки, мы просмотрим журналы контейнера <code>api</code>. Для просмотра журналов мы можем использовать <a href="https://www.docker.com/products/docker-desktop/" rel="noopener noreferrer nofollow" target="_blank">docker desktop</a> или наш терминал. Для этого в терминале vscode мы выполним приведенную ниже команду:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docker logs &#x3C;CONTAINER ID></span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Идентификатор <code>CONTAINER ID</code> - это идентификатор запущенного в данный момент контейнера <code>api</code>.</p>
+<p>Для получения <code>CONTAINER ID</code> выполним команду:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docker ps</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>После успешного выполнения команды <code>docker logs</code> мы получим следующую ошибку, как показано на рисунке ниже:</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--no3Ti_-V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5ou564u6dgrog0juujj7.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--no3Ti_-V--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5ou564u6dgrog0juujj7.png" alt="Описание изображения"></a></p>
+<p>В последней строке мы видим, что в логах указано, что <code>база данных</code> не существует“. Ранее мы определили в файле <code>**.env**</code>, что POSTGRES_DATABASE=database. В то время как эта база данных с именем database не существует. Это означает, что нам придется сначала создать саму базу данных.</p>
+<p>Для создания базы данных мы воспользуемся контейнером <code>products_db</code>.</p>
+<p>В терминале vscode:</p>
+<ul>
+<li>Выполните приведенную ниже команду</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docker exec -it &#x3C;CONTAINER ID> /bin/bash</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда запускает Bash-терминал внутри контейнера.</p>
+<p>Выполните команду <code>docker ps</code> для получения идентификатора <code>products_db</code> и замените <code>CONTAINER ID</code> на идентификатор экземпляра образа <code>products_db</code>.</p>
+<ul>
+<li>Нам необходимо создать базу данных. Для этого в Bash-терминале контейнера выполним следующую серию команд:</li>
+</ul>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>psql -U username</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда запускает терминальный интерфейс для работы с PostgreSQL. Это позволяет вводить запросы в интерактивном режиме.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>CREATE DATABASE database;</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда создает в PostgreSQL базу данных с именем database.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ALTER ROLE username WITH PASSWORD 'password';</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда изменяет роль username и присваивает ей пароль <code>password</code>.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GRANT ALL PRIVILEGES ON DATABASE database TO username;</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда предоставляет все привилегии базы данных пользователю с именем username.</p>
+<p>После этого необходимо выполнить миграцию базы данных.</p>
+<h2 id="быстрая-миграция-базы-данных-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#fast-api-database-migrations" rel="noopener noreferrer nofollow" target="_blank"></a>Быстрая миграция базы данных API<a aria-hidden="true" tabindex="-1" href="#быстрая-миграция-базы-данных-api"><span class="icon icon-link"></span></a></h2>
+<p>Миграции баз данных или миграции схем - это контролируемые наборы изменений, разработанные для модификации структуры объектов реляционной базы данных.</p>
+<p>Для выполнения миграции в нашем API мы создадим файл alembic.ini и папку alembic в корневом каталоге проекта. Внутри папки alembic создадим еще одну папку с именем versions и два файла env.py и script.py.mako.</p>
+<p>Теперь структура каталогов проекта выглядит следующим образом:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>.</span></span>
+<span class="line"><span>└── FastAPI_APP/</span></span>
+<span class="line"><span>    ├──── app/</span></span>
+<span class="line"><span>    │ ├──── alembic.ini</span></span>
+<span class="line"><span>    │ ├──── alembic/</span></span>
+<span class="line"><span>    │ │ ├──── versions</span></span>
+<span class="line"><span>    │ │ ├──── env.py</span></span>
+<span class="line"><span>    │ │ └──── script.py.mako</span></span>
+<span class="line"><span>    │ ├──── api/</span></span>
+<span class="line"><span>    │ │ ├── v1/</span></span>
+<span class="line"><span>    │ │ │ │ ├──── endpoints/</span></span>
+<span class="line"><span>    │ │ │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ │ │ │ └──── products.py</span></span>
+<span class="line"><span>    │ │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ │ │ └──── api.py</span></span>
+<span class="line"><span>    │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ │ └──── deps.py</span></span>
+<span class="line"><span>    │ ├──── core/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ └──── settings.py</span></span>
+<span class="line"><span>    │ ├──── crud/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ ├──── base.py</span></span>
+<span class="line"><span>    │ │ └──── product.py</span></span>
+<span class="line"><span>    │ ├──── db/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ └──── session.py</span></span>
+<span class="line"><span>    │ ├──── models/</span></span>
+<span class="line"><span>    │ │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ ├──── basemodel.py</span></span>
+<span class="line"><span>    │ │ └──── products.py</span></span>
+<span class="line"><span>    │ ├──── schemas/</span></span>
+<span class="line"><span>    │ │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ │ └──── product.py</span></span>
+<span class="line"><span>    │ └──── utils/</span></span>
+<span class="line"><span>    │ ├──── __init__.py</span></span>
+<span class="line"><span>    │ └──── idgen.py</span></span>
+<span class="line"><span>    └──── main.py</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Теперь отредактируем добавленные нами файлы.</p>
+<p>Откройте файл alembic.ini и вставьте в него приведенный ниже скрипт:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Общая конфигурация одной базы данных.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[alembic]</span></span>
+<span class="line"><span># путь к скриптам миграции</span></span>
+<span class="line"><span>script_location = alembic</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># шаблон, используемый для генерации имен файлов миграции; По умолчанию используется %%(rev)s_%%(slug)s</span></span>
+<span class="line"><span>file_template = %%(year)d-%%(month).2d-%%(day).2d-%%(hour).2d-%%(minute).2d_%%(rev)s</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># путь sys.path, при наличии будет дописан к sys.path.</span></span>
+<span class="line"><span># по умолчанию к текущему рабочему каталогу.</span></span>
+<span class="line"><span>prepend_sys_path = .</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>version_path_separator = os # Использовать os.pathsep. Конфигурация по умолчанию, используемая для новых проектов.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>sqlalchemy.url =</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[post_write_hooks].</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Конфигурация протоколирования</span></span>
+<span class="line"><span>[loggers]</span></span>
+<span class="line"><span>ключи = root,sqlalchemy,alembic</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[handlers]</span></span>
+<span class="line"><span>ключи = консоль</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[formatters]</span></span>
+<span class="line"><span>ключи = generic</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[logger_root]</span></span>
+<span class="line"><span>уровень = WARN</span></span>
+<span class="line"><span>обработчики = консоль</span></span>
+<span class="line"><span>qualname =</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[logger_sqlalchemy]</span></span>
+<span class="line"><span>уровень = WARN</span></span>
+<span class="line"><span>обработчики =</span></span>
+<span class="line"><span>qualname = sqlalchemy.engine</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[logger_alembic]</span></span>
+<span class="line"><span>уровень = INFO</span></span>
+<span class="line"><span>обработчики =</span></span>
+<span class="line"><span>qualname = alembic</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[handler_console]</span></span>
+<span class="line"><span>class = StreamHandler</span></span>
+<span class="line"><span>args = (sys.stderr,)</span></span>
+<span class="line"><span>уровень = NOTSET</span></span>
+<span class="line"><span>форматтер = generic</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[formatter_generic]</span></span>
+<span class="line"><span>format = %(levelname)-5.5s [%(name)s] %(message)s</span></span>
+<span class="line"><span>datefmt = %H:%M:%S</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Файл alembci.ini является конфигурационным файлом, используемым с Alembic, и содержит настройки и опции для управления изменениями схемы базы данных с течением времени.</p>
+<p>Откройте файл env.py, находящийся в папке или модуле alembic, и вставьте в него приведенный ниже фрагмент кода:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span># Импортируем необходимые модули</span></span>
+<span class="line"><span>import asyncio</span></span>
+<span class="line"><span>import sys</span></span>
+<span class="line"><span>import pathlib</span></span>
+<span class="line"><span>from alembic import context</span></span>
+<span class="line"><span>from sqlalchemy.ext.asyncio import create_async_engine</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импорт необходимых моделей и настроек базы данных</span></span>
+<span class="line"><span>from app.models.product import Product</span></span>
+<span class="line"><span>from app.core.settings import settings</span></span>
+<span class="line"><span>from app.models.base import Base_</span></span>
+<span class="line"><span>from sqlalchemy.orm import declarative_base</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определяем целевые метаданные для миграций</span></span>
+<span class="line"><span>target_metadata = Base_.metadata</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Добавляем родительский каталог текущего файла в sys.path</span></span>
+<span class="line"><span># Это позволяет импортировать модули из родительского каталога</span></span>
+<span class="line"><span>sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определяем функцию для запуска миграций</span></span>
+<span class="line"><span>def do_run_migrations(connection):</span></span>
+<span class="line"><span>    context.configure(</span></span>
+<span class="line"><span>        compare_type=True,</span></span>
+<span class="line"><span>        dialect_opts={"paramstyle": "named"},</span></span>
+<span class="line"><span>        connection=connection,</span></span>
+<span class="line"><span>        target_metadata=target_metadata,</span></span>
+<span class="line"><span>        include_schemas=True,</span></span>
+<span class="line"><span>        version_table_schema=target_metadata.schema,</span></span>
+<span class="line"><span>    )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    с context.begin_transaction():</span></span>
+<span class="line"><span>        context.run_migrations()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определите асинхронную функцию для запуска миграций в режиме онлайн</span></span>
+<span class="line"><span>async def run_migrations_online():</span></span>
+<span class="line"><span>    """Запуск миграций в режиме "онлайн".</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    В этом сценарии мы создаем Engine</span></span>
+<span class="line"><span>    и связываем соединение с контекстом.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    # Создаем асинхронный движок базы данных, используя URI из настроек</span></span>
+<span class="line"><span>    connectable = create_async_engine(settings.ASYNC_DATABASE_URI, future=True)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # Подключение к базе данных и запуск миграций в транзакции</span></span>
+<span class="line"><span>    async с connectable.connect() as connection:</span></span>
+<span class="line"><span>        await connection.run_sync(do_run_migrations)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Запуск миграций в режиме онлайн с помощью asyncio</span></span>
+<span class="line"><span>asyncio.run(run_migrations_online())</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенный выше сценарий запускает миграции баз данных с использованием Alembic для асинхронного движка баз данных в Fast API.</p>
+<p>Откройте файл с именем script.py.mako, содержащийся в модуле alembic. Вставьте приведенный ниже сценарий:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>"""</span></span>
+<span class="line"><span>Revision ID: ${up_revision}</span></span>
+<span class="line"><span>Пересмотры: ${down_revision | запятая,n}</span></span>
+<span class="line"><span>Дата создания: ${create_date}</span></span>
+<span class="line"><span>"""</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импортируем необходимые модули из Alembic и SQLAlchemy</span></span>
+<span class="line"><span>from alembic import op</span></span>
+<span class="line"><span>import sqlalchemy as sa</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Импортируем все дополнительные необходимые модули (если они указаны)</span></span>
+<span class="line"><span>${imports if imports else ""}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Определяем идентификаторы ревизий, используемые Alembic</span></span>
+<span class="line"><span>revision = ${repr(up_revision)} # Уникальный идентификатор для данной ревизии</span></span>
+<span class="line"><span>down_revision = ${repr(down_revision)} # Ревизия, к которой относится данная ревизия (если таковая имеется)</span></span>
+<span class="line"><span>branch_labels = ${repr(branch_labels)}  # Метки, связанные с этой ревизией (если таковые имеются)</span></span>
+<span class="line"><span>depends_on = ${repr(depends_on)} # Зависимости для данной ревизии (если таковые имеются)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def upgrade():</span></span>
+<span class="line"><span>    ${upgrades if upgrades else "pass"}</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    Эта функция вызывается при обновлении схемы базы данных.</span></span>
+<span class="line"><span>    Можно указать SQL-операции для применения изменений схемы.</span></span>
+<span class="line"><span>    Если операции не указаны, то можно использовать 'pass'.</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def downgrade():</span></span>
+<span class="line"><span>    ${downgrades if downgrades else "pass"}.</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span>    Эта функция вызывается при понижении схемы базы данных.</span></span>
+<span class="line"><span>    Можно указать SQL-операции для отмены изменений схемы.</span></span>
+<span class="line"><span>    Если операции не указаны, то можно использовать 'pass'.</span></span>
+<span class="line"><span>    """</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Определив скрипты для работы с миграциями, мы теперь должны выполнить их в api контейнере. Для этого выполните приведенные ниже команды:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>docker exec -it &#x3C;CONTAINER ID> /bin/bash</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда запускает Bash-терминал внутри контейнера.</p>
+<p>Замените идентификатор на реальный идентификатор api-контейнера. Для получения api-контейнера выполните команду <code>docker ps</code>.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>alembic revision --autogenerate -m "Migrate products table"</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда генерирует новый сценарий миграции. Новый сценарий миграции содержит различия между текущей схемой базы данных и определениями моделей в коде.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>alembic upgrade head</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Приведенная выше команда применяется ко всем незавершенным миграциям.</p>
+<h2 id="тестирование-нашего-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#testing-our-api" rel="noopener noreferrer nofollow" target="_blank"></a>Тестирование нашего API<a aria-hidden="true" tabindex="-1" href="#тестирование-нашего-api"><span class="icon icon-link"></span></a></h2>
+<p>Поскольку мы уже выполнили миграцию схемы нашей базы данных, теперь мы можем с уверенностью протестировать наш API с помощью swagger-документов.</p>
+<p>Чтобы получить доступ к документам Swagger, введите в браузер следующий URL:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>http://localhost:8000/docs</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Для начала мы можем выполнить POST-запрос.</p>
+<h3 id="post-запрос-fast-api"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#post-request-fast-api" rel="noopener noreferrer nofollow" target="_blank"></a>POST-запрос Fast API<a aria-hidden="true" tabindex="-1" href="#post-запрос-fast-api"><span class="icon icon-link"></span></a></h3>
+<p>В Swagger разверните сворачиваемый POST-запрос, затем нажмите кнопку <strong>Пробовать</strong>. В разделе <strong>Тело ответа</strong> измените значения ключей JSON-схемы по своему усмотрению, как показано ниже.</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--aXDqDZjh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a6mc6r5hul4jyrra45gh.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--aXDqDZjh--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a6mc6r5hul4jyrra45gh.png" alt="Описание изображения"></a></p>
+<p>В качестве ключа image можно указать URL-адрес изображения. Затем нажмите на кнопку выполнить. После успешного выполнения POST вы увидите код состояния 201 created с телом ответа, как показано ниже:</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--2gMwziNr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/076lgbcbkihrn6da02jf.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--2gMwziNr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/076lgbcbkihrn6da02jf.png" alt="Описание изображения"></a></p>
+<p>Тело <strong>ответа</strong> может отличаться от приведенного выше в зависимости от значений, которые вы присвоили своей схеме JSON.</p>
+<h3 id="get-запрос-постраничные-данные"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#get-request-paginated-data" rel="noopener noreferrer nofollow" target="_blank"></a>GET-запрос (постраничные данные)<a aria-hidden="true" tabindex="-1" href="#get-запрос-постраничные-данные"><span class="icon icon-link"></span></a></h3>
+<p>В GET-запросе мы хотим получить несколько элементов. Для этого мы можем указать пропуск и ограничение.<br>
+Skip, аналогично OFFSET, - это количество строк таблицы результатов, которые необходимо пропустить, прежде чем будут получены какие-либо строки.<br>
+Limit - это синтаксис, указывающий на получение ПЕРВЫХ N строк таблицы результатов.</p>
+<p>Щелкните на запросе get, и для параметра skip мы можем принять значение по умолчанию, равное 0, а для параметра limit мы также можем принять значение по умолчанию, равное 20.</p>
+<p>Щелкните на кнопке <strong>execute</strong>, и в результате вы увидите тело <strong>Response body</strong>, содержащее постраничные данные о продукте.</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--uZRhVroN--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1e7vd2vwj6z10bhjo3mc.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--uZRhVroN--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/1e7vd2vwj6z10bhjo3mc.png" alt="Описание изображения"></a></p>
+<h2 id="бонусные-баллы"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#bonus-points" rel="noopener noreferrer nofollow" target="_blank"></a>Бонусные баллы<a aria-hidden="true" tabindex="-1" href="#бонусные-баллы"><span class="icon icon-link"></span></a></h2>
+<p>В качестве дополнительного бонуса у вас есть возможность изучить оставшиеся конечные точки и поделиться своими соображениями по поводу ”тела ответа” в разделе комментариев.</p>
+<p>Получить доступ к проекту можно в моем репозитории GitHub по следующему URL:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="plaintext"><code><span class="line"><span>https://github.com/mbuthi/product_listing_API</span></span>
+<span class="line"><span></span></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Клонируйте проект в локальный репозиторий и приступайте к его запуску.</p>
+<h2 id="заключение"><a href="https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb#conclusion" rel="noopener noreferrer nofollow" target="_blank"></a>Заключение<a aria-hidden="true" tabindex="-1" href="#заключение"><span class="icon icon-link"></span></a></h2>
+<p>В заключение этой статьи мы рассмотрели процесс контейнеризации приложения Fast API и базы данных PostgreSQL с помощью docker. Разделив API и базу данных на отдельные контейнеры, мы добились переносимости и простоты развертывания.</p>
+<p>Мы начали с создания файлов dockerfile и docker compose для нашей среды docker, настройки моделей, схем, CRUD-операций и конечных точек.</p>
+<p>На протяжении всей статьи мы рассказывали о том, как сохранять данные с помощью томов в docker, а также о лучших практиках docker и подчеркивали важность DRY-программирования.</p>
+<p>Я надеюсь, что эта статья дала вам представление о контейнеризации приложений Fast API и баз данных PostgreSQL с помощью docker и позволила вывести веб-приложения на новый уровень. По мере того как вы будете продолжать знакомство с контейнеризацией, изучайте более сложные темы, связанные с Fast API и docker.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=DevOps с Fast API и PostgreSQL: Как контейнеризировать приложение Fast API с помощью Docker&url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker&title=DevOps с Fast API и PostgreSQL: Как контейнеризировать приложение Fast API с помощью Docker&summary=(https://fastapi.tiangolo.com/) - это современный фреймворк с открытым исходным кодом, который используется для построения API на языке Python.
+&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/devops-s-fast-api-i-postgresql-kak-kontejnerizirovatь-prilozhenie-fast-api-s-pomoshьyu-docker&media=&description=(https://fastapi.tiangolo.com/) - это современный фреймворк с открытым исходным кодом, который используется для построения API на языке Python.
+" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kak-standartizirovatь-sredu-razrabotki-s-pomoshьyu-devcontainer-json" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Как стандартизировать среду разработки с помощью devcontainer.json </a> <a href="/blog/24-proekta-s-otkrytym-ishodnym-kodom-dlya-razrabotchikov-v-2023-godu-" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> 24 проекта с открытым исходным кодом для разработчиков в 2023 году 🔥👍 </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

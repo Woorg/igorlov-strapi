@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Как удалить предварительные версии развертываний Vercel из GitHub Actions - Фул Фронт Дев</title><link rel="canonical" href="https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions"><meta name="description" content="Недавно я начал свое путешествие по изучению NextJS и платформы Vercel. Как опытный разработчик React, за последние 6 лет я разработал несколько фронтендприло"><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions-Dec-04-2023.ezXNwpXj_Z22G7Te.avif" type="image/avif"><source srcset="/_astro/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions-Dec-04-2023.ezXNwpXj_Z1Y8Qul.webp" type="image/webp"> <img src="/_astro/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions-Dec-04-2023.ezXNwpXj_f3zKS.png" alt="Как удалить предварительные версии развертываний Vercel из GitHub Actions" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Как удалить предварительные версии развертываний Vercel из GitHub Actions </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/github" data-astro-cid-axzg2cw6> Github </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/vercel" data-astro-cid-axzg2cw6> Vercel </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 04 дек., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как удалить предварительные версии развертываний Vercel из GitHub Actions&url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions&title=Как удалить предварительные версии развертываний Vercel из GitHub Actions&summary=Недавно я начал свое путешествие по изучению NextJS и платформы Vercel. Как опытный разработчик React, за последние 6 лет я разработал несколько фронтендприло&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions&media=&description=Недавно я начал свое путешествие по изучению NextJS и платформы Vercel. Как опытный разработчик React, за последние 6 лет я разработал несколько фронтендприло" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <details open class="toc border-b border-blue text-blue fluid:p-8 overflow-auto cursor-pointer bg-box"><summary class="toc__title text-xl font-medium">Содержание</summary><ol class="toc-level toc-level-1"><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#шаг-1---соберите-необходимые-идентификаторы">Шаг 1 - Соберите необходимые идентификаторы</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#шаг-1---создайте-переменные-окружения-в-github-actions">Шаг 1 - Создайте переменные окружения в GitHub Actions</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#шаг-2---настройка-рабочего-процесса-deploy_previewyml">Шаг 2 - Настройка рабочего процесса deploy_preview.yml.</a></li><li class="toc-item toc-item-h2"><a class="text-blue text-blue-h2" href="#шаг-3---настройка-рабочего-процесса-и-сценария-remove_deploy_previewyml">Шаг 3 - Настройка рабочего процесса и сценария remove_deploy_preview.yml</a><ol class="toc-level toc-level-2"><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#bash-скрипт-для-удаления-сборок-из-vercel">Bash-скрипт для удаления сборок из Vercel</a></li><li class="toc-item toc-item-h3"><a class="text-blue text-blue-h3" href="#рабочий-процесс-развертывания">Рабочий процесс развертывания</a></li></ol></li></ol></details open><p>Недавно я начал свое путешествие по изучению NextJS и платформы Vercel. Как опытный разработчик React, за последние 6 лет я разработал несколько фронтенд-приложений с использованием этой библиотеки, и очень приятно видеть, как вся экосистема React строится/следует за тем, что говорит компания, и взаимодействует с сообществом. Будущее за React, и любое сходство с PHP - не случайность.</p>
+<p>Итак, давайте начнем. Поскольку я строю свой стартап, мы решили создать фронтенд + бэкенд с помощью NextJS. Это лучшее решение для нашего продукта - монолит, включающий бэкенд и фронтенд… и некоторые другие преимущества, такие как SSR и кэширование. Так как мы хотим иметь быструю итерацию в продукте, наличие такого сервиса, как <a href="https://vercel.com/" rel="noopener noreferrer nofollow" target="_blank">Vercel</a>, помогает нам создавать наш продукт, не заботясь об инфраструктуре (AWS, GCP). Цены очень скромные, честно говоря, я считаю, что заплатить $20 за инфраструктуру полного стека с включенным экземпляром Postgres вполне достойно.</p>
+<p>Вместо того чтобы использовать их автоматическую сборку после переноса коммита в ветку, я решил отключить эту функцию и запускать сборку из GitHub Actions.</p>
+<h2 id="шаг-1---соберите-необходимые-идентификаторы">Шаг 1 - Соберите необходимые идентификаторы<a aria-hidden="true" tabindex="-1" href="#шаг-1---соберите-необходимые-идентификаторы"><span class="icon icon-link"></span></a></h2>
+<p>Для взаимодействия с <strong>Vercel API</strong> вам нужны значения <code>projectId</code> и <code>teamId</code>. Чтобы получить эти значения:</p>
+<ul>
+<li>Перейдите на приборную панель Vercel и выберите команду</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--4bPV11o1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ofl50td3m474o3vd9ikq.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--4bPV11o1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ofl50td3m474o3vd9ikq.png" alt="Изображение приборной панели"></a></p>
+<ul>
+<li>Нажмите на настройки</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--G87aNuDK--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3egqxv1i9b6g9v8dkpvm.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--G87aNuDK--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3egqxv1i9b6g9v8dkpvm.png" alt="Изображение настроек"></a></p>
+<ul>
+<li>Скопируйте идентификатор вашей команды</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--rDh02g3C--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/alb9jm63be1mu6d1702v.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--rDh02g3C--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/alb9jm63be1mu6d1702v.png" alt="Изображение идентификатора команды"></a></p>
+<ul>
+<li>Выберите проект, над которым вы работаете, нажав на Обзор</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--wsdhw64k--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z5owhuyuzo2to2naiops.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--wsdhw64k--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z5owhuyuzo2to2naiops.png" alt="Изображение обзора"></a></p>
+<ul>
+<li>Нажмите в настройках</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--IGjqX1Xi--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pm31gwpql6ryd04djs7q.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--IGjqX1Xi--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/pm31gwpql6ryd04djs7q.png" alt="Изображение настроек"></a></p>
+<ul>
+<li>Скопируйте идентификатор вашего проекта</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--GlHi6NsD--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3cix8uxpb8aeoaw1m89g.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GlHi6NsD--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3cix8uxpb8aeoaw1m89g.png" alt="Изображение идентификатора проекта"></a></p>
+<ul>
+<li>Создайте токен администратора Создайте токен администратора, посетив страницу <a href="https://vercel.com/account/tokens" rel="noopener noreferrer nofollow" target="_blank">Tokens</a>. Не забудьте выбрать опцию <strong>Full Scope</strong>. Это важно, поскольку данный токен будет отвечать за удаление развертываний.</li>
+</ul>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--Ue_UuqX2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/p066rfzzt94ne5u73qjr.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Ue_UuqX2--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/p066rfzzt94ne5u73qjr.png" alt="Токен администратора"></a></p>
+<p>Подводя итог, можно сказать, что вам понадобятся 3 токена от vercel:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Токен</th><th>Описание</th><th>Имя переменной</th></tr></thead><tbody><tr><td>VERCEL_ORG_ID</td><td>Это идентификатор команды</td><td>VERCEL_ORG_ID</td></tr><tr><td>VERCEL_PROJECT_ID</td><td>Это идентификатор проекта</td><td>VERCEL_PROJECT_ID</td></tr><tr><td>VERCEL_TOKEN</td><td>Это токен ключа API</td><td>VERCEL_TOKEN</td></tr></tbody></table>
+<h2 id="шаг-1---создайте-переменные-окружения-в-github-actions">Шаг 1 - Создайте переменные окружения в GitHub Actions<a aria-hidden="true" tabindex="-1" href="#шаг-1---создайте-переменные-окружения-в-github-actions"><span class="icon icon-link"></span></a></h2>
+<p>Зайдите в настройки репозитория и создайте там переменные окружения.</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--yLzUY6mm--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a5f748dsn1oxx29jh8b1.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--yLzUY6mm--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/a5f748dsn1oxx29jh8b1.png" alt="Секреты GitHub Actions"></a></p>
+<h2 id="шаг-2---настройка-рабочего-процесса-deploy_previewyml">Шаг 2 - Настройка рабочего процесса <code>deploy_preview.yml</code>.<a aria-hidden="true" tabindex="-1" href="#шаг-2---настройка-рабочего-процесса-deploy_previewyml"><span class="icon icon-link"></span></a></h2>
+<ol>
+<li>Зайдите в свой проект, создайте новый рабочий процесс с именем <code>deploy_preview.yml</code> в папке <code>.github/workflows</code>.</li>
+<li>Вставьте следующее содержимое рабочего процесса:</li>
+</ol>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Развертывание предварительного просмотра Vercel</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">env</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  VERCEL_TOKEN</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ secrets.VERCEL_TOKEN }}</span></span>
+<span class="line"><span style="color:#5DE4C7">  VERCEL_ORG_ID</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ secrets.VERCEL_ORG_ID }}</span></span>
+<span class="line"><span style="color:#5DE4C7">  VERCEL_PROJECT_ID</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ secrets.VERCEL_PROJECT_ID }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">разрешения</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  содержимое</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">читать</span></span>
+<span class="line"><span style="color:#5DE4C7">  статусы</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">запись</span></span>
+<span class="line"><span style="color:#5DE4C7">  pull-requests</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">write</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">на</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  pull_request</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">    типы</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#ADD7FF">открытый</span></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#ADD7FF">синхронизировать</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">задания</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  deploy-preview</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">    работает на</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">ubuntu-latest</span></span>
+<span class="line"><span style="color:#5DE4C7">    шаги</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">использует</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">actions/checkout@v2</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Извлечь имя ветки</span></span>
+<span class="line"><span style="color:#5DE4C7">        оболочка</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">bash</span></span>
+<span class="line"><span style="color:#5DE4C7">        выполнить</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT</span></span>
+<span class="line"><span style="color:#5DE4C7">        id</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">extract_branch</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">name</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Hash имя ветки</span></span>
+<span class="line"><span style="color:#5DE4C7">        используется</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">pplanel/hash-calculator-action@v1.3.1</span></span>
+<span class="line"><span style="color:#5DE4C7">        id</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">hash_branch</span></span>
+<span class="line"><span style="color:#5DE4C7">        с</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">          input</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ steps.extract_branch.outputs.branch }}</span></span>
+<span class="line"><span style="color:#5DE4C7">          метод</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">MD5</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Установить Vercel CLI</span></span>
+<span class="line"><span style="color:#5DE4C7">        выполнить</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">npm install --global vercel@latest</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">название</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Зависимости кэша</span></span>
+<span class="line"><span style="color:#5DE4C7">        используется</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">actions/cache@v2</span></span>
+<span class="line"><span style="color:#5DE4C7">        id</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">cache-npm</span></span>
+<span class="line"><span style="color:#5DE4C7">        с</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">          путь</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">~/.npm</span></span>
+<span class="line"><span style="color:#5DE4C7">          ключ</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">npm-${{ hashFiles('package-lock.json') }}</span></span>
+<span class="line"><span style="color:#5DE4C7">          restore-keys</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">npm-</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Установить зависимости</span></span>
+<span class="line"><span style="color:#5DE4C7">        if</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ steps.cache-npm.outputs.cache-hit != 'true' }}</span></span>
+<span class="line"><span style="color:#5DE4C7">        выполнить</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">npm ci --ignore-scripts</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Вытащить информацию об окружении Vercel</span></span>
+<span class="line"><span style="color:#5DE4C7">        run</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">vercel pull --yes --environment=preview --token=$VERCEL_TOKEN</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Развертывание артефактов проекта в Vercel</span></span>
+<span class="line"><span style="color:#5DE4C7">        id</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">vercel</span></span>
+<span class="line"><span style="color:#5DE4C7">        env</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">          META_TAG</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ steps.hash_branch.outputs.digest }}-${{ github.run_number }}-${ github.run_attempt}}</span></span>
+<span class="line"><span style="color:#5DE4C7">        run</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7C0">|</span></span>
+<span class="line"><span style="color:#ADD7FF">          vercel --version</span></span>
+<span class="line"><span style="color:#ADD7FF">          vercel pull --yes --environment=preview --token=$VERCEL_TOKEN</span></span>
+<span class="line"><span style="color:#ADD7FF">          vercel build --token=$VERCEL_TOKEN</span></span>
+<span class="line"><span style="color:#ADD7FF">          vercel deploy --prebuilt --archive=tgz --token=$VERCEL_TOKEN --meta base_hash=${{ env.META_TAG }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADD7FF">          vercel ls --token=$VERCEL_TOKEN --meta base_hash=${{ env.META_TAG }} &#x26;> vercel-output</span></span>
+<span class="line"><span style="color:#ADD7FF">          url=$(cat vercel-output | grep http | awk '{print $2}')</span></span>
+<span class="line"><span style="color:#ADD7FF">          echo "Новый URL-адрес предварительного просмотра: $url"</span></span>
+<span class="line"><span style="color:#ADD7FF">          echo "META_TAG=$META_TAG"</span></span>
+<span class="line"><span style="color:#ADD7FF">          echo "VERCEL_URL=$url" >> "$GITHUB_OUTPUT"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">использует</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">mshick/add-pr-comment@v2</span></span>
+<span class="line"><span style="color:#5DE4C7">        с</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">          сообщение</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7C0">|</span></span>
+<span class="line"><span style="color:#ADD7FF">            Ваша сборка завершена!</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#ADD7FF">            [Предварительное развертывание](${{ steps.vercel.outputs.VERCEL_URL }})</span></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Этот рабочий процесс является базовым, который будет выполняться каждый раз, когда создается или синхронизируется (получает новый коммит) запрос на вытягивание. Выполняются следующие шаги:</p>
+<ol>
+<li>Извлечение содержимого PR в рабочую директорию.</li>
+<li>Получите имя ветки.</li>
+<li>Создайте уникальный хэш для имени ветки. Это важно, потому что Vercel разрешает использовать мета-теги в сборках, это поможет нам позже определить, когда нужно будет удалить все предварительные развертывания из определенной ветки.</li>
+<li>Установите Vercel CLI.</li>
+<li>Проверьте кэш для модулей npm (ускорение сборки).</li>
+<li>Установите зависимости, если необходимо</li>
+<li>Извлеките переменные окружения, определенные в Vercel</li>
+<li>Сборка и развертывание артефактов. Обратите внимание на переменную <code>META_TAG</code>. Это важно, так как она будет использоваться в качестве метаданных для идентификации каждого развертывания превью.</li>
+<li>Прокомментируйте URL-адрес предварительного просмотра.</li>
+</ol>
+<p>В рамках этого шага вы создадите автоматические ссылки на предварительный просмотр при каждом запуске в вашу ветку.</p>
+<h2 id="шаг-3---настройка-рабочего-процесса-и-сценария-remove_deploy_previewyml">Шаг 3 - Настройка рабочего процесса и сценария <code>remove_deploy_preview.yml</code><a aria-hidden="true" tabindex="-1" href="#шаг-3---настройка-рабочего-процесса-и-сценария-remove_deploy_previewyml"><span class="icon icon-link"></span></a></h2>
+<p>Этот рабочий процесс будет обязательным в том случае, если вы захотите удалить все сборки превью, созданные проектом.</p>
+<h3 id="bash-скрипт-для-удаления-сборок-из-vercel">Bash-скрипт для удаления сборок из Vercel<a aria-hidden="true" tabindex="-1" href="#bash-скрипт-для-удаления-сборок-из-vercel"><span class="icon icon-link"></span></a></h3>
+<p>В корневой папке проекта создайте файл <code>scripts/delete-deployment-preview.sh</code>.</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#767C9DB0;font-style:italic">#!/bin/bash</span></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Установите опцию pipefail.</span></span>
+<span class="line"><span style="color:#91B4D5">set</span><span style="color:#ADD7FF"> -o</span><span style="color:#ADD7FF"> pipefail</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Получение конечных точек API Vercel.</span></span>
+<span class="line"><span style="color:#E4F0FB">GET_DEPLOYMENTS_ENDPOINT</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">https://api.vercel.com/v6/deployments</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#E4F0FB">DELETE_DEPLOYMENTS_ENDPOINT</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">"</span><span style="color:#5DE4C7">https://api.vercel.com/v13/deployments</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Создайте список развертываний.</span></span>
+<span class="line"><span style="color:#E4F0FB">deployments</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">$(</span><span style="color:#91B4D5">curl</span><span style="color:#ADD7FF"> -s</span><span style="color:#ADD7FF"> -X</span><span style="color:#ADD7FF"> GET</span><span style="color:#A6ACCD"> "</span><span style="color:#E4F0FB">$GET_DEPLOYMENTS_ENDPOINT</span><span style="color:#5DE4C7">/?projectId=</span><span style="color:#E4F0FB">$VERCEL_PROJECT_ID</span><span style="color:#5DE4C7">&#x26;teamId=</span><span style="color:#E4F0FB">$VERCEL_ORG_ID</span><span style="color:#A6ACCD">"</span><span style="color:#ADD7FF"> -H</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Authorization: Bearer </span><span style="color:#E4F0FB">$VERCEL_TOKEN</span><span style="color:#A6ACCD"> "</span><span style="color:#A6ACCD">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Отфильтруйте список развертываний по meta.base_hash === meta tag.</span></span>
+<span class="line"><span style="color:#E4F0FB">filtered_deployments</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">$(</span><span style="color:#91B4D5">echo</span><span style="color:#E4F0FB"> $deployments</span><span style="color:#91B4D5"> |</span><span style="color:#91B4D5"> jq</span><span style="color:#ADD7FF"> --arg</span><span style="color:#ADD7FF"> META_TAG</span><span style="color:#A6ACCD"> "</span><span style="color:#E4F0FB">$META_TAG</span><span style="color:#A6ACCD">"</span><span style="color:#A6ACCD"> '</span><span style="color:#5DE4C7">[.deployments[] | select(.meta.base_hash | type == "string" and contains($META_TAG)) | .uid] | join(",")</span><span style="color:#A6ACCD">'</span><span style="color:#A6ACCD">)</span></span>
+<span class="line"><span style="color:#E4F0FB">filtered_deployments</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">"${</span><span style="color:#E4F0FB">filtered_deployments</span><span style="color:#91B4D5">//</span><span style="color:#5FB3A1">\"</span><span style="color:#91B4D5">/</span><span style="color:#A6ACCD">}"</span><span style="color:#767C9DB0;font-style:italic"> # Удалите двойные кавычки</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Очистите значения из filtered_deployments</span></span>
+<span class="line"><span style="color:#E4F0FB">IFS</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">'</span><span style="color:#5DE4C7">,</span><span style="color:#A6ACCD">'</span><span style="color:#91B4D5"> read</span><span style="color:#ADD7FF"> -ra</span><span style="color:#ADD7FF"> values</span><span style="color:#91B4D5"> &#x3C;&#x3C;&#x3C;</span><span style="color:#A6ACCD">"</span><span style="color:#E4F0FB">$filtered_deployments</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#91B4D5">echo</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">META_TAG </span><span style="color:#A6ACCD">${</span><span style="color:#E4F0FB">META_TAG</span><span style="color:#A6ACCD">}"</span></span>
+<span class="line"><span style="color:#91B4D5">echo</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Отфильтрованные развертывания </span><span style="color:#A6ACCD">${</span><span style="color:#E4F0FB">filtered_deployments</span><span style="color:#A6ACCD">}"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic"># Итерация по списку отфильтрованных развертываний.</span></span>
+<span class="line"><span style="color:#A6ACCD">for </span><span style="color:#E4F0FB">uid</span><span style="color:#A6ACCD"> in </span><span style="color:#A6ACCD">"${</span><span style="color:#E4F0FB">values</span><span style="color:#A6ACCD">[</span><span style="color:#91B4D5">@</span><span style="color:#A6ACCD">]}"</span><span style="color:#A6ACCD">; do</span></span>
+<span class="line"><span style="color:#91B4D5">    echo</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Удаление </span><span style="color:#A6ACCD">${</span><span style="color:#E4F0FB">uid</span><span style="color:#A6ACCD">}"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E4F0FB">    delete_url</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">${</span><span style="color:#E4F0FB">DELETE_DEPLOYMENTS_ENDPOINT</span><span style="color:#A6ACCD">}</span><span style="color:#ADD7FF">/</span><span style="color:#A6ACCD">${</span><span style="color:#E4F0FB">uid</span><span style="color:#A6ACCD">}</span><span style="color:#ADD7FF">?</span><span style="color:#E4F0FB">teamId</span><span style="color:#91B4D5">=</span><span style="color:#A6ACCD">${</span><span style="color:#E4F0FB">VERCEL_ORG_ID</span><span style="color:#A6ACCD">}</span></span>
+<span class="line"><span style="color:#91B4D5">    echo</span><span style="color:#E4F0FB"> $delete_url</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#767C9DB0;font-style:italic">    # Выполните DELETE-запрос к конечной точке /v13/deployments/{id}.</span></span>
+<span class="line"><span style="color:#91B4D5">    curl</span><span style="color:#ADD7FF"> -X</span><span style="color:#ADD7FF"> DELETE</span><span style="color:#E4F0FB"> $delete_url</span><span style="color:#ADD7FF"> -H</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Authorization: Bearer </span><span style="color:#E4F0FB">$VERCEL_TOKEN</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#91B4D5">    echo</span><span style="color:#A6ACCD"> "</span><span style="color:#5DE4C7">Удалено!</span><span style="color:#A6ACCD">"</span></span>
+<span class="line"><span style="color:#A6ACCD">done</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Не забудьте запустить <code>chmod</code>:
+<code>chmod a+x ./scripts/delete-deployment-preview.sh</code>.</p>
+<h3 id="рабочий-процесс-развертывания"><a href="https://dev.to/thereis/how-to-remove-vercel-deployments-from-github-actions-4nfh#deployment-workflow" rel="noopener noreferrer nofollow" target="_blank"></a>Рабочий процесс развертывания<a aria-hidden="true" tabindex="-1" href="#рабочий-процесс-развертывания"><span class="icon icon-link"></span></a></h3>
+<p>Создайте файл <code>remove_deploy_preview.yml</code> в папке <code>.github/workflows</code> и вставьте в него следующее содержимое:</p>
+<pre class="astro-code poimandres" style="background-color:#1b1e28;color:#a6accd; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Удалить предварительный просмотр развертывания</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">разрешения</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  содержимое</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">читать</span></span>
+<span class="line"><span style="color:#5DE4C7">  статусы</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">запись</span></span>
+<span class="line"><span style="color:#5DE4C7">  pull-requests</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">write</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">env</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  VERCEL_TOKEN</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ secrets.VERCEL_TOKEN }}</span></span>
+<span class="line"><span style="color:#5DE4C7">  VERCEL_ORG_ID</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ secrets.VERCEL_ORG_ID }}</span></span>
+<span class="line"><span style="color:#5DE4C7">  VERCEL_PROJECT_ID</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ secrets.VERCEL_PROJECT_ID }}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">on</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  pull_request</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">    типы</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#ADD7FF">закрытый</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#5DE4C7">задания</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">  delete-deployments</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">    работает на</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">ubuntu-latest</span></span>
+<span class="line"><span style="color:#5DE4C7">    шаги</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">uses</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">actions/checkout@v2</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Извлечь имя ветки</span></span>
+<span class="line"><span style="color:#5DE4C7">        оболочка</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">bash</span></span>
+<span class="line"><span style="color:#5DE4C7">        выполнить</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT</span></span>
+<span class="line"><span style="color:#5DE4C7">        id</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">extract_branch</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">name</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Hash имя ветки</span></span>
+<span class="line"><span style="color:#5DE4C7">        используется</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">pplanel/hash-calculator-action@v1.3.1</span></span>
+<span class="line"><span style="color:#5DE4C7">        id</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">hash_branch</span></span>
+<span class="line"><span style="color:#5DE4C7">        с</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">          input</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ steps.extract_branch.outputs.branch }}</span></span>
+<span class="line"><span style="color:#5DE4C7">          метод</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">MD5</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#A6ACCD">      - </span><span style="color:#5DE4C7">имя</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">Вызов скрипта delete-deployment-preview.sh</span></span>
+<span class="line"><span style="color:#5DE4C7">        env</span><span style="color:#A6ACCD">:</span></span>
+<span class="line"><span style="color:#5DE4C7">          META_TAG</span><span style="color:#A6ACCD">: </span><span style="color:#ADD7FF">${{ steps.hash_branch.outputs.digest }}</span></span>
+<span class="line"><span style="color:#5DE4C7">        run</span><span style="color:#A6ACCD">: </span><span style="color:#5DE4C7C0">|</span></span>
+<span class="line"><span style="color:#ADD7FF">          bash ./scripts/delete-deployment-preview.sh</span></span>
+<span class="line"></span></code></pre>
+<p>Вход в полноэкранный режим</p>
+<p>Этот рабочий процесс будет запущен, когда существующий PR будет закрыт или объединен. Поэтому имейте в виду, что эта работа, возможно, будет выполнена без удаления превью.</p>
+<p>Рабочий процесс состоит из следующих шагов:</p>
+<ol>
+<li>Загрузите содержимое PR в рабочее пространство.</li>
+<li>Получение имени ветви запроса.</li>
+<li>Создайте для нее хэш.</li>
+<li>Выполните скрипт <code>bash</code>, который мы создали ранее с переменной окружения <code>META_TAG</code>.</li>
+</ol>
+<p>Сценарий выполнит GET-запрос к конечной точке <code>https://api.vercel.com/v6/deployments</code> и получит все имеющиеся у вас предварительные развертывания. Затем мы используем <code>jq</code> для создания списка <code>uid</code>, который совпадает с <code>meta.base_hash</code>, который мы передали ранее при создании нового превью.</p>
+<p>Если есть свободные развертывания, мы удаляем их. Если нет, то все в порядке, не стоит беспокоиться (если только у вас вообще ничего нет).</p>
+<p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--PRAiS5GR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zb5fgmr5dudotwl8q740.png" rel="noopener noreferrer nofollow" target="_blank"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--PRAiS5GR--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zb5fgmr5dudotwl8q740.png" alt="Удалить предварительный просмотр развертывания"></a></p>
+<p>На этом все, надеюсь, вы разберетесь с этим. Оставляйте комментарии, если вам понравилось, и следите за мной (за моими жалобами) в Twitter.</p>
+<p><a href="https://twitter.com/dev_reis" rel="noopener noreferrer nofollow" target="_blank">dev_reis on Twitter</a>
+<a href="https://instagram.com/dev_reis" rel="noopener noreferrer nofollow" target="_blank">dev_reis on Instagram</a></p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Как удалить предварительные версии развертываний Vercel из GitHub Actions&url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions&title=Как удалить предварительные версии развертываний Vercel из GitHub Actions&summary=Недавно я начал свое путешествие по изучению NextJS и платформы Vercel. Как опытный разработчик React, за последние 6 лет я разработал несколько фронтендприло&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/kak-udalyt-predvaryteln-e-versyy-razvert-vanyi-vercel-yz-github-actions&media=&description=Недавно я начал свое путешествие по изучению NextJS и платформы Vercel. Как опытный разработчик React, за последние 6 лет я разработал несколько фронтендприло" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/kak-ustanovyt-java-jdk-v-ubuntu" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Как установить Java JDK в Ubuntu </a> <a href="/blog/kak-testyrovat-prylozhenyia-s-pomoschiu-jest" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Как тестировать приложения с помощью Jest </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

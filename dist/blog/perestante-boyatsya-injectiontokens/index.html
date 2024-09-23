@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Перестаньте бояться InjectionTokens - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/perestante-boyatsya-injectiontokens"><meta name="description" content="Injection Tokens, похоже, пугают многих разработчиков. Они не понимают, что это такое, как их использовать и каково их назначение."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-perestante-boyatsya-injectiontokens; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_Z26K2SH.avif" type="image/avif"><source srcset="/_astro/undefined-Feb-25-2023.BscJLvqp_Z2vHC8J.webp" type="image/webp"> <img src="/_astro/undefined-Feb-25-2023.BscJLvqp_Z24iG4g.png" alt="Перестаньте бояться InjectionTokens" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Перестаньте бояться InjectionTokens </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/angular" data-astro-cid-axzg2cw6> Angular </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 25 фев., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Перестаньте бояться InjectionTokens&url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens&title=Перестаньте бояться InjectionTokens&summary=Injection Tokens, похоже, пугают многих разработчиков. Они не понимают, что это такое, как их использовать и каково их назначение.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens&media=&description=Injection Tokens, похоже, пугают многих разработчиков. Они не понимают, что это такое, как их использовать и каково их назначение." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Injection Tokens, похоже, пугают многих разработчиков. Они не понимают, что это такое, как их использовать и каково их назначение.</p>
+<p>Чтобы преодолеть страх перед этой функцией, важно иметь базовое представление о том, как работает инъекция зависимостей Angular. (В отдельной статье мы более подробно рассмотрим внутреннюю работу системы DI в Angular для полного понимания).</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"c8fe0768-d502-44f9-9252-ab9d1be5cf75","content":"Чтобы внедрить MyService, мы напишем следующее:","level":2,"link":"#чтобы-внедрить-my-service-мы-напишем-следующее","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"1887ad5c-b9a6-4144-960b-7fcf151f28fc","content":"useValue","level":2,"link":"#use-value","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"8fe90b98-bec2-4a6a-bc0b-ca99cccbfdd7","content":"useClass","level":2,"link":"#use-class","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"907603d0-5975-46c1-a51f-b8dc05c65fd4","content":"useFactory","level":2,"link":"#use-factory","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"bb69b6a4-3725-4eb1-9f78-5834223710e0","content":"useExisting","level":2,"link":"#use-existing","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"cbd2c5d7-9da7-49ac-9b47-006d5745f2fe","content":"Notes","level":2,"link":"#notes","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#чтобы-внедрить-my-service-мы-напишем-следующее">Чтобы внедрить MyService, мы напишем следующее:</a></li><li class=""><a href="#use-value">useValue</a></li><li class=""><a href="#use-class">useClass</a></li><li class=""><a href="#use-factory">useFactory</a></li><li class=""><a href="#use-existing">useExisting</a></li><li class=""><a href="#notes">Notes</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<p>Вот пример того, как работает паттерн singleton. Когда мы добавляем @Injectable({providedIn: ‘root’}) к одному из наших сервисов:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Injectable({ providedIn: 'root' })
+export class MyService {
+ // ...
+}
+</code></pre>
+<!-- /wp:code -->
+<p>При первом вызове MyService Angular сохранит сервис в записи RootInjector, ключом которой будет класс MyService, а значением - объект, содержащий фабрику MyService, текущее значение и флаг multi.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">record:{
+ //...
+ [index]:{
+   key: class MyService,
+   value: {
+    factory: f MyService_Factory(t),
+    multi: undefined
+    value: {}
+   }
+ //...
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Таким образом, в следующий раз, когда мы захотим внедрить наш сервис через конструктор или функцию inject в другом компоненте, DI Angular будет искать сервис в объекте записи и возвращать его текущее значение или создавать его с помощью функции фабрики.</p>
+<p>Также очень важно понять, что произойдет, если мы предоставим наш сервис непосредственно в bootstrapApplication или массиве провайдеров компонента.</p>
+<h2 class="wp-block-heading" id="чтобы-внедрить-my-service-мы-напишем-следующее">Чтобы внедрить MyService, мы напишем следующее:</h2>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  // ...
+  providers: [MyService],
+})
+export class AppComponent {}
+</code></pre>
+<!-- /wp:code -->
+<p>Этот код является сокращенным синтаксисом для</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  // ...
+  providers: [{provide: MyService, useClass: MyService}],
+})
+export class AppComponent {}
+</code></pre>
+<!-- /wp:code -->
+<p>Создавая InjectionToken, мы создаем ”статический” ключ для нашей записи или словаря услуг.</p>
+<p>Написав это:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const DATA = new InjectionToken&#x3C;string>('data');
+</code></pre>
+<!-- /wp:code -->
+<p>Мы создаем ”константу” типа string.</p>
+<p>InjectionToken может принимать объект в качестве второго параметра, содержащий фабричную функцию и атрибут providedIn (Хотя этот параметр будет устаревшим, так как значением по умолчанию является root и нет другой возможности). Заводская функция действует как значение по умолчанию, если другое значение не предоставлено.</p>
+<p>Давайте посмотрим на следующий пример, чтобы прояснить это.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const DATA = new InjectionToken&#x3C;string>('data', {
+  factory: () => 'toto',
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Angular будет хранить наш токен внутри объекта record объекта RootInjector:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">record: {
+ //...
+ [index]: {
+   key: InjectionToken {_desc: 'data', ngMetadataName: 'InjectionToken'}
+   value: {
+     factory: () => 'toto',
+     multi: undefined,
+     value: "toto"
+   }
+ },
+ //...
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Затем, когда мы вводим его внутрь компонента, DI Angular будет искать ключ DATA в записи RootInjector и вводить соответствующее значение. (‘toto’ в данном примере)</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  // ...
+  template: `{{ data }} `, // toto
+})
+export class AppComponent {
+  data = inject(DATA);
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Однако в массиве поставщика компонентов мы можем переопределить этот Token для отображения DATA с другим значением. На этот раз Angular будет хранить значение внутри записи NodeInjector.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  // ...
+  provider: [{provide: DATA, useValue: 'titi'}],
+  template: `{{ data }} `, // titi
+})
+export class AppComponent {
+  data = inject(DATA);
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Когда Angular ищет маркер DATA, он сначала проверяет NodeInjector компонента, затем NodeInjector его родителя и, наконец, RootInjector. В результате, в данном примере выходным значением будет ‘titi’.</p>
+<p>Предоставление вашего InjectionToken</p>
+<h2 class="wp-block-heading" id="use-value">useValue</h2>
+<p>Ключевое слово useValue позволяет нам предоставить строку, число, интерфейс, экземпляр класса или любое постоянное значение. Это очень полезно для настройки свойств конфигурации.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export type Environment = 'local' | 'dev' | 'int' | 'prod';
+
+export interface AppConfig {
+  version: string;
+  apiUrl: string;
+  environment: Environment;
+}
+
+export const APP_CONFIG = new InjectionToken&#x3C;AppConfig>('app.config');
+
+export const getAppConfigProvider = (value: AppConfig): ValueProvider => ({
+  provide: APP_CONFIG,
+  useValue: value,
+});
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    getAppConfigProvider(environment) // environment files
+  ],
+});
+</code></pre>
+<!-- /wp:code -->
+<p>В приведенном выше примере мы создаем InjectionToken для хранения конфигурации окружения. </p>
+<p>Это рекомендуемый метод доступа к переменным окружения в рабочем пространстве Nx, поскольку он позволяет избежать циклических зависимостей.<br>Чтобы получить свойства окружения, мы вводим токен внутрь нашего компонента.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: `{{ config.version }}`,
+})
+export class AppComponent {
+  config = inject(APP_CONFIG);
+}
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="use-class">useClass</h2>
+<p>Ключевое слово useClass позволяет нам инстанцировать новый класс. Это полезно, например, для реализации принципа инверсии зависимостей.</p>
+<p>Принцип инверсии зависимостей - это принцип проектирования программного обеспечения, который гласит, что различные уровни зависят от абстракций, а не друг от друга. Такая инверсия делает код более гибким, удобным в обслуживании и тестировании.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export interface Search&#x3C;T> {
+  search: (search: string) => T[];
+}
+
+export const SEARCH = new InjectionToken&#x3C;Search&#x3C;object>>('search');
+
+@Component({
+  selector: 'shareable',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgFor, AsyncPipe, JsonPipe],
+  template: `
+    &#x3C;input type="text" [formControl]="searchInput" />
+    &#x3C;button (click)="search()">&#x3C;/button>
+    &#x3C;div *ngFor="let d of data | async">{{ d | json }}&#x3C;/div>
+  `,
+})
+export class ShareableComponent {
+  searchService = inject(SEARCH, {optional: true}); 
+  data = new BehaviorSubject&#x3C;object[]>([]);
+
+  searchInput = new FormControl('', { nonNullable: true });
+
+  // We are not injecting `searchService` with the constructor, 
+  // because `inject` function infers the type. 
+  constructor() {
+    if (!this.searchService) 
+       throw new Error(`SEARCH TOKEN must be PROVIDED`);
+  }
+
+  search() {
+    this.data.next(this.searchService.search(this.searchInput.value));
+  }
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Компонент ShareableComponent отображает поле ввода, кнопку поиска и список результатов поиска. Когда мы нажимаем кнопку поиска, компонент ищет ”где-то” и выводит результаты. Этот компонент является универсальным и не требует дополнительной информации о том, как и где искать. Детали реализации предоставляются родительским компонентом.</p>
+<p>Давайте посмотрим, как мы можем использовать ShareableComponent.</p>
+<p>Во-первых, мы создадим служебную функцию для предоставления нашего токена. Это повышает удобство работы разработчика и снижает вероятность ошибок, поскольку добавляет в нашу функцию сильную типизацию.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const getSearchServiceProvider = &#x3C;T, C extends Search&#x3C;T>>(clazz: new () => C): ClassProvider => ({
+  provide: SEARCH,
+  useClass: clazz,
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Используя приведенную выше функцию, мы можем предоставить желаемую реализацию интерфейса Search в компоненте, который вызывает ShareableComponent. Когда Angular попытается внедрить инъекционный токен SEARCH, он будет обходить каждый NodeInjector в дереве компонентов, пока не найдет предоставленную реализацию.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Injectable()
+export class DetailSearchService implements Search&#x3C;Detail> {
+  search = (search: string): Detail[] => {
+  // implementation of our search function
+  }
+}
+
+@Component({
+  selector: 'parent',
+  standalone: true,
+  imports: [ShareableComponent],
+  providers: [getSearchServiceProvider(DetailSearchService)],
+  template: `
+   &#x3C;shareable>&#x3C;/shareable>
+  `,
+})
+export class ParentComponent {}
+</code></pre>
+<!-- /wp:code -->
+<p>Если мы хотим повторно использовать ShareableComponent с другой реализацией поиска, это становится очень просто. </p>
+<h2 class="wp-block-heading" id="use-factory">useFactory</h2>
+<p>Ключевое слово useFactory позволяет нам предоставить объект через фабричную функцию.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const USER = new InjectionToken&#x3C;string>('user');
+
+export const getUserProvider = (index: number): FactoryProvider => ({
+  provide: USER,
+  useFactory: () => inject(Store).select(selectUser(index)),
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Функция inject позволяет нам включать другие сервисы в функцию фабрики.</p>
+<p>В качестве альтернативы, если вы не хотите использовать функцию inject, FactoryProvider имеет третий параметр deps, в который можно вводить другие инжектируемые сервисы.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const getUserProvider = (index: number): FactoryProvider => ({
+  provide: USER,
+  useFactory: (store: Store) => store.select(selectUser(index))],
+  deps: [Store],
+});
+</code></pre>
+<!-- /wp:code -->
+<p>Но я советую вам использовать функцию inject. Она чище и проще для понимания.</p>
+<p>Затем мы можем использовать этот провайдер для получения одного пользователя из хранилища:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  selector: 'app-root',
+  standalone: true,
+  providers: [getUserProvider(2)],
+  template: ` &#x3C;div>{{ user }}&#x3C;/div> `,
+})
+export class ParentComponent {
+  user = inject(USER);
+}
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="use-existing">useExisting</h2>
+<p>Ключевое слово useExisting позволяет нам сопоставить существующий экземпляр сервиса с новым токеном, создавая псевдоним.</p>
+<p>При рассмотрении объекта записи, созданного Angular, мы имеем следующее:</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">record:{
+ //...
+ [index]:{
+   key: InjectionToken {_desc: 'data', ngMetadataName: 'InjectionToken', ɵprov: undefined},
+   value: {
+    factory: () => ɵɵinject(resolveForwardRef(provider.useExisting)),
+    multi: undefined
+    value: {}
+   }
+ //...
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Angular разрешает InjectionToken, передавая ссылку на класс, указанный в параметре useExisting. Он ищет этот класс в NodeInjector и RootInjector, поэтому он должен быть задан заранее, иначе произойдет ошибка.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">NullInjectorError: No provider for XXX!
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="notes">Notes</h2>
+<p>При предоставлении InjectionToken через провайдеры не обеспечивается безопасность типов. Например, следующий код не приведет к ошибке Typescript, даже если тип будет определен как число для num , но будет предоставлена строка. (Мы можем получить ошибку во время выполнения).<br>export const NUMBER = new InjectionToken(‘number’);</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">@Component({
+  providers: [{provide: NUMBER, useValue: 'toto'}],
+  // ... 
+})
+export class ParentComponent {
+  num = inject(NUMBER);
+  //^ (property) ParentComponent.num: number
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Чтобы обеспечить безопасность типов, я советую создать служебную функцию для предоставления вашего маркера.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">export const NUMBER = new InjectionToken&#x3C;number>('number');
+
+export const getNumberProvider = (num: number): ValueProvider => ({
+  provide: NUMBER,
+  useValue: num
+});
+// NUMBER token should be provided through this function
+
+@Component({
+  providers: [getNumberProvider('toto')],
+                                 //^ Argument of type 'string' is not assignable to parameter of type 'number'
+  // ...
+})
+export class ParentComponent {
+  num = inject(NUMBER);
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Таким образом, наша реализация будет безопасной, и любые ошибки будут возникать во время компиляции, а не во время выполнения.</p>
+<p>Вот и все для этой статьи! Теперь у вас должно быть хорошее понимание InjectionToken и того, что они означают. Я надеюсь, что эта информация развенчала их для вас, и вы больше не будете испытывать страх перед ними.</p>
+<p>Надеюсь, вы узнали новую концепцию Angular. Если вам понравилось, вы можете найти меня на Twitter или Github.</p>
+<p>👉 Если вы хотите ускорить свой путь изучения Angular и Nx, загляните на Angular challenges.</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Перестаньте бояться InjectionTokens&url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens&title=Перестаньте бояться InjectionTokens&summary=Injection Tokens, похоже, пугают многих разработчиков. Они не понимают, что это такое, как их использовать и каково их назначение.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/perestante-boyatsya-injectiontokens&media=&description=Injection Tokens, похоже, пугают многих разработчиков. Они не понимают, что это такое, как их использовать и каково их назначение." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/php-sozdanie-sobstvennogo-validatora-dannyh-na-php-shag-za-shagom" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> PHP – Создание собственного валидатора данных на PHP: Шаг за шагом </a> <a href="/blog/peremeshivayushhayasya-animacziya-tipografiki" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Перемешивающаяся анимация типографики </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>

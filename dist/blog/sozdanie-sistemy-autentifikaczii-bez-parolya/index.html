@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="ru"> <head><title>Создание системы аутентификации без пароля - Igor Gorlov</title><link rel="canonical" href="https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya"><meta name="description" content="Существует новый способ встраивания аутентификации в ваше внутреннее приложение. Этот подход устраняет необходимость в пароле, что привело к появлению термина беспарольная аутентификация."><meta name="robots" content="index, follow"><!-- favicon --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><!-- theme meta --><meta name="theme-name" content="igorlov.ru"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000"><meta name="generator" content="Astro v4.10.0"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- responsive meta --><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><meta name="google-adsense-account" content="ca-pub-0634695143666394"><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><link rel="stylesheet" href="/_astro/_regular_.Dg72Zwgc.css">
+<style>.breadcrumbs[data-astro-cid-vcbh62el]{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#0d52a1;color:rgba(13,82,161,var(--tw-text-opacity));border-radius:min(1.5rem,1.1625rem + .45vw)}.breadcrumbs[data-astro-cid-vcbh62el]:where([class=dark],[class=dark] *){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#fff;color:rgba(255,255,255,var(--tw-text-opacity))}.container[data-astro-cid-vcbh62el]{padding:min(2rem,1.2125rem + 1.05vw)}.list[data-astro-cid-vcbh62el]{display:flex;align-items:center;gap:.125rem}.link[data-astro-cid-vcbh62el]{font-weight:500;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;padding:.125rem .75rem;font-size:min(1.5rem,1.1625rem + .45vw);line-height:var(--tw-lh)}
+</style>
+<link rel="stylesheet" href="/_astro/_single_.CzD8Xhhr.css">
+<style>.circular-pagination[data-astro-cid-ihkjvfsn]{display:flex;width:100%;flex-wrap:wrap;align-items:center;justify-content:center;overflow:hidden;border-top-width:1px;--tw-border-opacity: 1;border-color:#27292d;border-color:rgba(39,41,45,var(--tw-border-opacity));margin-top:min(1.25rem,1.1375rem + .15vw)}.circular-pagination__link[data-astro-cid-ihkjvfsn]{width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity));text-decoration-line:none}.circular-pagination__link[data-astro-cid-ihkjvfsn]:hover{--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity))}.circular-pagination__link[data-astro-cid-ihkjvfsn]{padding-left:min(1.5rem,1.1625rem + .45vw);padding-right:min(1.5rem,1.1625rem + .45vw);padding-top:.5rem;padding-bottom:.5rem}
+.comments[data-v-f9c4118f]{margin:auto;margin-top:1.25rem;width:100%;--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.comments:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame[data-v-f9c4118f]{width:100%;--tw-bg-opacity: 1;background-color:#fff;background-color:rgba(255,255,255,var(--tw-bg-opacity));--tw-text-opacity: 1;color:#27292d;color:rgba(39,41,45,var(--tw-text-opacity))}.giscus-frame:where([class=dark][data-v-f9c4118f],[class=dark] *[data-v-f9c4118f]){--tw-bg-opacity: 1;background-color:#131315;background-color:rgba(19,19,21,var(--tw-bg-opacity))}
+</style><script type="module" src="/_astro/hoisted.CUFolni_.js"></script><style>[data-astro-transition-scope="astro-xdjatz7t-1"] { view-transition-name: blog-image-sozdanie-sistemy-autentifikaczii-bez-parolya; }</style></head> <body class="flex min-h-screen flex-col bg-gray-light pt-16 font-inter text-blue fluid:text-lg lg:pt-24 dark:bg-black dark:text-white"> <header class="header" data-astro-cid-rq644orq> <div class="header__container container" data-astro-cid-rq644orq> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg header__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <symbol id="ai:local:logo-one"><g fill="currentColor"><path d="M1198.57 596.749c0 329.575-267.171 596.751-596.747 596.751-329.575 0-596.749-267.176-596.749-596.751S272.248 0 601.823 0c329.576 0 596.747 267.174 596.747 596.749Z"/><circle cx="3035.75" cy="617.751" r="596.749" transform="rotate(-90 3035.75 617.751)"/><path d="M3035.75 2736.81c329.57 0 596.75 267.18 596.75 596.75 0 329.58-267.18 596.75-596.75 596.75-329.58 0-596.75-267.17-596.75-596.75 0-329.57 267.17-596.75 596.75-596.75Z"/><circle cx="596.749" cy="1964.8" r="596.749"/><path d="M1193.5 3332.87c0 329.57-267.176 596.75-596.751 596.75S0 3662.44 0 3332.87c0-329.58 267.174-596.75 596.749-596.75 329.575 0 596.751 267.17 596.751 596.75Z"/><circle cx="5062.46" cy="617.751" r="596.749" transform="rotate(-90 5062.46 617.751)"/><circle cx="5062.46" cy="3333.56" r="596.749" transform="rotate(-90 5062.46 3333.56)"/></g></symbol><use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <div class="nav header__nav" data-astro-cid-7wkmezxd> <button class="nav__open" title="Открыть меню" data-astro-cid-7wkmezxd> Меню</button> <nav class="nav__container" data-astro-cid-7wkmezxd> <button class="nav__close" title="Закрыть меню" data-astro-cid-7wkmezxd> Закрыть</button> <ul class="nav__list" data-astro-cid-7wkmezxd> <li class="nav__item" data-astro-cid-7wkmezxd> <a href="/blog" class="nav__link nav__link--active" data-astro-cid-7wkmezxd> Блог </a> </li><li class="nav__item" data-astro-cid-7wkmezxd> <a href="#cta" class="nav__link" data-astro-cid-7wkmezxd> Контакты </a> </li> </ul> </nav> </div>   <!-- <ThemeToggle client:only /> --> </div> </header>  <main id="main-content" class="main flex-1">  <div class="blocks"> <nav aria-label="Breadcrumbs" class="breadcrumbs" data-astro-cid-vcbh62el> <div class="container" data-astro-cid-vcbh62el> <ol class="list" role="list" data-astro-cid-vcbh62el> <li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/" data-astro-cid-vcbh62el> Главная </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el> <a class="link" href="/blog" data-astro-cid-vcbh62el> Blog </a> </li><li class="item" role="listitem" data-astro-cid-vcbh62el>  </li> </ol> </div> </nav>  <!-- <TextAds class="fade-in-bottom fluid:my-2" style="--delay: .8s;" /> --><article class="article" data-astro-cid-axzg2cw6> <article data-astro-cid-axzg2cw6> <figure class="article__image" data-astro-cid-axzg2cw6> <picture data-astro-cid-axzg2cw6> <source srcset="/_astro/undefined-Mar-22-2023.D0e_ftNJ_Z1Ex2mG.avif" type="image/avif"><source srcset="/_astro/undefined-Mar-22-2023.D0e_ftNJ_Z24uBBI.webp" type="image/webp"> <img src="/_astro/undefined-Mar-22-2023.D0e_ftNJ_Z1C5Fxf.png" alt="Создание системы аутентификации без пароля" class="aspect-video h-full w-full object-cover object-center" loading="eager" data-astro-cid-axzg2cw6 data-astro-transition-scope="astro-xdjatz7t-1" width="1120" height="580" decoding="async"> </picture> </figure> </article> <div class="container" data-astro-cid-axzg2cw6> <div class="article__header" data-astro-cid-axzg2cw6> <ul class="article__categories categories" data-astro-cid-axzg2cw6> <li class="categories__item" data-astro-cid-axzg2cw6> <a href="/category/как-закодить" class="categories__link" data-astro-cid-axzg2cw6> Как закодить  </a> </li> </ul> <h1 class="article__title text-wrap" data-astro-cid-axzg2cw6> Создание системы аутентификации без пароля </h1> <ul class="article__tags tags" data-astro-cid-axzg2cw6> <li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/javascript" data-astro-cid-axzg2cw6> JavaScript </a> </li><li class="tags__item" data-astro-cid-axzg2cw6> <a class="tags__link" href="/tag/typescript" data-astro-cid-axzg2cw6> Typescript </a> </li> </ul> <time class="article__date" data-astro-cid-axzg2cw6>
+Опубликовано 22 мар., 2023 by Igor Gorlov </time> <time class="article__date" data-astro-cid-axzg2cw6> Последнее изменение: 21 мар., 2024 </time> </div> <div class="article__content prose prose-zinc max-w-full break-words text-blue dark:prose-invert prose-headings:text-blue prose-p:text-balance prose-a:no-underline hover:prose-a:underline prose-figure:bg-gray-light prose-figure:p-10 prose-figcaption:text-dark dark:prose-figure:bg-dark dark:prose-figcaption:text-white" data-astro-cid-axzg2cw6> <!-- <TextAds /> --> <!-- <AdfoxTocAds blockId="adfox_17062261612859555" /> --> <div class="article__meta" data-astro-cid-axzg2cw6> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Создание системы аутентификации без пароля&url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya&title=Создание системы аутентификации без пароля&summary=Существует новый способ встраивания аутентификации в ваше внутреннее приложение. Этот подход устраняет необходимость в пароле, что привело к появлению термина беспарольная аутентификация.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya&media=&description=Существует новый способ встраивания аутентификации в ваше внутреннее приложение. Этот подход устраняет необходимость в пароле, что привело к появлению термина беспарольная аутентификация." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <a class="article__meta-section" href="#comments" data-astro-cid-axzg2cw6> Комментарии</a> </div> <p>Существует новый способ встраивания аутентификации в ваше внутреннее приложение. Этот подход устраняет необходимость в пароле, что привело к появлению термина ”беспарольная аутентификация”. Системы беспарольной аутентификации становятся все более популярными, поскольку они обладают рядом преимуществ по сравнению с традиционными системами, основанными на паролях. Например, они обеспечивают более удобную работу с пользователями, снижают риск утечки данных и уменьшают затраты на управление паролями.</p>
+<p>Система аутентификации без пароля может быть реализована различными способами, включая использование биометрической информации, одноразовых кодов или криптографии с открытым и закрытым ключом. Выбор оптимального варианта зависит от конкретных требований системы и пользователей. Каждый метод имеет свои преимущества и недостатки. В данной статье мы будем использовать одноразовый код, который будет отправлен на электронную почту пользователя.</p>
+<!-- wp:rank-math/toc-block {"title":"Оглавление","headings":[{"key":"ce0ce9dd-16ea-4243-a8f6-4ca65abc6676","content":"Сначала давайте запустим наш проект npm","level":2,"link":"#сначала-давайте-запустим-наш-проект-npm","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"0082c66c-5d98-4abb-80bf-2fc0b8b38e02","content":"Давайте создадим наше приложение и запустим наш сервер.","level":2,"link":"#давайте-создадим-наше-приложение-и-запустим-наш-сервер","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"82f89add-c30b-4373-9278-03883e048aa0","content":"Далее мы настроим нашу базу данных с Mongoose, ","level":2,"link":"#далее-мы-настроим-нашу-базу-данных-с-mongoose","disable":false,"isUpdated":false,"isGeneratedLink":true},{"key":"4d08532c-c575-4fc2-822c-f91d5cfe53a6","content":"Запустите свое приложение","level":2,"link":"#запустите-свое-приложение","disable":false,"isUpdated":false,"isGeneratedLink":true}],"listStyle":"ul"} -->
+<div class="wp-block-rank-math-toc-block" id="rank-math-toc"><h2>Оглавление</h2><nav><ul><li class=""><a href="#сначала-давайте-запустим-наш-проект-npm">Сначала давайте запустим наш проект npm</a></li><li class=""><a href="#давайте-создадим-наше-приложение-и-запустим-наш-сервер">Давайте создадим наше приложение и запустим наш сервер.</a></li><li class=""><a href="#далее-мы-настроим-нашу-базу-данных-с-mongoose">Далее мы настроим нашу базу данных с Mongoose, </a></li><li class=""><a href="#запустите-свое-приложение">Запустите свое приложение</a></li></ul></nav></div>
+<!-- /wp:rank-math/toc-block -->
+<h2 class="wp-block-heading" id="сначала-давайте-запустим-наш-проект-npm">Сначала давайте запустим наш проект npm</h2>
+<p>Выполним npm init —y, затем установим наши зависимости, для этого приложения мы будем использовать express.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npm i express</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="давайте-создадим-наше-приложение-и-запустим-наш-сервер">Давайте создадим наше приложение и запустим наш сервер.</h2>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="typescript" class="language-typescript">// index.ts
+import express from 'express';
+
+const app = express();
+
+app.listen(3000, () => console.log(`server running on port 3000`))
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="далее-мы-настроим-нашу-базу-данных-с-mongoose">Далее мы настроим нашу базу данных с Mongoose, </h2>
+<p>Для этого сначала нужно установить Mongoose.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="bash" class="language-bash">npm i mongoose</code></pre>
+<!-- /wp:code -->
+<p>Нам необходимо настроить схему и модели mongoose, что мы и сделаем ниже;</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="typescript" class="language-typescript">// user.schema.js
+
+import { Schema } from 'mongoose';
+
+export const UserSchema = new Schema({
+  email: {
+    type: String,
+    required: [true, "Please provide your email"],
+    unique: true
+  },
+  fistName: String,
+  lastName: String,
+  otp: number;
+}, {
+  timestamps: true
+})
+</code></pre>
+<!-- /wp:code -->
+<p>Выше мы объявили схему пользователей, схема пользователей определяет некоторые основные свойства, которыми должен обладать пользователь, самое главное - электронная почта, которую мы установили обязательной для всех пользователей, мы также гарантируем, что два пользователя не могут иметь одинаковые электронные адреса, обеспечивая уникальность электронных адресов. Давайте создадим модель пользователя для обработки всей логики.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// user.model.js
+
+import { UserSchema } from './user.schema';
+import { model } from 'mongoose';
+
+UserSchema.statics.createAccount = async function ({
+  email, 
+  firstName,
+  lastName
+}) {
+  try {
+    const user = await this.create({ 
+      email,
+      firstName,
+      lastName
+    })
+    // Generate OTP for user
+    const otp = Math.floor(Math.random() * 1000000);
+    await user.updateOne({ otp });
+    sendEmailSomehow(`Your otp is ${otp}`)
+    return [user, null]
+  } catch(error) {
+    return [null, error.message]
+  }
+}
+
+</code></pre>
+<!-- /wp:code -->
+<p>Приведенный выше фрагмент создает для нас нового пользователя, мы генерируем otp, который будет служить в качестве одноразового кода доступа, который мы будем использовать для верификации пользователя, мы используем службу электронной почты для отправки пользователю письма, я предполагаю, что у вас есть сторонняя служба, которая будет заниматься доставкой электронной почты.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">
+UserSchema.statics.login = async function (email) {
+  try {
+    const user = await this.findOne({ email });
+    const otp = Math.floor(Math.random() * 1000000);
+    await user.updateOne({ otp });
+    sendEmailSomehow(`Your otp is ${otp}`);
+    return [user, null]
+  } catch (error) {
+     return [null, error.message]
+  }
+}
+
+</code></pre>
+<!-- /wp:code -->
+<p>Этот фрагмент выше обрабатывает процесс входа в систему, мы проверяем, есть ли пользователь с электронной почтой, которая совпадает с указанной, если такой пользователь есть, мы создаем для него otp и отправляем его на его электронную почту. Давайте напишем функцию, которая будет проверять их otp.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">
+UserSchema.statics.verifyOTP = async function (otp, email) {
+  try {
+    const user = await this.findOne({ email, otp });
+    return [user, null];
+  } catch (error) {
+    return [null, error.message]
+  }
+}
+
+export const Users = await model('user', UserSchema);
+</code></pre>
+<!-- /wp:code -->
+<p>Теперь у нас есть базовая настройка, нам нужно импортировать модель Users в наши контроллеры, которые мы создадим ниже.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// user.controller.js
+
+import { Users } from 'user.model';
+
+export const createAccount = async (req, res) => {
+  const { firstName, lastName, email } = req.body;
+  const [user, err] = await Users.createAccount({
+    firstName,
+    lastName,
+    email,
+  });
+  if (err) res.status(400).json({ error: err })
+  res.status(201).json({ user })
+}
+
+</code></pre>
+<!-- /wp:code -->
+<p>У нас есть первый контроллер, который обрабатывает регистрацию пользователей, ниже мы настроим другие контроллеры для входа в систему и проверки нашего пользовательского токена.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">
+export const login = async (req, res) => {
+  const { email } = req.body;
+  const [user, err] = await Users.login(email);
+  if (err) res.status(400).json({ error: err });
+  res.status(201).json({ user });
+}
+
+export const verifyOTP = async (req, res) => {
+  const { otp } = req.body;
+  const [user, err] = await Users.verifyOTP(otp);
+  if (err) res.status(400).json({ error: err });
+  res.status(201).json({ user });
+}
+</code></pre>
+<!-- /wp:code -->
+<p>Мы создали и экспортировали наши функции контроллера, теперь нам нужно сопоставить каждую функцию контроллера с маршрутом, это будет сделано внутри файла маршрута.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// router.js
+import { createAccount, login, verifyOTP } from './user.controller';
+import { Router } from 'express';
+
+export const router = Router();
+
+router.post('/register', createAccount);
+router.post('/login', login);
+router.post('/otp', verifyOTP);
+
+</code></pre>
+<!-- /wp:code -->
+<p>Наше приложение уже готово, теперь нам нужно импортировать наш маршрутизатор и применить его к нашему приложению.</p>
+<!-- wp:code -->
+<pre class="wp-block-code"><code lang="javascript" class="language-javascript">// index.js continued
+import { router } from 'router';
+
+app.use(router);
+
+</code></pre>
+<!-- /wp:code -->
+<h2 class="wp-block-heading" id="запустите-свое-приложение">Запустите свое приложение</h2>
+<p>И у вас есть базовая настройка для системы аутентификации без пароля, хотите посмотреть, как мы можем сделать это, но с TypeORM и MySQL в качестве нашей базы данных и fastify в качестве нашего фреймворка.</p>
+<p>Увидимся в следующей статье</p> <div class="share article__share" data-astro-cid-g7nhfqu5> <h3 class="share__title" data-astro-cid-g7nhfqu5>Поделиться:</h3> <ul class="share__list" data-astro-cid-g7nhfqu5> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://vk.com/share.php?url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Vk
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="facebook share button" href="https://facebook.com/sharer/sharer.php?u=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Fb
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="twitter share button" href="https://twitter.com/share?title=Создание системы аутентификации без пароля&url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+X
+</a> </li><li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="linkedin share button" href="https://www.linkedin.com/shareArticle?mini=true&url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya&title=Создание системы аутентификации без пароля&summary=Существует новый способ встраивания аутентификации в ваше внутреннее приложение. Этот подход устраняет необходимость в пароле, что привело к появлению термина беспарольная аутентификация.&source=https://igorlov.ru/" target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Linkd
+</a> </li> <li class="share__item" data-astro-cid-g7nhfqu5> <a class="share__link" aria-label="pinterest share button" href="https://pinterest.com/pin/create/button/?url=https://igorlov.ru/blog/sozdanie-sistemy-autentifikaczii-bez-parolya&media=&description=Существует новый способ встраивания аутентификации в ваше внутреннее приложение. Этот подход устраняет необходимость в пароле, что привело к появлению термина беспарольная аутентификация." target="_blank" rel="noreferrer noopener nofollow" data-astro-cid-g7nhfqu5>
+Pint
+</a> </li> </ul>  </div> <nav class="circular-pagination" aria-label="Circular Pagination" data-astro-cid-ihkjvfsn> <a href="/blog/sozdanie-stilnogo-staticheskogo-veb-sajta-s-eleventy-11ty" class="circular-pagination__link circular-pagination__link--prev" data-astro-cid-ihkjvfsn> Создание стильного статического веб-сайта с Eleventy (11ty) </a> <a href="/blog/sozdanie-rolika-dlya-igry-v-kosti-s-pomoshhyu-three-js-i-cannon-es" class="circular-pagination__link circular-pagination__link--next" data-astro-cid-ihkjvfsn> Создание ролика для игры в кости с помощью Three.js и Cannon-es </a> </nav>  </div> </div> </article> <div class="container" data-astro-cid-axzg2cw6> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1T5Wnr" prefix="r0" component-url="/_astro/YandexRelatedAds.D-6fTqBY.js" component-export="default" renderer-url="/_astro/client.Bd2Qst3j.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;YandexRelatedAds&quot;,&quot;value&quot;:true}" await-children=""><div id="yandex_rtb_C-A-2592503-2"></div><!--astro:end--></astro-island> </div> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1U3gfI" component-url="/_astro/CommentBlock.ChJFdf82.js" component-export="default" renderer-url="/_astro/client.44T8euMP.js" props="{&quot;data-astro-cid-axzg2cw6&quot;:[0,true]}" ssr="" client="only" opts="{&quot;name&quot;:&quot;CommentBlock&quot;,&quot;value&quot;:true}"></astro-island>  <!-- <div class="blocks__container container">
+			<CtaBlock id="cta" class=""
+			/>
+		</div> --> </div>    </main> <footer class="footer" data-astro-cid-dwelrhxs> <div class="footer__container container" data-astro-cid-dwelrhxs> <a href="/" class="logo font-medium lowercase transition-colors fluid:text-lg footer__logo dark:hover:text-light text-blue dark:text-white" aria-label="logo" data-astro-cid-ijoll5s5> <svg width="1.44em" height="1em" viewBox="0 0 5660 3931" class="icon" data-astro-cid-ijoll5s5 data-icon="logo-one">  <use xlink:href="#ai:local:logo-one"></use>  </svg>  </a> <small class="footer__copyright" data-astro-cid-dwelrhxs>все права защищены. © 2024</small> </div> </footer>  </body></html>
